@@ -20,13 +20,16 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameTextField: CustomTextField! {
         didSet {
             usernameTextField.setTitle(title: "Username")
+            usernameTextField.autocorrectionType = .no
+            usernameTextField.autocapitalizationType = .none
         }
     }
     
     @IBOutlet weak var passwordTextField: CustomTextField! {
         didSet {
             passwordTextField.setTitle(title: "Password")
-            
+            passwordTextField.autocorrectionType = .no
+            passwordTextField.autocapitalizationType = .none
         }
     }
     

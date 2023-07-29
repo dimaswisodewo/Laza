@@ -14,12 +14,16 @@ class UpdatePasswordViewController: UIViewController {
     @IBOutlet weak var passwordTextField: CustomTextField! {
         didSet {
             passwordTextField.setTitle(title: "Password")
+            passwordTextField.autocorrectionType = .no
+            passwordTextField.autocapitalizationType = .none
         }
     }
     
     @IBOutlet weak var confirmPasswordTextField: CustomTextField! {
         didSet {
             confirmPasswordTextField.setTitle(title: "Confirm Password")
+            confirmPasswordTextField.autocorrectionType = .no
+            confirmPasswordTextField.autocapitalizationType = .none
         }
     }
     

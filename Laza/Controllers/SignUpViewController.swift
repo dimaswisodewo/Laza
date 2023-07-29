@@ -20,18 +20,24 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var usernameTextField: CustomTextField! {
         didSet {
             usernameTextField.setTitle(title: "Username")
+            usernameTextField.autocorrectionType = .no
+            usernameTextField.autocapitalizationType = .none
         }
     }
     
     @IBOutlet weak var passwordTextField: CustomTextField! {
         didSet {
             passwordTextField.setTitle(title: "Password")
+            passwordTextField.autocorrectionType = .no
+            passwordTextField.autocapitalizationType = .none
         }
     }
     
     @IBOutlet weak var emailTextField: CustomTextField! {
         didSet {
             emailTextField.setTitle(title: "Email Address")
+            emailTextField.autocorrectionType = .no
+            emailTextField.autocapitalizationType = .none
         }
     }
     
