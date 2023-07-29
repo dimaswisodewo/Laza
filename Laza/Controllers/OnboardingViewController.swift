@@ -33,15 +33,6 @@ class OnboardingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if DataPersistentManager.shared.isUserDataExistsInUserDefaults() {
-            print("masuk")
-            let storyboard = UIStoryboard(name: "Home", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: MainTabBarViewController.identifier)
-//            view.window?.windowScene?.keyWindow?.rootViewController = vc
-            navigationController?.pushViewController(vc, animated: true)
-            return
-        }
-        
         view.addSubview(leftTopCircle)
         
         leftTopCircle.superview?.sendSubviewToBack(leftTopCircle)

@@ -110,7 +110,6 @@ class HomeViewController: UIViewController {
         NetworkManager.shared.sendRequest(type: Products.self, endpoint: endpoint) { [weak self] result in
             switch result {
             case .success(let products):
-                print(products.count)
                 self?.products.append(contentsOf: products)
                 DispatchQueue.main.async {
                     self?.newArrivalCollectionView.reloadData()
@@ -126,7 +125,9 @@ class HomeViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         DispatchQueue.main.async { [weak self] in
             let vc = storyboard.instantiateViewController(withIdentifier: OnboardingViewController.identifier)
-            self?.view.window?.windowScene?.keyWindow?.rootViewController = vc
+            let nav = UINavigationController(rootViewController: vc)
+            nav.setNavigationBarHidden(true, animated: false)
+            self?.view.window?.windowScene?.keyWindow?.rootViewController = nav
         }
     }
 }

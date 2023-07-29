@@ -84,8 +84,9 @@ class LoginViewController: UIViewController {
             DispatchQueue.main.async { [weak self] in
                 let storyboard = UIStoryboard(name: "Home", bundle: nil)
                 guard let vc = storyboard.instantiateViewController(withIdentifier: MainTabBarViewController.identifier) as? MainTabBarViewController else { return }
-                
-                self?.view.window?.windowScene?.keyWindow?.rootViewController = vc
+                let nav = UINavigationController(rootViewController: vc)
+                nav.setNavigationBarHidden(true, animated: false)
+                self?.view.window?.windowScene?.keyWindow?.rootViewController = nav
             }
         }
     }
