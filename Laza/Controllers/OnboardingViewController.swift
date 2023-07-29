@@ -67,7 +67,8 @@ class OnboardingViewController: UIViewController {
         gradientLayer.type = .radial
         gradientLayer.colors = [
             UIColor.white.withAlphaComponent(0.25).cgColor,
-            UIColor.clear.cgColor]
+            UIColor.clear.cgColor
+        ]
         gradientLayer.locations = [0, 1]
         gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.5)
         gradientLayer.endPoint = CGPoint(x: 1, y: 1)

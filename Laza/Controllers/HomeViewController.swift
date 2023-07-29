@@ -97,8 +97,7 @@ class HomeViewController: UIViewController {
         label.font = UIFont(name: "Inter-Medium", size: 11)
         label.sizeToFit()
         
-        tabBarItem.standardAppearance?.selectionIndicatorTintColor = UIColor(named: "PurpleButton")
-        tabBarItem.selectedImage = UIImage(view: label)
+        navigationController?.tabBarItem.selectedImage = UIImage(view: label)
     }
     
     private func loadBrands() {

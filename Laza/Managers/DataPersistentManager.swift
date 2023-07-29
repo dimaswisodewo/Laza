@@ -69,26 +69,12 @@ class DataPersistentManager {
             print("Failed to get string from key: ", saltKey)
             return nil
         }
-        let user = User(
-            email: email,
-            username: username,
-            password: password,
-            name: Name(
-                firstName: "",
-                lastName: ""
-            ),
-            address: Address(
-                city: "",
-                street: "",
-                number: 0,
-                zipCode: "",
-                geoLocation: GeoLocation(
-                    lat: "",
-                    long: ""
-                )
-            ),
-            phone: ""
-        )
+        
+        var user = User()
+        user.email = email
+        user.username = username
+        user.password = password
+        
         return (user, salt)
     }
 }
