@@ -1,0 +1,214 @@
+//
+//  HomeViewController.swift
+//  Laza
+//
+//  Created by Dimas Wisodewo on 26/07/23.
+//
+
+import UIKit
+
+class HomeViewController: UIViewController {
+    
+    enum CollectionType: Int {
+        case brand = 0
+        case product = 1
+    }
+    
+    static let identifier = "HomeViewController"
+
+    @IBOutlet weak var menuButton: CircleButton! {
+        didSet {
+            menuButton.addTarget(self, action: #selector(menuButtonPressed), for: .touchUpInside)
+        }
+    }
+    
+    @IBOutlet weak var cartButton: CircleButton!
+    
+    @IBOutlet weak var helloLabel: UILabel!
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+    
+    @IBOutlet weak var voiceButton: RoundedButton!
+    
+    @IBOutlet weak var viewAllBrandButton: UIButton!
+    
+    @IBOutlet weak var viewAllNewArrivalButton: UIButton!
+    
+    @IBOutlet weak var brandCollectionView: UICollectionView! {
+        didSet {
+            brandCollectionView.tag = CollectionType.brand.rawValue
+            brandCollectionView.showsVerticalScrollIndicator = false
+            brandCollectionView.showsHorizontalScrollIndicator = false
+            brandCollectionView.delegate = self
+            brandCollectionView.dataSource = self
+            brandCollectionView.register(BrandCollectionViewCell.self, forCellWithReuseIdentifier: BrandCollectionViewCell.identifier)
+        }
+    }
+    
+    @IBOutlet weak var newArrivalCollectionView: UICollectionView! {
+        didSet {
+            newArrivalCollectionView.tag = CollectionType.product.rawValue
+            newArrivalCollectionView.showsHorizontalScrollIndicator = false
+            newArrivalCollectionView.delegate = self
+            newArrivalCollectionView.dataSource = self
+            newArrivalCollectionView.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.identifier)
+        }
+    }
+    
+    typealias Brands = [String]
+    private var brands = Brands()
+    
+    typealias Products = [Product]
+    private var products = Products()
+    
+    private let viewModel = HomeViewModel()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        setupTabBarItemImage()
+        loadBrands()
+        loadProducts()
+    }
+
+    private func setupTabBarItemImage() {
+        let label = UILabel()
+        label.numberOfLines = 1
+        label.textAlignment = .center
+        label.text = "Home"
+        label.font = UIFont(name: "Inter-Medium", size: 11)
+        label.sizeToFit()
+        
+        tabBarItem.standardAppearance?.selectionIndicatorTintColor = UIColor(named: "PurpleButton")
+        tabBarItem.selectedImage = UIImage(view: label)
+    }
+    
+    private func loadBrands() {
+        var endpoint = Endpoint()
+        endpoint.initialize(path: "products/categories")        
+        NetworkManager.shared.sendRequest(endpoint: endpoint) { [weak self] data, response, error in
+            if let data = data, error == nil {
+                do {
+                    guard let self = self else { return }
+                    let categories = try JSONDecoder().decode([String].self, from: data)
+                    self.brands.append(contentsOf: categories.map({ $0.capitalized }))
+                    DispatchQueue.main.async {
+                        self.brandCollectionView.reloadData()
+                    }
+                } catch {
+                    print(error)
+                }
+            } else {
+                print(String(describing: error))
+            }
+        }
+    }
+    
+    private func loadProducts() {
+        var endpoint = Endpoint()
+        endpoint.initialize(path: "products")
+        NetworkManager.shared.sendRequest(type: Products.self, endpoint: endpoint) { [weak self] result in
+            switch result {
+            case .success(let products):
+                print(products.count)
+                self?.products.append(contentsOf: products)
+                DispatchQueue.main.async {
+                    self?.newArrivalCollectionView.reloadData()
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    @objc private func menuButtonPressed() {
+        viewModel.logout()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        DispatchQueue.main.async { [weak self] in
+            let vc = storyboard.instantiateViewController(withIdentifier: OnboardingViewController.identifier)
+            self?.view.window?.windowScene?.keyWindow?.rootViewController = vc
+        }
+    }
+}
+
+extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        switch collectionView.tag {
+        case CollectionType.brand.rawValue:
+            return brands.count
+        case CollectionType.product.rawValue:
+            return products.count
+        default:
+            return 0
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        switch collectionView.tag {
+        case CollectionType.brand.rawValue:
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: BrandCollectionViewCell.identifier,
+                for: indexPath) as? BrandCollectionViewCell else { return UICollectionViewCell() }
+            let title = brands[indexPath.item]
+            cell.setTitle(title: title)
+            return cell
+        case CollectionType.product.rawValue:
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: ProductCollectionViewCell.identifier,
+                for: indexPath) as? ProductCollectionViewCell else {
+                print("failed to dequeue cell")
+                return UICollectionViewCell()
+            }
+            let model = products[indexPath.item]
+            cell.configure(product: model)
+            return cell
+        default:
+            return UICollectionViewCell()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        switch collectionView.tag {
+        case CollectionType.brand.rawValue:
+            let padding: CGFloat = 10
+            let item = brands[indexPath.item]
+            let itemWidth = item.size(withAttributes: [
+                NSAttributedString.Key.font : UIFont(name: "Inter-Medium", size: 17) ?? UIFont.systemFont(ofSize: 17, weight: .medium)
+            ]).width
+            return CGSize(width: itemWidth + padding * 2, height: 50)
+        case CollectionType.product.rawValue:
+            let minimumInteritemSpacing: CGFloat = 16
+            let numOfColum: CGFloat = 2.0
+            let collectionViewFlowLayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+            let spacing = (minimumInteritemSpacing * numOfColum) + collectionViewFlowLayout.sectionInset.left + collectionViewFlowLayout.sectionInset.right
+            let width = (collectionView.frame.size.width / numOfColum ) - spacing
+            let cellHeightToWidthAspectRatio = CGFloat(257.0 / 160)
+            return CGSize(width: width, height: width * cellHeightToWidthAspectRatio)
+        default:
+            return CGSize(width: 200, height: 50)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        switch collectionView.tag {
+        case CollectionType.brand.rawValue:
+            return 16
+        case CollectionType.product.rawValue:
+            return 16
+        default:
+            return 16
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        switch collectionView.tag {
+        case CollectionType.brand.rawValue:
+            return UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        case CollectionType.product.rawValue:
+            return UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        default:
+            return UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        }
+    }
+}
