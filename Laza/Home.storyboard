@@ -143,15 +143,52 @@
                                     <fontDescription key="titleFontDescription" name="Inter-Regular" family="Inter" pointSize="13"/>
                                 </buttonConfiguration>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FNG-Ze-Gd2" customClass="RoundedButton" customModule="Laza" customModuleProvider="target">
+                                <rect key="frame" x="95" y="108.66666666666667" width="81" height="36.000000000000014"/>
+                                <color key="backgroundColor" name="PurpleButton"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="81" id="aeM-TN-W3z"/>
+                                    <constraint firstAttribute="height" constant="36" id="zdB-kh-B0H"/>
+                                </constraints>
+                                <color key="tintColor" name="WhiteButtonPrimary"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="LogOut" titleAlignment="center">
+                                    <fontDescription key="titleFontDescription" name="Inter-Regular" family="Inter" pointSize="12"/>
+                                </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XE3-Qf-lUZ" customClass="RoundedButton" customModule="Laza" customModuleProvider="target">
+                                <rect key="frame" x="190" y="108" width="100" height="37"/>
+                                <color key="backgroundColor" name="PurpleButton"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="Hkx-gb-UfY"/>
+                                </constraints>
+                                <color key="tintColor" name="WhiteButtonPrimary"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Update Password" titleAlignment="center">
+                                    <fontDescription key="titleFontDescription" name="Inter-Regular" family="Inter" pointSize="12"/>
+                                </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" name="HomeBG"/>
                         <constraints>
                             <constraint firstItem="XCi-ED-k5x" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="01Z-cq-oXe"/>
+                            <constraint firstItem="FNG-Ze-Gd2" firstAttribute="centerY" secondItem="uFB-Rh-7KH" secondAttribute="centerY" id="4Av-Zu-ewY"/>
                             <constraint firstItem="uFB-Rh-7KH" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="8es-JN-dgz"/>
                             <constraint firstItem="eEW-Sg-gqZ" firstAttribute="centerY" secondItem="8cu-6T-E7b" secondAttribute="centerY" id="Cie-qo-0oy"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="8cu-6T-E7b" secondAttribute="trailing" constant="20" id="F9V-Ig-Xiq"/>
                             <constraint firstItem="bhR-Xp-jIg" firstAttribute="top" secondItem="Tph-do-nDS" secondAttribute="bottom" constant="15" id="Gcn-OJ-VUx"/>
+                            <constraint firstItem="XE3-Qf-lUZ" firstAttribute="centerY" secondItem="FNG-Ze-Gd2" secondAttribute="centerY" id="HAY-7Y-pXH"/>
                             <constraint firstItem="8cu-6T-E7b" firstAttribute="top" secondItem="XCi-ED-k5x" secondAttribute="bottom" constant="20" id="HNK-I4-afc"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="XCi-ED-k5x" secondAttribute="trailing" constant="20" id="K1Z-hP-lhf"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="bhR-Xp-jIg" secondAttribute="trailing" id="KG0-1m-Jue"/>
@@ -167,7 +204,10 @@
                             <constraint firstItem="w9k-to-9c2" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="45" id="bRS-6Z-PCc"/>
                             <constraint firstItem="Tph-do-nDS" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="cLo-oh-Pd6"/>
                             <constraint firstItem="vIP-Vg-haH" firstAttribute="centerY" secondItem="Tph-do-nDS" secondAttribute="centerY" id="cp7-Os-dQq"/>
+                            <constraint firstItem="XE3-Qf-lUZ" firstAttribute="height" secondItem="FNG-Ze-Gd2" secondAttribute="height" multiplier="1.02381" id="gLd-f5-Qvl"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="tnl-mn-jTE" secondAttribute="trailing" id="k0C-qx-AW3"/>
+                            <constraint firstItem="XE3-Qf-lUZ" firstAttribute="leading" secondItem="FNG-Ze-Gd2" secondAttribute="trailing" constant="14" id="ohv-st-epk"/>
+                            <constraint firstItem="FNG-Ze-Gd2" firstAttribute="leading" secondItem="uFB-Rh-7KH" secondAttribute="trailing" constant="30" id="p4h-dQ-qoR"/>
                             <constraint firstItem="8cu-6T-E7b" firstAttribute="leading" secondItem="eEW-Sg-gqZ" secondAttribute="trailing" constant="10" id="rFC-kp-YzJ"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="w9k-to-9c2" secondAttribute="trailing" constant="20" id="rQR-9P-iyI"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="B7b-uk-JPc" secondAttribute="trailing" constant="20" id="ugB-FE-UVd"/>
@@ -179,14 +219,16 @@
                             <constraint firstItem="tnl-mn-jTE" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="zHV-O3-EWU"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="Home" id="lsE-Zv-8ha"/>
+                    <navigationItem key="navigationItem" id="LaO-fX-0mF"/>
                     <connections>
                         <outlet property="brandCollectionView" destination="tnl-mn-jTE" id="0md-mU-FgS"/>
                         <outlet property="cartButton" destination="w9k-to-9c2" id="mWC-yl-eAh"/>
                         <outlet property="helloLabel" destination="B7b-uk-JPc" id="3mp-7Q-o9l"/>
+                        <outlet property="logoutButton" destination="FNG-Ze-Gd2" id="KUa-mW-2O0"/>
                         <outlet property="menuButton" destination="uFB-Rh-7KH" id="mE7-vo-3I8"/>
                         <outlet property="newArrivalCollectionView" destination="bhR-Xp-jIg" id="t2Y-dz-I2f"/>
                         <outlet property="searchBar" destination="eEW-Sg-gqZ" id="BWo-Pd-o0a"/>
+                        <outlet property="updatePasswordButton" destination="XE3-Qf-lUZ" id="aYg-0I-HGd"/>
                         <outlet property="viewAllBrandButton" destination="6P7-D4-afM" id="qLd-fx-LiS"/>
                         <outlet property="viewAllNewArrivalButton" destination="vIP-Vg-haH" id="E1b-Vp-clc"/>
                         <outlet property="voiceButton" destination="8cu-6T-E7b" id="OlE-6z-vJG"/>
@@ -194,7 +236,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1066.4122137404579" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="1964.6511627906978" y="3.218884120171674"/>
         </scene>
         <!--Main Tab Bar View Controller-->
         <scene sceneID="gk3-v8-C2h">
@@ -208,7 +250,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="viewControllers" id="DM9-Ab-Q2x"/>
+                        <segue destination="gsi-dd-nZZ" kind="relationship" relationship="viewControllers" id="DM9-Ab-Q2x"/>
                         <segue destination="Od6-OK-8KC" kind="relationship" relationship="viewControllers" id="VXQ-7r-4nL"/>
                         <segue destination="2au-eR-b4E" kind="relationship" relationship="viewControllers" id="taV-Vs-rkX"/>
                         <segue destination="FM8-uD-p60" kind="relationship" relationship="viewControllers" id="TwV-2p-CfG"/>
@@ -264,7 +306,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DO2-aW-fRN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1773" y="118"/>
+            <point key="canvasLocation" x="2670.6976744186045" y="117.81115879828327"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="wos-A4-UYI">
@@ -321,7 +363,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="58n-mw-Stl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1770.6976744186047" y="-562.01716738197433"/>
+            <point key="canvasLocation" x="2669.3023255813955" y="-562.01716738197433"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="xJT-E5-glB">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="gsi-dd-nZZ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="Home" id="lsE-Zv-8ha"/>
+                    <toolbarItems/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3vD-zb-39n">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="UFp-9K-zzq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uEE-Hj-FVo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1066.046511627907" y="3.218884120171674"/>
         </scene>
     </scenes>
     <designables>
@@ -333,6 +394,12 @@
         </designable>
         <designable name="8cu-6T-E7b">
             <size key="intrinsicContentSize" width="48" height="38"/>
+        </designable>
+        <designable name="FNG-Ze-Gd2">
+            <size key="intrinsicContentSize" width="66" height="28.666666666666668"/>
+        </designable>
+        <designable name="XE3-Qf-lUZ">
+            <size key="intrinsicContentSize" width="124.66666666666667" height="28.666666666666668"/>
         </designable>
         <designable name="uFB-Rh-7KH">
             <size key="intrinsicContentSize" width="49" height="39"/>
@@ -367,6 +434,9 @@
         </namedColor>
         <namedColor name="WhiteBG">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="WhiteButtonPrimary">
+            <color red="0.96078431372549022" green="0.96470588235294119" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="WhiteButtonSecondary">
             <color red="0.96078431372549022" green="0.96470588235294119" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

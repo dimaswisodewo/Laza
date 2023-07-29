@@ -63,7 +63,7 @@ class SignUpViewController: UIViewController {
             return
         }
         if !RegExManager.shared.isPasswordValid(passwordText: password) {
-            print("Password is not valid")
+            print("Password is not valid, minimum eight characters, at least one letter, one number, and one special character")
             return
         }
         if !RegExManager.shared.isEmailValid(emailText: email) {

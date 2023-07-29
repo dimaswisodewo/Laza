@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3817D67A2A7202A10074D911 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3817D6792A7202A10074D911 /* RoundedButton.swift */; };
+		38A7DD652A750E9E002564AB /* UpdatePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A7DD642A750E9E002564AB /* UpdatePasswordViewController.swift */; };
+		38A7DD672A750F75002564AB /* UpdatePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A7DD662A750F75002564AB /* UpdatePasswordViewModel.swift */; };
 		38A9E4382A74FE4000ACBBFD /* StarterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A9E4372A74FE4000ACBBFD /* StarterViewController.swift */; };
 		38B76D4A2A73B6B800C5DA0B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B76D492A73B6B800C5DA0B /* DetailViewController.swift */; };
 		38B8F0FF2A7215F3003DA0CE /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B8F0FE2A7215F3003DA0CE /* RoundedView.swift */; };
@@ -53,6 +55,8 @@
 
 /* Begin PBXFileReference section */
 		3817D6792A7202A10074D911 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		38A7DD642A750E9E002564AB /* UpdatePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordViewController.swift; sourceTree = "<group>"; };
+		38A7DD662A750F75002564AB /* UpdatePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordViewModel.swift; sourceTree = "<group>"; };
 		38A9E4372A74FE4000ACBBFD /* StarterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarterViewController.swift; sourceTree = "<group>"; };
 		38B76D492A73B6B800C5DA0B /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		38B8F0FE2A7215F3003DA0CE /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
@@ -172,6 +176,7 @@
 				38C51DC82A715F45000324A5 /* MainTabBarViewController.swift */,
 				38B76D492A73B6B800C5DA0B /* DetailViewController.swift */,
 				38A9E4372A74FE4000ACBBFD /* StarterViewController.swift */,
+				38A7DD642A750E9E002564AB /* UpdatePasswordViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -182,6 +187,7 @@
 				38D1DE3B2A74B55B002AB0ED /* SignUpViewModel.swift */,
 				38D1DE3D2A74BE7E002AB0ED /* LoginViewModel.swift */,
 				38D1DE452A74E342002AB0ED /* HomeViewModel.swift */,
+				38A7DD662A750F75002564AB /* UpdatePasswordViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -302,6 +308,7 @@
 			files = (
 				38D1DE422A74CA54002AB0ED /* UserLogin.swift in Sources */,
 				38A9E4382A74FE4000ACBBFD /* StarterViewController.swift in Sources */,
+				38A7DD652A750E9E002564AB /* UpdatePasswordViewController.swift in Sources */,
 				38C51DC92A715F45000324A5 /* MainTabBarViewController.swift in Sources */,
 				38DCC68B2A70D368006A3633 /* CircleButton.swift in Sources */,
 				38D1DE462A74E342002AB0ED /* HomeViewModel.swift in Sources */,
@@ -317,6 +324,7 @@
 				38F216032A7218B700952E65 /* BrandCollectionViewCell.swift in Sources */,
 				38DCC66A2A70A8B7006A3633 /* OnboardingViewController.swift in Sources */,
 				38C51DC52A715849000324A5 /* WalletViewController.swift in Sources */,
+				38A7DD672A750F75002564AB /* UpdatePasswordViewModel.swift in Sources */,
 				38C51DC32A715840000324A5 /* CartViewController.swift in Sources */,
 				38FF0E4A2A70F040009B406F /* CustomTextField.swift in Sources */,
 				38FF0E4E2A7103C2009B406F /* LoginViewController.swift in Sources */,

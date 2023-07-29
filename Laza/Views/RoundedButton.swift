@@ -9,7 +9,7 @@ import UIKit
 
 @IBDesignable class RoundedButton: UIButton {
 
-    @IBInspectable var cornerRadius: CGFloat = 10 {
+    @IBInspectable public var cornerRadius: CGFloat = 10.0 {
         didSet {
             refreshBorder(_cornerRadius: cornerRadius)
         }
@@ -19,13 +19,19 @@ import UIKit
         super.init(frame: frame)
         refreshBorder(_cornerRadius: cornerRadius)
     }
-    
+
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         refreshBorder(_cornerRadius: cornerRadius)
     }
-    
+
     override func prepareForInterfaceBuilder() {
+        super.prepareForInterfaceBuilder()
+        refreshBorder(_cornerRadius: cornerRadius)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
         refreshBorder(_cornerRadius: cornerRadius)
     }
     

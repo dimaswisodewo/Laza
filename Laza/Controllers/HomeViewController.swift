@@ -55,6 +55,18 @@ class HomeViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var logoutButton: RoundedButton! {
+        didSet {
+            logoutButton.addTarget(self, action: #selector(logoutButtonPressed), for: .touchUpInside)
+        }
+    }
+    
+    @IBOutlet weak var updatePasswordButton: RoundedButton! {
+        didSet {
+            updatePasswordButton.addTarget(self, action: #selector(updatePasswordButtonPressed), for: .touchUpInside)
+        }
+    }
+    
     typealias Brands = [String]
     private var brands = Brands()
     
@@ -69,6 +81,12 @@ class HomeViewController: UIViewController {
         setupTabBarItemImage()
         loadBrands()
         loadProducts()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tabBarController?.tabBar.isHidden = false
     }
 
     private func setupTabBarItemImage() {
@@ -121,6 +139,10 @@ class HomeViewController: UIViewController {
     }
     
     @objc private func menuButtonPressed() {
+        
+    }
+    
+    @objc private func logoutButtonPressed() {
         viewModel.logout()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         DispatchQueue.main.async { [weak self] in
@@ -128,6 +150,16 @@ class HomeViewController: UIViewController {
             let nav = UINavigationController(rootViewController: vc)
             nav.setNavigationBarHidden(true, animated: false)
             self?.view.window?.windowScene?.keyWindow?.rootViewController = nav
+        }
+    }
+    
+    @objc private func updatePasswordButtonPressed() {
+        print("Click")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        DispatchQueue.main.async { [weak self] in
+            let vc = storyboard.instantiateViewController(withIdentifier: UpdatePasswordViewController.identifier)
+            
+            self?.navigationController?.pushViewController(vc, animated: true)
         }
     }
 }

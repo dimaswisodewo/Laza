@@ -672,6 +672,106 @@
             </objects>
             <point key="canvasLocation" x="2467.93893129771" y="655.63380281690149"/>
         </scene>
+        <!--Update Password View Controller-->
+        <scene sceneID="c6y-31-Jfm">
+            <objects>
+                <viewController storyboardIdentifier="UpdatePasswordViewController" id="vb0-xQ-zhq" customClass="UpdatePasswordViewController" customModule="Laza" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uNo-aA-USE">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hSH-Pa-W68" customClass="CircleButton" customModule="Laza" customModuleProvider="target">
+                                <rect key="frame" x="20" y="104" width="45" height="45"/>
+                                <color key="backgroundColor" name="WhiteButtonSecondary"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="6ts-m0-ZhS"/>
+                                    <constraint firstAttribute="width" constant="45" id="uSA-6u-ihs"/>
+                                </constraints>
+                                <color key="tintColor" name="TextPrimary"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="arrow.backward" catalog="system"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Password" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IfH-Eu-Qcx">
+                                <rect key="frame" x="20" y="174" width="390" height="34"/>
+                                <fontDescription key="fontDescription" name="Inter-SemiBold" family="Inter" pointSize="28"/>
+                                <color key="textColor" name="TextPrimary"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SNE-jX-I3Z">
+                                <rect key="frame" x="0.0" y="857" width="430" height="75"/>
+                                <color key="backgroundColor" name="PurpleButton"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="qHB-iZ-Lrt"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reset Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uzg-vT-iw9">
+                                <rect key="frame" x="149.66666666666666" y="872" width="130.99999999999997" height="21"/>
+                                <fontDescription key="fontDescription" name="Inter-Medium" family="Inter" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7yx-Xf-NBh" customClass="CustomTextField" customModule="Laza" customModuleProvider="target">
+                                <rect key="frame" x="20" y="386" width="390" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="woQ-vG-QIh"/>
+                                </constraints>
+                                <color key="textColor" name="TextPrimary"/>
+                                <fontDescription key="fontDescription" name="Inter-Medium" family="Inter" pointSize="15"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nSc-Hk-fHT" customClass="CustomTextField" customModule="Laza" customModuleProvider="target">
+                                <rect key="frame" x="20" y="494" width="390" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="yIV-B6-BU1"/>
+                                </constraints>
+                                <color key="textColor" name="TextPrimary"/>
+                                <fontDescription key="fontDescription" name="Inter-Medium" family="Inter" pointSize="15"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please write your new password" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XAn-hH-4aT">
+                                <rect key="frame" x="24" y="816" width="382" height="16"/>
+                                <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="13"/>
+                                <color key="textColor" name="TextSecondary"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="OPU-h3-dXQ"/>
+                        <color key="backgroundColor" name="WhiteBG"/>
+                        <constraints>
+                            <constraint firstItem="IfH-Eu-Qcx" firstAttribute="top" secondItem="hSH-Pa-W68" secondAttribute="bottom" constant="25" id="7d6-Mq-rQY"/>
+                            <constraint firstItem="OPU-h3-dXQ" firstAttribute="trailing" secondItem="7yx-Xf-NBh" secondAttribute="trailing" constant="20" id="FJa-ow-85K"/>
+                            <constraint firstItem="SNE-jX-I3Z" firstAttribute="leading" secondItem="OPU-h3-dXQ" secondAttribute="leading" id="L9R-FL-RTd"/>
+                            <constraint firstAttribute="bottom" secondItem="SNE-jX-I3Z" secondAttribute="bottom" id="LGa-4X-Yof"/>
+                            <constraint firstItem="Uzg-vT-iw9" firstAttribute="top" secondItem="SNE-jX-I3Z" secondAttribute="top" constant="15" id="LWA-ku-bki"/>
+                            <constraint firstItem="nSc-Hk-fHT" firstAttribute="top" secondItem="7yx-Xf-NBh" secondAttribute="bottom" constant="48" id="Ole-FE-5Bj"/>
+                            <constraint firstItem="XAn-hH-4aT" firstAttribute="leading" secondItem="OPU-h3-dXQ" secondAttribute="leading" constant="24" id="YX3-0n-1c9"/>
+                            <constraint firstItem="nSc-Hk-fHT" firstAttribute="leading" secondItem="OPU-h3-dXQ" secondAttribute="leading" constant="20" id="Yim-PS-ucj"/>
+                            <constraint firstItem="OPU-h3-dXQ" firstAttribute="trailing" secondItem="nSc-Hk-fHT" secondAttribute="trailing" constant="20" id="aMo-Ss-udj"/>
+                            <constraint firstItem="7yx-Xf-NBh" firstAttribute="leading" secondItem="OPU-h3-dXQ" secondAttribute="leading" constant="20" id="aYx-dP-vT2"/>
+                            <constraint firstItem="hSH-Pa-W68" firstAttribute="leading" secondItem="OPU-h3-dXQ" secondAttribute="leading" constant="20" id="bWU-Da-pAd"/>
+                            <constraint firstItem="OPU-h3-dXQ" firstAttribute="trailing" secondItem="SNE-jX-I3Z" secondAttribute="trailing" id="bgT-pm-STW"/>
+                            <constraint firstItem="Uzg-vT-iw9" firstAttribute="centerX" secondItem="SNE-jX-I3Z" secondAttribute="centerX" id="duP-RR-Aoz"/>
+                            <constraint firstItem="hSH-Pa-W68" firstAttribute="top" secondItem="OPU-h3-dXQ" secondAttribute="top" constant="45" id="hSj-23-3B4"/>
+                            <constraint firstItem="IfH-Eu-Qcx" firstAttribute="leading" secondItem="OPU-h3-dXQ" secondAttribute="leading" constant="20" id="iWo-UJ-U6h"/>
+                            <constraint firstItem="OPU-h3-dXQ" firstAttribute="trailing" secondItem="XAn-hH-4aT" secondAttribute="trailing" constant="24" id="oyI-F7-obA"/>
+                            <constraint firstItem="7yx-Xf-NBh" firstAttribute="centerY" secondItem="uNo-aA-USE" secondAttribute="centerY" constant="-50" id="sBN-xp-5Zw"/>
+                            <constraint firstItem="OPU-h3-dXQ" firstAttribute="trailing" secondItem="IfH-Eu-Qcx" secondAttribute="trailing" constant="20" id="v4j-J9-uuu"/>
+                            <constraint firstItem="SNE-jX-I3Z" firstAttribute="top" secondItem="XAn-hH-4aT" secondAttribute="bottom" constant="25" id="vW6-Rl-dyX"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backButton" destination="hSH-Pa-W68" id="Vhm-sj-phx"/>
+                        <outlet property="confirmPasswordTextField" destination="nSc-Hk-fHT" id="XF3-P5-NXI"/>
+                        <outlet property="passwordTextField" destination="7yx-Xf-NBh" id="Ezo-2E-HLs"/>
+                        <outlet property="resetPasswordButton" destination="SNE-jX-I3Z" id="6Jl-gT-N0P"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QdZ-xf-yqe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3194" y="655"/>
+        </scene>
     </scenes>
     <designables>
         <designable name="ACm-WN-n3f">
@@ -693,6 +793,9 @@
             <size key="intrinsicContentSize" width="59.666666666666664" height="34.666666666666664"/>
         </designable>
         <designable name="d13-I2-dfc">
+            <size key="intrinsicContentSize" width="49.333333333333336" height="34.333333333333336"/>
+        </designable>
+        <designable name="hSH-Pa-W68">
             <size key="intrinsicContentSize" width="49.333333333333336" height="34.333333333333336"/>
         </designable>
         <designable name="lD1-FF-onV">
