@@ -56,18 +56,6 @@ class HomeViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var logoutButton: RoundedButton! {
-        didSet {
-            logoutButton.addTarget(self, action: #selector(logoutButtonPressed), for: .touchUpInside)
-        }
-    }
-    
-    @IBOutlet weak var updatePasswordButton: RoundedButton! {
-        didSet {
-            updatePasswordButton.addTarget(self, action: #selector(updatePasswordButtonPressed), for: .touchUpInside)
-        }
-    }
-    
     private var sideMenuNavigationController: SideMenuNavigationController!
     
     private let viewModel = HomeViewModel()
@@ -97,7 +85,9 @@ class HomeViewController: UIViewController {
     
     private func setupSideMenuu() {
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: SideMenuViewController.identifier)
+        guard let vc = storyboard.instantiateViewController(withIdentifier: SideMenuViewController.identifier) as? SideMenuViewController else { return }
+        vc.delegate = self
+        
         sideMenuNavigationController = SideMenuNavigationController(rootViewController: vc)
         sideMenuNavigationController.leftSide = true
     }
@@ -117,7 +107,7 @@ class HomeViewController: UIViewController {
         present(sideMenuNavigationController, animated: true)
     }
     
-    @objc private func logoutButtonPressed() {
+    private func logoutButtonPressed() {
         viewModel.logout()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         DispatchQueue.main.async { [weak self] in
@@ -128,7 +118,7 @@ class HomeViewController: UIViewController {
         }
     }
     
-    @objc private func updatePasswordButtonPressed() {
+    private func updatePasswordButtonPressed() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         DispatchQueue.main.async { [weak self] in
             let vc = storyboard.instantiateViewController(withIdentifier: UpdatePasswordViewController.identifier)
@@ -137,6 +127,8 @@ class HomeViewController: UIViewController {
         }
     }
 }
+
+// MARK: - UICollectionView Delegate & Data Source
 
 extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -220,5 +212,20 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         default:
             return UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         }
+    }
+}
+
+// MARK: - SideMenuViewController Delegate
+
+extension HomeViewController: SideMenuViewControllerDelegate {
+    
+    func didSelectUpdatePassword() {
+        updatePasswordButtonPressed()
+        sideMenuNavigationController.dismiss(animated: true)
+    }
+    
+    func didSelectLogOut() {
+        sideMenuNavigationController.dismiss(animated: true)
+        logoutButtonPressed()
     }
 }

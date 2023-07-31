@@ -7,15 +7,30 @@
 
 import UIKit
 
+protocol SideMenuViewControllerDelegate: AnyObject {
+    
+    func didSelectUpdatePassword()
+    
+    func didSelectLogOut()
+}
+
+enum SideMenuType {
+    case updatePassword
+    case logOut
+}
+
 struct SideMenuModel {
     var icon: UIImage
     var title: String
+    var type: SideMenuType
 }
 
 class SideMenuViewController: UIViewController {
     
     class var identifier: String { return String(describing: self) }
-
+    
+    weak var delegate: SideMenuViewControllerDelegate?
+    
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.delegate = self
@@ -25,8 +40,8 @@ class SideMenuViewController: UIViewController {
     }
     
     private var sideMenus = [
-        SideMenuModel(icon: UIImage(systemName: "lock")!, title: "Update Password"),
-        SideMenuModel(icon: UIImage(systemName: "person.fill.xmark")!, title: "Log Out")
+        SideMenuModel(icon: UIImage(systemName: "lock")!, title: "Update Password", type: .updatePassword),
+        SideMenuModel(icon: UIImage(systemName: "person.fill.xmark")!, title: "Log Out", type: .logOut)
     ]
     
     override func viewDidLoad() {
@@ -55,7 +70,13 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
+        let type = sideMenus[indexPath.row].type
+        switch type {
+        case .updatePassword:
+            delegate?.didSelectUpdatePassword()
+        case .logOut:
+            delegate?.didSelectLogOut()
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
