@@ -43,6 +43,19 @@ class HomeViewController: UIViewController {
     private var brandTableViewCell: BrandTableViewCell?
     private var productTableViewCell: ProductTableViewCell?
     
+//    private var productCollectionViewHeight: CGFloat {
+//        for section in 0..<collectionView.numberOfSections {
+//            for item in 0..<collectionView.numberOfItems(inSection: section) {
+//                let indexPath = IndexPath(item: item, section: section)
+//                let cellSize = collectionView(collectionView, layout: collectionView.collectionViewLayout, sizeForItemAt: indexPath)
+//                totalHeight += cellSize.height
+//            }
+//        }                  // Add any additional spacing/margins between cells if needed
+//        let numberOfItems = CGFloat(collectionView.numberOfItems(inSection: 0))
+//        let totalSpacing = (numberOfItems - 1) * 10 // Assuming 10 points spacing between cells
+//        totalHeight += totalSpacing
+//    }
+    
     let sections = [
         "Brands",
         "Products"
@@ -64,11 +77,13 @@ class HomeViewController: UIViewController {
         viewModel.reloadBrandCollectionView = { [weak self] in
             self?.brandTableViewCell?.collectionView.reloadData()
             self?.tableView.reloadData()
+            self?.tableView.layoutIfNeeded()
             print("Reload brand collection view")
         }
         viewModel.reloadProductCollectionView = { [weak self] in
             self?.productTableViewCell?.collectionView.reloadData()
             self?.tableView.reloadData()
+            self?.tableView.layoutIfNeeded()
             print("Reload product collection view")
         }
         
@@ -173,9 +188,9 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         sections[section]
     }
     
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        60
-//    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        60
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
@@ -202,15 +217,30 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
+//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        let uiView = UIView()
+//        uiView.backgroundColor = .systemBlue
+//        return uiView
+//    }
+    
+//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        return 50
+//    }
+//
+//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 500
+//    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.section {
-        case CollectionType.brand.rawValue:
-            return 50
-        case CollectionType.product.rawValue:
-            return 300
-        default:
-            return 50
-        }
+        return UITableView.automaticDimension
+//        switch indexPath.section {
+//        case CollectionType.brand.rawValue:
+//            return UITableView.automaticDimension
+//        case CollectionType.product.rawValue:
+//            return UITableView.automaticDimension
+//        default:
+//            return UITableView.automaticDimension
+//        }
     }
 }
 
