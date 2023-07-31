@@ -51,6 +51,8 @@ class SideMenuViewController: UIViewController {
     }
 }
 
+// MARK: - UITableView Delegate & Data Source
+
 extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

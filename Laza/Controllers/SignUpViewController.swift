@@ -30,6 +30,7 @@ class SignUpViewController: UIViewController {
             passwordTextField.setTitle(title: "Password")
             passwordTextField.autocorrectionType = .no
             passwordTextField.autocapitalizationType = .none
+            passwordTextField.isSecureTextEntry = true
         }
     }
     

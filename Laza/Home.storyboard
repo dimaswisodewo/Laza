@@ -10,9 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Inter-Medium.ttf">
-            <string>Inter-Medium</string>
-        </array>
         <array key="Inter-Regular.ttf">
             <string>Inter-Regular</string>
         </array>
@@ -92,59 +89,10 @@
                                     <outlet property="delegate" destination="Y6W-OH-hqX" id="HtF-fz-Pqd"/>
                                 </connections>
                             </searchBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Brand" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DhF-Tb-cVn">
-                                <rect key="frame" x="20" y="328.66666666666669" width="115" height="20"/>
-                                <fontDescription key="fontDescription" name="Inter-Medium" family="Inter" pointSize="17"/>
-                                <color key="textColor" name="TextPrimary"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6P7-D4-afM">
-                                <rect key="frame" x="337.33333333333331" y="323.66666666666669" width="72.666666666666686" height="30"/>
-                                <color key="tintColor" name="TextSecondary"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="View All">
-                                    <fontDescription key="titleFontDescription" name="Inter-Regular" family="Inter" pointSize="13"/>
-                                </buttonConfiguration>
-                            </button>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tnl-mn-jTE">
-                                <rect key="frame" x="0.0" y="363.66666666666669" width="430" height="50"/>
-                                <color key="backgroundColor" name="WhiteBG"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="NGT-VM-wrk"/>
-                                </constraints>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6QK-dQ-neu">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                            </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Arrival" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tph-do-nDS">
-                                <rect key="frame" x="20.000000000000007" y="428.66666666666669" width="93.666666666666686" height="20"/>
-                                <fontDescription key="fontDescription" name="Inter-Medium" family="Inter" pointSize="17"/>
-                                <color key="textColor" name="TextPrimary"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bhR-Xp-jIg">
-                                <rect key="frame" x="0.0" y="463.66666666666674" width="430" height="385.33333333333326"/>
-                                <color key="backgroundColor" name="WhiteBG"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="TEm-7Q-r8i">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                            </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vIP-Vg-haH">
-                                <rect key="frame" x="337.33333333333331" y="423.66666666666669" width="72.666666666666686" height="30"/>
-                                <color key="tintColor" name="TextSecondary"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="View All">
-                                    <fontDescription key="titleFontDescription" name="Inter-Regular" family="Inter" pointSize="13"/>
-                                </buttonConfiguration>
-                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="CLj-0t-Rkf">
+                                <rect key="frame" x="20" y="328.66666666666669" width="390" height="520.33333333333326"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" name="HomeBG"/>
@@ -152,45 +100,31 @@
                             <constraint firstItem="XCi-ED-k5x" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="01Z-cq-oXe"/>
                             <constraint firstItem="uFB-Rh-7KH" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="8es-JN-dgz"/>
                             <constraint firstItem="eEW-Sg-gqZ" firstAttribute="centerY" secondItem="8cu-6T-E7b" secondAttribute="centerY" id="Cie-qo-0oy"/>
+                            <constraint firstItem="CLj-0t-Rkf" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="DwQ-kG-1cb"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="8cu-6T-E7b" secondAttribute="trailing" constant="20" id="F9V-Ig-Xiq"/>
-                            <constraint firstItem="bhR-Xp-jIg" firstAttribute="top" secondItem="Tph-do-nDS" secondAttribute="bottom" constant="15" id="Gcn-OJ-VUx"/>
                             <constraint firstItem="8cu-6T-E7b" firstAttribute="top" secondItem="XCi-ED-k5x" secondAttribute="bottom" constant="20" id="HNK-I4-afc"/>
+                            <constraint firstItem="CLj-0t-Rkf" firstAttribute="top" secondItem="eEW-Sg-gqZ" secondAttribute="bottom" constant="20" id="HbL-Y3-Ekm"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="CLj-0t-Rkf" secondAttribute="bottom" id="IQj-HF-cqZ"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="XCi-ED-k5x" secondAttribute="trailing" constant="20" id="K1Z-hP-lhf"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="bhR-Xp-jIg" secondAttribute="trailing" id="KG0-1m-Jue"/>
                             <constraint firstItem="B7b-uk-JPc" firstAttribute="top" secondItem="uFB-Rh-7KH" secondAttribute="bottom" constant="30" id="Ohs-Bq-Bhc"/>
-                            <constraint firstItem="DhF-Tb-cVn" firstAttribute="top" secondItem="eEW-Sg-gqZ" secondAttribute="bottom" constant="20" id="PKN-Ge-SYa"/>
-                            <constraint firstItem="Tph-do-nDS" firstAttribute="top" secondItem="tnl-mn-jTE" secondAttribute="bottom" constant="15" id="Sqp-eh-crR"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="bhR-Xp-jIg" secondAttribute="bottom" id="V4L-TI-NI6"/>
                             <constraint firstItem="eEW-Sg-gqZ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="WJV-1K-L2P"/>
                             <constraint firstItem="uFB-Rh-7KH" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="45" id="ZMh-iF-C7s"/>
-                            <constraint firstItem="DhF-Tb-cVn" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="Zu6-xv-pfJ"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="6P7-D4-afM" secondAttribute="trailing" constant="20" id="aBN-6w-jjS"/>
-                            <constraint firstItem="tnl-mn-jTE" firstAttribute="top" secondItem="DhF-Tb-cVn" secondAttribute="bottom" constant="15" id="bLB-Rz-qJb"/>
                             <constraint firstItem="w9k-to-9c2" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="45" id="bRS-6Z-PCc"/>
-                            <constraint firstItem="Tph-do-nDS" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="cLo-oh-Pd6"/>
-                            <constraint firstItem="vIP-Vg-haH" firstAttribute="centerY" secondItem="Tph-do-nDS" secondAttribute="centerY" id="cp7-Os-dQq"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="tnl-mn-jTE" secondAttribute="trailing" id="k0C-qx-AW3"/>
                             <constraint firstItem="8cu-6T-E7b" firstAttribute="leading" secondItem="eEW-Sg-gqZ" secondAttribute="trailing" constant="10" id="rFC-kp-YzJ"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="w9k-to-9c2" secondAttribute="trailing" constant="20" id="rQR-9P-iyI"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="CLj-0t-Rkf" secondAttribute="trailing" constant="20" id="soa-tp-vRp"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="B7b-uk-JPc" secondAttribute="trailing" constant="20" id="ugB-FE-UVd"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="vIP-Vg-haH" secondAttribute="trailing" constant="20" id="wwv-sm-B9a"/>
-                            <constraint firstItem="bhR-Xp-jIg" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="x1A-NO-6Vb"/>
                             <constraint firstItem="XCi-ED-k5x" firstAttribute="top" secondItem="B7b-uk-JPc" secondAttribute="bottom" constant="5" id="xOI-rs-Nsv"/>
                             <constraint firstItem="B7b-uk-JPc" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="yYP-jb-hDY"/>
-                            <constraint firstItem="6P7-D4-afM" firstAttribute="centerY" secondItem="DhF-Tb-cVn" secondAttribute="centerY" id="ydD-3F-lbq"/>
-                            <constraint firstItem="tnl-mn-jTE" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="zHV-O3-EWU"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="LaO-fX-0mF"/>
                     <connections>
-                        <outlet property="brandCollectionView" destination="tnl-mn-jTE" id="0md-mU-FgS"/>
                         <outlet property="cartButton" destination="w9k-to-9c2" id="mWC-yl-eAh"/>
                         <outlet property="helloLabel" destination="B7b-uk-JPc" id="3mp-7Q-o9l"/>
                         <outlet property="menuButton" destination="uFB-Rh-7KH" id="mE7-vo-3I8"/>
-                        <outlet property="newArrivalCollectionView" destination="bhR-Xp-jIg" id="t2Y-dz-I2f"/>
                         <outlet property="searchBar" destination="eEW-Sg-gqZ" id="BWo-Pd-o0a"/>
-                        <outlet property="viewAllBrandButton" destination="6P7-D4-afM" id="qLd-fx-LiS"/>
-                        <outlet property="viewAllNewArrivalButton" destination="vIP-Vg-haH" id="E1b-Vp-clc"/>
+                        <outlet property="tableView" destination="CLj-0t-Rkf" id="e06-1e-2wd"/>
                         <outlet property="voiceButton" destination="8cu-6T-E7b" id="OlE-6z-vJG"/>
                     </connections>
                 </viewController>

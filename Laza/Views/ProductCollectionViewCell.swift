@@ -108,7 +108,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
             productPrice.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             productPrice.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             productPrice.topAnchor.constraint(equalTo: productName.bottomAnchor, constant: 5),
-            productPrice.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: -5)
+            productPrice.bottomAnchor.constraint(greaterThanOrEqualTo: contentView.bottomAnchor, constant: -5)
         ])
     }
 }

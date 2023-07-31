@@ -47,6 +47,8 @@
 		38DCC6872A70B9D7006A3633 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 38DCC6862A70B9D7006A3633 /* Inter-Medium.ttf */; };
 		38DCC6892A70D2C7006A3633 /* GetStartedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DCC6882A70D2C7006A3633 /* GetStartedViewController.swift */; };
 		38DCC68B2A70D368006A3633 /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DCC68A2A70D368006A3633 /* CircleButton.swift */; };
+		38DFE87F2A77607500B1EE8F /* BrandTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DFE87E2A77607500B1EE8F /* BrandTableViewCell.swift */; };
+		38DFE8812A77608700B1EE8F /* ProductTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DFE8802A77608700B1EE8F /* ProductTableViewCell.swift */; };
 		38E89D602A72EE8800BBDE14 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E89D5F2A72EE8800BBDE14 /* Product.swift */; };
 		38E89D622A72F0D900BBDE14 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E89D612A72F0D900BBDE14 /* ProductCollectionViewCell.swift */; };
 		38F216032A7218B700952E65 /* BrandCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F216022A7218B700952E65 /* BrandCollectionViewCell.swift */; };
@@ -99,6 +101,8 @@
 		38DCC6862A70B9D7006A3633 /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inter-Medium.ttf"; path = "../../../../../Downloads/Inter/static/Inter-Medium.ttf"; sourceTree = "<group>"; };
 		38DCC6882A70D2C7006A3633 /* GetStartedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedViewController.swift; sourceTree = "<group>"; };
 		38DCC68A2A70D368006A3633 /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
+		38DFE87E2A77607500B1EE8F /* BrandTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandTableViewCell.swift; sourceTree = "<group>"; };
+		38DFE8802A77608700B1EE8F /* ProductTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductTableViewCell.swift; sourceTree = "<group>"; };
 		38E89D5F2A72EE8800BBDE14 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		38E89D612A72F0D900BBDE14 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		38F216022A7218B700952E65 /* BrandCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -221,6 +225,8 @@
 				38F216022A7218B700952E65 /* BrandCollectionViewCell.swift */,
 				38E89D612A72F0D900BBDE14 /* ProductCollectionViewCell.swift */,
 				382640232A7695CE00744726 /* SideMenuTableViewCell.swift */,
+				38DFE87E2A77607500B1EE8F /* BrandTableViewCell.swift */,
+				38DFE8802A77608700B1EE8F /* ProductTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -335,10 +341,12 @@
 				38D1DE382A74ADD9002AB0ED /* HashingManager.swift in Sources */,
 				38C51DCC2A7169C4000324A5 /* NetworkManager.swift in Sources */,
 				38D1DE362A74ACB8002AB0ED /* DataPersistentManager.swift in Sources */,
+				38DFE87F2A77607500B1EE8F /* BrandTableViewCell.swift in Sources */,
 				38F216032A7218B700952E65 /* BrandCollectionViewCell.swift in Sources */,
 				382640222A76911D00744726 /* SideMenuViewController.swift in Sources */,
 				38DCC66A2A70A8B7006A3633 /* OnboardingViewController.swift in Sources */,
 				382640242A7695CE00744726 /* SideMenuTableViewCell.swift in Sources */,
+				38DFE8812A77608700B1EE8F /* ProductTableViewCell.swift in Sources */,
 				38C51DC52A715849000324A5 /* WalletViewController.swift in Sources */,
 				38A7DD672A750F75002564AB /* UpdatePasswordViewModel.swift in Sources */,
 				38C51DC32A715840000324A5 /* CartViewController.swift in Sources */,

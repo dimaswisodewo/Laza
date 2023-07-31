@@ -31,30 +31,21 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var voiceButton: RoundedButton!
     
-    @IBOutlet weak var viewAllBrandButton: UIButton!
-    
-    @IBOutlet weak var viewAllNewArrivalButton: UIButton!
-    
-    @IBOutlet weak var brandCollectionView: UICollectionView! {
+    @IBOutlet weak var tableView: UITableView! {
         didSet {
-            brandCollectionView.tag = CollectionType.brand.rawValue
-            brandCollectionView.showsVerticalScrollIndicator = false
-            brandCollectionView.showsHorizontalScrollIndicator = false
-            brandCollectionView.delegate = self
-            brandCollectionView.dataSource = self
-            brandCollectionView.register(BrandCollectionViewCell.self, forCellWithReuseIdentifier: BrandCollectionViewCell.identifier)
+            tableView.showsVerticalScrollIndicator = false
+            tableView.showsHorizontalScrollIndicator = false
+            tableView.bounces = false
         }
     }
     
-    @IBOutlet weak var newArrivalCollectionView: UICollectionView! {
-        didSet {
-            newArrivalCollectionView.tag = CollectionType.product.rawValue
-            newArrivalCollectionView.showsHorizontalScrollIndicator = false
-            newArrivalCollectionView.delegate = self
-            newArrivalCollectionView.dataSource = self
-            newArrivalCollectionView.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.identifier)
-        }
-    }
+    private var brandTableViewCell: BrandTableViewCell?
+    private var productTableViewCell: ProductTableViewCell?
+    
+    let sections = [
+        "Brands",
+        "Products"
+    ]
     
     private var sideMenuNavigationController: SideMenuNavigationController!
     
@@ -63,16 +54,24 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        registerTableViewCell()
+        
         setupTabBarItemImage()
         setupSideMenuu()
         
+        // Assign reload collection view functionality
         viewModel.reloadBrandCollectionView = { [weak self] in
-            self?.brandCollectionView.reloadData()
+            self?.brandTableViewCell?.collectionView.reloadData()
+            self?.tableView.reloadData()
+            print("Reload brand collection view")
         }
         viewModel.reloadProductCollectionView = { [weak self] in
-            self?.newArrivalCollectionView.reloadData()
+            self?.productTableViewCell?.collectionView.reloadData()
+            self?.tableView.reloadData()
+            print("Reload product collection view")
         }
         
+        // Load data
         viewModel.loadBrands()
         viewModel.loadProducts()
     }
@@ -81,6 +80,13 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         
         tabBarController?.tabBar.isHidden = false
+    }
+    
+    private func registerTableViewCell() {
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(BrandTableViewCell.self, forCellReuseIdentifier: BrandTableViewCell.identifier)
+        tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: ProductTableViewCell.identifier)
     }
     
     private func setupSideMenuu() {
@@ -128,93 +134,6 @@ class HomeViewController: UIViewController {
     }
 }
 
-// MARK: - UICollectionView Delegate & Data Source
-
-extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch collectionView.tag {
-        case CollectionType.brand.rawValue:
-            return viewModel.brandsCount
-        case CollectionType.product.rawValue:
-            return viewModel.productsCount
-        default:
-            return 0
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch collectionView.tag {
-        case CollectionType.brand.rawValue:
-            guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: BrandCollectionViewCell.identifier,
-                for: indexPath) as? BrandCollectionViewCell else { return UICollectionViewCell() }
-            let title = viewModel.getBrandOnIndex(index: indexPath.item)
-            cell.setTitle(title: title)
-            return cell
-        case CollectionType.product.rawValue:
-            guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: ProductCollectionViewCell.identifier,
-                for: indexPath) as? ProductCollectionViewCell else {
-                print("failed to dequeue cell")
-                return UICollectionViewCell()
-            }
-            if let model = viewModel.getProductOnIndex(index: indexPath.row) {
-                cell.configure(product: model)
-            }
-            return cell
-        default:
-            return UICollectionViewCell()
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        switch collectionView.tag {
-        case CollectionType.brand.rawValue:
-            let padding: CGFloat = 10
-            guard let item = viewModel.getBrandOnIndex(index: indexPath.item) else {
-                return CGSize(width: 50, height: 50)
-            }
-            let itemWidth = item.size(withAttributes: [
-                NSAttributedString.Key.font : UIFont(name: "Inter-Medium", size: 17) ?? UIFont.systemFont(ofSize: 17, weight: .medium)
-            ]).width
-            return CGSize(width: itemWidth + padding * 2, height: 50)
-        case CollectionType.product.rawValue:
-            let minimumInteritemSpacing: CGFloat = 16
-            let numOfColum: CGFloat = 2.0
-            let collectionViewFlowLayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-            let spacing = (minimumInteritemSpacing * numOfColum) + collectionViewFlowLayout.sectionInset.left + collectionViewFlowLayout.sectionInset.right
-            let width = (collectionView.frame.size.width / numOfColum ) - spacing
-            let cellHeightToWidthAspectRatio = CGFloat(257.0 / 160)
-            return CGSize(width: width, height: width * cellHeightToWidthAspectRatio)
-        default:
-            return CGSize(width: 200, height: 50)
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        switch collectionView.tag {
-        case CollectionType.brand.rawValue:
-            return 16
-        case CollectionType.product.rawValue:
-            return 16
-        default:
-            return 16
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        switch collectionView.tag {
-        case CollectionType.brand.rawValue:
-            return UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-        case CollectionType.product.rawValue:
-            return UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-        default:
-            return UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-        }
-    }
-}
-
 // MARK: - SideMenuViewController Delegate
 
 extension HomeViewController: SideMenuViewControllerDelegate {
@@ -227,5 +146,123 @@ extension HomeViewController: SideMenuViewControllerDelegate {
     func didSelectLogOut() {
         sideMenuNavigationController.dismiss(animated: true)
         logoutButtonPressed()
+    }
+}
+
+// MARK: - UITableView Delegate & DataSource
+
+extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case CollectionType.brand.rawValue:
+            return 1
+        case CollectionType.product.rawValue:
+            return 1
+        default:
+            return 0
+        }
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        sections.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        sections[section]
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch indexPath.section {
+        case CollectionType.brand.rawValue:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: BrandTableViewCell.identifier) as? BrandTableViewCell else {
+                print("Get BrandTableViewCell failed")
+                return UITableViewCell()
+            }
+            cell.delegate = self
+            // Cache table view for reload data
+            brandTableViewCell = cell
+            return cell
+        case CollectionType.product.rawValue:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductTableViewCell.identifier) as? ProductTableViewCell else {
+                print("Get ProductTableViewCell failed")
+                return UITableViewCell()
+            }
+            cell.delegate = self
+            // Cache table view for reload data
+            productTableViewCell = cell
+            return cell
+        default:
+            return UITableViewCell()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        100
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.section {
+        case CollectionType.brand.rawValue:
+            return 50
+        case CollectionType.product.rawValue:
+            return 300
+        default:
+            return 50
+        }
+    }
+}
+
+// MARK: - BrandTableViewCell Delegate
+
+extension HomeViewController: BrandTableViewCellDelegate {
+    
+    func brandNumberOfItemsInSection(numberOfItemsInSection section: Int) -> Int {
+        viewModel.brandsCount
+    }
+    
+    func brandCellForItemAt(cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        // Dequeue BrandTableViewCell
+        guard let tableViewCell = tableView.dequeueReusableCell(withIdentifier: BrandTableViewCell.identifier) as? BrandTableViewCell else {
+            return UICollectionViewCell()
+        }
+        // Dequeue BrandCollectionViewCell
+        guard let collectionViewCell = tableViewCell.collectionView.dequeueReusableCell(withReuseIdentifier: BrandCollectionViewCell.identifier, for: indexPath) as? BrandCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        guard let title = viewModel.getBrandOnIndex(index: indexPath.item) else {
+            print("Failed to get brand on index")
+            return UICollectionViewCell()
+        }
+        collectionViewCell.setTitle(title: title)
+        return collectionViewCell
+    }
+}
+
+// MARK: - ProductTableViewCell Delegate
+
+extension HomeViewController: ProductTableViewCellDelegate {
+    
+    func productNumberOfItemsInSection(numberOfItemsInSection section: Int) -> Int {
+        viewModel.productsCount
+    }
+    
+    func productCellForItemAt(cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        // Dequeue BrandTableViewCell
+        guard let tableViewCell = tableView.dequeueReusableCell(withIdentifier: ProductTableViewCell.identifier) as? ProductTableViewCell else {
+            print("Failed to get product table view cell")
+            return UICollectionViewCell()
+        }
+        // Dequeue BrandCollectionViewCell
+        guard let collectionViewCell = tableViewCell.collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as? ProductCollectionViewCell else {
+            print("Failed to get product collection view cell")
+            return UICollectionViewCell()
+        }
+        guard let product = viewModel.getProductOnIndex(index: indexPath.item) else {
+            print("Failed to get product on index")
+            return UICollectionViewCell()
+        }
+        collectionViewCell.configure(product: product)
+        return collectionViewCell
     }
 }
