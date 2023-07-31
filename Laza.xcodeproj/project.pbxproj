@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3817D67A2A7202A10074D911 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3817D6792A7202A10074D911 /* RoundedButton.swift */; };
+		382640222A76911D00744726 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382640212A76911D00744726 /* SideMenuViewController.swift */; };
+		382640242A7695CE00744726 /* SideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382640232A7695CE00744726 /* SideMenuTableViewCell.swift */; };
 		38A7DD652A750E9E002564AB /* UpdatePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A7DD642A750E9E002564AB /* UpdatePasswordViewController.swift */; };
 		38A7DD672A750F75002564AB /* UpdatePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A7DD662A750F75002564AB /* UpdatePasswordViewModel.swift */; };
 		38A9E4382A74FE4000ACBBFD /* StarterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A9E4372A74FE4000ACBBFD /* StarterViewController.swift */; };
@@ -48,6 +50,7 @@
 		38E89D602A72EE8800BBDE14 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E89D5F2A72EE8800BBDE14 /* Product.swift */; };
 		38E89D622A72F0D900BBDE14 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E89D612A72F0D900BBDE14 /* ProductCollectionViewCell.swift */; };
 		38F216032A7218B700952E65 /* BrandCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F216022A7218B700952E65 /* BrandCollectionViewCell.swift */; };
+		38FE05D12A76C0B400C573AB /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = 38FE05D02A76C0B400C573AB /* SideMenu */; };
 		38FF0E4A2A70F040009B406F /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF0E492A70F040009B406F /* CustomTextField.swift */; };
 		38FF0E4C2A70F478009B406F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF0E4B2A70F478009B406F /* SignUpViewController.swift */; };
 		38FF0E4E2A7103C2009B406F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF0E4D2A7103C2009B406F /* LoginViewController.swift */; };
@@ -55,6 +58,8 @@
 
 /* Begin PBXFileReference section */
 		3817D6792A7202A10074D911 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		382640212A76911D00744726 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
+		382640232A7695CE00744726 /* SideMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewCell.swift; sourceTree = "<group>"; };
 		38A7DD642A750E9E002564AB /* UpdatePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordViewController.swift; sourceTree = "<group>"; };
 		38A7DD662A750F75002564AB /* UpdatePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordViewModel.swift; sourceTree = "<group>"; };
 		38A9E4372A74FE4000ACBBFD /* StarterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarterViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38FE05D12A76C0B400C573AB /* SideMenu in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,6 +183,7 @@
 				38B76D492A73B6B800C5DA0B /* DetailViewController.swift */,
 				38A9E4372A74FE4000ACBBFD /* StarterViewController.swift */,
 				38A7DD642A750E9E002564AB /* UpdatePasswordViewController.swift */,
+				382640212A76911D00744726 /* SideMenuViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -213,6 +220,7 @@
 				38B8F1002A721615003DA0CE /* RoundedImageView.swift */,
 				38F216022A7218B700952E65 /* BrandCollectionViewCell.swift */,
 				38E89D612A72F0D900BBDE14 /* ProductCollectionViewCell.swift */,
+				382640232A7695CE00744726 /* SideMenuTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -245,6 +253,9 @@
 			dependencies = (
 			);
 			name = Laza;
+			packageProductDependencies = (
+				38FE05D02A76C0B400C573AB /* SideMenu */,
+			);
 			productName = Laza;
 			productReference = 38DCC6622A70A8B7006A3633 /* Laza.app */;
 			productType = "com.apple.product-type.application";
@@ -273,6 +284,9 @@
 				Base,
 			);
 			mainGroup = 38DCC6592A70A8B6006A3633;
+			packageReferences = (
+				38FE05CF2A76C0B400C573AB /* XCRemoteSwiftPackageReference "SideMenu" */,
+			);
 			productRefGroup = 38DCC6632A70A8B7006A3633 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -322,7 +336,9 @@
 				38C51DCC2A7169C4000324A5 /* NetworkManager.swift in Sources */,
 				38D1DE362A74ACB8002AB0ED /* DataPersistentManager.swift in Sources */,
 				38F216032A7218B700952E65 /* BrandCollectionViewCell.swift in Sources */,
+				382640222A76911D00744726 /* SideMenuViewController.swift in Sources */,
 				38DCC66A2A70A8B7006A3633 /* OnboardingViewController.swift in Sources */,
+				382640242A7695CE00744726 /* SideMenuTableViewCell.swift in Sources */,
 				38C51DC52A715849000324A5 /* WalletViewController.swift in Sources */,
 				38A7DD672A750F75002564AB /* UpdatePasswordViewModel.swift in Sources */,
 				38C51DC32A715840000324A5 /* CartViewController.swift in Sources */,
@@ -495,6 +511,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -523,6 +540,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -558,6 +576,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		38FE05CF2A76C0B400C573AB /* XCRemoteSwiftPackageReference "SideMenu" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jonkykong/SideMenu.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		38FE05D02A76C0B400C573AB /* SideMenu */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 38FE05CF2A76C0B400C573AB /* XCRemoteSwiftPackageReference "SideMenu" */;
+			productName = SideMenu;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 38DCC65A2A70A8B7006A3633 /* Project object */;
 }

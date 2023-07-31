@@ -2,9 +2,11 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_72" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -290,7 +292,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="USo-HD-Cbb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1772" y="837"/>
+            <point key="canvasLocation" x="1896" y="731"/>
         </scene>
         <!--Wallet View Controller-->
         <scene sceneID="nDk-Lf-GBK">
@@ -307,6 +309,37 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DO2-aW-fRN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2670.6976744186045" y="117.81115879828327"/>
+        </scene>
+        <!--Side Menu View Controller-->
+        <scene sceneID="1zT-KQ-C2X">
+            <objects>
+                <viewController storyboardIdentifier="SideMenuViewController" id="Awi-yr-iNM" customClass="SideMenuViewController" customModule="Laza" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2mG-9U-Lda">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="FN3-mD-D4P">
+                                <rect key="frame" x="0.0" y="59" width="430" height="839"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="mf0-As-rON"/>
+                        <color key="backgroundColor" name="ViewBG"/>
+                        <constraints>
+                            <constraint firstItem="FN3-mD-D4P" firstAttribute="top" secondItem="mf0-As-rON" secondAttribute="top" id="38X-1T-0ab"/>
+                            <constraint firstItem="mf0-As-rON" firstAttribute="bottom" secondItem="FN3-mD-D4P" secondAttribute="bottom" id="Ayd-7D-f7P"/>
+                            <constraint firstItem="mf0-As-rON" firstAttribute="trailing" secondItem="FN3-mD-D4P" secondAttribute="trailing" id="d8H-lS-WuV"/>
+                            <constraint firstItem="FN3-mD-D4P" firstAttribute="leading" secondItem="mf0-As-rON" secondAttribute="leading" id="p9k-CJ-Ggs"/>
+                        </constraints>
+                    </view>
+                    <size key="freeformSize" width="430" height="932"/>
+                    <connections>
+                        <outlet property="tableView" destination="FN3-mD-D4P" id="LgA-SQ-vjd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kqF-Xq-nmf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1957" y="-649"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="wos-A4-UYI">
@@ -441,5 +474,8 @@
         <namedColor name="WhiteButtonSecondary">
             <color red="0.96078431372549022" green="0.96470588235294119" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

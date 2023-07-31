@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SideMenu
 
 class HomeViewController: UIViewController {
     
@@ -15,7 +16,7 @@ class HomeViewController: UIViewController {
     }
     
     static let identifier = "HomeViewController"
-
+    
     @IBOutlet weak var menuButton: CircleButton! {
         didSet {
             menuButton.addTarget(self, action: #selector(menuButtonPressed), for: .touchUpInside)
@@ -67,20 +68,25 @@ class HomeViewController: UIViewController {
         }
     }
     
-    typealias Brands = [String]
-    private var brands = Brands()
-    
-    typealias Products = [Product]
-    private var products = Products()
+    private var sideMenuNavigationController: SideMenuNavigationController!
     
     private let viewModel = HomeViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupTabBarItemImage()
-        loadBrands()
-        loadProducts()
+        setupSideMenuu()
+        
+        viewModel.reloadBrandCollectionView = { [weak self] in
+            self?.brandCollectionView.reloadData()
+        }
+        viewModel.reloadProductCollectionView = { [weak self] in
+            self?.newArrivalCollectionView.reloadData()
+        }
+        
+        viewModel.loadBrands()
+        viewModel.loadProducts()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -88,7 +94,14 @@ class HomeViewController: UIViewController {
         
         tabBarController?.tabBar.isHidden = false
     }
-
+    
+    private func setupSideMenuu() {
+        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: SideMenuViewController.identifier)
+        sideMenuNavigationController = SideMenuNavigationController(rootViewController: vc)
+        sideMenuNavigationController.leftSide = true
+    }
+    
     private func setupTabBarItemImage() {
         let label = UILabel()
         label.numberOfLines = 1
@@ -100,45 +113,8 @@ class HomeViewController: UIViewController {
         navigationController?.tabBarItem.selectedImage = UIImage(view: label)
     }
     
-    private func loadBrands() {
-        var endpoint = Endpoint()
-        endpoint.initialize(path: "products/categories")        
-        NetworkManager.shared.sendRequest(endpoint: endpoint) { [weak self] data, response, error in
-            if let data = data, error == nil {
-                do {
-                    guard let self = self else { return }
-                    let categories = try JSONDecoder().decode([String].self, from: data)
-                    self.brands.append(contentsOf: categories.map({ $0.capitalized }))
-                    DispatchQueue.main.async {
-                        self.brandCollectionView.reloadData()
-                    }
-                } catch {
-                    print(error)
-                }
-            } else {
-                print(String(describing: error))
-            }
-        }
-    }
-    
-    private func loadProducts() {
-        var endpoint = Endpoint()
-        endpoint.initialize(path: "products")
-        NetworkManager.shared.sendRequest(type: Products.self, endpoint: endpoint) { [weak self] result in
-            switch result {
-            case .success(let products):
-                self?.products.append(contentsOf: products)
-                DispatchQueue.main.async {
-                    self?.newArrivalCollectionView.reloadData()
-                }
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-    
     @objc private func menuButtonPressed() {
-        
+        present(sideMenuNavigationController, animated: true)
     }
     
     @objc private func logoutButtonPressed() {
@@ -153,7 +129,6 @@ class HomeViewController: UIViewController {
     }
     
     @objc private func updatePasswordButtonPressed() {
-        print("Click")
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         DispatchQueue.main.async { [weak self] in
             let vc = storyboard.instantiateViewController(withIdentifier: UpdatePasswordViewController.identifier)
@@ -168,9 +143,9 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch collectionView.tag {
         case CollectionType.brand.rawValue:
-            return brands.count
+            return viewModel.brandsCount
         case CollectionType.product.rawValue:
-            return products.count
+            return viewModel.productsCount
         default:
             return 0
         }
@@ -182,7 +157,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: BrandCollectionViewCell.identifier,
                 for: indexPath) as? BrandCollectionViewCell else { return UICollectionViewCell() }
-            let title = brands[indexPath.item]
+            let title = viewModel.getBrandOnIndex(index: indexPath.item)
             cell.setTitle(title: title)
             return cell
         case CollectionType.product.rawValue:
@@ -192,8 +167,9 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
                 print("failed to dequeue cell")
                 return UICollectionViewCell()
             }
-            let model = products[indexPath.item]
-            cell.configure(product: model)
+            if let model = viewModel.getProductOnIndex(index: indexPath.row) {
+                cell.configure(product: model)
+            }
             return cell
         default:
             return UICollectionViewCell()
@@ -204,7 +180,9 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         switch collectionView.tag {
         case CollectionType.brand.rawValue:
             let padding: CGFloat = 10
-            let item = brands[indexPath.item]
+            guard let item = viewModel.getBrandOnIndex(index: indexPath.item) else {
+                return CGSize(width: 50, height: 50)
+            }
             let itemWidth = item.size(withAttributes: [
                 NSAttributedString.Key.font : UIFont(name: "Inter-Medium", size: 17) ?? UIFont.systemFont(ofSize: 17, weight: .medium)
             ]).width
