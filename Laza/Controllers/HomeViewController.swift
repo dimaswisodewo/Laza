@@ -35,6 +35,7 @@ class HomeViewController: UIViewController {
         didSet {
             tableView.showsVerticalScrollIndicator = false
             tableView.showsHorizontalScrollIndicator = false
+            tableView.separatorStyle = .none
             tableView.bounces = false
         }
     }
@@ -172,6 +173,10 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         sections[section]
     }
     
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        60
+//    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case CollectionType.brand.rawValue:
@@ -197,10 +202,6 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        100
-    }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
         case CollectionType.brand.rawValue:
@@ -216,6 +217,17 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
 // MARK: - BrandTableViewCell Delegate
 
 extension HomeViewController: BrandTableViewCellDelegate {
+    
+    func brandSizeForItemAt(sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let padding: CGFloat = 10
+        guard let item = viewModel.getBrandOnIndex(index: indexPath.item) else {
+            return CGSize(width: 50, height: 50)
+        }
+        let itemWidth = item.size(withAttributes: [
+            NSAttributedString.Key.font : UIFont(name: "Inter-Medium", size: 17) ?? UIFont.systemFont(ofSize: 17, weight: .medium)
+        ]).width
+        return CGSize(width: itemWidth + padding * 2, height: 50)
+    }
     
     func brandNumberOfItemsInSection(numberOfItemsInSection section: Int) -> Int {
         viewModel.brandsCount

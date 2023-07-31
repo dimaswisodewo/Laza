@@ -18,6 +18,7 @@ class BrandCollectionViewCell: UICollectionViewCell {
         button.titleLabel?.font = UIFont(name: "Inter-Medium", size: 17)
         button.setTitleColor(UIColor(named: "TextPrimary"), for: .normal)
         button.backgroundColor = UIColor(named: "ButtonBG")
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -26,7 +27,7 @@ class BrandCollectionViewCell: UICollectionViewCell {
         
         contentView.addSubview(button)
         
-        button.frame = contentView.bounds
+        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -35,5 +36,14 @@ class BrandCollectionViewCell: UICollectionViewCell {
     
     func setTitle(title: String?) {
         button.setTitle(title, for: .normal)
+    }
+    
+    private func setupConstraints() {
+        NSLayoutConstraint.activate([
+            button.topAnchor.constraint(equalTo: contentView.topAnchor),
+            button.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            button.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            button.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+        ])
     }
 }

@@ -12,6 +12,8 @@ protocol BrandTableViewCellDelegate: AnyObject {
     func brandNumberOfItemsInSection(numberOfItemsInSection section: Int) -> Int
     
     func brandCellForItemAt(cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+    
+    func brandSizeForItemAt(sizeForItemAt indexPath: IndexPath) -> CGSize
 }
 
 class BrandTableViewCell: UITableViewCell {
@@ -24,6 +26,8 @@ class BrandTableViewCell: UITableViewCell {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
@@ -71,10 +75,18 @@ extension BrandTableViewCell: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = delegate?.brandCellForItemAt(cellForItemAt: indexPath) else {
+        guard let delegate = delegate else {
+            print("brand delegate is nil")
+            return UICollectionViewCell()
+        }
+        guard let cell = delegate.brandCellForItemAt(cellForItemAt: indexPath) as? BrandCollectionViewCell else {
             print("Failed to get brand collection view cell")
             return UICollectionViewCell()
         }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return delegate?.brandSizeForItemAt(sizeForItemAt: indexPath) ?? CGSize(width: 50, height: 50)
     }
 }
