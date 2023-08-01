@@ -14,6 +14,8 @@ protocol BrandTableViewCellDelegate: AnyObject {
     func brandCellForItemAt(cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     
     func brandSizeForItemAt(sizeForItemAt indexPath: IndexPath) -> CGSize
+    
+    func brandDidSelectItemAt(didSelectItemAt indexPath: IndexPath)
 }
 
 class BrandTableViewCell: UITableViewCell {
@@ -74,18 +76,14 @@ extension BrandTableViewCell: UICollectionViewDataSource, UICollectionViewDelega
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let delegate = delegate else {
-            print("brand delegate is nil")
-            return UICollectionViewCell()
-        }
-        guard let cell = delegate.brandCellForItemAt(cellForItemAt: indexPath) as? BrandCollectionViewCell else {
-            print("Failed to get brand collection view cell")
-            return UICollectionViewCell()
-        }
-        return cell
+        return delegate?.brandCellForItemAt(cellForItemAt: indexPath) ?? UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return delegate?.brandSizeForItemAt(sizeForItemAt: indexPath) ?? CGSize(width: 50, height: 50)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.brandDidSelectItemAt(didSelectItemAt: indexPath)
     }
 }

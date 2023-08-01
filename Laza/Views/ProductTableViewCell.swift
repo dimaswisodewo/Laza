@@ -12,6 +12,8 @@ protocol ProductTableViewCellDelegate: AnyObject {
     func productNumberOfItemsInSection(numberOfItemsInSection section: Int) -> Int
     
     func productCellForItemAt(cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+    
+    func productDidSelectItemAt(didSelectItemAt indexPath: IndexPath)
 }
 
 class ProductTableViewCell: UITableViewCell {
@@ -64,30 +66,21 @@ class ProductTableViewCell: UITableViewCell {
     }
 }
 
-// MARK: - UICollectionView DataSource
+// MARK: - UICollectionView DataSource & Delegate
 
-extension ProductTableViewCell: UICollectionViewDataSource {
+extension ProductTableViewCell: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return delegate?.productNumberOfItemsInSection(numberOfItemsInSection: section) ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let delegate = delegate else {
-            print("product delegate is nil")
-            return UICollectionViewCell()
-        }
-        guard let cell = delegate.productCellForItemAt(cellForItemAt: indexPath) as? ProductCollectionViewCell else {
-            print("Failed to get product collection view cell")
-            return UICollectionViewCell()
-        }
-        return cell
+        return delegate?.productCellForItemAt(cellForItemAt: indexPath) ?? UICollectionViewCell()
     }
-}
-
-// MARK: - UICollectionView Delegate
-
-extension ProductTableViewCell: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.productDidSelectItemAt(didSelectItemAt: indexPath)
+    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let numOfColum: CGFloat = 2.0

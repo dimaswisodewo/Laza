@@ -253,6 +253,10 @@ extension HomeViewController: BrandTableViewCellDelegate {
         collectionViewCell.setTitle(title: title)
         return collectionViewCell
     }
+    
+    func brandDidSelectItemAt(didSelectItemAt indexPath: IndexPath) {
+        print("Did select brand on cell: \(indexPath.item)")
+    }
 }
 
 // MARK: - ProductTableViewCell Delegate
@@ -280,5 +284,9 @@ extension HomeViewController: ProductTableViewCellDelegate {
         }
         collectionViewCell.configure(product: product)
         return collectionViewCell
+    }
+    
+    func productDidSelectItemAt(didSelectItemAt indexPath: IndexPath) {
+        print("Did select product on cell: \(indexPath.item)")
     }
 }
