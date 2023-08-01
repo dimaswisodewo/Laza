@@ -31,7 +31,7 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var voiceButton: RoundedButton!
     
-    @IBOutlet weak var tableView: UITableView! {
+    @IBOutlet weak var tableView: IntrinsicTableView! {
         didSet {
             tableView.showsVerticalScrollIndicator = false
             tableView.showsHorizontalScrollIndicator = false
@@ -42,19 +42,6 @@ class HomeViewController: UIViewController {
     
     private var brandTableViewCell: BrandTableViewCell?
     private var productTableViewCell: ProductTableViewCell?
-    
-//    private var productCollectionViewHeight: CGFloat {
-//        for section in 0..<collectionView.numberOfSections {
-//            for item in 0..<collectionView.numberOfItems(inSection: section) {
-//                let indexPath = IndexPath(item: item, section: section)
-//                let cellSize = collectionView(collectionView, layout: collectionView.collectionViewLayout, sizeForItemAt: indexPath)
-//                totalHeight += cellSize.height
-//            }
-//        }                  // Add any additional spacing/margins between cells if needed
-//        let numberOfItems = CGFloat(collectionView.numberOfItems(inSection: 0))
-//        let totalSpacing = (numberOfItems - 1) * 10 // Assuming 10 points spacing between cells
-//        totalHeight += totalSpacing
-//    }
     
     let sections = [
         "Brands",
@@ -71,19 +58,17 @@ class HomeViewController: UIViewController {
         registerTableViewCell()
         
         setupTabBarItemImage()
-        setupSideMenuu()
+        setupSideMenu()
         
         // Assign reload collection view functionality
         viewModel.reloadBrandCollectionView = { [weak self] in
             self?.brandTableViewCell?.collectionView.reloadData()
             self?.tableView.reloadData()
-            self?.tableView.layoutIfNeeded()
             print("Reload brand collection view")
         }
         viewModel.reloadProductCollectionView = { [weak self] in
             self?.productTableViewCell?.collectionView.reloadData()
             self?.tableView.reloadData()
-            self?.tableView.layoutIfNeeded()
             print("Reload product collection view")
         }
         
@@ -105,7 +90,7 @@ class HomeViewController: UIViewController {
         tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: ProductTableViewCell.identifier)
     }
     
-    private func setupSideMenuu() {
+    private func setupSideMenu() {
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
         guard let vc = storyboard.instantiateViewController(withIdentifier: SideMenuViewController.identifier) as? SideMenuViewController else { return }
         vc.delegate = self
@@ -201,7 +186,9 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
             }
             cell.delegate = self
             // Cache table view for reload data
-            brandTableViewCell = cell
+            if brandTableViewCell == nil {
+                brandTableViewCell = cell
+            }
             return cell
         case CollectionType.product.rawValue:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ProductTableViewCell.identifier) as? ProductTableViewCell else {
@@ -210,37 +197,24 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
             }
             cell.delegate = self
             // Cache table view for reload data
-            productTableViewCell = cell
+            if productTableViewCell == nil {
+                productTableViewCell = cell
+            }
             return cell
         default:
             return UITableViewCell()
         }
     }
     
-//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        let uiView = UIView()
-//        uiView.backgroundColor = .systemBlue
-//        return uiView
-//    }
-    
-//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//        return 50
-//    }
-//
-//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 500
-//    }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-//        switch indexPath.section {
-//        case CollectionType.brand.rawValue:
-//            return UITableView.automaticDimension
-//        case CollectionType.product.rawValue:
-//            return UITableView.automaticDimension
-//        default:
-//            return UITableView.automaticDimension
-//        }
+        switch indexPath.section {
+        case CollectionType.brand.rawValue:
+            return 50
+        case CollectionType.product.rawValue:
+            return UITableView.automaticDimension
+        default:
+            return UITableView.automaticDimension
+        }
     }
 }
 

@@ -59,7 +59,6 @@ class BrandTableViewCell: UITableViewCell {
     }
     
     private func registerCollectionViewCell() {
-//        print("register brand collection view cell")
         brandCollectionView.dataSource = self
         brandCollectionView.delegate = self
         brandCollectionView.register(BrandCollectionViewCell.self, forCellWithReuseIdentifier: BrandCollectionViewCell.identifier)

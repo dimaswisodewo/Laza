@@ -89,7 +89,7 @@
                                     <outlet property="delegate" destination="Y6W-OH-hqX" id="HtF-fz-Pqd"/>
                                 </connections>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="CLj-0t-Rkf">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="CLj-0t-Rkf" customClass="IntrinsicTableView" customModule="Laza" customModuleProvider="target">
                                 <rect key="frame" x="20" y="328.66666666666669" width="390" height="520.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
@@ -124,7 +124,7 @@
                         <outlet property="helloLabel" destination="B7b-uk-JPc" id="3mp-7Q-o9l"/>
                         <outlet property="menuButton" destination="uFB-Rh-7KH" id="mE7-vo-3I8"/>
                         <outlet property="searchBar" destination="eEW-Sg-gqZ" id="BWo-Pd-o0a"/>
-                        <outlet property="tableView" destination="CLj-0t-Rkf" id="e06-1e-2wd"/>
+                        <outlet property="tableView" destination="CLj-0t-Rkf" id="Rer-W5-iHq"/>
                         <outlet property="voiceButton" destination="8cu-6T-E7b" id="OlE-6z-vJG"/>
                     </connections>
                 </viewController>

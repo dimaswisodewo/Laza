@@ -20,10 +20,10 @@ class ProductTableViewCell: UITableViewCell {
     
     weak var delegate: ProductTableViewCellDelegate?
     
-    private let productCollectionView: UICollectionView = {
+    private let productCollectionView: DynamicHeightCollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        let collectionView = DynamicHeightCollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
@@ -53,18 +53,15 @@ class ProductTableViewCell: UITableViewCell {
             productCollectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             productCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             productCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            productCollectionView.heightAnchor.constraint(equalToConstant: 300)
         ])
     }
     
     private func registerCollectionViewCell() {
-//        print("register product collection view cell")
         productCollectionView.dataSource = self
         productCollectionView.delegate = self
         productCollectionView.bounces = false
         productCollectionView.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.identifier)
     }
-    
 }
 
 // MARK: - UICollectionView DataSource
@@ -101,18 +98,4 @@ extension ProductTableViewCell: UICollectionViewDelegateFlowLayout {
         let cellHeightToWidthAspectRatio = CGFloat(257.0 / 160)
         return CGSize(width: width, height: width * cellHeightToWidthAspectRatio)
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-    
-    
-//
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//        return UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-//    }
 }

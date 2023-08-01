@@ -10,6 +10,7 @@
 		3817D67A2A7202A10074D911 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3817D6792A7202A10074D911 /* RoundedButton.swift */; };
 		382640222A76911D00744726 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382640212A76911D00744726 /* SideMenuViewController.swift */; };
 		382640242A7695CE00744726 /* SideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382640232A7695CE00744726 /* SideMenuTableViewCell.swift */; };
+		387D4D792A78A51900022959 /* DynamicHeightCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387D4D782A78A51900022959 /* DynamicHeightCollectionView.swift */; };
 		38A7DD652A750E9E002564AB /* UpdatePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A7DD642A750E9E002564AB /* UpdatePasswordViewController.swift */; };
 		38A7DD672A750F75002564AB /* UpdatePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A7DD662A750F75002564AB /* UpdatePasswordViewModel.swift */; };
 		38A9E4382A74FE4000ACBBFD /* StarterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A9E4372A74FE4000ACBBFD /* StarterViewController.swift */; };
@@ -63,6 +64,7 @@
 		3817D6792A7202A10074D911 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		382640212A76911D00744726 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		382640232A7695CE00744726 /* SideMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewCell.swift; sourceTree = "<group>"; };
+		387D4D782A78A51900022959 /* DynamicHeightCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightCollectionView.swift; sourceTree = "<group>"; };
 		38A7DD642A750E9E002564AB /* UpdatePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordViewController.swift; sourceTree = "<group>"; };
 		38A7DD662A750F75002564AB /* UpdatePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordViewModel.swift; sourceTree = "<group>"; };
 		38A9E4372A74FE4000ACBBFD /* StarterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarterViewController.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				38DFE87E2A77607500B1EE8F /* BrandTableViewCell.swift */,
 				38DFE8802A77608700B1EE8F /* ProductTableViewCell.swift */,
 				38DFE8822A77B92F00B1EE8F /* IntrinsicTableViewCell.swift */,
+				387D4D782A78A51900022959 /* DynamicHeightCollectionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 				38DFE8832A77B92F00B1EE8F /* IntrinsicTableViewCell.swift in Sources */,
 				38B8F1012A721615003DA0CE /* RoundedImageView.swift in Sources */,
 				38D1DE3E2A74BE7E002AB0ED /* LoginViewModel.swift in Sources */,
+				387D4D792A78A51900022959 /* DynamicHeightCollectionView.swift in Sources */,
 				38DCC6662A70A8B7006A3633 /* AppDelegate.swift in Sources */,
 				38D1DE3A2A74AED2002AB0ED /* Password.swift in Sources */,
 				38DCC6682A70A8B7006A3633 /* SceneDelegate.swift in Sources */,
