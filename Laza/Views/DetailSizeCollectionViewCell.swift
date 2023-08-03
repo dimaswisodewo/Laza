@@ -12,7 +12,7 @@ class DetailSizeCollectionViewCell: UICollectionViewCell {
     
     private let containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = ColorUtils.shared.getColor(color: .WhiteButtonSecondary)
         view.layer.cornerRadius = 20
         view.clipsToBounds = true
         return view

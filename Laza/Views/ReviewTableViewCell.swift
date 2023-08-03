@@ -10,10 +10,7 @@ import UIKit
 class ReviewTableViewCell: UITableViewCell {
     
     static let identifier = "ReviewTableViewCell"
-    
-    static var nib: UINib {
-        return UINib(nibName: identifier, bundle: nil)
-    }
+    static let nib = UINib(nibName: identifier, bundle: nil)
 
     @IBOutlet private weak var profileImageView: UIImageView! {
         didSet {

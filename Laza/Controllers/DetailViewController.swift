@@ -52,11 +52,9 @@ class DetailViewController: UIViewController {
         
         registerCells()
         
-        print("Start")
-        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { [weak self] timer in
-            print("Done")
+        // Reload table view
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
             self?.tableView.reloadData()
-            timer.invalidate()
         }
     }
     
@@ -124,6 +122,22 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
 // MARK: - DetailTableViewCellDelegate
 
 extension DetailViewController: DetailTableViewCellDelegate {
+    
+    func viewAllReviewsButtonPressed() {
+        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: AllReviewsViewController.identifier)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func productThumbnailCellForItemAt(productCell cell: DetailThumbnailCollectionViewCell, cellForItemAt indexPath: IndexPath) {
+        
+        guard let product = product else {
+            print("Product model is nil")
+            return
+        }
+        
+        cell.productImageView.loadAndCache(url: product.image)
+    }
     
     func applyModel(productImage: UIImageView, productName: UILabel, productCategory: UILabel, productPrice: UILabel, productDesc: UILabel) {
         

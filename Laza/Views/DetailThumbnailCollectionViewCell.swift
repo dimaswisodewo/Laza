@@ -12,12 +12,14 @@ class DetailThumbnailCollectionViewCell: UICollectionViewCell {
     
     private let imageView: UIImageView = {
         let iv = UIImageView()
-        iv.backgroundColor = .lightGray
+        iv.backgroundColor = ColorUtils.shared.getColor(color: .WhiteButtonSecondary)
         iv.layer.cornerRadius = 20
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
         return iv
     }()
+    
+    var productImageView: UIImageView { return imageView }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,10 +31,6 @@ class DetailThumbnailCollectionViewCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-    }
-    
-    func configureImage(image: UIImage) {
-        imageView.image = image
     }
     
     private func setupConstraints() {

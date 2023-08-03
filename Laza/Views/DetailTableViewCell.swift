@@ -10,6 +10,10 @@ import UIKit
 protocol DetailTableViewCellDelegate: AnyObject {
     
     func applyModel(productImage: UIImageView, productName: UILabel, productCategory: UILabel, productPrice: UILabel, productDesc: UILabel)
+    
+    func productThumbnailCellForItemAt(productCell cell: DetailThumbnailCollectionViewCell, cellForItemAt indexPath: IndexPath)
+    
+    func viewAllReviewsButtonPressed()
 }
 
 enum DetailCollectionTag: Int {
@@ -113,6 +117,9 @@ class DetailTableViewCell: UITableViewCell {
         let button = UIButton()
         button.setTitle("View All", for: .normal)
         button.titleLabel?.font = FontUtils.shared.getFont(font: .Inter, weight: .regular, size: 16)
+        button.titleLabel?.textAlignment = .right
+        button.setTitleColor(ColorUtils.shared.getColor(color: .TextSecondary), for: .normal)
+        button.addTarget(self, action: #selector(viewAllReviewsButtonPressed), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -120,7 +127,8 @@ class DetailTableViewCell: UITableViewCell {
     private let productCollectionView: DynamicHeightCollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.estimatedItemSize = CGSize(width: 100, height: 100)
+        layout.estimatedItemSize = CGSize(width: 80, height: 80)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         let cv = DynamicHeightCollectionView(frame: .zero, collectionViewLayout: layout)
         cv.backgroundColor = ColorUtils.shared.getColor(color: .WhiteBG)
         cv.tag = DetailCollectionTag.product.rawValue
@@ -132,7 +140,8 @@ class DetailTableViewCell: UITableViewCell {
     private let sizeCollectionView: DynamicHeightCollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.estimatedItemSize = CGSize(width: 100, height: 100)
+        layout.estimatedItemSize = CGSize(width: 60, height: 60)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         let cv = DynamicHeightCollectionView(frame: .zero, collectionViewLayout: layout)
         cv.backgroundColor = ColorUtils.shared.getColor(color: .WhiteBG)
         cv.tag = DetailCollectionTag.size.rawValue
@@ -159,6 +168,7 @@ class DetailTableViewCell: UITableViewCell {
         contentView.addSubview(descriptionLabel)
         contentView.addSubview(descriptionValueLabel)
         contentView.addSubview(reviewsLabel)
+        contentView.addSubview(viewAllReviewsButton)
         
         setupConstraint()
         
@@ -180,8 +190,11 @@ class DetailTableViewCell: UITableViewCell {
         )
     }
     
+    @objc private func viewAllReviewsButtonPressed() {
+        delegate?.viewAllReviewsButtonPressed()
+    }
+    
     private func registerCells() {
-        print("Register cells")
         sizeCollectionView.dataSource = self
         sizeCollectionView.delegate = self
         productCollectionView.dataSource = self
@@ -215,7 +228,6 @@ class DetailTableViewCell: UITableViewCell {
             nameLabel.topAnchor.constraint(equalTo: categoryLabel.bottomAnchor, constant: 8),
             nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             nameLabel.trailingAnchor.constraint(equalTo: priceValueLabel.leadingAnchor)
-            
         ])
         // Price value label
         NSLayoutConstraint.activate([
@@ -225,10 +237,10 @@ class DetailTableViewCell: UITableViewCell {
         ])
         // Product collection view
         NSLayoutConstraint.activate([
-            productCollectionView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 8),
+            productCollectionView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20),
             productCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             productCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            productCollectionView.heightAnchor.constraint(equalToConstant: 100)
+            productCollectionView.heightAnchor.constraint(equalToConstant: 80)
         ])
         // Size title label
         NSLayoutConstraint.activate([
@@ -240,7 +252,7 @@ class DetailTableViewCell: UITableViewCell {
             sizeCollectionView.topAnchor.constraint(equalTo: sizeLabel.bottomAnchor, constant: 8),
             sizeCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             sizeCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            sizeCollectionView.heightAnchor.constraint(equalToConstant: 100)
+            sizeCollectionView.heightAnchor.constraint(equalToConstant: 60)
         ])
         // Description label
         NSLayoutConstraint.activate([
@@ -260,6 +272,13 @@ class DetailTableViewCell: UITableViewCell {
             reviewsLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             reviewsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             reviewsLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -14)
+        ])
+        // View All Reviews button
+        NSLayoutConstraint.activate([
+            viewAllReviewsButton.topAnchor.constraint(equalTo: reviewsLabel.topAnchor),
+            viewAllReviewsButton.bottomAnchor.constraint(equalTo: reviewsLabel.bottomAnchor),
+            viewAllReviewsButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            viewAllReviewsButton.widthAnchor.constraint(equalToConstant: 120)
         ])
     }
 }
@@ -290,6 +309,7 @@ extension DetailTableViewCell: UICollectionViewDataSource, UICollectionViewDeleg
                 print("Failed to dequeue DetailThumbnailCollectionViewCell")
                 return UICollectionViewCell()
             }
+            delegate?.productThumbnailCellForItemAt(productCell: cell, cellForItemAt: indexPath)
             return cell
         case DetailCollectionTag.size.rawValue:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DetailSizeCollectionViewCell.identifier, for: indexPath) as? DetailSizeCollectionViewCell else {

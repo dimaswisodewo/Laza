@@ -22,7 +22,7 @@ enum CustomColor: String {
     case ViewBG = "ViewBG"
     case WhiteBG = "WhiteBG"
     case WhiteButtonPrimary = "WhiteButtonPrimary"
-    case WhiteButt0nSecondary = "WhiteButtonSecondary"
+    case WhiteButtonSecondary = "WhiteButtonSecondary"
 }
 
 class ColorUtils {

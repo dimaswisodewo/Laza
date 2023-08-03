@@ -204,6 +204,50 @@
             </objects>
             <point key="canvasLocation" x="2670.6976744186045" y="117.81115879828327"/>
         </scene>
+        <!--All Reviews View Controller-->
+        <scene sceneID="TYU-JD-UGx">
+            <objects>
+                <viewController storyboardIdentifier="AllReviewsViewController" id="sTE-zw-hLA" customClass="AllReviewsViewController" customModule="Laza" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eb3-q4-0MN">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="luP-vN-Vqx">
+                                <rect key="frame" x="0.0" y="59" width="430" height="839"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ive-8I-UlT" customClass="CircleButton" customModule="Laza" customModuleProvider="target">
+                                <rect key="frame" x="20" y="104" width="45" height="45"/>
+                                <color key="backgroundColor" name="WhiteButtonSecondary"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="6e4-ec-7b8"/>
+                                    <constraint firstAttribute="width" constant="45" id="kwp-5k-FJv"/>
+                                </constraints>
+                                <color key="tintColor" name="TextPrimary"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="arrow.backward" catalog="system"/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ftV-5w-mwV"/>
+                        <color key="backgroundColor" name="WhiteBG"/>
+                        <constraints>
+                            <constraint firstItem="ftV-5w-mwV" firstAttribute="bottom" secondItem="luP-vN-Vqx" secondAttribute="bottom" id="Gbt-Om-AAb"/>
+                            <constraint firstItem="ive-8I-UlT" firstAttribute="top" secondItem="ftV-5w-mwV" secondAttribute="top" constant="45" id="IqS-BA-QWC"/>
+                            <constraint firstItem="ive-8I-UlT" firstAttribute="leading" secondItem="ftV-5w-mwV" secondAttribute="leading" constant="20" id="LD0-62-zb0"/>
+                            <constraint firstItem="luP-vN-Vqx" firstAttribute="leading" secondItem="eb3-q4-0MN" secondAttribute="leading" id="Tog-0s-HNX"/>
+                            <constraint firstItem="ftV-5w-mwV" firstAttribute="trailing" secondItem="luP-vN-Vqx" secondAttribute="trailing" id="Wr3-Zp-brN"/>
+                            <constraint firstItem="luP-vN-Vqx" firstAttribute="top" secondItem="ftV-5w-mwV" secondAttribute="top" id="bgU-fy-l4d"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backButton" destination="ive-8I-UlT" id="H6F-79-82c"/>
+                        <outlet property="tableView" destination="luP-vN-Vqx" id="MrP-YG-Wn7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vGi-Pe-eAH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3427" y="118"/>
+        </scene>
         <!--Side Menu View Controller-->
         <scene sceneID="1zT-KQ-C2X">
             <objects>
@@ -343,6 +387,9 @@
         </designable>
         <designable name="8cu-6T-E7b">
             <size key="intrinsicContentSize" width="48" height="38"/>
+        </designable>
+        <designable name="ive-8I-UlT">
+            <size key="intrinsicContentSize" width="49.333333333333336" height="34.333333333333336"/>
         </designable>
         <designable name="uFB-Rh-7KH">
             <size key="intrinsicContentSize" width="49" height="39"/>
