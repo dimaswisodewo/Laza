@@ -64,3 +64,16 @@ extension UIImageView {
             }
         }
 }
+
+extension String {
+    
+    func formatDecimal() -> String {
+        var text = self
+        if self.hasSuffix(".0") {
+            let start = self.index(self.endIndex, offsetBy: -2)
+            let end = self.endIndex
+            text.removeSubrange(start..<end)
+        }
+        return text
+    }
+}

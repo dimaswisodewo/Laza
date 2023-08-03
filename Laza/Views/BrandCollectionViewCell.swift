@@ -15,19 +15,25 @@ class BrandCollectionViewCell: UICollectionViewCell {
         let button = UIButton()
         button.layer.cornerRadius = 10
         button.setTitle("Brand name", for: .normal)
-        button.titleLabel?.font = UIFont(name: "Inter-Medium", size: 17)
-        button.setTitleColor(UIColor(named: "TextPrimary"), for: .normal)
-        button.backgroundColor = UIColor(named: "ButtonBG")
+        button.titleLabel?.font = FontUtils.shared.getFont(font: .Inter, weight: .medium, size: 17)
+        button.setTitleColor(ColorUtils.shared.getColor(color: .TextPrimary), for: .normal)
+        button.backgroundColor = ColorUtils.shared.getColor(color: .ButtonBG)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
+    private(set) var category: String?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        backgroundColor = ColorUtils.shared.getColor(color: .WhiteBG)
         
         contentView.addSubview(button)
         
         setupConstraints()
+        
+        registerAction()
     }
     
     required init?(coder: NSCoder) {
@@ -36,6 +42,7 @@ class BrandCollectionViewCell: UICollectionViewCell {
     
     func setTitle(title: String?) {
         button.setTitle(title, for: .normal)
+        category = title
     }
     
     private func setupConstraints() {
@@ -45,5 +52,13 @@ class BrandCollectionViewCell: UICollectionViewCell {
             button.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             button.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
+    }
+    
+    private func registerAction() {
+        button.addTarget(self, action: #selector(brandButtonPressed), for: .touchUpInside)
+    }
+    
+    @objc private func brandButtonPressed() {
+        print("Brand button pressed: \(String(describing: category))")
     }
 }

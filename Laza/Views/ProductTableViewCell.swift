@@ -26,6 +26,7 @@ class ProductTableViewCell: UITableViewCell {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         let collectionView = DynamicHeightCollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = UIColor(named: "WhiteBG")
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()

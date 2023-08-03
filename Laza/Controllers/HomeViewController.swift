@@ -20,6 +20,15 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var menuButton: CircleButton! {
         didSet {
             menuButton.addTarget(self, action: #selector(menuButtonPressed), for: .touchUpInside)
+            // Set image size in button manually
+            let imageWidth = 25
+            let size = CGSize(width: imageWidth, height: imageWidth)
+            let rect = CGRect(origin: .zero, size: size)
+            var image = UIImage(named: "Menu")
+            UIGraphicsBeginImageContextWithOptions(size, false, 0.0) // Creates a bitmap-based graphics context with the specified options
+            image?.draw(in: rect) // This method draws the entire image in the current graphics context
+            image = UIGraphicsGetImageFromCurrentImageContext()
+            menuButton.setImage(image, for: .normal)
         }
     }
     
@@ -33,6 +42,7 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var tableView: IntrinsicTableView! {
         didSet {
+            tableView.backgroundColor = ColorUtils.shared.getColor(color: .WhiteBG)
             tableView.showsVerticalScrollIndicator = false
             tableView.showsHorizontalScrollIndicator = false
             tableView.separatorStyle = .none
@@ -96,7 +106,11 @@ class HomeViewController: UIViewController {
         vc.delegate = self
         
         sideMenuNavigationController = SideMenuNavigationController(rootViewController: vc)
+        sideMenuNavigationController.menuWidth = view.bounds.width * 0.8
         sideMenuNavigationController.leftSide = true
+        sideMenuNavigationController.presentationStyle = .menuSlideIn
+        sideMenuNavigationController.blurEffectStyle = .prominent
+//        sideMenuNavigationController.animationOptions = .curveEaseInOut
     }
     
     private func setupTabBarItemImage() {
@@ -174,7 +188,23 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        60
+        50
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let header = view as? UITableViewHeaderFooterView else {
+            print("Failed get header")
+            return
+        }
+
+        var contentConfig = header.defaultContentConfiguration()
+        contentConfig.directionalLayoutMargins = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
+        contentConfig.textProperties.font = UIFont(name: "Inter-Medium", size: 18) ?? .systemFont(ofSize: 18, weight: .semibold)
+        contentConfig.textProperties.color = UIColor(named: "TextPrimary") ?? .label
+        contentConfig.textProperties.transform = .capitalized
+        contentConfig.text = sections[section]
+
+        header.contentConfiguration = contentConfig
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -185,7 +215,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
                 return UITableViewCell()
             }
             cell.delegate = self
-            // Cache table view for reload data
+            // Cache table view cell to get the collection view for reload data
             if brandTableViewCell == nil {
                 brandTableViewCell = cell
             }
@@ -196,7 +226,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
                 return UITableViewCell()
             }
             cell.delegate = self
-            // Cache table view for reload data
+            // Cache table view cell to get the collection view for reload data
             if productTableViewCell == nil {
                 productTableViewCell = cell
             }
@@ -253,10 +283,6 @@ extension HomeViewController: BrandTableViewCellDelegate {
         collectionViewCell.setTitle(title: title)
         return collectionViewCell
     }
-    
-    func brandDidSelectItemAt(didSelectItemAt indexPath: IndexPath) {
-        print("Did select brand on cell: \(indexPath.item)")
-    }
 }
 
 // MARK: - ProductTableViewCell Delegate
@@ -287,6 +313,10 @@ extension HomeViewController: ProductTableViewCellDelegate {
     }
     
     func productDidSelectItemAt(didSelectItemAt indexPath: IndexPath) {
-        print("Did select product on cell: \(indexPath.item)")
+        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+        guard let vc = storyboard.instantiateViewController(withIdentifier: DetailViewController.identifier) as? DetailViewController else { return }
+        guard let product = viewModel.getProductOnIndex(index: indexPath.item) else { return }
+        vc.configure(product: product)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

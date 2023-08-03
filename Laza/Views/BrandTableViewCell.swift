@@ -14,8 +14,6 @@ protocol BrandTableViewCellDelegate: AnyObject {
     func brandCellForItemAt(cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     
     func brandSizeForItemAt(sizeForItemAt indexPath: IndexPath) -> CGSize
-    
-    func brandDidSelectItemAt(didSelectItemAt indexPath: IndexPath)
 }
 
 class BrandTableViewCell: UITableViewCell {
@@ -30,6 +28,7 @@ class BrandTableViewCell: UITableViewCell {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
+        collectionView.backgroundColor = ColorUtils.shared.getColor(color: .WhiteBG)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
@@ -81,9 +80,5 @@ extension BrandTableViewCell: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return delegate?.brandSizeForItemAt(sizeForItemAt: indexPath) ?? CGSize(width: 50, height: 50)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.brandDidSelectItemAt(didSelectItemAt: indexPath)
     }
 }

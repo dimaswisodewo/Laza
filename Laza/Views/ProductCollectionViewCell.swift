@@ -26,17 +26,9 @@ class ProductCollectionViewCell: UICollectionViewCell {
         return iv
     }()
     
-    private let heartButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "Wishlist"), for: .normal)
-        button.imageView?.contentMode = .scaleAspectFill
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
     private let productName: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Inter-Medium", size: 12)
+        label.font = FontUtils.shared.getFont(font: .Inter, weight: .medium, size: 12)
         label.numberOfLines = 2
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -44,17 +36,18 @@ class ProductCollectionViewCell: UICollectionViewCell {
     
     private let productPrice: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Inter-SemiBold", size: 14)
+        label.font = FontUtils.shared.getFont(font: .Inter, weight: .semibold, size: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
+    private var product: Product?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         contentView.addSubview(imageContainer)
         imageContainer.addSubview(image)
-        imageContainer.addSubview(heartButton)
         contentView.addSubview(productName)
         contentView.addSubview(productPrice)
         
@@ -66,6 +59,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(product: Product) {
+        self.product = product
         productName.text = product.title
         productPrice.text = String(product.price)
         image.loadAndCache(url: product.image)
@@ -79,7 +73,6 @@ class ProductCollectionViewCell: UICollectionViewCell {
             imageContainer.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             imageContainer.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.8)
         ])
-        
         // Image view
         NSLayoutConstraint.activate([
             image.topAnchor.constraint(equalTo: imageContainer.topAnchor),
@@ -87,22 +80,12 @@ class ProductCollectionViewCell: UICollectionViewCell {
             image.trailingAnchor.constraint(equalTo: imageContainer.trailingAnchor),
             image.bottomAnchor.constraint(equalTo: imageContainer.bottomAnchor)
         ])
-        
-        // Wishlist button
-        NSLayoutConstraint.activate([
-            heartButton.topAnchor.constraint(equalTo: imageContainer.topAnchor, constant: 10),
-            heartButton.trailingAnchor.constraint(equalTo: imageContainer.trailingAnchor, constant: -10),
-            heartButton.widthAnchor.constraint(equalToConstant: 20),
-            heartButton.heightAnchor.constraint(equalToConstant: 20)
-        ])
-        
         // Product name
         NSLayoutConstraint.activate([
             productName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             productName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             productName.topAnchor.constraint(equalTo: imageContainer.bottomAnchor, constant: 5)
         ])
-        
         // Product price
         NSLayoutConstraint.activate([
             productPrice.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),

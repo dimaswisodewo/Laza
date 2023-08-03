@@ -10,6 +10,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Inter-Medium.ttf">
+            <string>Inter-Medium</string>
+        </array>
         <array key="Inter-Regular.ttf">
             <string>Inter-Regular</string>
         </array>
@@ -33,7 +36,6 @@
                                     <constraint firstAttribute="height" constant="45" id="Oo7-Tm-A6e"/>
                                     <constraint firstAttribute="width" constant="45" id="PNy-zM-tds"/>
                                 </constraints>
-                                <color key="tintColor" name="TextPrimary"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="Menu"/>
                             </button>
@@ -89,7 +91,7 @@
                                     <outlet property="delegate" destination="Y6W-OH-hqX" id="HtF-fz-Pqd"/>
                                 </connections>
                             </searchBar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="CLj-0t-Rkf" customClass="IntrinsicTableView" customModule="Laza" customModuleProvider="target">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="CLj-0t-Rkf" customClass="IntrinsicTableView" customModule="Laza" customModuleProvider="target">
                                 <rect key="frame" x="20" y="328.66666666666669" width="390" height="520.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
@@ -212,7 +214,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="FN3-mD-D4P">
                                 <rect key="frame" x="0.0" y="59" width="430" height="839"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mf0-As-rON"/>
@@ -241,6 +243,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="WYK-5X-096" customClass="IntrinsicTableView" customModule="Laza" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="59" width="430" height="798"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3z2-9V-OZ5" customClass="CircleButton" customModule="Laza" customModuleProvider="target">
                                 <rect key="frame" x="20" y="104" width="45" height="45"/>
                                 <color key="backgroundColor" name="WhiteButtonSecondary"/>
@@ -261,30 +267,48 @@
                                 </constraints>
                                 <color key="tintColor" name="TextPrimary"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="BagBlack"/>
+                                <buttonConfiguration key="configuration" style="plain" image="Wishlist"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nrM-UD-UOS">
-                                <rect key="frame" x="0.0" y="832" width="430" height="100"/>
+                                <rect key="frame" x="0.0" y="857" width="430" height="75"/>
                                 <color key="backgroundColor" name="PurpleButton"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="VY3-Fi-aDg"/>
+                                    <constraint firstAttribute="height" constant="75" id="VY3-Fi-aDg"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add to Cart" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t6b-WF-U7Z">
+                                <rect key="frame" x="168" y="872" width="94.333333333333314" height="20.666666666666629"/>
+                                <fontDescription key="fontDescription" name="Inter-Medium" family="Inter" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fIu-2u-pJP"/>
-                        <color key="backgroundColor" name="ViewBG"/>
+                        <color key="backgroundColor" name="WhiteBG"/>
                         <constraints>
+                            <constraint firstItem="nrM-UD-UOS" firstAttribute="top" secondItem="WYK-5X-096" secondAttribute="bottom" id="C6A-hp-e2a"/>
                             <constraint firstItem="fIu-2u-pJP" firstAttribute="trailing" secondItem="1cW-m1-tVi" secondAttribute="trailing" constant="20" id="Fzd-0P-6e0"/>
+                            <constraint firstItem="t6b-WF-U7Z" firstAttribute="top" secondItem="nrM-UD-UOS" secondAttribute="top" constant="15" id="Gpw-ZN-D7t"/>
                             <constraint firstItem="3z2-9V-OZ5" firstAttribute="leading" secondItem="fIu-2u-pJP" secondAttribute="leading" constant="20" id="Kzs-ew-Zc2"/>
+                            <constraint firstItem="t6b-WF-U7Z" firstAttribute="centerX" secondItem="XPT-pb-xdi" secondAttribute="centerX" id="N76-hk-jqn"/>
+                            <constraint firstItem="fIu-2u-pJP" firstAttribute="trailing" secondItem="WYK-5X-096" secondAttribute="trailing" id="PLC-pt-K1h"/>
                             <constraint firstAttribute="bottom" secondItem="nrM-UD-UOS" secondAttribute="bottom" id="VrO-eZ-k8Y"/>
                             <constraint firstItem="nrM-UD-UOS" firstAttribute="leading" secondItem="fIu-2u-pJP" secondAttribute="leading" id="Wdw-hH-zdA"/>
+                            <constraint firstItem="WYK-5X-096" firstAttribute="leading" secondItem="fIu-2u-pJP" secondAttribute="leading" id="faF-Z7-mNp"/>
                             <constraint firstItem="1cW-m1-tVi" firstAttribute="top" secondItem="fIu-2u-pJP" secondAttribute="top" constant="45" id="jx3-LX-INH"/>
                             <constraint firstItem="3z2-9V-OZ5" firstAttribute="top" secondItem="fIu-2u-pJP" secondAttribute="top" constant="45" id="k8t-Vg-ODQ"/>
+                            <constraint firstItem="WYK-5X-096" firstAttribute="top" secondItem="fIu-2u-pJP" secondAttribute="top" id="ruK-GF-j5P"/>
                             <constraint firstItem="fIu-2u-pJP" firstAttribute="trailing" secondItem="nrM-UD-UOS" secondAttribute="trailing" id="w8e-rk-Jvy"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="addToCartButton" destination="nrM-UD-UOS" id="zcb-0c-2Ac"/>
+                        <outlet property="backButton" destination="3z2-9V-OZ5" id="nde-NH-H5q"/>
+                        <outlet property="cartButton" destination="1cW-m1-tVi" id="YuX-lG-tCQ"/>
+                        <outlet property="tableView" destination="WYK-5X-096" id="z2j-6B-Kcr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="58n-mw-Stl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -312,7 +336,7 @@
     </scenes>
     <designables>
         <designable name="1cW-m1-tVi">
-            <size key="intrinsicContentSize" width="49" height="39"/>
+            <size key="intrinsicContentSize" width="45" height="34"/>
         </designable>
         <designable name="3z2-9V-OZ5">
             <size key="intrinsicContentSize" width="49.333333333333336" height="34.333333333333336"/>

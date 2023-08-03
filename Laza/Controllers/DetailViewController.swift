@@ -8,24 +8,134 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-
+    
+    enum Row: Int, CaseIterable {
+        case Detail = 0
+        case Review = 1
+    }
+    
     static let identifier = "DetailViewController"
+    
+    @IBOutlet weak var backButton: CircleButton! {
+        didSet {
+            backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
+        }
+    }
+    
+    @IBOutlet weak var cartButton: CircleButton! {
+        didSet {
+            cartButton.addTarget(self, action: #selector(cartButtonPressed), for: .touchUpInside)
+        }
+    }
+    
+    @IBOutlet weak var addToCartButton: UIButton! {
+        didSet {
+            addToCartButton.addTarget(self, action: #selector(addToCartButtonPressed), for: .touchUpInside)
+        }
+    }
+    
+    @IBOutlet weak var tableView: IntrinsicTableView! {
+        didSet {
+            tableView.backgroundColor = ColorUtils.shared.getColor(color: .WhiteBG)
+            tableView.showsVerticalScrollIndicator = false
+            tableView.separatorStyle = .none
+            tableView.allowsSelection = false
+        }
+    }
+    
+    private let sizes = ["S", "M", "L", "XL", "2XL"]
+    
+    private var product: Product?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        registerCells()
+        
+        print("Start")
+        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { [weak self] timer in
+            print("Done")
+            self?.tableView.reloadData()
+            timer.invalidate()
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = true
     }
-    */
+    
+    private func registerCells() {
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(DetailTableViewCell.self, forCellReuseIdentifier: DetailTableViewCell.identifier)
+        tableView.register(ReviewTableViewCell.nib, forCellReuseIdentifier: ReviewTableViewCell.identifier)
+    }
+    
+    func configure(product: Product) {
+        self.product = product
+    }
 
+    @objc private func backButtonPressed() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @objc private func cartButtonPressed() {
+        
+    }
+    
+    @objc private func addToCartButtonPressed() {
+        
+    }
+}
+
+// MARK: - UITableView DataSource & Delegate
+
+extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return Row.allCases.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch indexPath.row {
+        case Row.Detail.rawValue:
+            guard let tableViewCell = tableView.dequeueReusableCell(withIdentifier: DetailTableViewCell.identifier) as? DetailTableViewCell else {
+                print("Failed to dequeue DetailTableViewCell")
+                return UITableViewCell()
+            }
+            tableViewCell.delegate = self
+            return tableViewCell
+        case Row.Review.rawValue:
+            guard let tableViewCell = tableView.dequeueReusableCell(withIdentifier: ReviewTableViewCell.identifier) as? ReviewTableViewCell else {
+                print("Failed to dequeue ReviewTableViewCell")
+                return UITableViewCell()
+            }
+            return tableViewCell
+        default:
+            return UITableViewCell()
+        }
+    }
+}
+
+// MARK: - DetailTableViewCellDelegate
+
+extension DetailViewController: DetailTableViewCellDelegate {
+    
+    func applyModel(productImage: UIImageView, productName: UILabel, productCategory: UILabel, productPrice: UILabel, productDesc: UILabel) {
+        
+        guard let product = product else {
+            print("Product model is nil")
+            return
+        }
+        
+        productImage.loadAndCache(url: product.image)
+        productName.text = product.title.capitalized
+        productCategory.text = product.category.capitalized
+        productDesc.text = product.description
+        productPrice.text = "$\(product.price)".formatDecimal()
+    }
 }
