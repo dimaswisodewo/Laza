@@ -22,7 +22,7 @@ class DetailSizeCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "Size"
         label.textAlignment = .center
-        label.font = FontUtils.shared.getFont(font: .Inter, weight: .semibold, size: 18)
+        label.font = FontUtils.shared.getFont(font: .Poppins, weight: .semibold, size: 18)
         label.textColor = ColorUtils.shared.getColor(color: .TextPrimary)
         return label
     }()

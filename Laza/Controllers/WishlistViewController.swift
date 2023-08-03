@@ -22,7 +22,7 @@ class WishlistViewController: UIViewController {
         label.numberOfLines = 1
         label.textAlignment = .center
         label.text = "Wishlist"
-        label.font = UIFont(name: "Inter-Medium", size: 11)
+        label.font = FontUtils.shared.getFont(font: .Poppins, weight: .semibold, size: 12)
         label.sizeToFit()
         
         tabBarItem.selectedImage = UIImage(view: label)

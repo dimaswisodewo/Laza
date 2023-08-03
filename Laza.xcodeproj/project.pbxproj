@@ -34,6 +34,9 @@
 		38D11ACA2A7B8AD9008ED926 /* ReviewsHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D11AC82A7B8AD9008ED926 /* ReviewsHeaderTableViewCell.swift */; };
 		38D11ACB2A7B8AD9008ED926 /* ReviewsHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38D11AC92A7B8AD9008ED926 /* ReviewsHeaderTableViewCell.xib */; };
 		38D11ACD2A7B9055008ED926 /* AllReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D11ACC2A7B9055008ED926 /* AllReviewsViewController.swift */; };
+		38D11AD12A7BA923008ED926 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 38D11ACE2A7BA922008ED926 /* Poppins-SemiBold.ttf */; };
+		38D11AD22A7BA923008ED926 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 38D11ACF2A7BA922008ED926 /* Poppins-Bold.ttf */; };
+		38D11AD32A7BA923008ED926 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 38D11AD02A7BA922008ED926 /* Poppins-Regular.ttf */; };
 		38D1DE342A749347002AB0ED /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D1DE332A749347002AB0ED /* User.swift */; };
 		38D1DE362A74ACB8002AB0ED /* DataPersistentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D1DE352A74ACB8002AB0ED /* DataPersistentManager.swift */; };
 		38D1DE382A74ADD9002AB0ED /* HashingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D1DE372A74ADD9002AB0ED /* HashingManager.swift */; };
@@ -97,6 +100,9 @@
 		38D11AC82A7B8AD9008ED926 /* ReviewsHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		38D11AC92A7B8AD9008ED926 /* ReviewsHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewsHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		38D11ACC2A7B9055008ED926 /* AllReviewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllReviewsViewController.swift; sourceTree = "<group>"; };
+		38D11ACE2A7BA922008ED926 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-SemiBold.ttf"; path = "../../../../../Downloads/Poppins/Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		38D11ACF2A7BA922008ED926 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Bold.ttf"; path = "../../../../../Downloads/Poppins/Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		38D11AD02A7BA922008ED926 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Regular.ttf"; path = "../../../../../Downloads/Poppins/Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		38D1DE332A749347002AB0ED /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		38D1DE352A74ACB8002AB0ED /* DataPersistentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistentManager.swift; sourceTree = "<group>"; };
 		38D1DE372A74ADD9002AB0ED /* HashingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashingManager.swift; sourceTree = "<group>"; };
@@ -267,6 +273,9 @@
 		38DCC67D2A70B6CF006A3633 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				38D11ACF2A7BA922008ED926 /* Poppins-Bold.ttf */,
+				38D11AD02A7BA922008ED926 /* Poppins-Regular.ttf */,
+				38D11ACE2A7BA922008ED926 /* Poppins-SemiBold.ttf */,
 				38DCC6862A70B9D7006A3633 /* Inter-Medium.ttf */,
 				38DCC6802A70B6D8006A3633 /* Inter-Black.ttf */,
 				38DCC67F2A70B6D8006A3633 /* Inter-Bold.ttf */,
@@ -348,7 +357,10 @@
 				38DCC6722A70A8B8006A3633 /* LaunchScreen.storyboard in Resources */,
 				38DCC6872A70B9D7006A3633 /* Inter-Medium.ttf in Resources */,
 				38DCC66F2A70A8B8006A3633 /* Assets.xcassets in Resources */,
+				38D11AD22A7BA923008ED926 /* Poppins-Bold.ttf in Resources */,
+				38D11AD32A7BA923008ED926 /* Poppins-Regular.ttf in Resources */,
 				38D11ACB2A7B8AD9008ED926 /* ReviewsHeaderTableViewCell.xib in Resources */,
+				38D11AD12A7BA923008ED926 /* Poppins-SemiBold.ttf in Resources */,
 				38DCC66D2A70A8B7006A3633 /* Main.storyboard in Resources */,
 				38DCC6852A70B6D8006A3633 /* Inter-Regular.ttf in Resources */,
 			);

@@ -22,8 +22,8 @@ class CartViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 1
         label.textAlignment = .center
-        label.text = "Cart"
-        label.font = UIFont(name: "Inter-Medium", size: 11)
+        label.text = "Order"
+        label.font = FontUtils.shared.getFont(font: .Poppins, weight: .semibold, size: 12)
         label.sizeToFit()
         
         tabBarItem.selectedImage = UIImage(view: label)

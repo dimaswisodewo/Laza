@@ -10,14 +10,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Inter-Medium.ttf">
-            <string>Inter-Medium</string>
+        <array key="Poppins-Regular.ttf">
+            <string>Poppins-Regular</string>
         </array>
-        <array key="Inter-Regular.ttf">
-            <string>Inter-Regular</string>
-        </array>
-        <array key="Inter-SemiBold.ttf">
-            <string>Inter-SemiBold</string>
+        <array key="Poppins-SemiBold.ttf">
+            <string>Poppins-SemiBold</string>
         </array>
     </customFonts>
     <scenes>
@@ -29,17 +26,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uFB-Rh-7KH" customClass="CircleButton" customModule="Laza" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uFB-Rh-7KH" customClass="CircleButton" customModule="Laza" customModuleProvider="target">
                                 <rect key="frame" x="20" y="104" width="45" height="45"/>
                                 <color key="backgroundColor" name="WhiteButtonSecondary"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="Oo7-Tm-A6e"/>
                                     <constraint firstAttribute="width" constant="45" id="PNy-zM-tds"/>
                                 </constraints>
+                                <color key="tintColor" name="TextPrimary"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="Menu"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w9k-to-9c2" customClass="CircleButton" customModule="Laza" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w9k-to-9c2" customClass="CircleButton" customModule="Laza" customModuleProvider="target">
                                 <rect key="frame" x="365" y="104" width="45" height="45"/>
                                 <color key="backgroundColor" name="WhiteButtonSecondary"/>
                                 <constraints>
@@ -48,22 +46,22 @@
                                 </constraints>
                                 <color key="tintColor" name="TextPrimary"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="BagBlack"/>
+                                <buttonConfiguration key="configuration" style="plain" image="Bag"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7b-uk-JPc">
-                                <rect key="frame" x="20" y="179" width="390" height="34"/>
-                                <fontDescription key="fontDescription" name="Inter-SemiBold" family="Inter" pointSize="28"/>
+                                <rect key="frame" x="20" y="179" width="390" height="39.333333333333343"/>
+                                <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="28"/>
                                 <color key="textColor" name="TextPrimary"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Laza" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XCi-ED-k5x">
-                                <rect key="frame" x="20" y="218" width="390" height="17.666666666666657"/>
-                                <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="15"/>
+                                <rect key="frame" x="20" y="222.33333333333334" width="390" height="22.666666666666657"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
                                 <color key="textColor" name="TextSecondary"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8cu-6T-E7b" customClass="RoundedButton" customModule="Laza" customModuleProvider="target">
-                                <rect key="frame" x="360" y="255.66666666666663" width="50" height="50"/>
+                                <rect key="frame" x="360" y="269" width="50" height="50"/>
                                 <color key="backgroundColor" name="PurpleButton"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="Luo-DE-ZRd"/>
@@ -80,7 +78,7 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search..." translatesAutoresizingMaskIntoConstraints="NO" id="eEW-Sg-gqZ">
-                                <rect key="frame" x="20" y="252.66666666666663" width="330" height="56"/>
+                                <rect key="frame" x="20" y="266" width="330" height="56"/>
                                 <color key="backgroundColor" name="WhiteBG"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <scopeButtonTitles>
@@ -92,7 +90,7 @@
                                 </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="CLj-0t-Rkf" customClass="IntrinsicTableView" customModule="Laza" customModuleProvider="target">
-                                <rect key="frame" x="20" y="328.66666666666669" width="390" height="520.33333333333326"/>
+                                <rect key="frame" x="0.0" y="342" width="430" height="507"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -102,9 +100,9 @@
                             <constraint firstItem="XCi-ED-k5x" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="01Z-cq-oXe"/>
                             <constraint firstItem="uFB-Rh-7KH" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="8es-JN-dgz"/>
                             <constraint firstItem="eEW-Sg-gqZ" firstAttribute="centerY" secondItem="8cu-6T-E7b" secondAttribute="centerY" id="Cie-qo-0oy"/>
-                            <constraint firstItem="CLj-0t-Rkf" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="DwQ-kG-1cb"/>
+                            <constraint firstItem="CLj-0t-Rkf" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="DwQ-kG-1cb"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="8cu-6T-E7b" secondAttribute="trailing" constant="20" id="F9V-Ig-Xiq"/>
-                            <constraint firstItem="8cu-6T-E7b" firstAttribute="top" secondItem="XCi-ED-k5x" secondAttribute="bottom" constant="20" id="HNK-I4-afc"/>
+                            <constraint firstItem="8cu-6T-E7b" firstAttribute="top" secondItem="XCi-ED-k5x" secondAttribute="bottom" constant="24" id="HNK-I4-afc"/>
                             <constraint firstItem="CLj-0t-Rkf" firstAttribute="top" secondItem="eEW-Sg-gqZ" secondAttribute="bottom" constant="20" id="HbL-Y3-Ekm"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="CLj-0t-Rkf" secondAttribute="bottom" id="IQj-HF-cqZ"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="XCi-ED-k5x" secondAttribute="trailing" constant="20" id="K1Z-hP-lhf"/>
@@ -114,9 +112,9 @@
                             <constraint firstItem="w9k-to-9c2" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="45" id="bRS-6Z-PCc"/>
                             <constraint firstItem="8cu-6T-E7b" firstAttribute="leading" secondItem="eEW-Sg-gqZ" secondAttribute="trailing" constant="10" id="rFC-kp-YzJ"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="w9k-to-9c2" secondAttribute="trailing" constant="20" id="rQR-9P-iyI"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="CLj-0t-Rkf" secondAttribute="trailing" constant="20" id="soa-tp-vRp"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="CLj-0t-Rkf" secondAttribute="trailing" id="soa-tp-vRp"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="B7b-uk-JPc" secondAttribute="trailing" constant="20" id="ugB-FE-UVd"/>
-                            <constraint firstItem="XCi-ED-k5x" firstAttribute="top" secondItem="B7b-uk-JPc" secondAttribute="bottom" constant="5" id="xOI-rs-Nsv"/>
+                            <constraint firstItem="XCi-ED-k5x" firstAttribute="top" secondItem="B7b-uk-JPc" secondAttribute="bottom" constant="4" id="xOI-rs-Nsv"/>
                             <constraint firstItem="B7b-uk-JPc" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="yYP-jb-hDY"/>
                         </constraints>
                     </view>
@@ -311,7 +309,9 @@
                                 </constraints>
                                 <color key="tintColor" name="TextPrimary"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="Wishlist"/>
+                                <buttonConfiguration key="configuration" style="plain" image="Wishlist">
+                                    <color key="baseForegroundColor" name="TextPrimary"/>
+                                </buttonConfiguration>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nrM-UD-UOS">
                                 <rect key="frame" x="0.0" y="857" width="430" height="75"/>
@@ -323,8 +323,8 @@
                                 <buttonConfiguration key="configuration" style="plain"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add to Cart" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t6b-WF-U7Z">
-                                <rect key="frame" x="168" y="872" width="94.333333333333314" height="20.666666666666629"/>
-                                <fontDescription key="fontDescription" name="Inter-Medium" family="Inter" pointSize="17"/>
+                                <rect key="frame" x="163.33333333333334" y="872" width="103.66666666666666" height="25.333333333333371"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -399,8 +399,7 @@
         </designable>
     </designables>
     <resources>
-        <image name="Bag" width="21" height="22"/>
-        <image name="BagBlack" width="25" height="25"/>
+        <image name="Bag" width="25" height="25"/>
         <image name="Home" width="21" height="22"/>
         <image name="Menu" width="25" height="25"/>
         <image name="Voice" width="24" height="24"/>

@@ -9,6 +9,7 @@ import UIKit
 
 enum CustomFont: String {
     case Inter = "Inter"
+    case Poppins = "Poppins"
 }
 
 class FontUtils {

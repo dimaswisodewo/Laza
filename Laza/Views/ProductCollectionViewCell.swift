@@ -28,7 +28,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
     
     private let productName: UILabel = {
         let label = UILabel()
-        label.font = FontUtils.shared.getFont(font: .Inter, weight: .medium, size: 12)
+        label.font = FontUtils.shared.getFont(font: .Poppins, weight: .regular, size: 14)
         label.numberOfLines = 2
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -36,7 +36,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
     
     private let productPrice: UILabel = {
         let label = UILabel()
-        label.font = FontUtils.shared.getFont(font: .Inter, weight: .semibold, size: 14)
+        label.font = FontUtils.shared.getFont(font: .Poppins, weight: .semibold, size: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -68,10 +68,10 @@ class ProductCollectionViewCell: UICollectionViewCell {
     private func setupConstraints() {
         // Image container view
         NSLayoutConstraint.activate([
-            imageContainer.topAnchor.constraint(equalTo: contentView.topAnchor),
+            imageContainer.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 14),
             imageContainer.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             imageContainer.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            imageContainer.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.8)
+            imageContainer.heightAnchor.constraint(equalTo: contentView.heightAnchor, multiplier: 0.7)
         ])
         // Image view
         NSLayoutConstraint.activate([
@@ -84,14 +84,14 @@ class ProductCollectionViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             productName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             productName.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            productName.topAnchor.constraint(equalTo: imageContainer.bottomAnchor, constant: 5)
+            productName.topAnchor.constraint(equalTo: imageContainer.bottomAnchor, constant: 4)
         ])
         // Product price
         NSLayoutConstraint.activate([
             productPrice.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             productPrice.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            productPrice.topAnchor.constraint(equalTo: productName.bottomAnchor, constant: 5),
-            productPrice.bottomAnchor.constraint(greaterThanOrEqualTo: contentView.bottomAnchor, constant: -5)
+            productPrice.topAnchor.constraint(equalTo: productName.bottomAnchor, constant: 4),
+            productPrice.bottomAnchor.constraint(greaterThanOrEqualTo: contentView.bottomAnchor, constant: -20)
         ])
     }
 }

@@ -15,7 +15,7 @@ class BrandCollectionViewCell: UICollectionViewCell {
         let button = UIButton()
         button.layer.cornerRadius = 10
         button.setTitle("Brand name", for: .normal)
-        button.titleLabel?.font = FontUtils.shared.getFont(font: .Inter, weight: .medium, size: 17)
+        button.titleLabel?.font = FontUtils.shared.getFont(font: .Poppins, weight: .semibold, size: 14)
         button.setTitleColor(ColorUtils.shared.getColor(color: .TextPrimary), for: .normal)
         button.backgroundColor = ColorUtils.shared.getColor(color: .ButtonBG)
         button.translatesAutoresizingMaskIntoConstraints = false

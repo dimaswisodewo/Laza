@@ -15,7 +15,13 @@ protocol SideMenuViewControllerDelegate: AnyObject {
 }
 
 enum SideMenuType {
+    case darkMode
+    case accountInformation
     case updatePassword
+    case order
+    case cards
+    case wishlist
+    case settings
     case logOut
 }
 
@@ -40,8 +46,14 @@ class SideMenuViewController: UIViewController {
     }
     
     private var sideMenus = [
-        SideMenuModel(icon: UIImage(systemName: "lock")!, title: "Update Password", type: .updatePassword),
-        SideMenuModel(icon: UIImage(systemName: "person.fill.xmark")!, title: "Log Out", type: .logOut)
+        SideMenuModel(icon: UIImage(systemName: "sun.max")!, title: "Dark Mode", type: .darkMode),
+        SideMenuModel(icon: UIImage(systemName: "exclamationmark.circle")!, title: "Account Information", type: .accountInformation),
+        SideMenuModel(icon: UIImage(systemName: "exclamationmark.lock")!, title: "Password", type: .updatePassword),
+        SideMenuModel(icon: UIImage(named: "Bag")!.withRenderingMode(.alwaysTemplate), title: "Order", type: .order),
+        SideMenuModel(icon: UIImage(named: "Wallet")!.withRenderingMode(.alwaysTemplate), title: "My Cards", type: .cards),
+        SideMenuModel(icon: UIImage(named: "Wishlist")!.withRenderingMode(.alwaysTemplate), title: "Wishlist", type: .wishlist),
+        SideMenuModel(icon: UIImage(systemName: "gearshape")!, title: "Settings", type: .settings),
+        SideMenuModel(icon: UIImage(systemName: "rectangle.portrait.and.arrow.right")!, title: "Logout", type: .logOut)
     ]
     
     override func viewDidLoad() {
@@ -65,17 +77,34 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.configure(model: sideMenus[indexPath.row])
+        let model = sideMenus[indexPath.row]
+        cell.configure(model: model)
+        
+        if model.type == .logOut {
+            cell.setTintColor(tintColor: .systemRed)
+        }
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: false)
         let type = sideMenus[indexPath.row].type
         switch type {
+        case .darkMode:
+            break
+        case .accountInformation:
+            break
         case .updatePassword:
             delegate?.didSelectUpdatePassword()
+        case .order:
+            break
+        case .cards:
+            break
+        case .wishlist:
+            break
+        case .settings:
+            break
         case .logOut:
             delegate?.didSelectLogOut()
         }

@@ -25,8 +25,11 @@ class ProductTableViewCell: UITableViewCell {
     private let productCollectionView: DynamicHeightCollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 32
         let collectionView = DynamicHeightCollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = UIColor(named: "WhiteBG")
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
@@ -84,12 +87,13 @@ extension ProductTableViewCell: UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let contentInset: CGFloat = 40 // EdgeInsets left & right of ProductCollectionView
         let numOfColum: CGFloat = 2.0
         let layout = collectionViewLayout as! UICollectionViewFlowLayout
         let collectionViewFlowLayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        let spacing = (layout.minimumInteritemSpacing * numOfColum) + collectionViewFlowLayout.sectionInset.left + collectionViewFlowLayout.sectionInset.right
+        let spacing = layout.minimumInteritemSpacing * (numOfColum - 1) + collectionViewFlowLayout.sectionInset.left + collectionViewFlowLayout.sectionInset.right + contentInset
         let width = (collectionView.frame.size.width / numOfColum ) - spacing
-        let cellHeightToWidthAspectRatio = CGFloat(257.0 / 160)
+        let cellHeightToWidthAspectRatio = CGFloat(250) / CGFloat(160)
         return CGSize(width: width, height: width * cellHeightToWidthAspectRatio)
     }
 }

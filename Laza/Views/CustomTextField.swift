@@ -11,8 +11,8 @@ class CustomTextField: UITextField {
 
     private var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Inter-Regular", size: 13)
-        label.textColor = UIColor(named: "TextSecondary")
+        label.font = FontUtils.shared.getFont(font: .Poppins, weight: .semibold, size: 14)
+        label.textColor = ColorUtils.shared.getColor(color: .TextSecondary)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -35,7 +35,7 @@ class CustomTextField: UITextField {
         
         let line = UIView()
         line.isUserInteractionEnabled = false
-        line.backgroundColor = UIColor(named: "GreyLine")
+        line.backgroundColor = ColorUtils.shared.getColor(color: .GreyLine)
         line.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(line)

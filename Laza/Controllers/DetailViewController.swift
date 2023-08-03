@@ -24,6 +24,9 @@ class DetailViewController: UIViewController {
     
     @IBOutlet weak var cartButton: CircleButton! {
         didSet {
+            let image = cartButton.imageView?.image?.withRenderingMode(.alwaysTemplate)
+            cartButton.setImage(image, for: .normal)
+            cartButton.tintColor = ColorUtils.shared.getColor(color: .TextPrimary)
             cartButton.addTarget(self, action: #selector(cartButtonPressed), for: .touchUpInside)
         }
     }
@@ -52,7 +55,7 @@ class DetailViewController: UIViewController {
         
         registerCells()
         
-        // Reload table view
+        // Reload table view, wait 0.1 sec to make sure that collection views inside the table view is finished layouting subviews
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
             self?.tableView.reloadData()
         }
@@ -111,6 +114,9 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
             guard let tableViewCell = tableView.dequeueReusableCell(withIdentifier: ReviewTableViewCell.identifier) as? ReviewTableViewCell else {
                 print("Failed to dequeue ReviewTableViewCell")
                 return UITableViewCell()
+            }
+            if let rate = product?.rating.rate {
+                tableViewCell.configureRating(rating: rate)
             }
             return tableViewCell
         default:

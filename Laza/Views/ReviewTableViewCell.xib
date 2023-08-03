@@ -10,11 +10,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Inter-Regular.ttf">
-            <string>Inter-Regular</string>
+        <array key="Poppins-Regular.ttf">
+            <string>Poppins-Regular</string>
         </array>
-        <array key="Inter-SemiBold.ttf">
-            <string>Inter-SemiBold</string>
+        <array key="Poppins-SemiBold.ttf">
+            <string>Poppins-SemiBold</string>
         </array>
     </customFonts>
     <objects>
@@ -41,25 +41,25 @@
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ronald Richards" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VuI-6l-9vd">
-                        <rect key="frame" x="92" y="20" width="125" height="19.666666666666671"/>
-                        <fontDescription key="fontDescription" name="Inter-SemiBold" family="Inter" pointSize="16"/>
+                        <rect key="frame" x="92" y="20" width="133" height="22.666666666666671"/>
+                        <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
                         <color key="textColor" name="TextPrimary"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Bo-WX-4h1">
-                        <rect key="frame" x="267" y="24" width="33" height="14.666666666666664"/>
-                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="12"/>
+                        <rect key="frame" x="264" y="24" width="36" height="17"/>
+                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                         <color key="textColor" name="TextSecondary"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jn5-hE-2xY">
-                        <rect key="frame" x="240" y="20" width="25" height="19.666666666666671"/>
-                        <fontDescription key="fontDescription" name="Inter-SemiBold" family="Inter" pointSize="16"/>
+                        <rect key="frame" x="234.66666666666666" y="20" width="25.333333333333343" height="22.666666666666671"/>
+                        <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="nuX-lD-tfK">
-                        <rect key="frame" x="92" y="42.666666666666664" width="16" height="14.666666666666664"/>
+                        <rect key="frame" x="92" y="47.666666666666664" width="16" height="14.666666666666664"/>
                         <color key="tintColor" name="TextSecondary"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="16" id="M7V-fa-Roe"/>
@@ -67,13 +67,13 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13 Sept, 2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pKn-lK-6Nz">
-                        <rect key="frame" x="110" y="42.666666666666664" width="79.333333333333314" height="14.666666666666664"/>
-                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="12"/>
+                        <rect key="frame" x="112" y="46.333333333333336" width="75.666666666666686" height="17"/>
+                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
                         <color key="textColor" name="TextSecondary"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="rgK-6C-WsO">
-                        <rect key="frame" x="284" y="41.333333333333329" width="16" height="15.666666666666664"/>
+                        <rect key="frame" x="284" y="46.333333333333329" width="16" height="15.666666666666664"/>
                         <color key="tintColor" name="TextSecondary"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="Kt9-Np-0Lx"/>
@@ -81,7 +81,7 @@
                         </constraints>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.leadinghalf.filled" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="68H-Ha-XJj">
-                        <rect key="frame" x="268" y="41.333333333333329" width="16" height="15.666666666666664"/>
+                        <rect key="frame" x="268" y="46.333333333333329" width="16" height="15.666666666666664"/>
                         <color key="tintColor" systemColor="systemYellowColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="I6y-zL-cpJ"/>
@@ -89,7 +89,7 @@
                         </constraints>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Rqf-gh-Ky2">
-                        <rect key="frame" x="252" y="41.333333333333329" width="16" height="15.666666666666664"/>
+                        <rect key="frame" x="252" y="46.333333333333329" width="16" height="15.666666666666664"/>
                         <color key="tintColor" systemColor="systemYellowColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="Vd2-dr-S3J"/>
@@ -97,7 +97,7 @@
                         </constraints>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="pcu-dn-ego">
-                        <rect key="frame" x="236" y="41.333333333333329" width="16" height="15.666666666666664"/>
+                        <rect key="frame" x="236" y="46.333333333333329" width="16" height="15.666666666666664"/>
                         <color key="tintColor" systemColor="systemYellowColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="GBi-ex-9Ls"/>
@@ -105,7 +105,7 @@
                         </constraints>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="JKI-MG-KXT">
-                        <rect key="frame" x="220" y="41.333333333333329" width="16" height="15.666666666666664"/>
+                        <rect key="frame" x="220" y="46.333333333333329" width="16" height="15.666666666666664"/>
                         <color key="tintColor" systemColor="systemYellowColor"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="16" id="SCO-HH-1Ez"/>
@@ -115,7 +115,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qZN-Ha-iJ6">
                         <rect key="frame" x="16" y="88" width="288" height="48"/>
                         <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer a placerat leo. Suspendisse nec ipsum eget lectus fringilla pulvinar. Duis sed metus risus. Cras sollicitudin turpis vitae erat viverra viverra. Phasellus quis eros lectus. Sed pellentesque lobortis tellus, in ornare massa sodales nec. Aliquam et mi porttitor, volutpat est quis, cursus velit. Phasellus tellus massa, porta ac lacinia in, venenatis vestibulum urna.</string>
-                        <fontDescription key="fontDescription" name="Inter-Regular" family="Inter" pointSize="14"/>
+                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                         <color key="textColor" name="TextSecondary"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -124,17 +124,16 @@
                     <constraint firstAttribute="trailing" secondItem="4Bo-WX-4h1" secondAttribute="trailing" constant="20" id="2Hx-nT-kdn"/>
                     <constraint firstItem="uUn-wq-Nfz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="6Hw-td-K7t"/>
                     <constraint firstItem="Jn5-hE-2xY" firstAttribute="firstBaseline" secondItem="VuI-6l-9vd" secondAttribute="firstBaseline" id="C29-La-7Le"/>
-                    <constraint firstItem="4Bo-WX-4h1" firstAttribute="leading" secondItem="Jn5-hE-2xY" secondAttribute="trailing" constant="2" id="GSl-Y4-iKy"/>
+                    <constraint firstItem="4Bo-WX-4h1" firstAttribute="leading" secondItem="Jn5-hE-2xY" secondAttribute="trailing" constant="4" id="GSl-Y4-iKy"/>
                     <constraint firstItem="rgK-6C-WsO" firstAttribute="leading" secondItem="68H-Ha-XJj" secondAttribute="trailing" id="J6I-0E-45R"/>
-                    <constraint firstItem="rgK-6C-WsO" firstAttribute="top" secondItem="VuI-6l-9vd" secondAttribute="bottom" constant="2" id="LDo-4C-33c"/>
+                    <constraint firstItem="rgK-6C-WsO" firstAttribute="top" secondItem="VuI-6l-9vd" secondAttribute="bottom" constant="4" id="LDo-4C-33c"/>
                     <constraint firstAttribute="bottom" secondItem="qZN-Ha-iJ6" secondAttribute="bottom" constant="20" id="POf-ld-zZL"/>
                     <constraint firstItem="uUn-wq-Nfz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="UD6-un-7vv"/>
                     <constraint firstItem="VuI-6l-9vd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="Ubl-gy-7nL"/>
                     <constraint firstItem="pcu-dn-ego" firstAttribute="leading" secondItem="JKI-MG-KXT" secondAttribute="trailing" id="X1H-eP-O9h"/>
                     <constraint firstItem="Rqf-gh-Ky2" firstAttribute="centerY" secondItem="68H-Ha-XJj" secondAttribute="centerY" id="Xls-6V-nNi"/>
                     <constraint firstItem="VuI-6l-9vd" firstAttribute="leading" secondItem="uUn-wq-Nfz" secondAttribute="trailing" constant="12" id="Yyj-Wq-dB6"/>
-                    <constraint firstItem="nuX-lD-tfK" firstAttribute="top" secondItem="VuI-6l-9vd" secondAttribute="bottom" constant="2" id="b3U-ZA-hMT"/>
-                    <constraint firstItem="pKn-lK-6Nz" firstAttribute="top" secondItem="nuX-lD-tfK" secondAttribute="top" constant="1" id="brI-BA-vw1"/>
+                    <constraint firstItem="nuX-lD-tfK" firstAttribute="top" secondItem="VuI-6l-9vd" secondAttribute="bottom" constant="4" id="b3U-ZA-hMT"/>
                     <constraint firstAttribute="trailingMargin" secondItem="qZN-Ha-iJ6" secondAttribute="trailing" id="bxG-my-Rhz"/>
                     <constraint firstItem="nuX-lD-tfK" firstAttribute="leading" secondItem="VuI-6l-9vd" secondAttribute="leading" id="dfz-Zv-o7J"/>
                     <constraint firstItem="Jn5-hE-2xY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="VuI-6l-9vd" secondAttribute="trailing" constant="8" id="drl-Rh-lwp"/>
@@ -145,8 +144,9 @@
                     <constraint firstItem="qZN-Ha-iJ6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="mAT-DT-PSD"/>
                     <constraint firstItem="4Bo-WX-4h1" firstAttribute="firstBaseline" secondItem="Jn5-hE-2xY" secondAttribute="firstBaseline" id="oku-fR-9vE"/>
                     <constraint firstAttribute="trailing" secondItem="rgK-6C-WsO" secondAttribute="trailing" constant="20" id="pLc-uq-AHa"/>
+                    <constraint firstItem="pKn-lK-6Nz" firstAttribute="centerY" secondItem="nuX-lD-tfK" secondAttribute="centerY" id="tO3-ce-00s"/>
                     <constraint firstItem="68H-Ha-XJj" firstAttribute="centerY" secondItem="rgK-6C-WsO" secondAttribute="centerY" id="vBz-fD-t4K"/>
-                    <constraint firstItem="pKn-lK-6Nz" firstAttribute="leading" secondItem="nuX-lD-tfK" secondAttribute="trailing" constant="2" id="ydd-3f-iR1"/>
+                    <constraint firstItem="pKn-lK-6Nz" firstAttribute="leading" secondItem="nuX-lD-tfK" secondAttribute="trailing" constant="4" id="ydd-3f-iR1"/>
                     <constraint firstItem="68H-Ha-XJj" firstAttribute="leading" secondItem="Rqf-gh-Ky2" secondAttribute="trailing" id="z7Z-Fg-nDv"/>
                 </constraints>
             </tableViewCellContentView>

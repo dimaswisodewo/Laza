@@ -27,16 +27,27 @@ class HomeViewController: UIViewController {
             var image = UIImage(named: "Menu")
             UIGraphicsBeginImageContextWithOptions(size, false, 0.0) // Creates a bitmap-based graphics context with the specified options
             image?.draw(in: rect) // This method draws the entire image in the current graphics context
-            image = UIGraphicsGetImageFromCurrentImageContext()
+            image = UIGraphicsGetImageFromCurrentImageContext()?.withRenderingMode(.alwaysTemplate)
             menuButton.setImage(image, for: .normal)
+            menuButton.tintColor = ColorUtils.shared.getColor(color: .TextPrimary)
         }
     }
     
-    @IBOutlet weak var cartButton: CircleButton!
+    @IBOutlet weak var cartButton: CircleButton! {
+        didSet {
+            let image = cartButton.imageView?.image?.withRenderingMode(.alwaysTemplate)
+            cartButton.setImage(image, for: .normal)
+            cartButton.tintColor = ColorUtils.shared.getColor(color: .TextPrimary)
+        }
+    }
     
     @IBOutlet weak var helloLabel: UILabel!
     
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var searchBar: UISearchBar! {
+        didSet {
+            searchBar.searchTextField.font = FontUtils.shared.getFont(font: .Poppins, weight: .regular, size: 14)
+        }
+    }
     
     @IBOutlet weak var voiceButton: RoundedButton!
     
@@ -46,7 +57,6 @@ class HomeViewController: UIViewController {
             tableView.showsVerticalScrollIndicator = false
             tableView.showsHorizontalScrollIndicator = false
             tableView.separatorStyle = .none
-            tableView.bounces = false
         }
     }
     
@@ -118,7 +128,7 @@ class HomeViewController: UIViewController {
         label.numberOfLines = 1
         label.textAlignment = .center
         label.text = "Home"
-        label.font = UIFont(name: "Inter-Medium", size: 11)
+        label.font = FontUtils.shared.getFont(font: .Poppins, weight: .semibold, size: 12)
         label.sizeToFit()
         
         navigationController?.tabBarItem.selectedImage = UIImage(view: label)
@@ -188,7 +198,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        50
+        60
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -199,8 +209,8 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
 
         var contentConfig = header.defaultContentConfiguration()
         contentConfig.directionalLayoutMargins = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
-        contentConfig.textProperties.font = UIFont(name: "Inter-Medium", size: 18) ?? .systemFont(ofSize: 18, weight: .semibold)
-        contentConfig.textProperties.color = UIColor(named: "TextPrimary") ?? .label
+        contentConfig.textProperties.font = FontUtils.shared.getFont(font: .Poppins, weight: .semibold, size: 18)
+        contentConfig.textProperties.color = ColorUtils.shared.getColor(color: .TextPrimary) ?? .label
         contentConfig.textProperties.transform = .capitalized
         contentConfig.text = sections[section]
 

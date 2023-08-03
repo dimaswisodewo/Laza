@@ -22,8 +22,8 @@ class WalletViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 1
         label.textAlignment = .center
-        label.text = "Wallet"
-        label.font = UIFont(name: "Inter-Medium", size: 11)
+        label.text = "My Cards"
+        label.font = FontUtils.shared.getFont(font: .Poppins, weight: .semibold, size: 12)
         label.sizeToFit()
         
         tabBarItem.selectedImage = UIImage(view: label)

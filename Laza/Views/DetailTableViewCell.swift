@@ -39,7 +39,7 @@ class DetailTableViewCell: UITableViewCell {
     private let categoryLabel: UILabel = {
         let label = UILabel()
         label.text = "Category"
-        label.font = FontUtils.shared.getFont(font: .Inter, weight: .semibold, size: 16)
+        label.font = FontUtils.shared.getFont(font: .Poppins, weight: .semibold, size: 16)
         label.textColor = ColorUtils.shared.getColor(color: .TextSecondary)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -49,7 +49,7 @@ class DetailTableViewCell: UITableViewCell {
         let label = UILabel()
         label.text = "Product name"
         label.numberOfLines = 0
-        label.font = FontUtils.shared.getFont(font: .Inter, weight: .semibold, size: 24)
+        label.font = FontUtils.shared.getFont(font: .Poppins, weight: .semibold, size: 24)
         label.textColor = ColorUtils.shared.getColor(color: .TextPrimary)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -60,7 +60,7 @@ class DetailTableViewCell: UITableViewCell {
         label.text = "Price"
         label.textAlignment = .right
         label.numberOfLines = 0
-        label.font = FontUtils.shared.getFont(font: .Inter, weight: .semibold, size: 16)
+        label.font = FontUtils.shared.getFont(font: .Poppins, weight: .semibold, size: 16)
         label.textColor = ColorUtils.shared.getColor(color: .TextSecondary)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -70,7 +70,7 @@ class DetailTableViewCell: UITableViewCell {
         let label = UILabel()
         label.text = "$0"
         label.textAlignment = .right
-        label.font = FontUtils.shared.getFont(font: .Inter, weight: .semibold, size: 24)
+        label.font = FontUtils.shared.getFont(font: .Poppins, weight: .semibold, size: 24)
         label.textColor = ColorUtils.shared.getColor(color: .TextPrimary)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -79,7 +79,7 @@ class DetailTableViewCell: UITableViewCell {
     private let sizeLabel: UILabel = {
         let label = UILabel()
         label.text = "Size"
-        label.font = FontUtils.shared.getFont(font: .Inter, weight: .semibold, size: 18)
+        label.font = FontUtils.shared.getFont(font: .Poppins, weight: .semibold, size: 18)
         label.textColor = ColorUtils.shared.getColor(color: .TextPrimary)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -88,7 +88,7 @@ class DetailTableViewCell: UITableViewCell {
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.text = "Description"
-        label.font = FontUtils.shared.getFont(font: .Inter, weight: .semibold, size: 18)
+        label.font = FontUtils.shared.getFont(font: .Poppins, weight: .semibold, size: 18)
         label.textColor = ColorUtils.shared.getColor(color: .TextPrimary)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -107,7 +107,7 @@ class DetailTableViewCell: UITableViewCell {
     private let reviewsLabel: UILabel = {
         let label = UILabel()
         label.text = "Reviews"
-        label.font = FontUtils.shared.getFont(font: .Inter, weight: .semibold, size: 18)
+        label.font = FontUtils.shared.getFont(font: .Poppins, weight: .semibold, size: 18)
         label.textColor = ColorUtils.shared.getColor(color: .TextPrimary)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -116,7 +116,7 @@ class DetailTableViewCell: UITableViewCell {
     private let viewAllReviewsButton: UIButton = {
         let button = UIButton()
         button.setTitle("View All", for: .normal)
-        button.titleLabel?.font = FontUtils.shared.getFont(font: .Inter, weight: .regular, size: 16)
+        button.titleLabel?.font = FontUtils.shared.getFont(font: .Poppins, weight: .regular, size: 16)
         button.titleLabel?.textAlignment = .right
         button.setTitleColor(ColorUtils.shared.getColor(color: .TextSecondary), for: .normal)
         button.addTarget(self, action: #selector(viewAllReviewsButtonPressed), for: .touchUpInside)
@@ -237,14 +237,14 @@ class DetailTableViewCell: UITableViewCell {
         ])
         // Product collection view
         NSLayoutConstraint.activate([
-            productCollectionView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20),
+            productCollectionView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 24),
             productCollectionView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             productCollectionView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             productCollectionView.heightAnchor.constraint(equalToConstant: 80)
         ])
         // Size title label
         NSLayoutConstraint.activate([
-            sizeLabel.topAnchor.constraint(equalTo: productCollectionView.bottomAnchor, constant: 20),
+            sizeLabel.topAnchor.constraint(equalTo: productCollectionView.bottomAnchor, constant: 24),
             sizeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20)
         ])
         // Size collection view
@@ -256,7 +256,7 @@ class DetailTableViewCell: UITableViewCell {
         ])
         // Description label
         NSLayoutConstraint.activate([
-            descriptionLabel.topAnchor.constraint(equalTo: sizeCollectionView.bottomAnchor, constant: 20),
+            descriptionLabel.topAnchor.constraint(equalTo: sizeCollectionView.bottomAnchor, constant: 24),
             descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
         ])
@@ -268,7 +268,7 @@ class DetailTableViewCell: UITableViewCell {
         ])
         // Reviews label
         NSLayoutConstraint.activate([
-            reviewsLabel.topAnchor.constraint(equalTo: descriptionValueLabel.bottomAnchor, constant: 20),
+            reviewsLabel.topAnchor.constraint(equalTo: descriptionValueLabel.bottomAnchor, constant: 24),
             reviewsLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             reviewsLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             reviewsLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -14)
@@ -278,7 +278,7 @@ class DetailTableViewCell: UITableViewCell {
             viewAllReviewsButton.topAnchor.constraint(equalTo: reviewsLabel.topAnchor),
             viewAllReviewsButton.bottomAnchor.constraint(equalTo: reviewsLabel.bottomAnchor),
             viewAllReviewsButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
-            viewAllReviewsButton.widthAnchor.constraint(equalToConstant: 120)
+            viewAllReviewsButton.widthAnchor.constraint(greaterThanOrEqualToConstant: 10)
         ])
     }
 }
