@@ -11,7 +11,7 @@ class UpdatePasswordViewController: UIViewController {
     
     static let identifier = "UpdatePasswordViewController"
     
-    @IBOutlet weak var passwordTextField: CustomTextField! {
+    @IBOutlet weak var passwordTextField: CustomSecureTextField! {
         didSet {
             passwordTextField.setTitle(title: "Password")
             passwordTextField.autocorrectionType = .no
@@ -19,7 +19,7 @@ class UpdatePasswordViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var confirmPasswordTextField: CustomTextField! {
+    @IBOutlet weak var confirmPasswordTextField: CustomSecureTextField! {
         didSet {
             confirmPasswordTextField.setTitle(title: "Confirm Password")
             confirmPasswordTextField.autocorrectionType = .no

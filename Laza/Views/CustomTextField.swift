@@ -17,6 +17,15 @@ class CustomTextField: UITextField {
         return label
     }()
     
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        self.addSubview(titleLabel)
+        
+        setupConstraints()
+        setupTextField()
+    }
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         

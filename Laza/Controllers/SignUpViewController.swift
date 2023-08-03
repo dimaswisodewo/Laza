@@ -25,7 +25,7 @@ class SignUpViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var passwordTextField: CustomTextField! {
+    @IBOutlet weak var passwordTextField: CustomSecureTextField! {
         didSet {
             passwordTextField.setTitle(title: "Password")
             passwordTextField.autocorrectionType = .no
