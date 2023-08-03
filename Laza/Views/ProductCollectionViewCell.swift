@@ -61,7 +61,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
     func configure(product: Product) {
         self.product = product
         productName.text = product.title
-        productPrice.text = String(product.price)
+        productPrice.text = "$\(product.price)".formatDecimal()
         image.loadAndCache(url: product.image)
     }
     

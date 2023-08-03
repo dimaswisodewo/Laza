@@ -11,12 +11,6 @@ class GetStartedViewController: UIViewController {
     
     static let identifier = "GetStartedViewController"
     
-    @IBOutlet weak var backButton: CircleButton! {
-        didSet {
-            backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
-        }
-    }
-    
     @IBOutlet weak var fbButton: RoundedButton! {
         didSet {
             fbButton.layer.cornerRadius = 10
@@ -53,10 +47,6 @@ class GetStartedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-    }
-    
-    @objc private func backButtonPressed() {
-        navigationController?.popViewController(animated: true)
     }
     
     @objc private func signUpButtonPressed() {

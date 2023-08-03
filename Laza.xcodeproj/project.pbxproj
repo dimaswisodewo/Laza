@@ -45,7 +45,6 @@
 		38D1DE462A74E342002AB0ED /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D1DE452A74E342002AB0ED /* HomeViewModel.swift */; };
 		38DCC6662A70A8B7006A3633 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DCC6652A70A8B7006A3633 /* AppDelegate.swift */; };
 		38DCC6682A70A8B7006A3633 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DCC6672A70A8B7006A3633 /* SceneDelegate.swift */; };
-		38DCC66A2A70A8B7006A3633 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DCC6692A70A8B7006A3633 /* OnboardingViewController.swift */; };
 		38DCC66D2A70A8B7006A3633 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38DCC66B2A70A8B7006A3633 /* Main.storyboard */; };
 		38DCC66F2A70A8B8006A3633 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38DCC66E2A70A8B8006A3633 /* Assets.xcassets */; };
 		38DCC6722A70A8B8006A3633 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38DCC6702A70A8B8006A3633 /* LaunchScreen.storyboard */; };
@@ -110,7 +109,6 @@
 		38DCC6622A70A8B7006A3633 /* Laza.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Laza.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38DCC6652A70A8B7006A3633 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38DCC6672A70A8B7006A3633 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		38DCC6692A70A8B7006A3633 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		38DCC66C2A70A8B7006A3633 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		38DCC66E2A70A8B8006A3633 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		38DCC6712A70A8B8006A3633 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -200,7 +198,6 @@
 		38DCC6792A70B31F006A3633 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				38DCC6692A70A8B7006A3633 /* OnboardingViewController.swift */,
 				38DCC6882A70D2C7006A3633 /* GetStartedViewController.swift */,
 				38FF0E4B2A70F478009B406F /* SignUpViewController.swift */,
 				38FF0E4D2A7103C2009B406F /* LoginViewController.swift */,
@@ -386,7 +383,6 @@
 				38F216032A7218B700952E65 /* BrandCollectionViewCell.swift in Sources */,
 				382640222A76911D00744726 /* SideMenuViewController.swift in Sources */,
 				38FB18D02A7A30A500733133 /* DetailSizeCollectionViewCell.swift in Sources */,
-				38DCC66A2A70A8B7006A3633 /* OnboardingViewController.swift in Sources */,
 				382640242A7695CE00744726 /* SideMenuTableViewCell.swift in Sources */,
 				38DFE8812A77608700B1EE8F /* ProductTableViewCell.swift in Sources */,
 				38C51DC52A715849000324A5 /* WalletViewController.swift in Sources */,

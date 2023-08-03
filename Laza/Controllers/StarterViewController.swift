@@ -23,7 +23,7 @@ class StarterViewController: UIViewController {
             view.window?.windowScene?.keyWindow?.rootViewController = vc
         } else {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc = storyboard.instantiateViewController(withIdentifier: OnboardingViewController.identifier)
+            let vc = storyboard.instantiateViewController(withIdentifier: GetStartedViewController.identifier)
             let nav = UINavigationController(rootViewController: vc)
             nav.setNavigationBarHidden(true, animated: false)
             view.window?.windowScene?.keyWindow?.rootViewController = nav

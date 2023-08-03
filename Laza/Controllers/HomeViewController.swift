@@ -132,7 +132,7 @@ class HomeViewController: UIViewController {
         viewModel.logout()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         DispatchQueue.main.async { [weak self] in
-            let vc = storyboard.instantiateViewController(withIdentifier: OnboardingViewController.identifier)
+            let vc = storyboard.instantiateViewController(withIdentifier: GetStartedViewController.identifier)
             let nav = UINavigationController(rootViewController: vc)
             nav.setNavigationBarHidden(true, animated: false)
             self?.view.window?.windowScene?.keyWindow?.rootViewController = nav
