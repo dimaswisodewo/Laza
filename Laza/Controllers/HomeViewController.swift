@@ -163,22 +163,8 @@ class HomeViewController: UIViewController {
     }
     
     private func setupSelectedViewControllerInTabBar(selectedIndex: Int, identifier: String) {
-        let storyboard = UIStoryboard(name: "Home", bundle: nil)
-        // Destination UIViewController
-        let vc = storyboard.instantiateViewController(withIdentifier: identifier)
-        // Instantiate UITabBarController
-        guard let uiTabBarController = storyboard.instantiateViewController(withIdentifier: MainTabBarViewController.identifier) as? MainTabBarViewController else {
-            print("failed to get MainTabBarViewController")
-            return
-        }
-        uiTabBarController.selectedIndex = selectedIndex
-        // Instantiate UINavigationController
-        guard let navBar = uiTabBarController.selectedViewController as? UINavigationController else {
-            print("Failed to convert to UINavigationController")
-            return
-        }
-        navBar.pushViewController(vc, animated: false)
-        self.view.window?.windowScene?.keyWindow?.rootViewController = uiTabBarController
+        self.tabBarController?.selectedIndex = selectedIndex
+        sideMenuNavigationController.dismiss(animated: true)
     }
 }
 
