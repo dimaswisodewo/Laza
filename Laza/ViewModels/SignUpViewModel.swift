@@ -20,7 +20,8 @@ class SignUpViewModel {
             password: Password(
                 hashedPassword: encryptedPassword,
                 salt: salt
-            )
+            ),
+            isLoggedIn: false
         )
     }
 }

@@ -17,7 +17,7 @@ class StarterViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if DataPersistentManager.shared.isUserDataExistsInUserDefaults() {
+        if DataPersistentManager.shared.isUserLoggedIn() {
             let storyboard = UIStoryboard(name: "Home", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: MainTabBarViewController.identifier)
             view.window?.windowScene?.keyWindow?.rootViewController = vc

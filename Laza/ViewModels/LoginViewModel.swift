@@ -11,10 +11,6 @@ class LoginViewModel {
     
     func login(username: String, password: String, completion: @escaping (LoginToken?) -> Void) {
         
-        if !DataPersistentManager.shared.isUserDataExistsInUserDefaults() {
-            return
-        }
-        
         guard let savedData = DataPersistentManager.shared.getUserDataFromUserDefaults() else { return }
         
         let userData = savedData.0
@@ -27,6 +23,11 @@ class LoginViewModel {
         
         // Matching user input with saved user data
         if username == userData.username, hashedPassword == userData.password {
+            DataPersistentManager.shared.saveUserDataToUserDefaults(
+                user: userData,
+                password: Password(hashedPassword: hashedPassword, salt: salt),
+                isLoggedIn: true
+            )
             loginWithApi(completion: completion)
         } else {
             completion(nil)

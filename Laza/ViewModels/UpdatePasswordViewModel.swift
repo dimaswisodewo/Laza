@@ -21,6 +21,6 @@ class UpdatePasswordViewModel {
         user.password = newHashedPassword
         
         // Save updated data to UserDefaults
-        DataPersistentManager.shared.saveUserDataToUserDefaults(user: user, password: password)
+        DataPersistentManager.shared.saveUserDataToUserDefaults(user: user, password: password, isLoggedIn: true)
     }
 }

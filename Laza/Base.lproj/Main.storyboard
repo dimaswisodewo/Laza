@@ -62,20 +62,20 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kD5-Pd-ahK">
-                                <rect key="frame" x="104.33333333333333" y="801" width="221.66666666666669" height="31"/>
+                                <rect key="frame" x="88.000000000000014" y="798.33333333333337" width="254.33333333333337" height="33.666666666666629"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xYT-ga-Feo">
-                                        <rect key="frame" x="0.0" y="0.0" width="158" height="31"/>
-                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="184" height="33.666666666666664"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                         <color key="textColor" name="TextSecondary"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nm1-sr-fiV">
-                                        <rect key="frame" x="158" y="0.0" width="63.666666666666657" height="31"/>
+                                        <rect key="frame" x="184" y="0.0" width="70.333333333333314" height="33.666666666666664"/>
                                         <color key="tintColor" name="TextPrimary"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Sign In" titleAlignment="automatic">
-                                            <fontDescription key="titleFontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
+                                            <fontDescription key="titleFontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                         </buttonConfiguration>
                                     </button>
                                 </subviews>
