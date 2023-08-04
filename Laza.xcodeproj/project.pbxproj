@@ -11,6 +11,10 @@
 		382640222A76911D00744726 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382640212A76911D00744726 /* SideMenuViewController.swift */; };
 		382640242A7695CE00744726 /* SideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382640232A7695CE00744726 /* SideMenuTableViewCell.swift */; };
 		382F77392A7BFC350076248F /* CustomSecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382F77382A7BFC350076248F /* CustomSecureTextField.swift */; };
+		383F896C2A7CB35700C41BE7 /* SideMenuProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383F896B2A7CB35700C41BE7 /* SideMenuProfileTableViewCell.swift */; };
+		383F896E2A7CB36300C41BE7 /* SideMenuProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 383F896D2A7CB36300C41BE7 /* SideMenuProfileTableViewCell.xib */; };
+		383F89702A7CDC3000C41BE7 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383F896F2A7CDC3000C41BE7 /* SideMenuView.swift */; };
+		384C4D012A7CAD9800B85BFF /* SideMenuSwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384C4D002A7CAD9800B85BFF /* SideMenuSwitchTableViewCell.swift */; };
 		386272B02A7A854800962892 /* FontUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386272AF2A7A854800962892 /* FontUtils.swift */; };
 		386272B32A7A882200962892 /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386272B12A7A882200962892 /* ReviewTableViewCell.swift */; };
 		386272B42A7A882200962892 /* ReviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386272B22A7A882200962892 /* ReviewTableViewCell.xib */; };
@@ -80,6 +84,10 @@
 		382640212A76911D00744726 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		382640232A7695CE00744726 /* SideMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewCell.swift; sourceTree = "<group>"; };
 		382F77382A7BFC350076248F /* CustomSecureTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSecureTextField.swift; sourceTree = "<group>"; };
+		383F896B2A7CB35700C41BE7 /* SideMenuProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuProfileTableViewCell.swift; sourceTree = "<group>"; };
+		383F896D2A7CB36300C41BE7 /* SideMenuProfileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuProfileTableViewCell.xib; sourceTree = "<group>"; };
+		383F896F2A7CDC3000C41BE7 /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
+		384C4D002A7CAD9800B85BFF /* SideMenuSwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuSwitchTableViewCell.swift; sourceTree = "<group>"; };
 		386272AF2A7A854800962892 /* FontUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontUtils.swift; sourceTree = "<group>"; };
 		386272B12A7A882200962892 /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
 		386272B22A7A882200962892 /* ReviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewTableViewCell.xib; sourceTree = "<group>"; };
@@ -275,6 +283,10 @@
 				38D11ACC2A7B9055008ED926 /* AllReviewsViewController.swift */,
 				382F77382A7BFC350076248F /* CustomSecureTextField.swift */,
 				387A6D302A7C8F2200358DE8 /* CustomSlider.swift */,
+				384C4D002A7CAD9800B85BFF /* SideMenuSwitchTableViewCell.swift */,
+				383F896B2A7CB35700C41BE7 /* SideMenuProfileTableViewCell.swift */,
+				383F896D2A7CB36300C41BE7 /* SideMenuProfileTableViewCell.xib */,
+				383F896F2A7CDC3000C41BE7 /* SideMenuView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -367,6 +379,7 @@
 				38DCC6872A70B9D7006A3633 /* Inter-Medium.ttf in Resources */,
 				38DCC66F2A70A8B8006A3633 /* Assets.xcassets in Resources */,
 				38D11AD22A7BA923008ED926 /* Poppins-Bold.ttf in Resources */,
+				383F896E2A7CB36300C41BE7 /* SideMenuProfileTableViewCell.xib in Resources */,
 				38D11AD32A7BA923008ED926 /* Poppins-Regular.ttf in Resources */,
 				38D11ACB2A7B8AD9008ED926 /* ReviewsHeaderTableViewCell.xib in Resources */,
 				38D11AD12A7BA923008ED926 /* Poppins-SemiBold.ttf in Resources */,
@@ -389,12 +402,14 @@
 				38A7DD652A750E9E002564AB /* UpdatePasswordViewController.swift in Sources */,
 				38C51DC92A715F45000324A5 /* MainTabBarViewController.swift in Sources */,
 				38DCC68B2A70D368006A3633 /* CircleButton.swift in Sources */,
+				383F896C2A7CB35700C41BE7 /* SideMenuProfileTableViewCell.swift in Sources */,
 				38D1DE462A74E342002AB0ED /* HomeViewModel.swift in Sources */,
 				38B76D4A2A73B6B800C5DA0B /* DetailViewController.swift in Sources */,
 				38D11ACA2A7B8AD9008ED926 /* ReviewsHeaderTableViewCell.swift in Sources */,
 				382F77392A7BFC350076248F /* CustomSecureTextField.swift in Sources */,
 				38E89D622A72F0D900BBDE14 /* ProductCollectionViewCell.swift in Sources */,
 				38B8F0FF2A7215F3003DA0CE /* RoundedView.swift in Sources */,
+				384C4D012A7CAD9800B85BFF /* SideMenuSwitchTableViewCell.swift in Sources */,
 				38FF0E4C2A70F478009B406F /* SignUpViewController.swift in Sources */,
 				38D1DE3C2A74B55B002AB0ED /* SignUpViewModel.swift in Sources */,
 				386272B02A7A854800962892 /* FontUtils.swift in Sources */,
@@ -422,6 +437,7 @@
 				3817D67A2A7202A10074D911 /* RoundedButton.swift in Sources */,
 				38C51DBB2A7152BC000324A5 /* ForgotPasswordViewController.swift in Sources */,
 				38DFE8832A77B92F00B1EE8F /* IntrinsicTableViewCell.swift in Sources */,
+				383F89702A7CDC3000C41BE7 /* SideMenuView.swift in Sources */,
 				38B8F1012A721615003DA0CE /* RoundedImageView.swift in Sources */,
 				38D1DE3E2A74BE7E002AB0ED /* LoginViewModel.swift in Sources */,
 				387D4D792A78A51900022959 /* DynamicHeightCollectionView.swift in Sources */,

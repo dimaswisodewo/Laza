@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-Regular.ttf">
+            <string>Poppins-Regular</string>
+        </array>
+        <array key="Poppins-SemiBold.ttf">
+            <string>Poppins-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="156" id="Nd9-3K-Ppz" customClass="SideMenuProfileTableViewCell" customModule="Laza" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="156"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Nd9-3K-Ppz" id="nFq-Dj-2bF">
+                <rect key="frame" x="0.0" y="0.0" width="393" height="156"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Verified Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hrj-vm-KSe">
+                        <rect key="frame" x="92" y="55.999999999999993" width="99.333333333333314" height="19.666666666666664"/>
+                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                        <color key="textColor" name="TextSecondary"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ronald Richards" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GmB-u8-kbk">
+                        <rect key="frame" x="92" y="24" width="166" height="28"/>
+                        <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="20"/>
+                        <color key="textColor" name="TextPrimary"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile" translatesAutoresizingMaskIntoConstraints="NO" id="hYV-N9-8sW">
+                        <rect key="frame" x="20" y="20" width="60" height="60"/>
+                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="bCp-9B-ucz"/>
+                            <constraint firstAttribute="height" constant="60" id="eEL-vx-VjP"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" name="ViewBG"/>
+                <constraints>
+                    <constraint firstItem="hrj-vm-KSe" firstAttribute="top" secondItem="GmB-u8-kbk" secondAttribute="bottom" constant="4" id="2ob-LG-ljx"/>
+                    <constraint firstItem="GmB-u8-kbk" firstAttribute="leading" secondItem="hYV-N9-8sW" secondAttribute="trailing" constant="12" id="5e4-Jn-y1z"/>
+                    <constraint firstItem="hYV-N9-8sW" firstAttribute="top" secondItem="nFq-Dj-2bF" secondAttribute="top" constant="20" id="9qk-Tv-bFn"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="hYV-N9-8sW" secondAttribute="bottom" constant="36" id="BVB-L3-eyW"/>
+                    <constraint firstItem="hrj-vm-KSe" firstAttribute="leading" secondItem="GmB-u8-kbk" secondAttribute="leading" id="Ku9-LR-SSO"/>
+                    <constraint firstItem="hYV-N9-8sW" firstAttribute="leading" secondItem="nFq-Dj-2bF" secondAttribute="leading" constant="20" id="aRQ-Ht-zfC"/>
+                    <constraint firstItem="GmB-u8-kbk" firstAttribute="top" secondItem="hYV-N9-8sW" secondAttribute="top" constant="4" id="tmD-85-J4C"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="nameLabel" destination="GmB-u8-kbk" id="8no-i0-hqr"/>
+                <outlet property="profileImage" destination="hYV-N9-8sW" id="pmL-l7-Fzd"/>
+            </connections>
+            <point key="canvasLocation" x="-77.099236641221367" y="26.760563380281692"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Profile" width="314" height="314"/>
+        <namedColor name="TextPrimary">
+            <color red="0.11372549019607843" green="0.11764705882352941" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TextSecondary">
+            <color red="0.5607843137254902" green="0.58431372549019611" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="ViewBG">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

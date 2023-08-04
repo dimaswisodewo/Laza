@@ -1,13 +1,13 @@
 //
-//  SideMenuTableViewCell.swift
+//  SideMenuView.swift
 //  Laza
 //
-//  Created by Dimas Wisodewo on 30/07/23.
+//  Created by Dimas Wisodewo on 04/08/23.
 //
 
 import UIKit
 
-class SideMenuTableViewCell: UITableViewCell {
+class SideMenuView: UIView {
 
     class var identifier: String { return String(describing: self) }
     
@@ -28,14 +28,9 @@ class SideMenuTableViewCell: UITableViewCell {
         return label
     }()
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-    
     override func layoutSubviews() {
-        contentView.addSubview(image)
-        contentView.addSubview(title)
+        addSubview(image)
+        addSubview(title)
         
         setupConstraints()
     }
@@ -53,17 +48,17 @@ class SideMenuTableViewCell: UITableViewCell {
     private func setupConstraints() {
         // Image
         NSLayoutConstraint.activate([
-            image.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24),
+            image.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
             image.heightAnchor.constraint(equalToConstant: 24),
             image.widthAnchor.constraint(equalTo: image.heightAnchor),
-            image.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+            image.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
         // Title
         NSLayoutConstraint.activate([
-            title.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+            title.topAnchor.constraint(equalTo: topAnchor, constant: 16),
             title.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 12),
-            title.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
-            title.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20)
+            title.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
+            title.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20)
         ])
     }
 }

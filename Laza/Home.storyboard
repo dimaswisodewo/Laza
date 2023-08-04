@@ -145,9 +145,9 @@
                     </tabBar>
                     <connections>
                         <segue destination="gsi-dd-nZZ" kind="relationship" relationship="viewControllers" id="DM9-Ab-Q2x"/>
-                        <segue destination="Od6-OK-8KC" kind="relationship" relationship="viewControllers" id="VXQ-7r-4nL"/>
-                        <segue destination="2au-eR-b4E" kind="relationship" relationship="viewControllers" id="taV-Vs-rkX"/>
-                        <segue destination="FM8-uD-p60" kind="relationship" relationship="viewControllers" id="TwV-2p-CfG"/>
+                        <segue destination="gvl-Nf-emQ" kind="relationship" relationship="viewControllers" id="VXQ-7r-4nL"/>
+                        <segue destination="V3t-2q-d1z" kind="relationship" relationship="viewControllers" id="taV-Vs-rkX"/>
+                        <segue destination="jMS-0e-w2l" kind="relationship" relationship="viewControllers" id="TwV-2p-CfG"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0r5-WX-Dla" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -164,11 +164,11 @@
                         <viewLayoutGuide key="safeArea" id="rq4-gZ-lLK"/>
                         <color key="backgroundColor" name="WhiteBG"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="Wishlist" id="yR3-49-XEE"/>
+                    <navigationItem key="navigationItem" id="xNq-do-FcG"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eUV-gx-Wfj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1066" y="704"/>
+            <point key="canvasLocation" x="140" y="1509"/>
         </scene>
         <!--Cart View Controller-->
         <scene sceneID="6eH-Nf-qYu">
@@ -180,11 +180,11 @@
                         <viewLayoutGuide key="safeArea" id="PY6-NW-D69"/>
                         <color key="backgroundColor" name="WhiteBG"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="Bag" id="1HG-9m-8kq"/>
+                    <navigationItem key="navigationItem" id="vjf-rz-hxV"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="USo-HD-Cbb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1896" y="731"/>
+            <point key="canvasLocation" x="889" y="1508"/>
         </scene>
         <!--Add Review View Controller-->
         <scene sceneID="4X4-ZD-8BQ">
@@ -322,7 +322,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="flR-BB-xgR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2671" y="776"/>
+            <point key="canvasLocation" x="3569.3023255813955" y="775.75107296137344"/>
         </scene>
         <!--Wallet View Controller-->
         <scene sceneID="nDk-Lf-GBK">
@@ -334,11 +334,11 @@
                         <viewLayoutGuide key="safeArea" id="URT-cc-yuY"/>
                         <color key="backgroundColor" name="WhiteBG"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="Wallet" id="OyP-bm-HXx"/>
+                    <navigationItem key="navigationItem" id="lMT-8f-A3B"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DO2-aW-fRN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2670.6976744186045" y="117.81115879828327"/>
+            <point key="canvasLocation" x="1662" y="1508"/>
         </scene>
         <!--All Reviews View Controller-->
         <scene sceneID="TYU-JD-UGx">
@@ -382,7 +382,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vGi-Pe-eAH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3343" y="118"/>
+            <point key="canvasLocation" x="4240.4651162790697" y="117.81115879828327"/>
         </scene>
         <!--Side Menu View Controller-->
         <scene sceneID="1zT-KQ-C2X">
@@ -514,6 +514,63 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uEE-Hj-FVo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1066.046511627907" y="3.218884120171674"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="eeL-jW-NGj">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="gvl-Nf-emQ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="Wishlist" id="yR3-49-XEE"/>
+                    <toolbarItems/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="N0G-UR-HKg">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Od6-OK-8KC" kind="relationship" relationship="rootViewController" id="m0o-kc-3n0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Sui-K1-YFJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="140" y="800"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="daW-L7-14z">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="V3t-2q-d1z" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="Bag" id="1HG-9m-8kq"/>
+                    <toolbarItems/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="y7Q-m2-WXs">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="2au-eR-b4E" kind="relationship" relationship="rootViewController" id="GQ0-2N-ZRe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1hD-i8-EVJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="890" y="800"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Qhb-yB-oyC">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="jMS-0e-w2l" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="Wallet" id="OyP-bm-HXx"/>
+                    <toolbarItems/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6gn-8d-tMi">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="FM8-uD-p60" kind="relationship" relationship="rootViewController" id="ljj-sp-2qC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NAC-nm-5UM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1662" y="800"/>
         </scene>
     </scenes>
     <designables>

@@ -22,6 +22,8 @@ class AddReviewViewController: UIViewController {
     @IBOutlet weak var textView: UITextView! {
         didSet {
             textView.delegate = self
+            textView.autocorrectionType = .no
+            textView.autocapitalizationType = .sentences
             textView.layer.cornerRadius = 20
             textView.contentInset = UIEdgeInsets(top: 10, left: 16, bottom: 10, right: 16)
             // Setup placeholder

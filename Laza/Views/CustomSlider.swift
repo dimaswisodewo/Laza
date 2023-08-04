@@ -9,7 +9,11 @@ import UIKit
 
 @IBDesignable class CustomSlider: UISlider {
     
-    @IBInspectable var sliderHeight: CGFloat = 18
+    @IBInspectable var sliderHeight: CGFloat = 18 {
+        didSet {
+            setNeedsLayout()
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -26,12 +30,6 @@ import UIKit
     override func layoutSubviews() {
         super.layoutSubviews()
     }
-    
-//    override func thumbRect(forBounds bounds: CGRect, trackRect rect: CGRect, value: Float) -> CGRect {
-//        return super.thumbRect(forBounds:
-//            bounds, trackRect: rect, value: value)
-//            .offsetBy(dx: 0/* Set 0 value to center thumb */, dy: 0)
-//    }
     
     override func trackRect(forBounds bounds: CGRect) -> CGRect {
         var result = super.trackRect(forBounds: bounds)

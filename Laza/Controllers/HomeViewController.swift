@@ -124,8 +124,7 @@ class HomeViewController: UIViewController {
         sideMenuNavigationController.menuWidth = view.bounds.width * 0.8
         sideMenuNavigationController.leftSide = true
         sideMenuNavigationController.presentationStyle = .menuSlideIn
-        sideMenuNavigationController.blurEffectStyle = .prominent
-//        sideMenuNavigationController.animationOptions = .curveEaseInOut
+        sideMenuNavigationController.navigationBar.isHidden = true
     }
     
     private func setupTabBarItemImage() {
@@ -162,11 +161,41 @@ class HomeViewController: UIViewController {
             self?.navigationController?.pushViewController(vc, animated: true)
         }
     }
+    
+    private func setupSelectedViewControllerInTabBar(selectedIndex: Int, identifier: String) {
+        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+        // Destination UIViewController
+        let vc = storyboard.instantiateViewController(withIdentifier: identifier)
+        // Instantiate UITabBarController
+        guard let uiTabBarController = storyboard.instantiateViewController(withIdentifier: MainTabBarViewController.identifier) as? MainTabBarViewController else {
+            print("failed to get MainTabBarViewController")
+            return
+        }
+        uiTabBarController.selectedIndex = selectedIndex
+        // Instantiate UINavigationController
+        guard let navBar = uiTabBarController.selectedViewController as? UINavigationController else {
+            print("Failed to convert to UINavigationController")
+            return
+        }
+        navBar.pushViewController(vc, animated: false)
+        self.view.window?.windowScene?.keyWindow?.rootViewController = uiTabBarController
+    }
 }
 
 // MARK: - SideMenuViewController Delegate
 
 extension HomeViewController: SideMenuViewControllerDelegate {
+    func didSelectCards() {
+        setupSelectedViewControllerInTabBar(selectedIndex: 3, identifier: WalletViewController.identifier)
+    }
+    
+    func didSelectWishlist() {
+        setupSelectedViewControllerInTabBar(selectedIndex: 1, identifier: WishlistViewController.identifier)
+    }
+    
+    func didSelectOrders() {
+        setupSelectedViewControllerInTabBar(selectedIndex: 2, identifier: CartViewController.identifier)
+    }
     
     func didSelectUpdatePassword() {
         updatePasswordButtonPressed()

@@ -12,17 +12,24 @@ protocol SideMenuViewControllerDelegate: AnyObject {
     func didSelectUpdatePassword()
     
     func didSelectLogOut()
+    
+    func didSelectCards()
+    
+    func didSelectWishlist()
+    
+    func didSelectOrders()
 }
 
-enum SideMenuType {
-    case darkMode
-    case accountInformation
-    case updatePassword
-    case order
-    case cards
-    case wishlist
-    case settings
-    case logOut
+enum SideMenuType: Int, CaseIterable {
+    case profile = 0
+    case darkMode = 1
+    case accountInformation = 2
+    case updatePassword = 3
+    case order = 4
+    case cards = 5
+    case wishlist = 6
+    case settings = 7
+    case logOut = 8
 }
 
 struct SideMenuModel {
@@ -41,25 +48,97 @@ class SideMenuViewController: UIViewController {
         didSet {
             tableView.delegate = self
             tableView.dataSource = self
+            tableView.separatorStyle = .none
+            tableView.bounces = false
+            tableView.register(SideMenuProfileTableViewCell.nib, forCellReuseIdentifier: SideMenuProfileTableViewCell.identifier)
             tableView.register(SideMenuTableViewCell.self, forCellReuseIdentifier: SideMenuTableViewCell.identifier)
+            tableView.register(SideMenuSwitchTableViewCell.self, forCellReuseIdentifier: SideMenuSwitchTableViewCell.identifier)
         }
     }
     
+    private let logoutView: SideMenuView = {
+        let view = SideMenuView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     private var sideMenus = [
-        SideMenuModel(icon: UIImage(systemName: "sun.max")!, title: "Dark Mode", type: .darkMode),
-        SideMenuModel(icon: UIImage(systemName: "exclamationmark.circle")!, title: "Account Information", type: .accountInformation),
-        SideMenuModel(icon: UIImage(systemName: "exclamationmark.lock")!, title: "Password", type: .updatePassword),
-        SideMenuModel(icon: UIImage(named: "Bag")!.withRenderingMode(.alwaysTemplate), title: "Order", type: .order),
-        SideMenuModel(icon: UIImage(named: "Wallet")!.withRenderingMode(.alwaysTemplate), title: "My Cards", type: .cards),
-        SideMenuModel(icon: UIImage(named: "Wishlist")!.withRenderingMode(.alwaysTemplate), title: "Wishlist", type: .wishlist),
-        SideMenuModel(icon: UIImage(systemName: "gearshape")!, title: "Settings", type: .settings),
-        SideMenuModel(icon: UIImage(systemName: "rectangle.portrait.and.arrow.right")!, title: "Logout", type: .logOut)
+        SideMenuModel(
+            icon: UIImage(named: "Profile")!,
+            title: "Dimas Wisodewo",
+            type: .profile
+        ),
+        SideMenuModel(
+            icon: UIImage(systemName: "sun.max")!,
+            title: "Dark Mode",
+            type: .darkMode
+        ),
+        SideMenuModel(
+            icon: UIImage(systemName: "exclamationmark.circle")!,
+            title: "Account Information",
+            type: .accountInformation
+        ),
+        SideMenuModel(
+            icon: UIImage(systemName: "exclamationmark.lock")!,
+            title: "Password",
+            type: .updatePassword
+        ),
+        SideMenuModel(
+            icon: UIImage(named: "Bag")!.withRenderingMode(.alwaysTemplate),
+            title: "Order",
+            type: .order
+        ),
+        SideMenuModel(
+            icon: UIImage(named: "Wallet")!.withRenderingMode(.alwaysTemplate),
+            title: "My Cards",
+            type: .cards
+        ),
+        SideMenuModel(
+            icon: UIImage(named: "Wishlist")!.withRenderingMode(.alwaysTemplate),
+            title: "Wishlist",
+            type: .wishlist
+        ),
+        SideMenuModel(
+            icon: UIImage(systemName: "gearshape")!,
+            title: "Settings",
+            type: .settings
+        ),
     ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        view.addSubview(logoutView)
+        
+        setConstraints()
+        
+        setupLogoutView()
+    }
+    
+    private func setConstraints() {
+        NSLayoutConstraint.activate([
+            logoutView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            logoutView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            logoutView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -60),
+            logoutView.heightAnchor.constraint(equalToConstant: 60)
+        ])
+    }
+    
+    private func setupLogoutView() {
+        logoutView.configure(
+            model: SideMenuModel(
+                icon: UIImage(systemName: "rectangle.portrait.and.arrow.right")!,
+                title: "Logout",
+                type: .logOut
+            )
+        )
+        logoutView.setTintColor(tintColor: .systemRed)
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(logoutTapped))
+        logoutView.addGestureRecognizer(gesture)
+    }
+    
+    @objc private func logoutTapped() {
+        delegate?.didSelectLogOut()
     }
 }
 
@@ -68,22 +147,36 @@ class SideMenuViewController: UIViewController {
 extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        sideMenus.count
+        return sideMenus.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        let model = sideMenus[indexPath.row]
+        
+        // Dequeue SideMenuProfileTableViewCell
+        if model.type == .profile {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SideMenuProfileTableViewCell.identifier) as? SideMenuProfileTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.configure(name: model.title, image: model.icon)
+            return cell
+        }
+        
+        // Dequeue SideMenuSwitchTableViewCell
+        if model.type == .darkMode {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: SideMenuSwitchTableViewCell.identifier) as? SideMenuSwitchTableViewCell else {
+                return UITableViewCell()
+            }
+            cell.configure(model: model)
+            return cell
+        }
+        
+        // Dequeue SideMenuTableViewCell
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SideMenuTableViewCell.identifier) as? SideMenuTableViewCell else {
             return UITableViewCell()
         }
-        
-        let model = sideMenus[indexPath.row]
         cell.configure(model: model)
-        
-        if model.type == .logOut {
-            cell.setTintColor(tintColor: .systemRed)
-        }
-        
         return cell
     }
     
@@ -91,6 +184,8 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: false)
         let type = sideMenus[indexPath.row].type
         switch type {
+        case .profile:
+            break
         case .darkMode:
             break
         case .accountInformation:
@@ -98,19 +193,24 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
         case .updatePassword:
             delegate?.didSelectUpdatePassword()
         case .order:
-            break
+            delegate?.didSelectOrders()
         case .cards:
-            break
+            delegate?.didSelectCards()
         case .wishlist:
-            break
+            delegate?.didSelectWishlist()
         case .settings:
             break
         case .logOut:
-            delegate?.didSelectLogOut()
+            break
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        60
+        switch indexPath.row {
+        case SideMenuType.profile.rawValue:
+            return UITableView.automaticDimension
+        default:
+            return 60
+        }
     }
 }

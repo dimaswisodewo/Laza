@@ -26,6 +26,6 @@ class CartViewController: UIViewController {
         label.font = FontUtils.shared.getFont(font: .Poppins, weight: .semibold, size: 12)
         label.sizeToFit()
         
-        tabBarItem.selectedImage = UIImage(view: label)
+        navigationController?.tabBarItem.selectedImage = UIImage(view: label)
     }
 }
