@@ -186,6 +186,144 @@
             </objects>
             <point key="canvasLocation" x="1896" y="731"/>
         </scene>
+        <!--Add Review View Controller-->
+        <scene sceneID="4X4-ZD-8BQ">
+            <objects>
+                <viewController storyboardIdentifier="AddReviewViewController" id="u0R-iX-MH8" customClass="AddReviewViewController" customModule="Laza" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3yZ-nB-gwY">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Review" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oEQ-nU-aQd">
+                                <rect key="frame" x="0.0" y="59" width="430" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="120" id="HB6-by-BuJ"/>
+                                    <constraint firstAttribute="height" constant="120" id="vFJ-tf-jwM"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="18"/>
+                                <color key="textColor" name="TextPrimary"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hbx-P4-4kn" customClass="CircleButton" customModule="Laza" customModuleProvider="target">
+                                <rect key="frame" x="20" y="104" width="45" height="45"/>
+                                <color key="backgroundColor" name="WhiteButtonSecondary"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="7fG-4D-OKu"/>
+                                    <constraint firstAttribute="width" constant="45" id="R0g-h6-Y40"/>
+                                </constraints>
+                                <color key="tintColor" name="TextPrimary"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="arrow.backward" catalog="system"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How was your experience?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nlh-g1-lR6">
+                                <rect key="frame" x="20" y="179" width="390" height="22.666666666666657"/>
+                                <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="i7q-Uq-GFj">
+                                <rect key="frame" x="20" y="211.66666666666663" width="390" height="250"/>
+                                <color key="backgroundColor" name="WhiteButtonSecondary"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="Xlw-u9-Dat"/>
+                                </constraints>
+                                <color key="textColor" name="TextSecondary"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Star" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pr1-ri-rke">
+                                <rect key="frame" x="20" y="485.66666666666669" width="390" height="22.666666666666686"/>
+                                <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="3" minValue="1" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="mop-bl-j4n" customClass="CustomSlider" customModule="Laza" customModuleProvider="target">
+                                <rect key="frame" x="43" y="518.33333333333337" width="344" height="31"/>
+                                <color key="minimumTrackTintColor" name="SliderBG"/>
+                                <color key="maximumTrackTintColor" name="SliderBG"/>
+                                <color key="thumbTintColor" name="PurpleButton"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="sliderHeight">
+                                        <real key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kpn-Zd-lR7">
+                                <rect key="frame" x="20" y="528.33333333333337" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="bj2-qc-e4k"/>
+                                    <constraint firstAttribute="height" constant="20" id="ojE-Kx-XDf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NOJ-zC-8YY">
+                                <rect key="frame" x="390" y="528.33333333333337" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="G8e-Hd-8tD"/>
+                                    <constraint firstAttribute="height" constant="20" id="Nez-7x-FNu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="12"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EUr-sN-AdV">
+                                <rect key="frame" x="0.0" y="857" width="430" height="75"/>
+                                <color key="backgroundColor" name="PurpleButton"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="M7O-AW-w8e"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Submit Review" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iso-02-f82">
+                                <rect key="frame" x="149.33333333333331" y="872" width="131.33333333333331" height="25.333333333333371"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="0wB-D7-L1d"/>
+                        <color key="backgroundColor" name="WhiteBG"/>
+                        <constraints>
+                            <constraint firstItem="Kpn-Zd-lR7" firstAttribute="bottom" secondItem="mop-bl-j4n" secondAttribute="bottom" id="1EC-Ya-dCT"/>
+                            <constraint firstAttribute="bottom" secondItem="EUr-sN-AdV" secondAttribute="bottom" id="4SX-e1-ATn"/>
+                            <constraint firstItem="0wB-D7-L1d" firstAttribute="trailing" secondItem="NOJ-zC-8YY" secondAttribute="trailing" constant="20" id="94f-9B-b0r"/>
+                            <constraint firstItem="i7q-Uq-GFj" firstAttribute="leading" secondItem="0wB-D7-L1d" secondAttribute="leading" constant="20" id="AmH-lt-fdu"/>
+                            <constraint firstItem="Nlh-g1-lR6" firstAttribute="top" secondItem="oEQ-nU-aQd" secondAttribute="bottom" id="Axc-V0-mW1"/>
+                            <constraint firstItem="i7q-Uq-GFj" firstAttribute="top" secondItem="Nlh-g1-lR6" secondAttribute="bottom" constant="10" id="Dc6-1Z-AyZ"/>
+                            <constraint firstItem="EUr-sN-AdV" firstAttribute="leading" secondItem="3yZ-nB-gwY" secondAttribute="leading" id="FaM-es-l7F"/>
+                            <constraint firstItem="Kpn-Zd-lR7" firstAttribute="leading" secondItem="0wB-D7-L1d" secondAttribute="leading" constant="20" id="JgL-o4-Inq"/>
+                            <constraint firstItem="NOJ-zC-8YY" firstAttribute="leading" secondItem="mop-bl-j4n" secondAttribute="trailing" constant="5" id="KBO-4s-tU8"/>
+                            <constraint firstItem="0wB-D7-L1d" firstAttribute="trailing" secondItem="Nlh-g1-lR6" secondAttribute="trailing" constant="20" id="Kxa-GW-0cn"/>
+                            <constraint firstItem="oEQ-nU-aQd" firstAttribute="leading" secondItem="0wB-D7-L1d" secondAttribute="leading" id="NO0-OB-xFj"/>
+                            <constraint firstItem="NOJ-zC-8YY" firstAttribute="bottom" secondItem="mop-bl-j4n" secondAttribute="bottom" id="OfF-lw-w2q"/>
+                            <constraint firstItem="hbx-P4-4kn" firstAttribute="top" secondItem="0wB-D7-L1d" secondAttribute="top" constant="45" id="UZN-Ex-oQ6"/>
+                            <constraint firstItem="mop-bl-j4n" firstAttribute="leading" secondItem="Kpn-Zd-lR7" secondAttribute="trailing" constant="5" id="aEQ-et-Rtj"/>
+                            <constraint firstItem="oEQ-nU-aQd" firstAttribute="top" secondItem="0wB-D7-L1d" secondAttribute="top" id="fsr-CA-5LP"/>
+                            <constraint firstItem="mop-bl-j4n" firstAttribute="top" secondItem="Pr1-ri-rke" secondAttribute="bottom" constant="10" id="hZ8-nl-LHM"/>
+                            <constraint firstItem="0wB-D7-L1d" firstAttribute="trailing" secondItem="i7q-Uq-GFj" secondAttribute="trailing" constant="20" id="hom-90-thm"/>
+                            <constraint firstItem="Iso-02-f82" firstAttribute="centerX" secondItem="EUr-sN-AdV" secondAttribute="centerX" id="q7D-6Q-7I2"/>
+                            <constraint firstItem="Pr1-ri-rke" firstAttribute="leading" secondItem="0wB-D7-L1d" secondAttribute="leading" constant="20" id="qxQ-dG-2t4"/>
+                            <constraint firstItem="Iso-02-f82" firstAttribute="top" secondItem="EUr-sN-AdV" secondAttribute="top" constant="15" id="rf4-c6-cEA"/>
+                            <constraint firstItem="0wB-D7-L1d" firstAttribute="trailing" secondItem="oEQ-nU-aQd" secondAttribute="trailing" id="roM-m0-a4m"/>
+                            <constraint firstItem="Nlh-g1-lR6" firstAttribute="leading" secondItem="0wB-D7-L1d" secondAttribute="leading" constant="20" id="tgn-s1-D1m"/>
+                            <constraint firstItem="hbx-P4-4kn" firstAttribute="leading" secondItem="0wB-D7-L1d" secondAttribute="leading" constant="20" id="vEF-O8-byo"/>
+                            <constraint firstItem="0wB-D7-L1d" firstAttribute="trailing" secondItem="EUr-sN-AdV" secondAttribute="trailing" id="w6N-Co-dCE"/>
+                            <constraint firstItem="Pr1-ri-rke" firstAttribute="top" secondItem="i7q-Uq-GFj" secondAttribute="bottom" constant="24" id="xyR-Qf-Uil"/>
+                            <constraint firstItem="0wB-D7-L1d" firstAttribute="trailing" secondItem="Pr1-ri-rke" secondAttribute="trailing" constant="20" id="z3m-Qb-FqS"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backButton" destination="hbx-P4-4kn" id="DjY-9H-dHT"/>
+                        <outlet property="textView" destination="i7q-Uq-GFj" id="Vra-tR-Mes"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="flR-BB-xgR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2671" y="776"/>
+        </scene>
         <!--Wallet View Controller-->
         <scene sceneID="nDk-Lf-GBK">
             <objects>
@@ -244,7 +382,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vGi-Pe-eAH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3427" y="118"/>
+            <point key="canvasLocation" x="3343" y="118"/>
         </scene>
         <!--Side Menu View Controller-->
         <scene sceneID="1zT-KQ-C2X">
@@ -388,8 +526,14 @@
         <designable name="8cu-6T-E7b">
             <size key="intrinsicContentSize" width="48" height="38"/>
         </designable>
+        <designable name="hbx-P4-4kn">
+            <size key="intrinsicContentSize" width="49.333333333333336" height="34.333333333333336"/>
+        </designable>
         <designable name="ive-8I-UlT">
             <size key="intrinsicContentSize" width="49.333333333333336" height="34.333333333333336"/>
+        </designable>
+        <designable name="mop-bl-j4n">
+            <size key="intrinsicContentSize" width="-1" height="30"/>
         </designable>
         <designable name="uFB-Rh-7KH">
             <size key="intrinsicContentSize" width="49" height="39"/>
@@ -411,6 +555,9 @@
         </namedColor>
         <namedColor name="PurpleButton">
             <color red="0.59200000762939453" green="0.45899999141693115" blue="0.98000001907348633" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="SliderBG">
+            <color red="0.96078431372549022" green="0.96470588235294119" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="TextPrimary">
             <color red="0.11372549019607843" green="0.11764705882352941" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -47,6 +47,8 @@ class AllReviewsViewController: UIViewController {
     }
 }
 
+// MARK: - UITableView DataSource & Delegate
+
 extension AllReviewsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -71,6 +73,7 @@ extension AllReviewsViewController: UITableViewDataSource, UITableViewDelegate {
                 print("Failed to dequeue ReviewsHeaderTableViewCell")
                 return UITableViewCell()
             }
+            cell.delegate = self
             return cell
         case Section.Reviews.rawValue:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ReviewTableViewCell.identifier) as? ReviewTableViewCell else {
@@ -81,5 +84,16 @@ extension AllReviewsViewController: UITableViewDataSource, UITableViewDelegate {
         default:
             return UITableViewCell()
         }
+    }
+}
+
+// MARK: - ReviewsHeaderTableViewCellDelegate
+
+extension AllReviewsViewController: ReviewsHeaderTableViewCellDelegate {
+    
+    func addReviewButtonPressed() {
+        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: AddReviewViewController.identifier)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -55,6 +55,11 @@ class LoginViewController: UIViewController {
 
     }
     
+    // End editing on touch began
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     @objc private func backButtonPressed() {
         navigationController?.popViewController(animated: true)
     }

@@ -52,6 +52,11 @@ class UpdatePasswordViewController: UIViewController {
         tabBarController?.tabBar.isHidden = true
     }
     
+    // End editing on touch began
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     @objc private func resetPasswordButtonPressed() {
         
         guard let password = passwordTextField.text else { return }

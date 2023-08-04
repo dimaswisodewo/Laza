@@ -103,6 +103,11 @@ class HomeViewController: UIViewController {
         tabBarController?.tabBar.isHidden = false
     }
     
+    // End editing on touch began
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     private func registerTableViewCell() {
         tableView.dataSource = self
         tableView.delegate = self

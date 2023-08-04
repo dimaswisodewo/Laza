@@ -134,6 +134,9 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="addReviewButton" destination="9i0-J2-Z7u" id="mxI-5i-BqB"/>
+            </connections>
             <point key="canvasLocation" x="48.854961832061065" y="47.887323943661976"/>
         </tableViewCell>
     </objects>
