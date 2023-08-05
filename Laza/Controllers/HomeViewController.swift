@@ -8,7 +8,7 @@
 import UIKit
 import SideMenu
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UINavigationControllerDelegate {
     
     enum CollectionType: Int {
         case brand = 0
@@ -63,6 +63,14 @@ class HomeViewController: UIViewController {
     private var brandTableViewCell: BrandTableViewCell?
     private var productTableViewCell: ProductTableViewCell?
     
+    private let blurView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        view.alpha = 0
+        view.isHidden = true
+        return view
+    }()
+    
     let sections = [
         "Brands",
         "Products"
@@ -79,6 +87,7 @@ class HomeViewController: UIViewController {
         
         setupTabBarItemImage()
         setupSideMenu()
+        setupBlur()
         
         // Assign reload collection view functionality
         viewModel.reloadBrandCollectionView = { [weak self] in
@@ -115,12 +124,33 @@ class HomeViewController: UIViewController {
         tableView.register(ProductTableViewCell.self, forCellReuseIdentifier: ProductTableViewCell.identifier)
     }
     
+    private func setupBlur() {
+        guard let superView = tabBarController?.view else { return }
+        superView.addSubview(blurView)
+        blurView.frame = superView.bounds
+        
+        let blurEffect = UIBlurEffect(style: .regular)
+        let vfxView = UIVisualEffectView(effect: blurEffect)
+        blurView.addSubview(vfxView)
+        vfxView.frame = blurView.bounds
+    }
+    
+    private func hideBlurView(isHidden: Bool) {
+        blurView.isHidden = false
+        UIView.animate(withDuration: 0.2, delay: 0, animations: { [weak self] in
+            self?.blurView.alpha = isHidden ? 0 : 1
+        }, completion: { [weak self] _ in
+            self?.blurView.isHidden = isHidden
+        })
+    }
+    
     private func setupSideMenu() {
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
         guard let vc = storyboard.instantiateViewController(withIdentifier: SideMenuViewController.identifier) as? SideMenuViewController else { return }
         vc.delegate = self
         
         sideMenuNavigationController = SideMenuNavigationController(rootViewController: vc)
+        sideMenuNavigationController.delegate = self
         sideMenuNavigationController.menuWidth = view.bounds.width * 0.8
         sideMenuNavigationController.leftSide = true
         sideMenuNavigationController.presentationStyle = .menuSlideIn
@@ -165,6 +195,19 @@ class HomeViewController: UIViewController {
     private func setupSelectedViewControllerInTabBar(selectedIndex: Int, identifier: String) {
         self.tabBarController?.selectedIndex = selectedIndex
         sideMenuNavigationController.dismiss(animated: true)
+    }
+}
+
+// MARK: - SideMenuNavigationController Delegate
+
+extension HomeViewController: SideMenuNavigationControllerDelegate {
+    
+    func sideMenuWillAppear(menu: SideMenuNavigationController, animated: Bool) {
+        hideBlurView(isHidden: false)
+    }
+    
+    func sideMenuDidDisappear(menu: SideMenuNavigationController, animated: Bool) {
+        hideBlurView(isHidden: true)
     }
 }
 
