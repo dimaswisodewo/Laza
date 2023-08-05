@@ -17,6 +17,8 @@ class StarterViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+        
         if DataPersistentManager.shared.isUserLoggedIn() {
             let storyboard = UIStoryboard(name: "Home", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: MainTabBarViewController.identifier)

@@ -26,6 +26,10 @@ class CustomTextField: UITextField {
         setupTextField()
     }
     
+    convenience init() {
+        self.init(frame: CGRect(x: .zero, y: .zero, width: 1, height: 1))
+    }
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         

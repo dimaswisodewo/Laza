@@ -15,6 +15,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        // Make sure that UserDefaults always has value, prevent inconsistent data when getting data
+        let key = "aKey"
+        let val = UserDefaults.standard.object(forKey: key) as? String
+        if val == nil {
+            UserDefaults.standard.set("aValue", forKey: key)
+        }
+        
         // Wait launchscreen for 2 seconds
         Thread.sleep(forTimeInterval: 2)
         
