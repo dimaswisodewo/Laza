@@ -62,7 +62,7 @@ class SideMenuViewController: UIViewController {
         return view
     }()
     
-    private var sideMenus = [
+    private let sideMenus = [
         SideMenuModel(
             icon: UIImage(named: "Profile")!,
             title: "Dimas Wisodewo",

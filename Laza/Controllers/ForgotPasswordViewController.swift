@@ -35,12 +35,18 @@ class ForgotPasswordViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    // End editing on touch began
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     @objc private func backButtonPressed() {
         navigationController?.popViewController(animated: true)
     }
     
     @objc private func confirmButtonPressed() {
-        guard let vc =  storyboard?.instantiateViewController(withIdentifier: "VerificationViewController") else { return }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc =  storyboard.instantiateViewController(withIdentifier: VerificationCodeViewController.identifier)
         
         navigationController?.pushViewController(vc, animated: true)
     }

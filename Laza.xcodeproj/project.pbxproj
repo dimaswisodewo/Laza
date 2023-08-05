@@ -53,6 +53,8 @@
 		38D1DE402A74C5A6002AB0ED /* RegExManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D1DE3F2A74C5A6002AB0ED /* RegExManager.swift */; };
 		38D1DE422A74CA54002AB0ED /* UserLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D1DE412A74CA54002AB0ED /* UserLogin.swift */; };
 		38D1DE462A74E342002AB0ED /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D1DE452A74E342002AB0ED /* HomeViewModel.swift */; };
+		38DBEB902A7E82C1003BC9F3 /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = 38DBEB8F2A7E82C1003BC9F3 /* SideMenu */; };
+		38DBEB922A7E8FA8003BC9F3 /* VerificationCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DBEB912A7E8FA8003BC9F3 /* VerificationCodeViewController.swift */; };
 		38DCC6662A70A8B7006A3633 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DCC6652A70A8B7006A3633 /* AppDelegate.swift */; };
 		38DCC6682A70A8B7006A3633 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DCC6672A70A8B7006A3633 /* SceneDelegate.swift */; };
 		38DCC66D2A70A8B7006A3633 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38DCC66B2A70A8B7006A3633 /* Main.storyboard */; };
@@ -73,7 +75,6 @@
 		38EF084B2A7A37260058021F /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF084A2A7A37260058021F /* DetailTableViewCell.swift */; };
 		38F216032A7218B700952E65 /* BrandCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F216022A7218B700952E65 /* BrandCollectionViewCell.swift */; };
 		38FB18D02A7A30A500733133 /* DetailSizeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FB18CF2A7A30A500733133 /* DetailSizeCollectionViewCell.swift */; };
-		38FE05D12A76C0B400C573AB /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = 38FE05D02A76C0B400C573AB /* SideMenu */; };
 		38FF0E4A2A70F040009B406F /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF0E492A70F040009B406F /* CustomTextField.swift */; };
 		38FF0E4C2A70F478009B406F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF0E4B2A70F478009B406F /* SignUpViewController.swift */; };
 		38FF0E4E2A7103C2009B406F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF0E4D2A7103C2009B406F /* LoginViewController.swift */; };
@@ -126,6 +127,7 @@
 		38D1DE3F2A74C5A6002AB0ED /* RegExManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegExManager.swift; sourceTree = "<group>"; };
 		38D1DE412A74CA54002AB0ED /* UserLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLogin.swift; sourceTree = "<group>"; };
 		38D1DE452A74E342002AB0ED /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		38DBEB912A7E8FA8003BC9F3 /* VerificationCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationCodeViewController.swift; sourceTree = "<group>"; };
 		38DCC6622A70A8B7006A3633 /* Laza.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Laza.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38DCC6652A70A8B7006A3633 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38DCC6672A70A8B7006A3633 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -158,7 +160,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38FE05D12A76C0B400C573AB /* SideMenu in Frameworks */,
+				38DBEB902A7E82C1003BC9F3 /* SideMenu in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,6 +234,7 @@
 				38A7DD642A750E9E002564AB /* UpdatePasswordViewController.swift */,
 				382640212A76911D00744726 /* SideMenuViewController.swift */,
 				387A6D2E2A7C88E100358DE8 /* AddReviewViewController.swift */,
+				38DBEB912A7E8FA8003BC9F3 /* VerificationCodeViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -323,7 +326,7 @@
 			);
 			name = Laza;
 			packageProductDependencies = (
-				38FE05D02A76C0B400C573AB /* SideMenu */,
+				38DBEB8F2A7E82C1003BC9F3 /* SideMenu */,
 			);
 			productName = Laza;
 			productReference = 38DCC6622A70A8B7006A3633 /* Laza.app */;
@@ -354,7 +357,7 @@
 			);
 			mainGroup = 38DCC6592A70A8B6006A3633;
 			packageReferences = (
-				38FE05CF2A76C0B400C573AB /* XCRemoteSwiftPackageReference "SideMenu" */,
+				38DBEB8E2A7E82C1003BC9F3 /* XCRemoteSwiftPackageReference "SideMenu" */,
 			);
 			productRefGroup = 38DCC6632A70A8B7006A3633 /* Products */;
 			projectDirPath = "";
@@ -423,6 +426,7 @@
 				382640222A76911D00744726 /* SideMenuViewController.swift in Sources */,
 				38FB18D02A7A30A500733133 /* DetailSizeCollectionViewCell.swift in Sources */,
 				382640242A7695CE00744726 /* SideMenuTableViewCell.swift in Sources */,
+				38DBEB922A7E8FA8003BC9F3 /* VerificationCodeViewController.swift in Sources */,
 				38DFE8812A77608700B1EE8F /* ProductTableViewCell.swift in Sources */,
 				38C51DC52A715849000324A5 /* WalletViewController.swift in Sources */,
 				386272B32A7A882200962892 /* ReviewTableViewCell.swift in Sources */,
@@ -670,7 +674,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		38FE05CF2A76C0B400C573AB /* XCRemoteSwiftPackageReference "SideMenu" */ = {
+		38DBEB8E2A7E82C1003BC9F3 /* XCRemoteSwiftPackageReference "SideMenu" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/jonkykong/SideMenu.git";
 			requirement = {
@@ -681,9 +685,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		38FE05D02A76C0B400C573AB /* SideMenu */ = {
+		38DBEB8F2A7E82C1003BC9F3 /* SideMenu */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 38FE05CF2A76C0B400C573AB /* XCRemoteSwiftPackageReference "SideMenu" */;
+			package = 38DBEB8E2A7E82C1003BC9F3 /* XCRemoteSwiftPackageReference "SideMenu" */;
 			productName = SideMenu;
 		};
 /* End XCSwiftPackageProductDependency section */

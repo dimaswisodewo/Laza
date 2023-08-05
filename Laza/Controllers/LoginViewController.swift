@@ -65,7 +65,10 @@ class LoginViewController: UIViewController {
     }
 
     @objc private func forgotPasswordButtonPressed() {
-        print("Forgot password")
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: ForgotPasswordViewController.identifier)
+        
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc private func loginButtonPressed() {
