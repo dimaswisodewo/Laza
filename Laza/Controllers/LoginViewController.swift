@@ -7,9 +7,16 @@
 
 import UIKit
 
+protocol LoginViewControllerDelegate: AnyObject {
+    
+    func onLoginSuccess()
+}
+
 class LoginViewController: UIViewController {
 
     static let identifier = "LoginViewController"
+    
+    weak var delegate: LoginViewControllerDelegate?
     
     @IBOutlet weak var backButton: CircleButton! {
         didSet {
@@ -74,19 +81,19 @@ class LoginViewController: UIViewController {
     @objc private func loginButtonPressed() {
         
         guard let username = usernameTextField.text, !username.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
-            print("Username is not valid")
+            SnackBarDanger.make(in: self.view, message: "Username is not valid", duration: .lengthShort).show()
             return
         }
         
         guard let password = passwordTextField.text, !password.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
-            print("Password is not valid")
+            SnackBarDanger.make(in: self.view, message: "Password is not valid", duration: .lengthShort).show()
             return
         }
         
         viewModel.login(username: username, password: password) { loginToken in
             
             guard let loginToken = loginToken else {
-                print("Login failed")
+                SnackBarDanger.make(in: self.view, message: "Login failed", duration: .lengthShort).show()
                 return
             }
             
@@ -98,6 +105,10 @@ class LoginViewController: UIViewController {
                 guard let vc = storyboard.instantiateViewController(withIdentifier: MainTabBarViewController.identifier) as? MainTabBarViewController else { return }
                 let nav = UINavigationController(rootViewController: vc)
                 nav.setNavigationBarHidden(true, animated: false)
+                
+                self?.delegate = vc
+                self?.delegate?.onLoginSuccess()
+                
                 self?.view.window?.windowScene?.keyWindow?.rootViewController = nav
             }
         }

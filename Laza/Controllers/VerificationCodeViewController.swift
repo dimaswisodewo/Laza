@@ -114,7 +114,7 @@ class VerificationCodeViewController: UIViewController {
     }
     
     private func setTimerLabel(secondsRemaining: Int) {
-        if secondsRemaining > 0 {
+        if secondsRemaining >= 0 {
             let time = secondsToHoursMinutesSeconds(secondsRemaining)
             
             let minute = time.1

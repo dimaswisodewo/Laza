@@ -7,9 +7,16 @@
 
 import UIKit
 
+protocol SignUpViewControllerDelegate: AnyObject {
+    
+    func onSignUpSuccess()
+}
+
 class SignUpViewController: UIViewController {
 
     static let identifier = "SignUpViewController"
+    
+    weak var delegate: SignUpViewControllerDelegate?
     
     @IBOutlet weak var backButton: CircleButton! {
         didSet {
@@ -71,17 +78,20 @@ class SignUpViewController: UIViewController {
         guard let password = passwordTextField.text else { return }
         
         if username.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            print("Username is not valid")
+            SnackBarDanger.make(in: self.view, message: "Username is not valid", duration: .lengthShort).show()
             return
         }
         if !RegExManager.shared.isPasswordValid(passwordText: password) {
-            print("Password is not valid, minimum eight characters, at least one letter, one number, and one special character")
+            SnackBarDanger.make(in: self.view, message: "Password min 8 characters, 1 letter, 1 number, & 1 special character.", duration: .lengthShort).show()
             return
         }
         if !RegExManager.shared.isEmailValid(emailText: email) {
-            print("Email is not valid")
+            SnackBarDanger.make(in: self.view, message: "Email is not valid", duration: .lengthShort).show()
             return
         }
+        
+        print("Sign Up success")
+        delegate?.onSignUpSuccess()
         
         var user = User()
         user.email = email

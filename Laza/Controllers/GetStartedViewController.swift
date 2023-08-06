@@ -50,7 +50,8 @@ class GetStartedViewController: UIViewController {
     }
     
     @objc private func signUpButtonPressed() {
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: SignUpViewController.identifier) else { return }
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: SignUpViewController.identifier) as? SignUpViewController else { return }
+        vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -88,5 +89,12 @@ class GetStartedViewController: UIViewController {
             }
             application.open(webURL)
         }
+    }
+}
+
+extension GetStartedViewController: SignUpViewControllerDelegate {
+    
+    func onSignUpSuccess() {
+        SnackBarSuccess.make(in: self.view, message: "Sign Up success", duration: .lengthShort).show()
     }
 }

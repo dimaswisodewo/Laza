@@ -17,3 +17,13 @@ class MainTabBarViewController: UITabBarController {
         tabBar.tintColor = UIColor(named: "PurpleButton")
     }
 }
+
+// MARK: - LoginViewController Delegate
+
+extension MainTabBarViewController: LoginViewControllerDelegate {
+    
+    func onLoginSuccess() {
+        
+        SnackBarSuccess.make(in: self.view, message: "Login success", duration: .lengthShort).show()
+    }
+}

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3817D67A2A7202A10074D911 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3817D6792A7202A10074D911 /* RoundedButton.swift */; };
+		3825DC6E2A7F700800239E55 /* SnackBar in Frameworks */ = {isa = PBXBuildFile; productRef = 3825DC6D2A7F700800239E55 /* SnackBar */; };
+		3825DC702A7F705000239E55 /* CustomSnackBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3825DC6F2A7F705000239E55 /* CustomSnackBar.swift */; };
 		382640222A76911D00744726 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382640212A76911D00744726 /* SideMenuViewController.swift */; };
 		382640242A7695CE00744726 /* SideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382640232A7695CE00744726 /* SideMenuTableViewCell.swift */; };
 		382F77392A7BFC350076248F /* CustomSecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382F77382A7BFC350076248F /* CustomSecureTextField.swift */; };
@@ -82,6 +84,7 @@
 
 /* Begin PBXFileReference section */
 		3817D6792A7202A10074D911 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
+		3825DC6F2A7F705000239E55 /* CustomSnackBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSnackBar.swift; sourceTree = "<group>"; };
 		382640212A76911D00744726 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		382640232A7695CE00744726 /* SideMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewCell.swift; sourceTree = "<group>"; };
 		382F77382A7BFC350076248F /* CustomSecureTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSecureTextField.swift; sourceTree = "<group>"; };
@@ -161,6 +164,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				38DBEB902A7E82C1003BC9F3 /* SideMenu in Frameworks */,
+				3825DC6E2A7F700800239E55 /* SnackBar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +294,7 @@
 				383F896B2A7CB35700C41BE7 /* SideMenuProfileTableViewCell.swift */,
 				383F896D2A7CB36300C41BE7 /* SideMenuProfileTableViewCell.xib */,
 				383F896F2A7CDC3000C41BE7 /* SideMenuView.swift */,
+				3825DC6F2A7F705000239E55 /* CustomSnackBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -327,6 +332,7 @@
 			name = Laza;
 			packageProductDependencies = (
 				38DBEB8F2A7E82C1003BC9F3 /* SideMenu */,
+				3825DC6D2A7F700800239E55 /* SnackBar */,
 			);
 			productName = Laza;
 			productReference = 38DCC6622A70A8B7006A3633 /* Laza.app */;
@@ -358,6 +364,7 @@
 			mainGroup = 38DCC6592A70A8B6006A3633;
 			packageReferences = (
 				38DBEB8E2A7E82C1003BC9F3 /* XCRemoteSwiftPackageReference "SideMenu" */,
+				3825DC6C2A7F700800239E55 /* XCRemoteSwiftPackageReference "SnackBar" */,
 			);
 			productRefGroup = 38DCC6632A70A8B7006A3633 /* Products */;
 			projectDirPath = "";
@@ -432,6 +439,7 @@
 				386272B32A7A882200962892 /* ReviewTableViewCell.swift in Sources */,
 				387D4D7B2A78F45200022959 /* DetailThumbnailCollectionViewCell.swift in Sources */,
 				38A7DD672A750F75002564AB /* UpdatePasswordViewModel.swift in Sources */,
+				3825DC702A7F705000239E55 /* CustomSnackBar.swift in Sources */,
 				38C51DC32A715840000324A5 /* CartViewController.swift in Sources */,
 				38FF0E4A2A70F040009B406F /* CustomTextField.swift in Sources */,
 				38D11ACD2A7B9055008ED926 /* AllReviewsViewController.swift in Sources */,
@@ -674,6 +682,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		3825DC6C2A7F700800239E55 /* XCRemoteSwiftPackageReference "SnackBar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ahmedAlmasri/SnackBar.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.2;
+			};
+		};
 		38DBEB8E2A7E82C1003BC9F3 /* XCRemoteSwiftPackageReference "SideMenu" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/jonkykong/SideMenu.git";
@@ -685,6 +701,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		3825DC6D2A7F700800239E55 /* SnackBar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3825DC6C2A7F700800239E55 /* XCRemoteSwiftPackageReference "SnackBar" */;
+			productName = SnackBar;
+		};
 		38DBEB8F2A7E82C1003BC9F3 /* SideMenu */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 38DBEB8E2A7E82C1003BC9F3 /* XCRemoteSwiftPackageReference "SideMenu" */;
