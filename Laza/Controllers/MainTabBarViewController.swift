@@ -27,3 +27,13 @@ extension MainTabBarViewController: LoginViewControllerDelegate {
         SnackBarSuccess.make(in: self.view, message: "Login success", duration: .lengthShort).show()
     }
 }
+
+// MARK: - UpdatePasswordViewController Delegate
+
+extension MainTabBarViewController: UpdatePasswordViewControllerDelegate {
+    
+    func onPasswordUpdated() {
+        
+        SnackBarSuccess.make(in: self.view, message: "Password updated.", duration: .lengthShort).show()
+    }
+}
