@@ -8,7 +8,7 @@
 import UIKit
 
 class CartViewController: UIViewController {
-
+    
     static let identifier = "CartViewController"
     
     @IBOutlet weak var tableView: UITableView! {
@@ -29,10 +29,15 @@ class CartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupTabBarItemImage()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
 
+        tabBarController?.tabBar.isHidden = false
+    }
+    
     private func setupTabBarItemImage() {
         let label = UILabel()
         label.numberOfLines = 1
@@ -45,8 +50,14 @@ class CartViewController: UIViewController {
     }
     
     @objc private func cartDetailButtonPressed() {
+        presentCartDetail()
+    }
+    
+    private func presentCartDetail() {
         let storyboard = UIStoryboard(name: "Checkout", bundle: nil)
         guard let vc = storyboard.instantiateViewController(withIdentifier: CartDetailViewController.identifier) as? CartDetailViewController else { return }
+        
+        vc.delegate = self
         present(vc, animated: true)
     }
 }
@@ -70,4 +81,31 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
         return 140
     }
     
+}
+
+// MARK: - CartDetailViewController Delegate
+
+extension CartViewController: CartDetailViewControllerDelegate {
+    
+    func addressButtonPressed() {
+        let storyboard = UIStoryboard(name: "Checkout", bundle: nil)
+        guard let vc = storyboard.instantiateViewController(withIdentifier: AddressViewController.identifier) as? AddressViewController else {
+            print("Failed to get VC")
+            return
+        }
+        // Present CartDetailViewController again
+        vc.onDismiss = presentCartDetail
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func cardButtonPressed() {
+        let storyboard = UIStoryboard(name: "Checkout", bundle: nil)
+        guard let vc = storyboard.instantiateViewController(withIdentifier: AddCardViewController.identifier) as? AddCardViewController else {
+            print("Failed to get VC")
+            return
+        }
+        // Present CartDetailViewController again
+        vc.onDismiss = presentCartDetail
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }

@@ -34,6 +34,9 @@
 		38A7DD652A750E9E002564AB /* UpdatePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A7DD642A750E9E002564AB /* UpdatePasswordViewController.swift */; };
 		38A7DD672A750F75002564AB /* UpdatePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A7DD662A750F75002564AB /* UpdatePasswordViewModel.swift */; };
 		38A9E4382A74FE4000ACBBFD /* StarterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A9E4372A74FE4000ACBBFD /* StarterViewController.swift */; };
+		38B05D582A80E09400DC3F8B /* AddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B05D572A80E09400DC3F8B /* AddressViewController.swift */; };
+		38B05D5A2A80E0B600DC3F8B /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B05D592A80E0B500DC3F8B /* AddCardViewController.swift */; };
+		38B05D5C2A80E0D300DC3F8B /* OrderConfirmedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B05D5B2A80E0D300DC3F8B /* OrderConfirmedViewController.swift */; };
 		38B76D4A2A73B6B800C5DA0B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B76D492A73B6B800C5DA0B /* DetailViewController.swift */; };
 		38B8F0FF2A7215F3003DA0CE /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B8F0FE2A7215F3003DA0CE /* RoundedView.swift */; };
 		38B8F1012A721615003DA0CE /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B8F1002A721615003DA0CE /* RoundedImageView.swift */; };
@@ -115,6 +118,9 @@
 		38A7DD642A750E9E002564AB /* UpdatePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordViewController.swift; sourceTree = "<group>"; };
 		38A7DD662A750F75002564AB /* UpdatePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordViewModel.swift; sourceTree = "<group>"; };
 		38A9E4372A74FE4000ACBBFD /* StarterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarterViewController.swift; sourceTree = "<group>"; };
+		38B05D572A80E09400DC3F8B /* AddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressViewController.swift; sourceTree = "<group>"; };
+		38B05D592A80E0B500DC3F8B /* AddCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
+		38B05D5B2A80E0D300DC3F8B /* OrderConfirmedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderConfirmedViewController.swift; sourceTree = "<group>"; };
 		38B76D492A73B6B800C5DA0B /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		38B8F0FE2A7215F3003DA0CE /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 		38B8F1002A721615003DA0CE /* RoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
@@ -253,6 +259,9 @@
 				387A6D2E2A7C88E100358DE8 /* AddReviewViewController.swift */,
 				38DBEB912A7E8FA8003BC9F3 /* VerificationCodeViewController.swift */,
 				387A466E2A80A9F5007C3653 /* CartDetailViewController.swift */,
+				38B05D572A80E09400DC3F8B /* AddressViewController.swift */,
+				38B05D592A80E0B500DC3F8B /* AddCardViewController.swift */,
+				38B05D5B2A80E0D300DC3F8B /* OrderConfirmedViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -429,9 +438,11 @@
 				38D1DE422A74CA54002AB0ED /* UserLogin.swift in Sources */,
 				387A6D312A7C8F2200358DE8 /* CustomSlider.swift in Sources */,
 				386272B62A7A903400962892 /* ColorUtils.swift in Sources */,
+				38B05D582A80E09400DC3F8B /* AddressViewController.swift in Sources */,
 				38A9E4382A74FE4000ACBBFD /* StarterViewController.swift in Sources */,
 				38A7DD652A750E9E002564AB /* UpdatePasswordViewController.swift in Sources */,
 				38C51DC92A715F45000324A5 /* MainTabBarViewController.swift in Sources */,
+				38B05D5A2A80E0B600DC3F8B /* AddCardViewController.swift in Sources */,
 				38DCC68B2A70D368006A3633 /* CircleButton.swift in Sources */,
 				383F896C2A7CB35700C41BE7 /* SideMenuProfileTableViewCell.swift in Sources */,
 				38D1DE462A74E342002AB0ED /* HomeViewModel.swift in Sources */,
@@ -485,6 +496,7 @@
 				38C51DC72A715A29000324A5 /* Extensions.swift in Sources */,
 				38E89D602A72EE8800BBDE14 /* Product.swift in Sources */,
 				38D1DE402A74C5A6002AB0ED /* RegExManager.swift in Sources */,
+				38B05D5C2A80E0D300DC3F8B /* OrderConfirmedViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

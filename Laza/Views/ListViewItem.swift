@@ -7,8 +7,8 @@
 
 import UIKit
 
-@IBDesignable class ListViewItem: RoundedView {
-
+@IBDesignable class ListViewItem: UIView {
+    
     @IBOutlet weak var itemImageView: RoundedImageView!
     
     @IBOutlet weak var itemTitleLabel: UILabel!
@@ -19,18 +19,24 @@ import UIKit
     
     override class func awakeFromNib() {
         super.awakeFromNib()
-        
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupView()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+        setupView()
     }
     
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
+        
+    }
+    
+    private func setupView() {
+        self.layer.cornerRadius = 14
     }
 }

@@ -44,13 +44,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wjw-kR-nqA">
-                        <rect key="frame" x="20" y="146.66666666666666" width="21" height="19.666666666666657"/>
+                        <rect key="frame" x="20" y="146.66666666666666" width="19.666666666666671" height="19.666666666666657"/>
                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ali-r0-hgC">
-                        <rect key="frame" x="45" y="148.33333333333331" width="16" height="15.666666666666657"/>
+                        <rect key="frame" x="43.666666666666664" y="148.33333333333331" width="16" height="15.666666666666657"/>
                         <color key="tintColor" systemColor="systemYellowColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="RoC-kQ-e1T"/>
@@ -58,7 +58,7 @@
                         </constraints>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="zfz-dd-mw6">
-                        <rect key="frame" x="61" y="148.33333333333331" width="16" height="15.666666666666657"/>
+                        <rect key="frame" x="59.666666666666657" y="148.33333333333331" width="16" height="15.666666666666657"/>
                         <color key="tintColor" systemColor="systemYellowColor"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="16" id="7B6-xh-aMe"/>
@@ -66,7 +66,7 @@
                         </constraints>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="XKf-gp-Y86">
-                        <rect key="frame" x="77" y="148.33333333333331" width="16" height="15.666666666666657"/>
+                        <rect key="frame" x="75.666666666666671" y="148.33333333333331" width="16" height="15.666666666666657"/>
                         <color key="tintColor" systemColor="systemYellowColor"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="16" id="ICm-S4-OKb"/>
@@ -74,7 +74,7 @@
                         </constraints>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.leadinghalf.filled" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="yCM-er-HxR">
-                        <rect key="frame" x="93" y="148.33333333333331" width="16" height="15.666666666666657"/>
+                        <rect key="frame" x="91.666666666666671" y="148.33333333333331" width="16" height="15.666666666666657"/>
                         <color key="tintColor" systemColor="systemYellowColor"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="16" id="RiI-lc-7XR"/>
@@ -82,7 +82,7 @@
                         </constraints>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Ii1-El-INu">
-                        <rect key="frame" x="109" y="148.33333333333331" width="16" height="15.666666666666657"/>
+                        <rect key="frame" x="107.66666666666667" y="148.33333333333331" width="16" height="15.666666666666657"/>
                         <color key="tintColor" systemColor="systemYellowColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="16" id="H3l-E5-p9C"/>
