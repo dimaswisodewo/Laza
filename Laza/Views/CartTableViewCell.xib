@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-Regular.ttf">
+            <string>Poppins-Regular</string>
+        </array>
+        <array key="Poppins-SemiBold.ttf">
+            <string>Poppins-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CartTableViewCell" rowHeight="123" id="KGk-i7-Jjw" customClass="CartTableViewCell" customModule="Laza" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="292" height="143"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="292" height="143"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Profile" translatesAutoresizingMaskIntoConstraints="NO" id="6RP-Qt-xVd">
+                        <rect key="frame" x="10" y="10" width="100" height="109"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="rii-cD-wie"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3mu-qy-gC5">
+                        <rect key="frame" x="124" y="10" width="158" height="32.666666666666664"/>
+                        <string key="text">Men's Tie-Dye T-Shirt
+Nike Sportswear Men's Tie-Dye T-Shirt
+Nike Sportswear</string>
+                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                        <color key="textColor" name="TextPrimary"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$999.99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iOp-En-gwz">
+                        <rect key="frame" x="124" y="46.666666666666664" width="158" height="18.666666666666664"/>
+                        <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
+                        <color key="textColor" name="TextSecondary"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJU-5N-aNY">
+                        <rect key="frame" x="158" y="75" width="30" height="58"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="H93-1L-YTr"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="14"/>
+                        <color key="textColor" name="TextPrimary"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqD-Bp-7hk" customClass="CircleButton" customModule="Laza" customModuleProvider="target">
+                        <rect key="frame" x="124" y="89" width="30" height="30"/>
+                        <color key="backgroundColor" name="WhiteButtonSecondary"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="OmA-1l-7NP"/>
+                            <constraint firstAttribute="height" constant="30" id="qfE-w4-yyo"/>
+                        </constraints>
+                        <color key="tintColor" name="TextSecondary"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="chevron.down" catalog="system"/>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qkK-Bw-ahu" customClass="CircleButton" customModule="Laza" customModuleProvider="target">
+                        <rect key="frame" x="192" y="89" width="30" height="30"/>
+                        <color key="backgroundColor" name="WhiteButtonSecondary"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="FMz-gV-cYo"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="GAM-ci-91n"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="GEa-td-SwO"/>
+                            <constraint firstAttribute="height" constant="30" id="Stt-ZR-Lfl"/>
+                        </constraints>
+                        <color key="tintColor" name="TextSecondary"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="chevron.up" catalog="system"/>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" name="HomeBG"/>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="3mu-qy-gC5" secondAttribute="trailing" constant="10" id="100-AU-Zhg"/>
+                    <constraint firstItem="3mu-qy-gC5" firstAttribute="leading" secondItem="6RP-Qt-xVd" secondAttribute="trailing" constant="14" id="EJM-a8-oOx"/>
+                    <constraint firstItem="6RP-Qt-xVd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="NfW-lv-Zus"/>
+                    <constraint firstItem="iOp-En-gwz" firstAttribute="top" secondItem="3mu-qy-gC5" secondAttribute="bottom" constant="4" id="Pgt-x3-Ohq"/>
+                    <constraint firstItem="qkK-Bw-ahu" firstAttribute="centerY" secondItem="TJU-5N-aNY" secondAttribute="centerY" id="RL0-g4-eNf"/>
+                    <constraint firstItem="6RP-Qt-xVd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="ThA-jS-iod"/>
+                    <constraint firstItem="TJU-5N-aNY" firstAttribute="leading" secondItem="aqD-Bp-7hk" secondAttribute="trailing" constant="4" id="VmC-kH-xZH"/>
+                    <constraint firstItem="qkK-Bw-ahu" firstAttribute="leading" secondItem="TJU-5N-aNY" secondAttribute="trailing" constant="4" id="YHU-xQ-Adw"/>
+                    <constraint firstItem="3mu-qy-gC5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="fJq-sr-HaO"/>
+                    <constraint firstItem="aqD-Bp-7hk" firstAttribute="leading" secondItem="iOp-En-gwz" secondAttribute="leading" id="fpM-ni-SxA"/>
+                    <constraint firstItem="iOp-En-gwz" firstAttribute="leading" secondItem="3mu-qy-gC5" secondAttribute="leading" id="lpN-dl-ReJ"/>
+                    <constraint firstItem="iOp-En-gwz" firstAttribute="trailing" secondItem="3mu-qy-gC5" secondAttribute="trailing" id="mCt-AB-la1"/>
+                    <constraint firstAttribute="bottom" secondItem="TJU-5N-aNY" secondAttribute="bottom" constant="10" id="mV7-44-rQO"/>
+                    <constraint firstItem="TJU-5N-aNY" firstAttribute="centerY" secondItem="aqD-Bp-7hk" secondAttribute="centerY" id="nuK-x5-YUu"/>
+                    <constraint firstAttribute="bottom" secondItem="6RP-Qt-xVd" secondAttribute="bottom" constant="24" id="vgE-CX-xcC"/>
+                    <constraint firstItem="aqD-Bp-7hk" firstAttribute="bottom" secondItem="6RP-Qt-xVd" secondAttribute="bottom" id="xvg-H3-XbZ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="decrementButton" destination="aqD-Bp-7hk" id="7pv-qN-9AS"/>
+                <outlet property="incrementButton" destination="qkK-Bw-ahu" id="BbY-ZK-7Wh"/>
+                <outlet property="productAmount" destination="TJU-5N-aNY" id="cFV-Zx-BDx"/>
+                <outlet property="productImageView" destination="6RP-Qt-xVd" id="mIZ-tR-iBJ"/>
+                <outlet property="productName" destination="3mu-qy-gC5" id="WQr-Fa-bY9"/>
+                <outlet property="productPrice" destination="iOp-En-gwz" id="knw-eB-DDY"/>
+            </connections>
+            <point key="canvasLocation" x="175.57251908396947" y="23.591549295774648"/>
+        </tableViewCell>
+    </objects>
+    <designables>
+        <designable name="aqD-Bp-7hk">
+            <size key="intrinsicContentSize" width="47.666666666666664" height="34.333333333333336"/>
+        </designable>
+        <designable name="qkK-Bw-ahu">
+            <size key="intrinsicContentSize" width="47.666666666666664" height="34.333333333333336"/>
+        </designable>
+    </designables>
+    <resources>
+        <image name="Profile" width="314" height="314"/>
+        <image name="chevron.down" catalog="system" width="128" height="70"/>
+        <image name="chevron.up" catalog="system" width="128" height="70"/>
+        <namedColor name="HomeBG">
+            <color red="0.99599999189376831" green="0.99599999189376831" blue="0.99599999189376831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TextPrimary">
+            <color red="0.11372549019607843" green="0.11764705882352941" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TextSecondary">
+            <color red="0.5607843137254902" green="0.58431372549019611" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="WhiteButtonSecondary">
+            <color red="0.96078431372549022" green="0.96470588235294119" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

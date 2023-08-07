@@ -29,6 +29,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
     private let productName: UILabel = {
         let label = UILabel()
         label.font = FontUtils.shared.getFont(font: .Poppins, weight: .regular, size: 14)
+        label.textColor = ColorUtils.shared.getColor(color: .TextPrimary)
         label.numberOfLines = 2
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
