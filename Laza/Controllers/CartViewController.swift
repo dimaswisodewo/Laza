@@ -27,6 +27,12 @@ class CartViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var checkoutButton: UIButton! {
+        didSet {
+            checkoutButton.addTarget(self, action: #selector(checkoutButtonPressed), for: .touchUpInside)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,6 +57,12 @@ class CartViewController: UIViewController {
     
     @objc private func cartDetailButtonPressed() {
         presentCartDetail()
+    }
+    
+    @objc private func checkoutButtonPressed() {
+        let storyboard = UIStoryboard(name: "Checkout", bundle: nil)
+        guard let vc = storyboard.instantiateViewController(withIdentifier: OrderConfirmedViewController.identifier) as? OrderConfirmedViewController else { return }
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     private func presentCartDetail() {

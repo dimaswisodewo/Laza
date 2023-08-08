@@ -266,6 +266,7 @@
                     <navigationItem key="navigationItem" id="vjf-rz-hxV"/>
                     <connections>
                         <outlet property="cartDetailButton" destination="c1f-4g-dOs" id="MCM-zv-M1O"/>
+                        <outlet property="checkoutButton" destination="wWM-9L-deC" id="0M5-Uo-BSs"/>
                         <outlet property="tableView" destination="oua-Eb-pfa" id="PVV-tD-Jwy"/>
                     </connections>
                 </viewController>

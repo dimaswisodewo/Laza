@@ -77,3 +77,29 @@ extension String {
         return text
     }
 }
+
+/// CATransaction enables to create completion block which no matter the numbers of animation change is running or various combination of animation timings, completion block will be called when all animation changes has finishing performing.
+/// based on https://padamthapa.com/blog/adding-completion-block-for-popviewcontroller/
+extension UINavigationController {
+    
+    func popViewControllerWithHandler(animated:Bool = true, completion: @escaping ()->()) {
+        CATransaction.begin()
+        CATransaction.setCompletionBlock(completion)
+        self.popViewController(animated: animated)
+        CATransaction.commit()
+    }
+    
+    func popToRootViewControllerWithHandler(animated:Bool = true, completion: @escaping ()->()) {
+        CATransaction.begin()
+        CATransaction.setCompletionBlock(completion)
+        self.popToRootViewController(animated: animated)
+        CATransaction.commit()
+    }
+
+    func pushViewController(viewController: UIViewController, animated:Bool = true,  completion: @escaping ()->()) {
+        CATransaction.begin()
+        CATransaction.setCompletionBlock(completion)
+        self.pushViewController(viewController, animated: animated)
+        CATransaction.commit()
+    }
+}
