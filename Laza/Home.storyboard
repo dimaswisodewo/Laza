@@ -670,17 +670,6 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="arrow.backward" catalog="system"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="joR-Ov-Unc" customClass="CircleButton" customModule="Laza" customModuleProvider="target">
-                                <rect key="frame" x="365" y="104" width="45" height="45"/>
-                                <color key="backgroundColor" name="WhiteButtonSecondary"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="LhZ-kG-iua"/>
-                                    <constraint firstAttribute="width" constant="45" id="Upw-iN-ndv"/>
-                                </constraints>
-                                <color key="tintColor" name="TextPrimary"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="Wishlist"/>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="365 Items" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yHU-ym-4Ky">
                                 <rect key="frame" x="20" y="173" width="68.666666666666671" height="19.666666666666657"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
@@ -731,10 +720,8 @@
                             <constraint firstItem="yHU-ym-4Ky" firstAttribute="top" secondItem="MaE-mc-JQ9" secondAttribute="bottom" constant="24" id="AmG-Jt-BVz"/>
                             <constraint firstItem="c1v-Ew-NMM" firstAttribute="leading" secondItem="yHU-ym-4Ky" secondAttribute="leading" id="Cq5-kV-Ahg"/>
                             <constraint firstItem="MaE-mc-JQ9" firstAttribute="top" secondItem="e65-1f-SJ0" secondAttribute="top" constant="45" id="EZY-O8-hh8"/>
-                            <constraint firstItem="QW4-Wv-h9h" firstAttribute="trailing" secondItem="joR-Ov-Unc" secondAttribute="trailing" id="OPM-rc-5Hb"/>
-                            <constraint firstItem="e65-1f-SJ0" firstAttribute="trailing" secondItem="joR-Ov-Unc" secondAttribute="trailing" constant="20" id="SNF-3H-rx0"/>
-                            <constraint firstItem="joR-Ov-Unc" firstAttribute="top" secondItem="e65-1f-SJ0" secondAttribute="top" constant="45" id="Taw-Fg-BN6"/>
                             <constraint firstItem="e65-1f-SJ0" firstAttribute="trailing" secondItem="f3I-tw-uAg" secondAttribute="trailing" id="Tq2-r7-mBM"/>
+                            <constraint firstItem="e65-1f-SJ0" firstAttribute="trailing" secondItem="QW4-Wv-h9h" secondAttribute="trailing" constant="20" id="WMe-jd-Tc4"/>
                             <constraint firstItem="0xw-OH-2Lc" firstAttribute="centerX" secondItem="e65-1f-SJ0" secondAttribute="centerX" id="YVZ-4R-LdT"/>
                             <constraint firstItem="yHU-ym-4Ky" firstAttribute="leading" secondItem="e65-1f-SJ0" secondAttribute="leading" constant="20" id="Yfy-kJ-PCp"/>
                             <constraint firstItem="c1v-Ew-NMM" firstAttribute="top" secondItem="yHU-ym-4Ky" secondAttribute="bottom" constant="4" id="ayi-S8-Zh8"/>
@@ -749,7 +736,6 @@
                         <outlet property="backButton" destination="MaE-mc-JQ9" id="6oM-9c-QxK"/>
                         <outlet property="brandLabel" destination="0xw-OH-2Lc" id="7Sw-dM-wCb"/>
                         <outlet property="collectionView" destination="f3I-tw-uAg" id="TVq-E0-R5h"/>
-                        <outlet property="rightButton" destination="joR-Ov-Unc" id="U2p-bS-FUL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OVT-Ye-62S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -856,14 +842,14 @@
         <designable name="MaE-mc-JQ9">
             <size key="intrinsicContentSize" width="49.333333333333336" height="34.333333333333336"/>
         </designable>
+        <designable name="QW4-Wv-h9h">
+            <size key="intrinsicContentSize" width="72.333333333333329" height="34.333333333333336"/>
+        </designable>
         <designable name="hbx-P4-4kn">
             <size key="intrinsicContentSize" width="49.333333333333336" height="34.333333333333336"/>
         </designable>
         <designable name="ive-8I-UlT">
             <size key="intrinsicContentSize" width="49.333333333333336" height="34.333333333333336"/>
-        </designable>
-        <designable name="joR-Ov-Unc">
-            <size key="intrinsicContentSize" width="45" height="34"/>
         </designable>
         <designable name="mop-bl-j4n">
             <size key="intrinsicContentSize" width="-1" height="30"/>

@@ -42,6 +42,8 @@ class ProductBrandViewController: UIViewController {
         registerCell()
             
         brandLabel.text = viewModel.brandName
+        
+        tabBarController?.tabBar.isHidden = true
     }
     
     func configure(brandName: String, products: [Product]) {

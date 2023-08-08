@@ -9,6 +9,8 @@ import UIKit
 
 protocol SideMenuViewControllerDelegate: AnyObject {
     
+    func didSelectDarkMode()
+    
     func didSelectUpdatePassword()
     
     func didSelectLogOut()
@@ -187,6 +189,7 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
         case .profile:
             break
         case .darkMode:
+            delegate?.didSelectDarkMode()
             break
         case .accountInformation:
             break

@@ -214,6 +214,11 @@ extension HomeViewController: SideMenuNavigationControllerDelegate {
 // MARK: - SideMenuViewController Delegate
 
 extension HomeViewController: SideMenuViewControllerDelegate {
+    
+    func didSelectDarkMode() {
+        
+    }
+    
     func didSelectCards() {
         setupSelectedViewControllerInTabBar(selectedIndex: 3, identifier: WalletViewController.identifier)
     }
