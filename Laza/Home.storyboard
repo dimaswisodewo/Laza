@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -153,22 +154,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0r5-WX-Dla" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="139.69465648854961" y="3.5211267605633805"/>
-        </scene>
-        <!--Wishlist View Controller-->
-        <scene sceneID="Vna-2E-egF">
-            <objects>
-                <viewController storyboardIdentifier="WishlistViewController" id="Od6-OK-8KC" customClass="WishlistViewController" customModule="Laza" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="QjG-TC-Ckh">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="rq4-gZ-lLK"/>
-                        <color key="backgroundColor" name="WhiteBG"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="xNq-do-FcG"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="eUV-gx-Wfj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="140" y="1509"/>
         </scene>
         <!--Cart View Controller-->
         <scene sceneID="6eH-Nf-qYu">
@@ -615,7 +600,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Od6-OK-8KC" kind="relationship" relationship="rootViewController" id="m0o-kc-3n0"/>
+                        <segue destination="WDp-M4-cA7" kind="relationship" relationship="rootViewController" id="20A-Cm-eUL"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sui-K1-YFJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -660,8 +645,205 @@
             </objects>
             <point key="canvasLocation" x="1662" y="800"/>
         </scene>
+        <!--Product Brand View Controller-->
+        <scene sceneID="FGQ-Z8-anP">
+            <objects>
+                <viewController storyboardIdentifier="ProductBrandViewController" id="lLy-lL-2De" customClass="ProductBrandViewController" customModule="Laza" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Tgo-si-iqB">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brand title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xw-OH-2Lc">
+                                <rect key="frame" x="173" y="115" width="84.333333333333314" height="23"/>
+                                <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
+                                <color key="textColor" name="TextPrimary"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MaE-mc-JQ9" customClass="CircleButton" customModule="Laza" customModuleProvider="target">
+                                <rect key="frame" x="20" y="104" width="45" height="45"/>
+                                <color key="backgroundColor" name="WhiteButtonSecondary"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="Yb0-Fr-x0z"/>
+                                    <constraint firstAttribute="width" constant="45" id="fkH-iX-uea"/>
+                                </constraints>
+                                <color key="tintColor" name="TextPrimary"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="arrow.backward" catalog="system"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="joR-Ov-Unc" customClass="CircleButton" customModule="Laza" customModuleProvider="target">
+                                <rect key="frame" x="365" y="104" width="45" height="45"/>
+                                <color key="backgroundColor" name="WhiteButtonSecondary"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="LhZ-kG-iua"/>
+                                    <constraint firstAttribute="width" constant="45" id="Upw-iN-ndv"/>
+                                </constraints>
+                                <color key="tintColor" name="TextPrimary"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="Wishlist"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="365 Items" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yHU-ym-4Ky">
+                                <rect key="frame" x="20" y="173" width="68.666666666666671" height="19.666666666666657"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                <color key="textColor" name="TextPrimary"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Available in stock" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c1v-Ew-NMM">
+                                <rect key="frame" x="20" y="196.66666666666666" width="122" height="20"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                <color key="textColor" name="TextSecondary"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QW4-Wv-h9h" customClass="RoundedButton" customModule="Laza" customModuleProvider="target">
+                                <rect key="frame" x="330" y="171.66666666666666" width="80" height="45"/>
+                                <color key="backgroundColor" name="WhiteButtonSecondary"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="BjI-rO-U0A"/>
+                                    <constraint firstAttribute="height" constant="45" id="kab-fi-VEE"/>
+                                </constraints>
+                                <color key="tintColor" name="TextPrimary"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Sort" imagePadding="4">
+                                    <imageReference key="image" image="line.3.horizontal.decrease" catalog="system" symbolScale="small"/>
+                                    <fontDescription key="titleFontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="f3I-tw-uAg">
+                                <rect key="frame" x="0.0" y="240.66666666666669" width="430" height="657.33333333333326"/>
+                                <color key="backgroundColor" name="WhiteBG"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Uvb-6C-E1b">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="e65-1f-SJ0"/>
+                        <color key="backgroundColor" name="WhiteBG"/>
+                        <constraints>
+                            <constraint firstItem="QW4-Wv-h9h" firstAttribute="bottom" secondItem="c1v-Ew-NMM" secondAttribute="bottom" id="78u-dx-R9v"/>
+                            <constraint firstItem="yHU-ym-4Ky" firstAttribute="top" secondItem="MaE-mc-JQ9" secondAttribute="bottom" constant="24" id="AmG-Jt-BVz"/>
+                            <constraint firstItem="c1v-Ew-NMM" firstAttribute="leading" secondItem="yHU-ym-4Ky" secondAttribute="leading" id="Cq5-kV-Ahg"/>
+                            <constraint firstItem="MaE-mc-JQ9" firstAttribute="top" secondItem="e65-1f-SJ0" secondAttribute="top" constant="45" id="EZY-O8-hh8"/>
+                            <constraint firstItem="QW4-Wv-h9h" firstAttribute="trailing" secondItem="joR-Ov-Unc" secondAttribute="trailing" id="OPM-rc-5Hb"/>
+                            <constraint firstItem="e65-1f-SJ0" firstAttribute="trailing" secondItem="joR-Ov-Unc" secondAttribute="trailing" constant="20" id="SNF-3H-rx0"/>
+                            <constraint firstItem="joR-Ov-Unc" firstAttribute="top" secondItem="e65-1f-SJ0" secondAttribute="top" constant="45" id="Taw-Fg-BN6"/>
+                            <constraint firstItem="e65-1f-SJ0" firstAttribute="trailing" secondItem="f3I-tw-uAg" secondAttribute="trailing" id="Tq2-r7-mBM"/>
+                            <constraint firstItem="0xw-OH-2Lc" firstAttribute="centerX" secondItem="e65-1f-SJ0" secondAttribute="centerX" id="YVZ-4R-LdT"/>
+                            <constraint firstItem="yHU-ym-4Ky" firstAttribute="leading" secondItem="e65-1f-SJ0" secondAttribute="leading" constant="20" id="Yfy-kJ-PCp"/>
+                            <constraint firstItem="c1v-Ew-NMM" firstAttribute="top" secondItem="yHU-ym-4Ky" secondAttribute="bottom" constant="4" id="ayi-S8-Zh8"/>
+                            <constraint firstItem="f3I-tw-uAg" firstAttribute="leading" secondItem="e65-1f-SJ0" secondAttribute="leading" id="dJs-f2-Lv9"/>
+                            <constraint firstItem="MaE-mc-JQ9" firstAttribute="leading" secondItem="e65-1f-SJ0" secondAttribute="leading" constant="20" id="ePw-wy-F1a"/>
+                            <constraint firstItem="e65-1f-SJ0" firstAttribute="bottom" secondItem="f3I-tw-uAg" secondAttribute="bottom" id="eSu-Hy-w23"/>
+                            <constraint firstItem="0xw-OH-2Lc" firstAttribute="centerY" secondItem="MaE-mc-JQ9" secondAttribute="centerY" id="gAL-1T-PbE"/>
+                            <constraint firstItem="f3I-tw-uAg" firstAttribute="top" secondItem="c1v-Ew-NMM" secondAttribute="bottom" constant="24" id="q3u-JL-JAU"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backButton" destination="MaE-mc-JQ9" id="6oM-9c-QxK"/>
+                        <outlet property="brandLabel" destination="0xw-OH-2Lc" id="7Sw-dM-wCb"/>
+                        <outlet property="collectionView" destination="f3I-tw-uAg" id="TVq-E0-R5h"/>
+                        <outlet property="rightButton" destination="joR-Ov-Unc" id="U2p-bS-FUL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OVT-Ye-62S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2413" y="-695"/>
+        </scene>
+        <!--Wishlist View Controller-->
+        <scene sceneID="ntt-Il-0u5">
+            <objects>
+                <viewController storyboardIdentifier="WishlistViewController" id="WDp-M4-cA7" customClass="WishlistViewController" customModule="Laza" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="sUX-hI-wRl">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wishlist" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S7h-bL-LOO">
+                                <rect key="frame" x="183" y="115" width="64" height="23"/>
+                                <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
+                                <color key="textColor" name="TextPrimary"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="365 Items" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PgO-5D-coH">
+                                <rect key="frame" x="20" y="173" width="68.666666666666671" height="19.666666666666657"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                <color key="textColor" name="TextPrimary"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Available in stock" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFc-QT-Hs3">
+                                <rect key="frame" x="20" y="196.66666666666666" width="122" height="20"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                <color key="textColor" name="TextSecondary"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Im-ZD-icL" customClass="RoundedButton" customModule="Laza" customModuleProvider="target">
+                                <rect key="frame" x="330" y="171.66666666666666" width="80" height="45"/>
+                                <color key="backgroundColor" name="WhiteButtonSecondary"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="eiW-Dr-eGs"/>
+                                    <constraint firstAttribute="width" constant="80" id="iSi-hJ-0PW"/>
+                                </constraints>
+                                <color key="tintColor" name="TextPrimary"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Sort" imagePadding="4">
+                                    <imageReference key="image" image="line.3.horizontal.decrease" catalog="system" symbolScale="small"/>
+                                    <fontDescription key="titleFontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gBV-Cf-Nx1">
+                                <rect key="frame" x="0.0" y="240.66666666666669" width="430" height="608.33333333333326"/>
+                                <color key="backgroundColor" name="WhiteBG"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5eM-I3-xvv">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="j9T-yf-alP"/>
+                        <color key="backgroundColor" name="WhiteBG"/>
+                        <constraints>
+                            <constraint firstItem="S7h-bL-LOO" firstAttribute="centerX" secondItem="j9T-yf-alP" secondAttribute="centerX" id="7aW-LY-VIn"/>
+                            <constraint firstItem="0Im-ZD-icL" firstAttribute="bottom" secondItem="xFc-QT-Hs3" secondAttribute="bottom" id="7hV-22-l6W"/>
+                            <constraint firstItem="j9T-yf-alP" firstAttribute="bottom" secondItem="gBV-Cf-Nx1" secondAttribute="bottom" id="CnN-03-1y7"/>
+                            <constraint firstItem="j9T-yf-alP" firstAttribute="trailing" secondItem="0Im-ZD-icL" secondAttribute="trailing" constant="20" id="PSP-W6-sQq"/>
+                            <constraint firstItem="S7h-bL-LOO" firstAttribute="top" secondItem="j9T-yf-alP" secondAttribute="top" constant="56" id="U28-OL-nsl"/>
+                            <constraint firstItem="j9T-yf-alP" firstAttribute="trailing" secondItem="gBV-Cf-Nx1" secondAttribute="trailing" id="b5j-ax-Zhw"/>
+                            <constraint firstItem="xFc-QT-Hs3" firstAttribute="leading" secondItem="PgO-5D-coH" secondAttribute="leading" id="guU-OU-tMR"/>
+                            <constraint firstItem="gBV-Cf-Nx1" firstAttribute="top" secondItem="xFc-QT-Hs3" secondAttribute="bottom" constant="24" id="ih0-M7-yd8"/>
+                            <constraint firstItem="PgO-5D-coH" firstAttribute="top" secondItem="S7h-bL-LOO" secondAttribute="top" constant="58" id="iwv-Js-vAc"/>
+                            <constraint firstItem="PgO-5D-coH" firstAttribute="leading" secondItem="j9T-yf-alP" secondAttribute="leading" constant="20" id="lmB-vO-zcm"/>
+                            <constraint firstItem="gBV-Cf-Nx1" firstAttribute="leading" secondItem="j9T-yf-alP" secondAttribute="leading" id="o9i-Pf-rws"/>
+                            <constraint firstItem="xFc-QT-Hs3" firstAttribute="top" secondItem="PgO-5D-coH" secondAttribute="bottom" constant="4" id="pih-gA-frN"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="7nX-Zl-YVy"/>
+                    <connections>
+                        <outlet property="collectionView" destination="gBV-Cf-Nx1" id="KIG-34-LV1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="faW-1U-9MJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="140" y="1508"/>
+        </scene>
     </scenes>
     <designables>
+        <designable name="0Im-ZD-icL">
+            <size key="intrinsicContentSize" width="72.333333333333329" height="34.333333333333336"/>
+        </designable>
         <designable name="1cW-m1-tVi">
             <size key="intrinsicContentSize" width="45" height="34"/>
         </designable>
@@ -671,11 +853,17 @@
         <designable name="8cu-6T-E7b">
             <size key="intrinsicContentSize" width="48" height="38"/>
         </designable>
+        <designable name="MaE-mc-JQ9">
+            <size key="intrinsicContentSize" width="49.333333333333336" height="34.333333333333336"/>
+        </designable>
         <designable name="hbx-P4-4kn">
             <size key="intrinsicContentSize" width="49.333333333333336" height="34.333333333333336"/>
         </designable>
         <designable name="ive-8I-UlT">
             <size key="intrinsicContentSize" width="49.333333333333336" height="34.333333333333336"/>
+        </designable>
+        <designable name="joR-Ov-Unc">
+            <size key="intrinsicContentSize" width="45" height="34"/>
         </designable>
         <designable name="mop-bl-j4n">
             <size key="intrinsicContentSize" width="-1" height="30"/>
@@ -696,6 +884,7 @@
         <image name="Wishlist" width="21" height="20"/>
         <image name="arrow.backward" catalog="system" width="128" height="95"/>
         <image name="chevron.up" catalog="system" width="128" height="70"/>
+        <image name="line.3.horizontal.decrease" catalog="system" width="128" height="73"/>
         <namedColor name="HomeBG">
             <color red="0.99599999189376831" green="0.99599999189376831" blue="0.99599999189376831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -14,9 +14,9 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ListViewItem" customModule="Laza" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ListViewItem" customModule="Laza" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="378" height="100"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -32,13 +32,13 @@
                     </userDefinedRuntimeAttributes>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lv4-6b-UEy">
-                    <rect key="frame" x="110" y="19.333333333333336" width="183" height="25.333333333333336"/>
-                    <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="18"/>
+                    <rect key="frame" x="110" y="20.666666666666664" width="183" height="22.666666666666664"/>
+                    <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="16"/>
                     <color key="textColor" name="TextPrimary"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J9A-2T-0PQ">
-                    <rect key="frame" x="110" y="48.666666666666664" width="183" height="19.666666666666664"/>
+                    <rect key="frame" x="110" y="47.333333333333336" width="183" height="19.666666666666664"/>
                     <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                     <color key="textColor" name="TextSecondary"/>
                     <nil key="highlightedColor"/>
@@ -52,7 +52,7 @@
                     </constraints>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" name="ViewBG"/>
+            <color key="backgroundColor" name="WhiteBG"/>
             <constraints>
                 <constraint firstItem="bIt-iz-xgW" firstAttribute="leading" secondItem="Lv4-6b-UEy" secondAttribute="trailing" constant="20" id="861-8r-Pu4"/>
                 <constraint firstItem="J9A-2T-0PQ" firstAttribute="trailing" secondItem="Lv4-6b-UEy" secondAttribute="trailing" id="9RX-Ox-JaC"/>
@@ -73,10 +73,10 @@
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
             <connections>
-                <outlet property="itemImageView" destination="KMp-DI-NrE" id="SPs-y6-RwT"/>
-                <outlet property="itemRightImage" destination="bIt-iz-xgW" id="DlO-cv-3te"/>
-                <outlet property="itemSubtitleLabel" destination="J9A-2T-0PQ" id="tY4-lc-6PQ"/>
-                <outlet property="itemTitleLabel" destination="Lv4-6b-UEy" id="43A-aP-Nv5"/>
+                <outlet property="itemImageView" destination="KMp-DI-NrE" id="XbE-mY-hLW"/>
+                <outlet property="itemRightImage" destination="bIt-iz-xgW" id="nm3-K4-Siv"/>
+                <outlet property="itemSubtitleLabel" destination="J9A-2T-0PQ" id="E2B-Z8-cVT"/>
+                <outlet property="itemTitleLabel" destination="Lv4-6b-UEy" id="ESm-Hm-AbW"/>
             </connections>
             <point key="canvasLocation" x="70.229007633587784" y="-12.67605633802817"/>
         </view>
@@ -95,7 +95,7 @@
         <namedColor name="TextSecondary">
             <color red="0.5607843137254902" green="0.58431372549019611" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="ViewBG">
+        <namedColor name="WhiteBG">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemGreenColor">

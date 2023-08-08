@@ -7,7 +7,7 @@
 
 import UIKit
 
-@IBDesignable class ListViewItem: UIView {
+class ListViewItem: UIView {
     
     @IBOutlet weak var itemImageView: RoundedImageView!
     
@@ -34,6 +34,22 @@ import UIKit
     override func prepareForInterfaceBuilder() {
         super.prepareForInterfaceBuilder()
         
+    }
+    
+    func setTitle(title: String) {
+        itemTitleLabel.text = title
+    }
+    
+    func setSubtitle(subtitle: String) {
+        itemSubtitleLabel.text = subtitle
+    }
+    
+    func setImage(image: UIImage?) {
+        itemImageView.image = image
+    }
+    
+    func setRightImage(image: UIImage?) {
+        itemRightImage.image = image
     }
     
     private func setupView() {

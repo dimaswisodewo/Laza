@@ -1,59 +1,65 @@
 //
-//  WishlistViewController.swift
+//  ProductBrandViewController.swift
 //  Laza
 //
-//  Created by Dimas Wisodewo on 26/07/23.
+//  Created by Dimas Wisodewo on 08/08/23.
 //
 
 import UIKit
 
-class WishlistViewController: UIViewController {
+class ProductBrandViewController: UIViewController {
 
-    static let identifier = "WishlistViewController"
+    static let identifier = "ProductBrandViewController"
+    
+    @IBOutlet weak var brandLabel: UILabel!
     
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
-            collectionView.dataSource = self
-            collectionView.delegate = self
-            collectionView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 24, right: 20)
-            collectionView.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.identifier)
+            collectionView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 20, right: 20)
         }
     }
     
-    private let viewModel = WishlistViewModel()
+    @IBOutlet weak var backButton: CircleButton! {
+        didSet {
+            backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
+        }
+    }
+    
+    @IBOutlet weak var rightButton: CircleButton! {
+        didSet {
+            let image = rightButton.imageView?.image?.withRenderingMode(.alwaysTemplate)
+            rightButton.setImage(image, for: .normal)
+            rightButton.tintColor = ColorUtils.shared.getColor(color: .TextPrimary)
+        }
+    }
+    
+    
+    private var viewModel: ProductBrandViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupTabBarItemImage()
-        
-        viewModel.reloadProductCollectionView = { [weak self] in
-            self?.collectionView.reloadData()
-        }
-        
-        viewModel.loadProducts()
+        registerCell()
+            
+        brandLabel.text = viewModel.brandName
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        tabBarController?.tabBar.isHidden = false
+    func configure(brandName: String, products: [Product]) {
+        viewModel = ProductBrandViewModel(brandName: brandName, products: products)
     }
     
-    private func setupTabBarItemImage() {
-        let label = UILabel()
-        label.numberOfLines = 1
-        label.textAlignment = .center
-        label.text = "Wishlist"
-        label.font = FontUtils.shared.getFont(font: .Poppins, weight: .semibold, size: 12)
-        label.sizeToFit()
-        
-        navigationController?.tabBarItem.selectedImage = UIImage(view: label)
+    private func registerCell() {
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(ProductCollectionViewCell.self, forCellWithReuseIdentifier: ProductCollectionViewCell.identifier)
+    }
+
+    @objc private func backButtonPressed() {
+        navigationController?.popViewController(animated: true)
     }
 }
 
-extension WishlistViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
+extension ProductBrandViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         viewModel.productsCount
     }

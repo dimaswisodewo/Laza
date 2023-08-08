@@ -33,7 +33,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3mu-qy-gC5">
-                        <rect key="frame" x="124" y="10" width="158" height="32.666666666666664"/>
+                        <rect key="frame" x="124" y="10" width="158" height="39.333333333333336"/>
                         <string key="text">Men's Tie-Dye T-Shirt
 Nike Sportswear Men's Tie-Dye T-Shirt
 Nike Sportswear</string>
@@ -42,9 +42,9 @@ Nike Sportswear</string>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$999.99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iOp-En-gwz">
-                        <rect key="frame" x="124" y="46.666666666666664" width="158" height="18.666666666666664"/>
+                        <rect key="frame" x="124" y="53.333333333333336" width="158" height="22.666666666666664"/>
                         <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="16"/>
-                        <color key="textColor" name="TextSecondary"/>
+                        <color key="textColor" name="TextPrimary"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJU-5N-aNY">
@@ -58,18 +58,18 @@ Nike Sportswear</string>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aqD-Bp-7hk" customClass="CircleButton" customModule="Laza" customModuleProvider="target">
                         <rect key="frame" x="124" y="89" width="30" height="30"/>
-                        <color key="backgroundColor" name="WhiteButtonSecondary"/>
+                        <color key="backgroundColor" name="WhiteBG"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="30" id="OmA-1l-7NP"/>
                             <constraint firstAttribute="height" constant="30" id="qfE-w4-yyo"/>
                         </constraints>
                         <color key="tintColor" name="TextSecondary"/>
                         <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain" image="chevron.down" catalog="system"/>
+                        <buttonConfiguration key="configuration" style="plain" image="chevron.down.circle" catalog="system"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qkK-Bw-ahu" customClass="CircleButton" customModule="Laza" customModuleProvider="target">
                         <rect key="frame" x="192" y="89" width="30" height="30"/>
-                        <color key="backgroundColor" name="WhiteButtonSecondary"/>
+                        <color key="backgroundColor" name="WhiteBG"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="30" id="FMz-gV-cYo"/>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="GAM-ci-91n"/>
@@ -78,7 +78,7 @@ Nike Sportswear</string>
                         </constraints>
                         <color key="tintColor" name="TextSecondary"/>
                         <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain" image="chevron.up" catalog="system"/>
+                        <buttonConfiguration key="configuration" style="plain" image="chevron.up.circle" catalog="system"/>
                     </button>
                 </subviews>
                 <color key="backgroundColor" name="HomeBG"/>
@@ -115,16 +115,16 @@ Nike Sportswear</string>
     </objects>
     <designables>
         <designable name="aqD-Bp-7hk">
-            <size key="intrinsicContentSize" width="47.666666666666664" height="34.333333333333336"/>
+            <size key="intrinsicContentSize" width="49.666666666666664" height="34.333333333333336"/>
         </designable>
         <designable name="qkK-Bw-ahu">
-            <size key="intrinsicContentSize" width="47.666666666666664" height="34.333333333333336"/>
+            <size key="intrinsicContentSize" width="49.666666666666664" height="34.333333333333336"/>
         </designable>
     </designables>
     <resources>
         <image name="Profile" width="314" height="314"/>
-        <image name="chevron.down" catalog="system" width="128" height="70"/>
-        <image name="chevron.up" catalog="system" width="128" height="70"/>
+        <image name="chevron.down.circle" catalog="system" width="128" height="123"/>
+        <image name="chevron.up.circle" catalog="system" width="128" height="123"/>
         <namedColor name="HomeBG">
             <color red="0.99599999189376831" green="0.99599999189376831" blue="0.99599999189376831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -134,8 +134,8 @@ Nike Sportswear</string>
         <namedColor name="TextSecondary">
             <color red="0.5607843137254902" green="0.58431372549019611" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="WhiteButtonSecondary">
-            <color red="0.96078431372549022" green="0.96470588235294119" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="WhiteBG">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

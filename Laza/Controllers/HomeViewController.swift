@@ -354,6 +354,7 @@ extension HomeViewController: BrandTableViewCellDelegate {
             return UICollectionViewCell()
         }
         collectionViewCell.setTitle(title: title)
+        collectionViewCell.delegate = self
         return collectionViewCell
     }
 }
@@ -390,6 +391,18 @@ extension HomeViewController: ProductTableViewCellDelegate {
         guard let vc = storyboard.instantiateViewController(withIdentifier: DetailViewController.identifier) as? DetailViewController else { return }
         guard let product = viewModel.getProductOnIndex(index: indexPath.item) else { return }
         vc.configure(product: product)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+// MARK: - BrandCollectionViewCell Delegate
+
+extension HomeViewController: BrandCollectionViewCellDelegate {
+    
+    func brandButtonPressed(brandName: String) {
+        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+        guard let vc = storyboard.instantiateViewController(withIdentifier: ProductBrandViewController.identifier) as? ProductBrandViewController else { return }
+        vc.configure(brandName: brandName, products: viewModel.getProducts)
         navigationController?.pushViewController(vc, animated: true)
     }
 }

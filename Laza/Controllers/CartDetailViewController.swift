@@ -24,7 +24,7 @@ class CartDetailViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var deliveryAddressViewItem: ListViewItem!
+    @IBOutlet weak var deliveryAddressViewItem: UIView!
     
     @IBOutlet weak var deliveryAddressDetailButton: UIButton! {
         didSet {
@@ -32,7 +32,7 @@ class CartDetailViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var paymentMethodViewItem: ListViewItem!
+    @IBOutlet weak var paymentMethodViewItem: UIView!
     
     @IBOutlet weak var paymentMethodDetailButton: UIButton! {
         didSet {
@@ -51,6 +51,25 @@ class CartDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupView()
+    }
+    
+    private func setupView() {
+        let nib = UINib(nibName: String(describing: ListViewItem.self), bundle: nil)
+        
+        let paymentView = nib.instantiate(withOwner: nil).first as! UIView
+        paymentMethodViewItem.addSubview(paymentView)
+        paymentView.frame = paymentMethodViewItem.bounds
+        let listViewItemPayment = paymentView as! ListViewItem
+        listViewItemPayment.setTitle(title: "Visa Classic")
+        listViewItemPayment.setSubtitle(subtitle: "**** 7880")
+        
+        let addressView = nib.instantiate(withOwner: nil).first as! UIView
+        deliveryAddressViewItem.addSubview(addressView)
+        addressView.frame = deliveryAddressViewItem.bounds
+        let listViewItemAddress = addressView as! ListViewItem
+        listViewItemAddress.setTitle(title: "Jl. Subur Raya, Menteng Atas")
+        listViewItemAddress.setSubtitle(subtitle: "Jakarta Selatan")
     }
     
     @objc private func addressButtonPressed() {

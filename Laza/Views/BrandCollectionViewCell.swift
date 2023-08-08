@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol BrandCollectionViewCellDelegate: AnyObject {
+    
+    func brandButtonPressed(brandName: String)
+}
+
 class BrandCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "BrandCollectionViewCell"
@@ -23,6 +28,8 @@ class BrandCollectionViewCell: UICollectionViewCell {
     }()
     
     private(set) var category: String?
+    
+    weak var delegate: BrandCollectionViewCellDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -60,5 +67,6 @@ class BrandCollectionViewCell: UICollectionViewCell {
     
     @objc private func brandButtonPressed() {
         print("Brand button pressed: \(String(describing: category))")
+        delegate?.brandButtonPressed(brandName: category ?? "")
     }
 }

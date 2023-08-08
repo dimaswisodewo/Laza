@@ -21,6 +21,10 @@ class HomeViewModel {
         return products.count
     }
     
+    var getProducts: [Product] {
+        return products
+    }
+    
     var reloadBrandCollectionView: (() -> Void)?
     var reloadProductCollectionView: (() -> Void)?
     
