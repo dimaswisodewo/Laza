@@ -89,7 +89,21 @@
 		38FF0E4A2A70F040009B406F /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF0E492A70F040009B406F /* CustomTextField.swift */; };
 		38FF0E4C2A70F478009B406F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF0E4B2A70F478009B406F /* SignUpViewController.swift */; };
 		38FF0E4E2A7103C2009B406F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF0E4D2A7103C2009B406F /* LoginViewController.swift */; };
+		7A908E37D34E6B591851E7F9 /* Pods_Laza.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95A3BF1CF116AB718DD6BD23 /* Pods_Laza.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		38FEE9A02A81F9FC00D2DDD8 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		3817D6792A7202A10074D911 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
@@ -174,6 +188,9 @@
 		38FF0E492A70F040009B406F /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		38FF0E4B2A70F478009B406F /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		38FF0E4D2A7103C2009B406F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		5B1422CCBB0C66FD56D6F1D0 /* Pods-Laza.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Laza.release.xcconfig"; path = "Target Support Files/Pods-Laza/Pods-Laza.release.xcconfig"; sourceTree = "<group>"; };
+		95A3BF1CF116AB718DD6BD23 /* Pods_Laza.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Laza.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F01CD61CCFFC99B51DFEE230 /* Pods-Laza.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Laza.debug.xcconfig"; path = "Target Support Files/Pods-Laza/Pods-Laza.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +200,7 @@
 			files = (
 				38DBEB902A7E82C1003BC9F3 /* SideMenu in Frameworks */,
 				3825DC6E2A7F700800239E55 /* SnackBar in Frameworks */,
+				7A908E37D34E6B591851E7F9 /* Pods_Laza.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,6 +225,8 @@
 			children = (
 				38DCC6642A70A8B7006A3633 /* Laza */,
 				38DCC6632A70A8B7006A3633 /* Products */,
+				CCD65138F17642D622A4E708 /* Pods */,
+				4BAB77D8DF9DF02DB56C58EC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -341,6 +361,23 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		4BAB77D8DF9DF02DB56C58EC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				95A3BF1CF116AB718DD6BD23 /* Pods_Laza.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CCD65138F17642D622A4E708 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F01CD61CCFFC99B51DFEE230 /* Pods-Laza.debug.xcconfig */,
+				5B1422CCBB0C66FD56D6F1D0 /* Pods-Laza.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -348,9 +385,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 38DCC6762A70A8B8006A3633 /* Build configuration list for PBXNativeTarget "Laza" */;
 			buildPhases = (
+				0DEB2554BBB66BF8BA77E49C /* [CP] Check Pods Manifest.lock */,
 				38DCC65E2A70A8B7006A3633 /* Sources */,
 				38DCC65F2A70A8B7006A3633 /* Frameworks */,
 				38DCC6602A70A8B7006A3633 /* Resources */,
+				4111BB8E013BB5D16150EE03 /* [CP] Embed Pods Frameworks */,
+				38FEE9A02A81F9FC00D2DDD8 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -429,6 +469,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0DEB2554BBB66BF8BA77E49C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Laza-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4111BB8E013BB5D16150EE03 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Laza/Pods-Laza-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Laza/Pods-Laza-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Laza/Pods-Laza-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		38DCC65E2A70A8B7006A3633 /* Sources */ = {
@@ -638,6 +720,7 @@
 		};
 		38DCC6772A70A8B8006A3633 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F01CD61CCFFC99B51DFEE230 /* Pods-Laza.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -667,6 +750,7 @@
 		};
 		38DCC6782A70A8B8006A3633 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5B1422CCBB0C66FD56D6F1D0 /* Pods-Laza.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
