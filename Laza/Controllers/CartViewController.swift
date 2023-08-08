@@ -112,7 +112,7 @@ extension CartViewController: CartDetailViewControllerDelegate {
     
     func cardButtonPressed() {
         let storyboard = UIStoryboard(name: "Checkout", bundle: nil)
-        guard let vc = storyboard.instantiateViewController(withIdentifier: AddCardViewController.identifier) as? AddCardViewController else {
+        guard let vc = storyboard.instantiateViewController(withIdentifier: PaymentViewController.identifier) as? PaymentViewController else {
             print("Failed to get VC")
             return
         }
