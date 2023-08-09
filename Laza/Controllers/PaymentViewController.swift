@@ -42,6 +42,8 @@ class PaymentViewController: UIViewController {
     
     var onDismiss: (() -> Void)?
     
+    private let isCardEmpty = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -70,10 +72,18 @@ class PaymentViewController: UIViewController {
 extension PaymentViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        Rows.allCases.count
+        // There is no card added
+        if isCardEmpty { return 1 }
+        // At least one card added
+        return Rows.allCases.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        // There is no card added
+        if isCardEmpty {
+            return 80
+        }
+        // At least one card added
         switch indexPath.row {
         case Rows.Card.rawValue:
             let heightToWidthRatio = PaymentCardCollectionViewCell.heigthToWidthRatio
@@ -90,6 +100,16 @@ extension PaymentViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // There is no card added
+        if isCardEmpty {
+            guard let tableViewCell = tableView.dequeueReusableCell(withIdentifier: PaymentAddCardTableViewCell.identifier) as? PaymentAddCardTableViewCell else {
+                print("Failed to dequeue PaymentAddCardTableViewCell")
+                return UITableViewCell()
+            }
+            tableViewCell.delegate = self
+            return tableViewCell
+        }
+        // At least one card added
         switch indexPath.row {
         case Rows.Card.rawValue:
             guard let tableViewCell = tableView.dequeueReusableCell(withIdentifier: PaymentCardTableViewCell.identifier) as? PaymentCardTableViewCell else {
