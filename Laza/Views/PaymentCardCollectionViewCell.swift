@@ -48,4 +48,12 @@ class PaymentCardCollectionViewCell: UICollectionViewCell {
         creditCardFormView.cardPlaceholdersFont = FontUtils.shared.getFont(font: .Poppins, weight: .regular, size: 10)
         creditCardFormView.cardTextFont = FontUtils.shared.getFont(font: .Poppins, weight: .regular, size: 12)
     }
+    
+    func configure(model: CreditCard) {
+        creditCardFormView.cardHolderString = model.owner
+        creditCardFormView.paymentCardTextFieldDidChange(
+            cardNumber: model.cardNumber,
+            expirationYear: UInt(model.expYear),
+            expirationMonth: UInt(model.expMonth))
+    }
 }

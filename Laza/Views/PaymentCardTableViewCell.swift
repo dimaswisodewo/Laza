@@ -14,6 +14,8 @@ protocol PaymentCardTableViewCellDelegate {
     func collectionView(cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
     
     func collectionView(collectionView: UICollectionView, sizeForItemAt indexPath: IndexPath) -> CGSize
+    
+    func onSetSelectedCardOnSwipe(selectedIndex: Int)
 }
 
 class PaymentCardTableViewCell: UITableViewCell {
@@ -55,6 +57,9 @@ class PaymentCardTableViewCell: UITableViewCell {
             at: IndexPath(item: selectedViewIndex, section: 0),
             animated: true,
             scrollPosition: .centeredHorizontally)
+        
+        // Set credit card text
+        delegate?.onSetSelectedCardOnSwipe(selectedIndex: selectedViewIndex)
     }
 }
 

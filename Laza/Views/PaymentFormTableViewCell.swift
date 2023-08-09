@@ -47,6 +47,9 @@ class PaymentFormTableViewCell: UITableViewCell {
         cardNumberField.text = cardNumber
         cardExpField.text = exp
         cardCvvField.text = cvv
+    }
+    
+    func setEnableFields(isEnable: Bool) {
         
         cardOwnerField.isEnabled = false
         cardNumberField.isEnabled = false

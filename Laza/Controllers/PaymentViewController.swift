@@ -38,11 +38,14 @@ class PaymentViewController: UIViewController {
         }
     }
     
-    private var paymentCardTableViewCell: PaymentCardTableViewCell?
+    private weak var paymentCardTableViewCell: PaymentCardTableViewCell?
+    private weak var paymentFormTableViewCell: PaymentFormTableViewCell?
     
     var onDismiss: (() -> Void)?
     
     private let isCardEmpty = false
+    
+    private let viewModel: PaymentViewModel = PaymentViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,6 +134,16 @@ extension PaymentViewController: UITableViewDataSource, UITableViewDelegate {
                 print("Failed to dequeue PaymentFormTableViewCell")
                 return UITableViewCell()
             }
+            paymentFormTableViewCell = tableViewCell
+            paymentFormTableViewCell?.setEnableFields(isEnable: false)
+            // Set first item
+            if let model = viewModel.getDataAtIndex(0) {
+                paymentFormTableViewCell?.setPredefinedValue(
+                    cardOwner: model.owner,
+                    cardNumber: model.cardNumber,
+                    exp: model.expString,
+                    cvv: model.cvc ?? "")
+            }
             return tableViewCell
         default:
             return UITableViewCell()
@@ -141,6 +154,15 @@ extension PaymentViewController: UITableViewDataSource, UITableViewDelegate {
 // MARK: - PaymentCardTableViewCellDelegate
 
 extension PaymentViewController: PaymentCardTableViewCellDelegate {
+    
+    func onSetSelectedCardOnSwipe(selectedIndex: Int) {
+        guard let model = viewModel.getDataAtIndex(selectedIndex) else { return }
+        paymentFormTableViewCell?.setPredefinedValue(
+            cardOwner: model.owner,
+            cardNumber: model.cardNumber,
+            exp: model.expString,
+            cvv: model.cvc ?? "")
+    }
     
     func collectionView(collectionView: UICollectionView, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let inset: CGFloat = 20
@@ -158,6 +180,9 @@ extension PaymentViewController: PaymentCardTableViewCellDelegate {
         guard let cell = paymentCardTableViewCell?.collectionView.dequeueReusableCell(withReuseIdentifier: PaymentCardCollectionViewCell.identifier, for: indexPath) as? PaymentCardCollectionViewCell else {
             print("Failed to dequeue PaymentCardCollectionViewCell")
             return UICollectionViewCell()
+        }
+        if let model = viewModel.getDataAtIndex(indexPath.item) {
+            cell.configure(model: model)
         }
         return cell
     }
