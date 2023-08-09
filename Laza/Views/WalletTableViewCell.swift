@@ -13,6 +13,9 @@ class WalletTableViewCell: UITableViewCell {
     
     private let creditCard: CreditCardFormView = {
         let card = CreditCardFormView()
+        card.cardNumberFont = FontUtils.shared.getFont(font: .Poppins, weight: .regular, size: 18)
+        card.cardPlaceholdersFont = FontUtils.shared.getFont(font: .Poppins, weight: .regular, size: 10)
+        card.cardTextFont = FontUtils.shared.getFont(font: .Poppins, weight: .regular, size: 12)
         card.translatesAutoresizingMaskIntoConstraints = false
         return card
     }()

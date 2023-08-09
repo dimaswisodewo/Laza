@@ -101,7 +101,7 @@ extension CartViewController: CartDetailViewControllerDelegate {
     
     func addressButtonPressed() {
         let storyboard = UIStoryboard(name: "Checkout", bundle: nil)
-        guard let vc = storyboard.instantiateViewController(withIdentifier: AddressViewController.identifier) as? AddressViewController else {
+        guard let vc = storyboard.instantiateViewController(withIdentifier: ListAddressViewController.identifier) as? ListAddressViewController else {
             print("Failed to get VC")
             return
         }

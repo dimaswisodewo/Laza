@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="dark"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-Regular.ttf">
+            <string>Poppins-Regular</string>
+        </array>
+        <array key="Poppins-SemiBold.ttf">
+            <string>Poppins-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ListAddressItemTableViewCell" rowHeight="172" id="KGk-i7-Jjw" customClass="ListAddressItemTableViewCell" customModule="Laza" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="386" height="172"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="386" height="172"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wje-WM-O1g">
+                        <rect key="frame" x="20" y="24" width="346" height="25.333333333333329"/>
+                        <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="18"/>
+                        <color key="textColor" name="TextPrimary"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="081234567890" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pqc-HV-ueH">
+                        <rect key="frame" x="20" y="53.333333333333336" width="346" height="20.000000000000007"/>
+                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                        <color key="textColor" name="TextPrimary"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jl. Subur Raya No.2A RT.03 RW.08 Kel. Menteng Atas, Kec. Setiabudi, Jakarta Selatan." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PUI-1w-AR0">
+                        <rect key="frame" x="20" y="77.333333333333329" width="346" height="39.333333333333329"/>
+                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                        <color key="textColor" name="TextPrimary"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" name="WhiteBG"/>
+                <constraints>
+                    <constraint firstItem="PUI-1w-AR0" firstAttribute="top" secondItem="pqc-HV-ueH" secondAttribute="bottom" constant="4" id="4A8-Fz-ZRj"/>
+                    <constraint firstItem="PUI-1w-AR0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="4ti-Qx-ABl"/>
+                    <constraint firstAttribute="trailing" secondItem="PUI-1w-AR0" secondAttribute="trailing" constant="20" id="BS6-Uf-OML"/>
+                    <constraint firstItem="Wje-WM-O1g" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="SKF-Au-bqz"/>
+                    <constraint firstAttribute="trailing" secondItem="Wje-WM-O1g" secondAttribute="trailing" constant="20" id="TSS-WU-ZfC"/>
+                    <constraint firstAttribute="trailing" secondItem="pqc-HV-ueH" secondAttribute="trailing" constant="20" id="a9q-Se-qft"/>
+                    <constraint firstItem="Wje-WM-O1g" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="cAZ-t9-I30"/>
+                    <constraint firstItem="pqc-HV-ueH" firstAttribute="top" secondItem="Wje-WM-O1g" secondAttribute="bottom" constant="4" id="h8X-CL-si7"/>
+                    <constraint firstItem="pqc-HV-ueH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="p2N-UE-eFm"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="PUI-1w-AR0" secondAttribute="bottom" constant="32" id="xrp-kl-hfp"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="addressLabel" destination="PUI-1w-AR0" id="8Vt-rt-0Gz"/>
+                <outlet property="nameLabel" destination="Wje-WM-O1g" id="dg7-0O-dPv"/>
+                <outlet property="phoneLabel" destination="pqc-HV-ueH" id="fLI-Gs-lEE"/>
+            </connections>
+            <point key="canvasLocation" x="96.18320610687023" y="33.802816901408455"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="TextPrimary">
+            <color red="0.11372549019607843" green="0.11764705882352941" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="WhiteBG">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

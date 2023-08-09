@@ -15,6 +15,9 @@ class PaymentCardCollectionViewCell: UICollectionViewCell {
     
     private let creditCardFormView: CreditCardFormView = {
         let view = CreditCardFormView()
+        view.cardNumberFont = FontUtils.shared.getFont(font: .Poppins, weight: .regular, size: 18)
+        view.cardPlaceholdersFont = FontUtils.shared.getFont(font: .Poppins, weight: .regular, size: 10)
+        view.cardTextFont = FontUtils.shared.getFont(font: .Poppins, weight: .regular, size: 12)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -22,13 +25,11 @@ class PaymentCardCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
-        setupCreditCard()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupView()
-        setupCreditCard()
     }
     
     private func setupView() {
@@ -40,13 +41,6 @@ class PaymentCardCollectionViewCell: UICollectionViewCell {
             creditCardFormView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             creditCardFormView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
         ])
-    }
-    
-    private func setupCreditCard() {
-        // Set font
-        creditCardFormView.cardNumberFont = FontUtils.shared.getFont(font: .Poppins, weight: .regular, size: 18)
-        creditCardFormView.cardPlaceholdersFont = FontUtils.shared.getFont(font: .Poppins, weight: .regular, size: 10)
-        creditCardFormView.cardTextFont = FontUtils.shared.getFont(font: .Poppins, weight: .regular, size: 12)
     }
     
     func configure(model: CreditCard) {

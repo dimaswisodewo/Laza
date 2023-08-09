@@ -62,13 +62,9 @@ class AddressViewController: UIViewController {
         }
     }
     
-    
-    var onDismiss: (() -> Void)?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tabBarController?.tabBar.isHidden = true
     }
     
     // End editing on touch began
@@ -78,7 +74,6 @@ class AddressViewController: UIViewController {
     
     @objc private func backButtonPressed() {
         navigationController?.popViewController(animated: true)
-        onDismiss?()
     }
 
     @objc private func ctaButtonPressed() {
