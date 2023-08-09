@@ -1,5 +1,5 @@
 //
-//  PaymentViewModel.swift
+//  WalletViewModel.swift
 //  Laza
 //
 //  Created by Dimas Wisodewo on 09/08/23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class PaymentViewModel {
+class WalletViewModel {
     
     private let dummy = [
         CreditCard(

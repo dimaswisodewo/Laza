@@ -96,6 +96,8 @@
 		38E89D622A72F0D900BBDE14 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E89D612A72F0D900BBDE14 /* ProductCollectionViewCell.swift */; };
 		38EAD6CC2A83636900103947 /* PaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EAD6CB2A83636900103947 /* PaymentViewModel.swift */; };
 		38EAD6CE2A8363A700103947 /* CreditCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EAD6CD2A8363A700103947 /* CreditCard.swift */; };
+		38EAD6D02A83743B00103947 /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EAD6CF2A83743B00103947 /* WalletViewModel.swift */; };
+		38EAD6D32A83773700103947 /* WalletTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EAD6D12A83773700103947 /* WalletTableViewCell.swift */; };
 		38EF084B2A7A37260058021F /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF084A2A7A37260058021F /* DetailTableViewCell.swift */; };
 		38F216032A7218B700952E65 /* BrandCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F216022A7218B700952E65 /* BrandCollectionViewCell.swift */; };
 		38FB18D02A7A30A500733133 /* DetailSizeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FB18CF2A7A30A500733133 /* DetailSizeCollectionViewCell.swift */; };
@@ -208,6 +210,8 @@
 		38E89D612A72F0D900BBDE14 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
 		38EAD6CB2A83636900103947 /* PaymentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewModel.swift; sourceTree = "<group>"; };
 		38EAD6CD2A8363A700103947 /* CreditCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreditCard.swift; sourceTree = "<group>"; };
+		38EAD6CF2A83743B00103947 /* WalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewModel.swift; sourceTree = "<group>"; };
+		38EAD6D12A83773700103947 /* WalletTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTableViewCell.swift; sourceTree = "<group>"; };
 		38EF084A2A7A37260058021F /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		38F216022A7218B700952E65 /* BrandCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandCollectionViewCell.swift; sourceTree = "<group>"; };
 		38FB18CF2A7A30A500733133 /* DetailSizeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSizeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -324,6 +328,7 @@
 				3891B5762A82A15000B1CB88 /* ProductBrandViewModel.swift */,
 				3891B5782A82AD0600B1CB88 /* WishlistViewModel.swift */,
 				38EAD6CB2A83636900103947 /* PaymentViewModel.swift */,
+				38EAD6CF2A83743B00103947 /* WalletViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -381,6 +386,7 @@
 				380B4BED2A822C5E00297B62 /* PaymentAddCardTableViewCell.xib */,
 				389F24FE2A8283FE006E6C4B /* PaymentFormTableViewCell.swift */,
 				389F24FF2A8283FE006E6C4B /* PaymentFormTableViewCell.xib */,
+				38EAD6D12A83773700103947 /* WalletTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -595,7 +601,9 @@
 				38FB18D02A7A30A500733133 /* DetailSizeCollectionViewCell.swift in Sources */,
 				38323F022A80A10D000732A0 /* ListViewItem.swift in Sources */,
 				382640242A7695CE00744726 /* SideMenuTableViewCell.swift in Sources */,
+				38EAD6D02A83743B00103947 /* WalletViewModel.swift in Sources */,
 				38DBEB922A7E8FA8003BC9F3 /* VerificationCodeViewController.swift in Sources */,
+				38EAD6D32A83773700103947 /* WalletTableViewCell.swift in Sources */,
 				38DFE8812A77608700B1EE8F /* ProductTableViewCell.swift in Sources */,
 				38C51DC52A715849000324A5 /* WalletViewController.swift in Sources */,
 				386272B32A7A882200962892 /* ReviewTableViewCell.swift in Sources */,

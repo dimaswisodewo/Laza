@@ -182,7 +182,10 @@ extension PaymentViewController: PaymentCardTableViewCellDelegate {
             return UICollectionViewCell()
         }
         if let model = viewModel.getDataAtIndex(indexPath.item) {
-            cell.configure(model: model)
+            // Wait for 0.1 sec, otherwise the CreditCardFormView will not be layouted properly
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                cell.configure(model: model)
+            }
         }
         return cell
     }
