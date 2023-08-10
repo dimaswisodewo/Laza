@@ -41,8 +41,6 @@ class PaymentViewController: UIViewController {
     private weak var paymentCardTableViewCell: PaymentCardTableViewCell?
     private weak var paymentFormTableViewCell: PaymentFormTableViewCell?
     
-    var onDismiss: (() -> Void)?
-    
     private let isCardEmpty = false
     
     private let viewModel: PaymentViewModel = PaymentViewModel()
@@ -66,7 +64,6 @@ class PaymentViewController: UIViewController {
     
     @objc private func backButtonPressed() {
         navigationController?.popViewController(animated: true)
-        onDismiss?()
     }
 }
 

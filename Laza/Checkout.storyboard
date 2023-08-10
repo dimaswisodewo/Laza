@@ -653,7 +653,7 @@
                                 <buttonConfiguration key="configuration" style="plain"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v1y-sW-MVy">
-                                <rect key="frame" x="157.66666666666666" y="872" width="114.99999999999997" height="26"/>
+                                <rect key="frame" x="157.66666666666666" y="872" width="114.66666666666666" height="25.333333333333371"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -692,6 +692,85 @@
             </objects>
             <point key="canvasLocation" x="752" y="652"/>
         </scene>
+        <!--Choose Payment View Controller-->
+        <scene sceneID="Ifp-av-PPa">
+            <objects>
+                <viewController storyboardIdentifier="ChoosePaymentViewController" id="q0N-oj-8uU" customClass="ChoosePaymentViewController" customModule="Laza" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Scz-SH-4AP">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xWK-6V-bwm" customClass="CircleButton" customModule="Laza" customModuleProvider="target">
+                                <rect key="frame" x="25" y="104" width="45" height="45"/>
+                                <color key="backgroundColor" name="WhiteButtonSecondary"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="DaI-I6-gBX"/>
+                                    <constraint firstAttribute="width" constant="45" id="GNQ-py-oUd"/>
+                                </constraints>
+                                <color key="tintColor" name="TextPrimary"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="arrow.backward" catalog="system"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Payment" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3LC-a0-EuT">
+                                <rect key="frame" x="0.0" y="59" width="430" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="bCU-df-cbr"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="120" id="gGa-Vf-bRd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="18"/>
+                                <color key="textColor" name="TextPrimary"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="HAk-Tf-wBt">
+                                <rect key="frame" x="0.0" y="179" width="430" height="678"/>
+                                <color key="backgroundColor" name="WhiteBG"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qfe-9p-o7r">
+                                <rect key="frame" x="0.0" y="857" width="430" height="75"/>
+                                <color key="backgroundColor" name="PurpleButton"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="OyI-Ug-BeE"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="aPS-jW-kEv"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Proceed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pT6-1r-OIx">
+                                <rect key="frame" x="177.66666666666666" y="872" width="75" height="26"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="mKr-nF-Yth"/>
+                        <color key="backgroundColor" name="WhiteBG"/>
+                        <constraints>
+                            <constraint firstItem="mKr-nF-Yth" firstAttribute="trailing" secondItem="HAk-Tf-wBt" secondAttribute="trailing" id="082-SI-fDt"/>
+                            <constraint firstItem="HAk-Tf-wBt" firstAttribute="top" secondItem="3LC-a0-EuT" secondAttribute="bottom" id="5Cj-Vw-2MM"/>
+                            <constraint firstItem="mKr-nF-Yth" firstAttribute="trailing" secondItem="qfe-9p-o7r" secondAttribute="trailing" id="A4D-Fo-d4S"/>
+                            <constraint firstItem="qfe-9p-o7r" firstAttribute="top" secondItem="HAk-Tf-wBt" secondAttribute="bottom" id="FyA-PF-qlo"/>
+                            <constraint firstItem="xWK-6V-bwm" firstAttribute="top" secondItem="mKr-nF-Yth" secondAttribute="top" constant="45" id="G1d-RV-lM1"/>
+                            <constraint firstItem="xWK-6V-bwm" firstAttribute="leading" secondItem="mKr-nF-Yth" secondAttribute="leading" constant="25" id="KdQ-Vj-ifl"/>
+                            <constraint firstItem="pT6-1r-OIx" firstAttribute="top" secondItem="qfe-9p-o7r" secondAttribute="top" constant="15" id="Mt6-Zq-Bek"/>
+                            <constraint firstItem="pT6-1r-OIx" firstAttribute="centerX" secondItem="qfe-9p-o7r" secondAttribute="centerX" id="OCH-3P-2V2"/>
+                            <constraint firstAttribute="trailing" secondItem="3LC-a0-EuT" secondAttribute="trailing" id="Qcl-Q1-kzc"/>
+                            <constraint firstAttribute="bottom" secondItem="qfe-9p-o7r" secondAttribute="bottom" id="Srt-cq-Ul4"/>
+                            <constraint firstItem="3LC-a0-EuT" firstAttribute="leading" secondItem="mKr-nF-Yth" secondAttribute="leading" id="V8H-Ld-fqC"/>
+                            <constraint firstItem="HAk-Tf-wBt" firstAttribute="leading" secondItem="mKr-nF-Yth" secondAttribute="leading" id="gbo-ZB-Z0G"/>
+                            <constraint firstItem="qfe-9p-o7r" firstAttribute="leading" secondItem="mKr-nF-Yth" secondAttribute="leading" id="ygM-Oq-5JK"/>
+                            <constraint firstItem="3LC-a0-EuT" firstAttribute="top" secondItem="mKr-nF-Yth" secondAttribute="top" id="z87-Jg-cxB"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backButton" destination="xWK-6V-bwm" id="IFg-Ot-a7D"/>
+                        <outlet property="proceedButton" destination="qfe-9p-o7r" id="7HS-5M-rID"/>
+                        <outlet property="tableView" destination="HAk-Tf-wBt" id="62I-1U-9bV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M9d-sy-ONQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="41.860465116279066" y="651.50214592274688"/>
+        </scene>
     </scenes>
     <designables>
         <designable name="41g-GW-T2k">
@@ -708,6 +787,9 @@
         </designable>
         <designable name="czA-0G-eGq">
             <size key="intrinsicContentSize" width="137.66666666666666" height="39.333333333333336"/>
+        </designable>
+        <designable name="xWK-6V-bwm">
+            <size key="intrinsicContentSize" width="49.333333333333336" height="34.333333333333336"/>
         </designable>
     </designables>
     <resources>
