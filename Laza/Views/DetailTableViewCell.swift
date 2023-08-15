@@ -39,6 +39,7 @@ class DetailTableViewCell: UITableViewCell {
     private let categoryLabel: UILabel = {
         let label = UILabel()
         label.text = "Category"
+        label.numberOfLines = 0
         label.font = FontUtils.shared.getFont(font: .Poppins, weight: .semibold, size: 16)
         label.textColor = ColorUtils.shared.getColor(color: .TextSecondary)
         label.translatesAutoresizingMaskIntoConstraints = false

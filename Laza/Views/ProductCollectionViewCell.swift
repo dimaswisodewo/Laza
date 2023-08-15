@@ -21,6 +21,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
     
     private let image: UIImageView = {
         let iv = UIImageView()
+        iv.backgroundColor = .lightGray
         iv.contentMode = .scaleAspectFill
         iv.translatesAutoresizingMaskIntoConstraints = false
         return iv
@@ -61,9 +62,9 @@ class ProductCollectionViewCell: UICollectionViewCell {
     
     func configure(product: Product) {
         self.product = product
-        productName.text = product.title
+        productName.text = product.name
         productPrice.text = "$\(product.price)".formatDecimal()
-        image.loadAndCache(url: product.image)
+        image.loadAndCache(url: product.imageUrl)
     }
     
     private func setupConstraints() {

@@ -81,10 +81,11 @@ struct Endpoint {
     private let isMockApi = false
     private var baseUrl: String {
         if isMockApi { return "http://localhost:3001/" }
-        else { return "https://fakestoreapi.com/" }
+        else { return "https://lazaapp.shop/" }
     }
     
-    private var path: String?
+    private var path: EndpointPath?
+    private var additionalPath: String?
     private var query: String?
     private var method: HttpMethod = .GET
     var getMethod: HttpMethod {
@@ -93,8 +94,9 @@ struct Endpoint {
         }
     }
     
-    mutating func initialize(path: String?, query: String? = nil, method: HttpMethod = .GET) {
+    mutating func initialize(path: EndpointPath?, additionalPath: String? = nil, query: String? = nil, method: HttpMethod = .GET) {
         self.path = path
+        self.additionalPath = additionalPath
         self.query = query
         self.method = method
     }
@@ -102,13 +104,38 @@ struct Endpoint {
     func getURL() -> String {
         var url = baseUrl
         if let unwrappedPath = path {
-            url += unwrappedPath
+            url += unwrappedPath.rawValue
+        }
+        if let unwrappedAdditionalPath = additionalPath {
+            url += unwrappedAdditionalPath
         }
         if let unwrappedQuery = query {
             url += "?\(unwrappedQuery)"
         }
         return url
     }
+}
+
+enum EndpointPath: String {
+    // Authentication
+    case Login = "login"
+    case Register = "register"
+    case AuthVerifyEmail = "auth/verify-email"
+    case AuthResendVerify = "auth/confirm/resend"
+    case AuthForgotPassword = "auth/forgot-password"
+    case AuthVerificationCode = "auth/verification-code"
+    case AuthResetPassword = "auth/reset-password"
+    // Google
+    case AuthGoogle = "auth/google"
+    case AuthGoogleCallback = "auth/google/callback"
+    // Products
+    case Products = "products"
+    case Categories = "products/categories"
+    // User
+    case UserProfile = "user/profile"
+    case UserUpdate = "user/update"
+    case UserChangePassword = "user/change-password"
+    case Users = "user"
 }
 
 enum HttpMethod: String {

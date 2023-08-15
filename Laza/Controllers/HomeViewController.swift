@@ -336,7 +336,7 @@ extension HomeViewController: BrandTableViewCellDelegate {
             return CGSize(width: 50, height: 50)
         }
         let itemWidth = item.size(withAttributes: [
-            NSAttributedString.Key.font : UIFont(name: "Inter-Medium", size: 17) ?? UIFont.systemFont(ofSize: 17, weight: .medium)
+            NSAttributedString.Key.font : FontUtils.shared.getFont(font: .Poppins, weight: .semibold, size: 17)
         ]).width
         return CGSize(width: itemWidth + padding * 2, height: 50)
     }

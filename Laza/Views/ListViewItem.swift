@@ -31,11 +31,6 @@ class ListViewItem: UIView {
         setupView()
     }
     
-    override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-        
-    }
-    
     func setTitle(title: String) {
         itemTitleLabel.text = title
     }

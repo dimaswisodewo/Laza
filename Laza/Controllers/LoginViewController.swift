@@ -84,33 +84,33 @@ class LoginViewController: UIViewController {
             SnackBarDanger.make(in: self.view, message: "Username is not valid", duration: .lengthShort).show()
             return
         }
-        
-        guard let password = passwordTextField.text, !password.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+
+        guard let password = passwordTextField.text else {
             SnackBarDanger.make(in: self.view, message: "Password is not valid", duration: .lengthShort).show()
             return
         }
         
-        viewModel.login(username: username, password: password) { loginToken in
-            
-            guard let loginToken = loginToken else {
-                SnackBarDanger.make(in: self.view, message: "Login failed", duration: .lengthShort).show()
-                return
-            }
-            
-            print("Login success, Hello \(username)! token: \(loginToken.token)")
-            
+        viewModel.login(username: username, password: password, completion: { loginUser in
+            // Login success
+            SessionManager.shared.setCurrentToken(token: loginUser.accessToken)
             // Move to Home Page
             DispatchQueue.main.async { [weak self] in
                 let storyboard = UIStoryboard(name: "Home", bundle: nil)
                 guard let vc = storyboard.instantiateViewController(withIdentifier: MainTabBarViewController.identifier) as? MainTabBarViewController else { return }
                 let nav = UINavigationController(rootViewController: vc)
                 nav.setNavigationBarHidden(true, animated: false)
-                
+
                 self?.delegate = vc
                 self?.delegate?.onLoginSuccess()
-                
+
                 self?.view.window?.windowScene?.keyWindow?.rootViewController = nav
             }
-        }
+        }, onError: { errorMessage in
+            // Login failed
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+            }
+        })
     }
 }

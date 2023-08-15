@@ -8,37 +8,15 @@
 import Foundation
 
 struct User: Codable {
+    let id: Int
+    var fullname: String = ""
     var email: String = ""
     var username: String = ""
-    var password: String = ""
-    var name: Name = Name()
-    var address: Address = Address()
-    var phone: String = ""
-}
-
-struct Name: Codable {
-    var firstName: String = ""
-    var lastName: String = ""
+    var imageUrl: String?
     
-    enum codingKeys: String, CodingKey {
-        case firstName = "firstname"
-        case lastName = "lastname"
+    private enum CodingKeys: String, CodingKey {
+        case id, email, username
+        case fullname = "full_name"
+        case imageUrl = "image_url"
     }
-}
-
-struct Address: Codable {
-    var city: String = ""
-    var street: String = ""
-    var number: Int = 0
-    var zipCode: String = ""
-    var geoLocation: GeoLocation = GeoLocation()
-    
-    enum codingKeys: String, CodingKey {
-        case geoLocation = "geolocation"
-    }
-}
-
-struct GeoLocation: Codable {
-    var lat: String = ""
-    var long: String = ""
 }

@@ -49,11 +49,14 @@ class DetailViewController: UIViewController {
     private let sizes = ["S", "M", "L", "XL", "2XL"]
     
     private var product: Product?
+    private var viewModel: DetailViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         registerCells()
+        
+        loadProductDetail()
         
         // Reload table view, wait 0.1 sec to make sure that collection views inside the table view is finished layouting subviews
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
@@ -65,6 +68,16 @@ class DetailViewController: UIViewController {
         tabBarController?.tabBar.isHidden = true
     }
     
+    private func loadProductDetail() {
+        // Assign reload table view on finished load API
+        viewModel?.reloadProductDetailCollectionView = { [weak self] in
+            self?.tableView.reloadData()
+        }
+        // Load necessary data
+        viewModel?.loadProductDetail()
+        viewModel?.loadRatings()
+    }
+    
     private func registerCells() {
         tableView.dataSource = self
         tableView.delegate = self
@@ -74,6 +87,7 @@ class DetailViewController: UIViewController {
     
     func configure(product: Product) {
         self.product = product
+        self.viewModel = DetailViewModel(productId: product.id)
     }
 
     @objc private func backButtonPressed() {
@@ -115,8 +129,8 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
                 print("Failed to dequeue ReviewTableViewCell")
                 return UITableViewCell()
             }
-            if let rate = product?.rating.rate {
-                tableViewCell.configureRating(rating: rate)
+            if let review = viewModel?.productReviews?.reviews.first {
+                tableViewCell.configureReview(model: review)
             }
             return tableViewCell
         default:
@@ -142,7 +156,7 @@ extension DetailViewController: DetailTableViewCellDelegate {
             return
         }
         
-        cell.productImageView.loadAndCache(url: product.image)
+        cell.productImageView.loadAndCache(url: product.imageUrl)
     }
     
     func applyModel(productImage: UIImageView, productName: UILabel, productCategory: UILabel, productPrice: UILabel, productDesc: UILabel) {
@@ -152,10 +166,15 @@ extension DetailViewController: DetailTableViewCellDelegate {
             return
         }
         
-        productImage.loadAndCache(url: product.image)
-        productName.text = product.title.capitalized
-        productCategory.text = product.category.capitalized
-        productDesc.text = product.description
+        productImage.loadAndCache(url: product.imageUrl)
+        productName.text = product.name.capitalized
+        if let categories = viewModel?.productDetail?.category {
+            let categoryText = categories.map { $0.category.capitalized }.joined(separator: ", ")
+            productCategory.text = categoryText
+        }
+        if let productDetail = viewModel?.productDetail {
+            productDesc.text = productDetail.description
+        }
         productPrice.text = "$\(product.price)".formatDecimal()
     }
 }

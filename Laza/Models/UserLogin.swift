@@ -7,11 +7,24 @@
 
 import Foundation
 
-struct UserLogin: Codable {
-    let username: String
-    let password: String
+struct LoginUserResponse: Codable {
+    let status: String
+    let isError: Bool
+    let data: LoginUser
 }
 
-struct LoginToken: Codable {
-    let token: String
+struct LoginUser: Codable {
+    let accessToken: String
+    let refreshToken: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case accessToken = "access_token"
+        case refreshToken = "refresh_token"
+    }
+}
+
+struct LoginUserFailedResponse: Codable {
+    let status: String
+    let isError: Bool
+    let description: String
 }

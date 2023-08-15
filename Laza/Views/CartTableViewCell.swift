@@ -50,9 +50,9 @@ class CartTableViewCell: UITableViewCell {
     }
     
     func configure(model: Product) {
-        productName.text = model.title
+        productName.text = model.name
         productPrice.text = "$\(model.price)".formatDecimal()
-        productImageView.loadAndCache(url: model.image)
+        productImageView.loadAndCache(url: model.imageUrl)
     }
     
     private func refreshProductAmountLabel() {

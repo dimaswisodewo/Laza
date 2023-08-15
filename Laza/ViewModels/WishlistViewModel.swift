@@ -23,11 +23,11 @@ class WishlistViewModel {
     
     func loadProducts() {
         var endpoint = Endpoint()
-        endpoint.initialize(path: "products")
-        NetworkManager.shared.sendRequest(type: Products.self, endpoint: endpoint) { [weak self] result in
+        endpoint.initialize(path: .Products)
+        NetworkManager.shared.sendRequest(type: ProductResponse.self, endpoint: endpoint) { [weak self] result in
             switch result {
-            case .success(let products):
-                self?.products.append(contentsOf: products)
+            case .success(let productResponse):
+                self?.products.append(contentsOf: productResponse.data)
                 DispatchQueue.main.async {
                     self?.reloadProductCollectionView?()
                 }

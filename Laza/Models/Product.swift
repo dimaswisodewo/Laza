@@ -7,17 +7,22 @@
 
 import Foundation
 
+struct ProductResponse: Codable {
+    let status: String
+    let isError: Bool
+    let data: [Product]
+}
+ 
 struct Product: Codable {
     let id: Int
-    let title: String
+    let name: String
     let price: Double
-    let description: String
-    let category: String
-    let image: String
-    let rating: Rating
-}
-
-struct Rating: Codable {
-    let rate: Double
-    let count: Int
+    let imageUrl: String
+    let createdAt: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case id, name, price
+        case imageUrl = "image_url"
+        case createdAt = "created_at"
+    }
 }

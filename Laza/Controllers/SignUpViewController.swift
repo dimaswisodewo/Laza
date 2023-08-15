@@ -90,16 +90,19 @@ class SignUpViewController: UIViewController {
             return
         }
         
-        print("Sign Up success")
-        delegate?.onSignUpSuccess()
-        
-        var user = User()
-        user.email = email
-        user.username = username
-        user.password = password
-        viewModel.saveUserData(user: user, password: password)
-        
-        navigationController?.popViewController(animated: true)
+        // Register
+        viewModel.register(username: username, email: email, password: password, completion: { user in
+            // Register success
+            DispatchQueue.main.async { [weak self] in
+                self?.delegate?.onSignUpSuccess()
+                self?.navigationController?.popViewController(animated: true)
+            }
+        }, onError: { errorMessage in
+            // Register failed
+            DispatchQueue.main.async {
+                SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+            }
+        })
     }
     
 }

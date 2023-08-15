@@ -59,29 +59,29 @@ class DataPersistentManager {
     
     /// 1. `User` -> User data
     /// 2. `String` -> Salt used to encrypt the password
-    func getUserDataFromUserDefaults() -> (User, String)? {
-        guard let email = userDefaults.string(forKey: emailKey) else {
-            print("Failed to get string from key: ", emailKey)
-            return nil
-        }
-        guard let username = userDefaults.string(forKey: usernameKey) else {
-            print("Failed to get string from key: ", usernameKey)
-            return nil
-        }
-        guard let password = userDefaults.string(forKey: passwordKey) else {
-            print("Failed to get string from key: ", passwordKey)
-            return nil
-        }
-        guard let salt = userDefaults.string(forKey: saltKey) else {
-            print("Failed to get string from key: ", saltKey)
-            return nil
-        }
-        
-        var user = User()
-        user.email = email
-        user.username = username
-        user.password = password
-        
-        return (user, salt)
-    }
+//    func getUserDataFromUserDefaults() -> (User, String)? {
+//        guard let email = userDefaults.string(forKey: emailKey) else {
+//            print("Failed to get string from key: ", emailKey)
+//            return nil
+//        }
+//        guard let username = userDefaults.string(forKey: usernameKey) else {
+//            print("Failed to get string from key: ", usernameKey)
+//            return nil
+//        }
+//        guard let password = userDefaults.string(forKey: passwordKey) else {
+//            print("Failed to get string from key: ", passwordKey)
+//            return nil
+//        }
+//        guard let salt = userDefaults.string(forKey: saltKey) else {
+//            print("Failed to get string from key: ", saltKey)
+//            return nil
+//        }
+//        
+//        var user = User()
+//        user.email = email
+//        user.username = username
+//        user.password = password
+//        
+//        return (user, salt)
+//    }
 }

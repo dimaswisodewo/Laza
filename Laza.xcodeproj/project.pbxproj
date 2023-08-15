@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3809B3E92A89C6E400B34E5D /* Brand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3809B3E82A89C6E400B34E5D /* Brand.swift */; };
+		3809B3EB2A89C86E00B34E5D /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3809B3EA2A89C86E00B34E5D /* DetailViewModel.swift */; };
+		3809B3ED2A89C89800B34E5D /* ProductDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3809B3EC2A89C89800B34E5D /* ProductDetail.swift */; };
+		3809B3EF2A89DBE000B34E5D /* ProductReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3809B3EE2A89DBE000B34E5D /* ProductReview.swift */; };
+		3809B3F12A89E41200B34E5D /* DateTimeUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3809B3F02A89E41200B34E5D /* DateTimeUtils.swift */; };
+		3809B3F32A8A000000B34E5D /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3809B3F22A8A000000B34E5D /* ApiService.swift */; };
+		3809B3F52A8A093700B34E5D /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3809B3F42A8A093700B34E5D /* SessionManager.swift */; };
+		3809B3F72A8A143800B34E5D /* UserRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3809B3F62A8A143800B34E5D /* UserRegister.swift */; };
 		380B4BE52A82019900297B62 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380B4BE42A82019900297B62 /* PaymentViewController.swift */; };
 		380B4BE82A8202FC00297B62 /* PaymentCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380B4BE62A8202FC00297B62 /* PaymentCardTableViewCell.swift */; };
 		380B4BE92A8202FC00297B62 /* PaymentCardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380B4BE72A8202FC00297B62 /* PaymentCardTableViewCell.xib */; };
@@ -129,6 +137,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3809B3E82A89C6E400B34E5D /* Brand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brand.swift; sourceTree = "<group>"; };
+		3809B3EA2A89C86E00B34E5D /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		3809B3EC2A89C89800B34E5D /* ProductDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetail.swift; sourceTree = "<group>"; };
+		3809B3EE2A89DBE000B34E5D /* ProductReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductReview.swift; sourceTree = "<group>"; };
+		3809B3F02A89E41200B34E5D /* DateTimeUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeUtils.swift; sourceTree = "<group>"; };
+		3809B3F22A8A000000B34E5D /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		3809B3F42A8A093700B34E5D /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		3809B3F62A8A143800B34E5D /* UserRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegister.swift; sourceTree = "<group>"; };
 		380B4BE42A82019900297B62 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		380B4BE62A8202FC00297B62 /* PaymentCardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCardTableViewCell.swift; sourceTree = "<group>"; };
 		380B4BE72A8202FC00297B62 /* PaymentCardTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentCardTableViewCell.xib; sourceTree = "<group>"; };
@@ -256,12 +272,15 @@
 		38C51DCA2A7169B5000324A5 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				3809B3F22A8A000000B34E5D /* ApiService.swift */,
 				38C51DCB2A7169C4000324A5 /* NetworkManager.swift */,
 				38D1DE352A74ACB8002AB0ED /* DataPersistentManager.swift */,
 				38D1DE372A74ADD9002AB0ED /* HashingManager.swift */,
 				38D1DE3F2A74C5A6002AB0ED /* RegExManager.swift */,
 				386272AF2A7A854800962892 /* FontUtils.swift */,
 				386272B52A7A903400962892 /* ColorUtils.swift */,
+				3809B3F02A89E41200B34E5D /* DateTimeUtils.swift */,
+				3809B3F42A8A093700B34E5D /* SessionManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -348,6 +367,7 @@
 				38EAD6CB2A83636900103947 /* PaymentViewModel.swift */,
 				38EAD6CF2A83743B00103947 /* WalletViewModel.swift */,
 				3847AE232A84799400C8D4E5 /* ChoosePaymentViewModel.swift */,
+				3809B3EA2A89C86E00B34E5D /* DetailViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -355,12 +375,16 @@
 		38DCC67B2A70B342006A3633 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3809B3E82A89C6E400B34E5D /* Brand.swift */,
 				38E89D5F2A72EE8800BBDE14 /* Product.swift */,
+				3809B3EC2A89C89800B34E5D /* ProductDetail.swift */,
+				3809B3EE2A89DBE000B34E5D /* ProductReview.swift */,
 				38D1DE332A749347002AB0ED /* User.swift */,
-				38D1DE392A74AED1002AB0ED /* Password.swift */,
 				38D1DE412A74CA54002AB0ED /* UserLogin.swift */,
-				38EAD6CD2A8363A700103947 /* CreditCard.swift */,
+				3809B3F62A8A143800B34E5D /* UserRegister.swift */,
+				38D1DE392A74AED1002AB0ED /* Password.swift */,
 				3847AE252A8479BC00C8D4E5 /* PaymentMethod.swift */,
+				38EAD6CD2A8363A700103947 /* CreditCard.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -592,8 +616,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				380B4BEB2A820B6400297B62 /* PaymentCardCollectionViewCell.swift in Sources */,
+				3809B3E92A89C6E400B34E5D /* Brand.swift in Sources */,
 				38D1DE422A74CA54002AB0ED /* UserLogin.swift in Sources */,
 				387A6D312A7C8F2200358DE8 /* CustomSlider.swift in Sources */,
+				3809B3F12A89E41200B34E5D /* DateTimeUtils.swift in Sources */,
+				3809B3F52A8A093700B34E5D /* SessionManager.swift in Sources */,
 				3847AE242A84799400C8D4E5 /* ChoosePaymentViewModel.swift in Sources */,
 				386272B62A7A903400962892 /* ColorUtils.swift in Sources */,
 				38B05D582A80E09400DC3F8B /* AddressViewController.swift in Sources */,
@@ -617,6 +644,7 @@
 				3847AE1E2A8473BC00C8D4E5 /* ChoosePaymentViewController.swift in Sources */,
 				380B4BE82A8202FC00297B62 /* PaymentCardTableViewCell.swift in Sources */,
 				386272B02A7A854800962892 /* FontUtils.swift in Sources */,
+				3809B3EB2A89C86E00B34E5D /* DetailViewModel.swift in Sources */,
 				38C51DC12A7156E7000324A5 /* WishlistViewController.swift in Sources */,
 				38D1DE382A74ADD9002AB0ED /* HashingManager.swift in Sources */,
 				38C51DCC2A7169C4000324A5 /* NetworkManager.swift in Sources */,
@@ -630,11 +658,14 @@
 				38FB18D02A7A30A500733133 /* DetailSizeCollectionViewCell.swift in Sources */,
 				38323F022A80A10D000732A0 /* ListViewItem.swift in Sources */,
 				382640242A7695CE00744726 /* SideMenuTableViewCell.swift in Sources */,
+				3809B3F32A8A000000B34E5D /* ApiService.swift in Sources */,
 				38EAD6D02A83743B00103947 /* WalletViewModel.swift in Sources */,
 				38DBEB922A7E8FA8003BC9F3 /* VerificationCodeViewController.swift in Sources */,
 				38EAD6D32A83773700103947 /* WalletTableViewCell.swift in Sources */,
 				38DFE8812A77608700B1EE8F /* ProductTableViewCell.swift in Sources */,
 				38C51DC52A715849000324A5 /* WalletViewController.swift in Sources */,
+				3809B3F72A8A143800B34E5D /* UserRegister.swift in Sources */,
+				3809B3ED2A89C89800B34E5D /* ProductDetail.swift in Sources */,
 				386272B32A7A882200962892 /* ReviewTableViewCell.swift in Sources */,
 				387D4D7B2A78F45200022959 /* DetailThumbnailCollectionViewCell.swift in Sources */,
 				3891B5792A82AD0600B1CB88 /* WishlistViewModel.swift in Sources */,
@@ -669,6 +700,7 @@
 				38E89D602A72EE8800BBDE14 /* Product.swift in Sources */,
 				38D1DE402A74C5A6002AB0ED /* RegExManager.swift in Sources */,
 				38EAD6D92A838B7B00103947 /* ListAddressItemTableViewCell.swift in Sources */,
+				3809B3EF2A89DBE000B34E5D /* ProductReview.swift in Sources */,
 				38EAD6CC2A83636900103947 /* PaymentViewModel.swift in Sources */,
 				38B05D5C2A80E0D300DC3F8B /* OrderConfirmedViewController.swift in Sources */,
 			);

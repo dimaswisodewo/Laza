@@ -44,7 +44,16 @@ class ReviewTableViewCell: UITableViewCell {
         contentView.backgroundColor = ColorUtils.shared.getColor(color: .WhiteBG)
     }
     
-    func configureRating(rating: Double) {
+    func configureReview(model: ProductReview) {
+        profileImageView.loadAndCache(url: model.imageUrl)
+        nameLabel.text = model.fullName
+        ratingNumberLabel.text = String(model.rating)
+        reviewDescriptionLabel.text = model.comment
+        configureRating(rating: model.rating)
+        datePosted.text = DateTimeUtils.shared.formatReview(date: model.createdAt)
+    }
+    
+    private func configureRating(rating: Double) {
         var stars = [Star]()
         var colors = [UIColor]()
         var isHalfStarAdded = false
