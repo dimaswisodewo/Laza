@@ -89,6 +89,7 @@
 		38D1DE422A74CA54002AB0ED /* UserLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D1DE412A74CA54002AB0ED /* UserLogin.swift */; };
 		38D1DE462A74E342002AB0ED /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D1DE452A74E342002AB0ED /* HomeViewModel.swift */; };
 		38D86EC02A8B53C8006B0AF3 /* AllReviewsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D86EBF2A8B53C8006B0AF3 /* AllReviewsViewModel.swift */; };
+		38D86EC22A8B6D34006B0AF3 /* AddReviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D86EC12A8B6D34006B0AF3 /* AddReviewViewModel.swift */; };
 		38DBEB902A7E82C1003BC9F3 /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = 38DBEB8F2A7E82C1003BC9F3 /* SideMenu */; };
 		38DBEB922A7E8FA8003BC9F3 /* VerificationCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DBEB912A7E8FA8003BC9F3 /* VerificationCodeViewController.swift */; };
 		38DCC6662A70A8B7006A3633 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DCC6652A70A8B7006A3633 /* AppDelegate.swift */; };
@@ -219,6 +220,7 @@
 		38D1DE412A74CA54002AB0ED /* UserLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLogin.swift; sourceTree = "<group>"; };
 		38D1DE452A74E342002AB0ED /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		38D86EBF2A8B53C8006B0AF3 /* AllReviewsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllReviewsViewModel.swift; sourceTree = "<group>"; };
+		38D86EC12A8B6D34006B0AF3 /* AddReviewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReviewViewModel.swift; sourceTree = "<group>"; };
 		38DBEB912A7E8FA8003BC9F3 /* VerificationCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationCodeViewController.swift; sourceTree = "<group>"; };
 		38DCC6622A70A8B7006A3633 /* Laza.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Laza.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38DCC6652A70A8B7006A3633 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -371,6 +373,7 @@
 				3847AE232A84799400C8D4E5 /* ChoosePaymentViewModel.swift */,
 				3809B3EA2A89C86E00B34E5D /* DetailViewModel.swift */,
 				38D86EBF2A8B53C8006B0AF3 /* AllReviewsViewModel.swift */,
+				38D86EC12A8B6D34006B0AF3 /* AddReviewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -694,6 +697,7 @@
 				387D4D792A78A51900022959 /* DynamicHeightCollectionView.swift in Sources */,
 				3847AE212A84757700C8D4E5 /* ChoosePaymentTableViewCell.swift in Sources */,
 				38DCC6662A70A8B7006A3633 /* AppDelegate.swift in Sources */,
+				38D86EC22A8B6D34006B0AF3 /* AddReviewViewModel.swift in Sources */,
 				38D1DE3A2A74AED2002AB0ED /* Password.swift in Sources */,
 				38DCC6682A70A8B7006A3633 /* SceneDelegate.swift in Sources */,
 				38323EFF2A8088AD000732A0 /* CartTableViewCell.swift in Sources */,

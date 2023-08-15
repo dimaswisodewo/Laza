@@ -48,39 +48,4 @@ class LoginViewModel {
             }
         }
     }
-    
-    // Login with API
-//    private func loginWithApi(completion: @escaping (LoginToken?) -> Void) {
-//
-//        // Mock user data with registered data from https://fakestoreapi.com/users to login
-//        let username = "johnd"
-//        let password = "m38rmF$"
-//        let body = "username=\(username)&password=\(password)"
-//        guard let finalBody = body.data(using: .utf8) else { return }
-//
-//        var endpoint = Endpoint()
-//        endpoint.initialize(path: .Login, method: .POST)
-//
-//        guard let url = URL(string: endpoint.getURL()) else { return }
-//
-//        var request = URLRequest(url: url)
-//        request.httpMethod = endpoint.getMethod.rawValue
-//        request.httpBody = finalBody
-//
-//        NetworkManager.shared.sendRequest(request: request) { result in
-//            switch result {
-//            case .success(let tuple):
-//                guard let data = tuple.0 else { return }
-//                do {
-//                    let loginToken = try JSONDecoder().decode(LoginToken.self, from: data)
-//                    completion(loginToken)
-//                } catch {
-//                    print(error)
-//                }
-//            case .failure(let error):
-//                print(error)
-//                completion(nil)
-//            }
-//        }
-//    }
 }

@@ -356,6 +356,18 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="95v-bX-fnV">
+                                <rect key="frame" x="205" y="580.33333333333337" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="5Ka-Jy-9xS"/>
+                                    <constraint firstAttribute="height" constant="20" id="P80-55-MUN"/>
+                                    <constraint firstAttribute="width" secondItem="95v-bX-fnV" secondAttribute="height" multiplier="1:1" id="WEp-tQ-neT"/>
+                                    <constraint firstAttribute="width" constant="20" id="uDn-6g-OO9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="0wB-D7-L1d"/>
                         <color key="backgroundColor" name="WhiteBG"/>
@@ -373,10 +385,12 @@
                             <constraint firstItem="oEQ-nU-aQd" firstAttribute="leading" secondItem="0wB-D7-L1d" secondAttribute="leading" id="NO0-OB-xFj"/>
                             <constraint firstItem="NOJ-zC-8YY" firstAttribute="bottom" secondItem="mop-bl-j4n" secondAttribute="bottom" id="OfF-lw-w2q"/>
                             <constraint firstItem="hbx-P4-4kn" firstAttribute="top" secondItem="0wB-D7-L1d" secondAttribute="top" constant="45" id="UZN-Ex-oQ6"/>
+                            <constraint firstItem="95v-bX-fnV" firstAttribute="top" secondItem="mop-bl-j4n" secondAttribute="bottom" constant="32" id="YwZ-ss-8Mn"/>
                             <constraint firstItem="mop-bl-j4n" firstAttribute="leading" secondItem="Kpn-Zd-lR7" secondAttribute="trailing" constant="5" id="aEQ-et-Rtj"/>
                             <constraint firstItem="oEQ-nU-aQd" firstAttribute="top" secondItem="0wB-D7-L1d" secondAttribute="top" id="fsr-CA-5LP"/>
                             <constraint firstItem="mop-bl-j4n" firstAttribute="top" secondItem="Pr1-ri-rke" secondAttribute="bottom" constant="10" id="hZ8-nl-LHM"/>
                             <constraint firstItem="0wB-D7-L1d" firstAttribute="trailing" secondItem="i7q-Uq-GFj" secondAttribute="trailing" constant="20" id="hom-90-thm"/>
+                            <constraint firstItem="95v-bX-fnV" firstAttribute="centerX" secondItem="mop-bl-j4n" secondAttribute="centerX" id="izS-zw-1k8"/>
                             <constraint firstItem="Iso-02-f82" firstAttribute="centerX" secondItem="EUr-sN-AdV" secondAttribute="centerX" id="q7D-6Q-7I2"/>
                             <constraint firstItem="Pr1-ri-rke" firstAttribute="leading" secondItem="0wB-D7-L1d" secondAttribute="leading" constant="20" id="qxQ-dG-2t4"/>
                             <constraint firstItem="Iso-02-f82" firstAttribute="top" secondItem="EUr-sN-AdV" secondAttribute="top" constant="15" id="rf4-c6-cEA"/>
@@ -390,6 +404,9 @@
                     </view>
                     <connections>
                         <outlet property="backButton" destination="hbx-P4-4kn" id="DjY-9H-dHT"/>
+                        <outlet property="currentRatingLabel" destination="95v-bX-fnV" id="E45-La-YCy"/>
+                        <outlet property="slider" destination="mop-bl-j4n" id="Qnp-vJ-f2U"/>
+                        <outlet property="submitReviewButton" destination="EUr-sN-AdV" id="9kg-5s-Hzm"/>
                         <outlet property="textView" destination="i7q-Uq-GFj" id="Vra-tR-Mes"/>
                     </connections>
                 </viewController>

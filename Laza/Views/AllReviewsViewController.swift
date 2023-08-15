@@ -103,7 +103,17 @@ extension AllReviewsViewController: ReviewsHeaderTableViewCellDelegate {
     
     func addReviewButtonPressed() {
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: AddReviewViewController.identifier)
+        guard let vc = storyboard.instantiateViewController(withIdentifier: AddReviewViewController.identifier) as? AddReviewViewController else { return }
+        vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+// MARK: - AddReviewViewControllerDelegate
+
+extension AllReviewsViewController: AddReviewViewControllerDelegate {
+    
+    func onSubmitReviewDone() {
+        SnackBarDanger.make(in: self.view, message: "Review submitted", duration: .lengthShort).show()
     }
 }

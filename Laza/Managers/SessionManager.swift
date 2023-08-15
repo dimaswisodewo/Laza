@@ -14,10 +14,12 @@ class SessionManager {
     private(set) var currentUser: User?
     
     func setCurrentToken(token: String) {
+        print("Current token: \(token)")
         currentToken = token
     }
     
     func setCurrentUser(user: User) {
+        print("Current user: \(user.username)")
         currentUser = user
     }
 }
