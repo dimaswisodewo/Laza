@@ -41,9 +41,15 @@ class AllReviewsViewController: UIViewController {
         tableView.register(ReviewsHeaderTableViewCell.nib, forCellReuseIdentifier: ReviewsHeaderTableViewCell.identifier)
         tableView.register(ReviewTableViewCell.nib, forCellReuseIdentifier: ReviewTableViewCell.identifier)
     }
+    
+    private let viewModel = AllReviewsViewModel()
 
     @objc private func backButtonPressed() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    func configure(productId: Int, reviews: ProductReviews) {
+        viewModel.configure(productId: productId, reviews: reviews)
     }
 }
 
@@ -60,7 +66,7 @@ extension AllReviewsViewController: UITableViewDataSource, UITableViewDelegate {
         case Section.Header.rawValue:
             return 1
         case Section.Reviews.rawValue:
-            return 8
+            return viewModel.reviewsCount
         default:
             return 0
         }
@@ -73,12 +79,16 @@ extension AllReviewsViewController: UITableViewDataSource, UITableViewDelegate {
                 print("Failed to dequeue ReviewsHeaderTableViewCell")
                 return UITableViewCell()
             }
+            cell.configure(reviewsCount: viewModel.reviewsCount, reviewsAverage: viewModel.productReviews.ratingAverage)
             cell.delegate = self
             return cell
         case Section.Reviews.rawValue:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ReviewTableViewCell.identifier) as? ReviewTableViewCell else {
                 print("Failed to dequeue ReviewTableViewCell")
                 return UITableViewCell()
+            }
+            if let review = viewModel.getReviewAtIndex(index: indexPath.row) {
+                cell.configureReview(model: review)
             }
             return cell
         default:

@@ -50,6 +50,7 @@ class DetailViewController: UIViewController {
     
     private var product: Product?
     private var viewModel: DetailViewModel?
+    private let emptyCellIdentifier = "EmptyCellIdentifier"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,6 +84,7 @@ class DetailViewController: UIViewController {
         tableView.delegate = self
         tableView.register(DetailTableViewCell.self, forCellReuseIdentifier: DetailTableViewCell.identifier)
         tableView.register(ReviewTableViewCell.nib, forCellReuseIdentifier: ReviewTableViewCell.identifier)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: emptyCellIdentifier)
     }
     
     func configure(product: Product) {
@@ -125,6 +127,23 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
             tableViewCell.delegate = self
             return tableViewCell
         case Row.Review.rawValue:
+            // There are no review for the product
+            if let reviews = viewModel?.productReviews?.reviews, reviews.isEmpty {
+                guard let emptyCell = tableView.dequeueReusableCell(withIdentifier: emptyCellIdentifier) else {
+                    return UITableViewCell()
+                }
+                
+                let label = UILabel()
+                label.text = "There are no review"
+                label.textAlignment = .center
+                label.font = FontUtils.shared.getFont(font: .Poppins, weight: .regular, size: 14)
+                
+                emptyCell.contentView.addSubview(label)
+                label.frame = emptyCell.contentView.bounds
+                
+                return emptyCell
+            }
+            // There is at least one review for the product
             guard let tableViewCell = tableView.dequeueReusableCell(withIdentifier: ReviewTableViewCell.identifier) as? ReviewTableViewCell else {
                 print("Failed to dequeue ReviewTableViewCell")
                 return UITableViewCell()
@@ -144,8 +163,14 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
 extension DetailViewController: DetailTableViewCellDelegate {
     
     func viewAllReviewsButtonPressed() {
+        
+        guard let reviews = viewModel?.productReviews else { return }
+        guard let productId = viewModel?.productDetail?.id else { return }
+        
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: AllReviewsViewController.identifier)
+        guard let vc = storyboard.instantiateViewController(withIdentifier: AllReviewsViewController.identifier) as? AllReviewsViewController else { return }
+        
+        vc.configure(productId: productId, reviews: reviews)
         navigationController?.pushViewController(vc, animated: true)
     }
     

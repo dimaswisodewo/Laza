@@ -13,7 +13,6 @@ class DateTimeUtils {
     private let formatter = DateFormatter()
     
     func formatReview(date: String) -> String {
-        print(date)
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
         if let formattedDate = formatter.date(from: date) {
             formatter.dateStyle = .medium

@@ -39,3 +39,9 @@ struct ProductReview: Codable {
         case createdAt = "created_at"
     }
 }
+
+struct ProductReviewFailedResponse: Codable {
+    let status: String
+    let isError: Bool
+    let description: String
+}
