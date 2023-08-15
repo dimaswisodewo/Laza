@@ -34,11 +34,13 @@ class HomeViewModel {
     
     func loadBrands() {
         var endpoint = Endpoint()
-        endpoint.initialize(path: .Categories)
+        endpoint.initialize(path: .Brands)
         NetworkManager.shared.sendRequest(type: BrandResponse.self, endpoint: endpoint) { [weak self] result in
             switch result {
             case .success(let brandResponse):
-                self?.brands.append(contentsOf: brandResponse.descriptions)
+                self?.brands.append(contentsOf: brandResponse.description)
+                print("Success load brands: \(brandResponse.description.count)")
+                print(self!.brands)
                 DispatchQueue.main.async {
                     self?.reloadBrandCollectionView?()
                 }

@@ -10,7 +10,7 @@ import Foundation
 struct BrandResponse: Codable {
     let status: String
     let isError: Bool
-    let descriptions: [Brand]
+    let description: [Brand]
 }
 
 struct Brand: Codable {
