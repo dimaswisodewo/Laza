@@ -39,8 +39,6 @@ class HomeViewModel {
             switch result {
             case .success(let brandResponse):
                 self?.brands.append(contentsOf: brandResponse.description)
-                print("Success load brands: \(brandResponse.description.count)")
-                print(self!.brands)
                 DispatchQueue.main.async {
                     self?.reloadBrandCollectionView?()
                 }
@@ -78,5 +76,35 @@ class HomeViewModel {
             return nil
         }
         return products[index]
+    }
+    
+    func getProfile(token: String, completion: @escaping (Profile) -> Void, onError: @escaping (String) -> Void) {
+        var endpoint = Endpoint()
+        endpoint.initialize(path: .UserProfile)
+        
+        guard let url = URL(string: endpoint.getURL()) else { return }
+        var request = URLRequest(url: url)
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
+        
+        NetworkManager.shared.sendRequest(request: request) { result in
+            switch result {
+            case .success(let (data, response)):
+                guard let httpResponse = response as? HTTPURLResponse else { return }
+                if httpResponse.statusCode != 200 {
+                    // Login failed
+                    onError("Error: \(httpResponse.statusCode)")
+                    return
+                }
+                // Login success
+                guard let data = data else { return }
+                guard let profile = try? JSONDecoder().decode(ProfileResponse.self, from: data) else {
+                    onError("Get profile success - Failed to decode")
+                    return
+                }
+                completion(profile.data)
+            case .failure(let error):
+                onError(String(describing: error))
+            }
+        }
     }
 }

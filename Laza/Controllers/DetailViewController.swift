@@ -57,6 +57,10 @@ class DetailViewController: UIViewController {
         loadProductDetail()
         
         registerObserver()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+            self?.tableView.reloadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

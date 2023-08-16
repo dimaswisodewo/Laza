@@ -60,7 +60,6 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print(String(describing: DataPersistentManager.shared.getTokenFromKeychain()))
     }
     
     // End editing on touch began
@@ -81,20 +80,6 @@ class LoginViewController: UIViewController {
     
     @objc private func loginButtonPressed() {
         
-//        DispatchQueue.main.async { [weak self] in
-//            let storyboard = UIStoryboard(name: "Home", bundle: nil)
-//            guard let vc = storyboard.instantiateViewController(withIdentifier: MainTabBarViewController.identifier) as? MainTabBarViewController else { return }
-//            let nav = UINavigationController(rootViewController: vc)
-//            nav.setNavigationBarHidden(true, animated: false)
-//
-//            self?.delegate = vc
-//            self?.delegate?.onLoginSuccess()
-//
-//            self?.view.window?.windowScene?.keyWindow?.rootViewController = nav
-//        }
-//
-//        return
-        
         if !usernameTextField.hasText {
             SnackBarDanger.make(in: self.view, message: "Username is not valid", duration: .lengthShort).show()
             return
@@ -110,7 +95,6 @@ class LoginViewController: UIViewController {
         
         viewModel.login(username: username, password: password, completion: { [weak self] loginUser in
             // Login success
-            SessionManager.shared.setCurrentToken(token: loginUser.accessToken)
             // Get profile
             self?.viewModel.getProfile(token: loginUser.accessToken, completion: { profile in
                 // Get profile success

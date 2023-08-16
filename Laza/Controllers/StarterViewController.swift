@@ -17,9 +17,13 @@ class StarterViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+        var isExpired = true
+        if let token = DataPersistentManager.shared.getTokenFromKeychain() {
+            isExpired = SessionManager.shared.isSessionExpired(token: token)
+        }
+        print("Is token expired: \(isExpired)")
         
-        if /* DataPersistentManager.shared.isUserLoggedIn() */ false {
+        if !isExpired {
             let storyboard = UIStoryboard(name: "Home", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: MainTabBarViewController.identifier)
             view.window?.windowScene?.keyWindow?.rootViewController = vc

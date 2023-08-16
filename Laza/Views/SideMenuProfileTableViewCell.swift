@@ -26,9 +26,9 @@ class SideMenuProfileTableViewCell: UITableViewCell {
         
         backgroundColor = nil
     }
-
-    func configure(name: String?, image: UIImage?) {
-        nameLabel.text = name
-        profileImage.image = image
+    
+    func configure(profile: Profile) {
+        nameLabel.text = profile.fullName
+        profileImage.image = nil
     }
 }

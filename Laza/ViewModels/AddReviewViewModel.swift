@@ -23,7 +23,10 @@ class AddReviewViewModel {
         var request = URLRequest(url: url)
         request.httpMethod = endpoint.getMethod.rawValue
         // Header
-        let token = SessionManager.shared.currentToken
+        guard let token = DataPersistentManager.shared.getTokenFromKeychain() else {
+            onError("Failed to get token from keychain")
+            return
+        }
         request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
         // Http body
         request.httpBody = ApiService.getHttpBodyRaw(param: [
@@ -33,16 +36,15 @@ class AddReviewViewModel {
         
         NetworkManager.shared.sendRequest(request: request) { result in
             switch result {
-            case .success(let (data, response)):
+            case .success(let (_, response)):
                 guard let httpResponse = response as? HTTPURLResponse else { return }
                 print("status code: \(httpResponse.statusCode.description)")
                 // Error
                 if httpResponse.statusCode != 201 {
-                    onError(httpResponse.statusCode.description)
+                    onError("Error: \(httpResponse.statusCode.description)")
                     return
                 }
                 // Success
-                guard let data = data else { return }
                 completion()
             case .failure(let error):
                 onError(error.localizedDescription)
