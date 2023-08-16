@@ -103,3 +103,9 @@ extension UINavigationController {
         CATransaction.commit()
     }
 }
+
+extension Notification.Name {
+    static var newReviewAdded: Notification.Name {
+        return .init("ProductDetail.newReviewAdded")
+    }
+}

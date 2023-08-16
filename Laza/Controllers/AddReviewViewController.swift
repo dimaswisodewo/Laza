@@ -60,12 +60,16 @@ class AddReviewViewController: UIViewController {
         setup()
     }
     
+    func configure(productId: Int) {
+        viewModel.configure(productId: productId)
+    }
+    
     private func setup() {
         currentRatingLabel.text = String(format: "%.0f", slider.maximumValue)
     }
     
     @objc private func setCurrentRatingLabel() {
-        currentRatingLabel.text = String(format: "%.0f", slider.value)
+        currentRatingLabel.text = String(format: "%.0f", slider.value.rounded())
     }
     
     @objc private func backButtonPressed() {
@@ -74,7 +78,7 @@ class AddReviewViewController: UIViewController {
     
     @objc private func submitButtonPressed() {
         
-        if isPlaceholderActive {
+        if isPlaceholderActive || !textView.hasText {
             SnackBarDanger.make(in: self.view, message: "Text cannot be empty", duration: .lengthShort).show()
             return
         }
@@ -83,10 +87,13 @@ class AddReviewViewController: UIViewController {
         
         viewModel.addReview(
             reviewText: reviewText,
-            rating: slider.value,
-            completion: { [weak self] in
-                self?.delegate?.onSubmitReviewDone()
-                self?.navigationController?.popViewController(animated: true)
+            rating: slider.value.rounded(),
+            completion: {
+                NotificationCenter.default.post(name: Notification.Name.newReviewAdded, object: nil)
+                DispatchQueue.main.async { [weak self] in
+                    self?.delegate?.onSubmitReviewDone()
+                    self?.navigationController?.popViewController(animated: true)
+                }
             }, onError: { errorMessage in
                 print(errorMessage)
                 DispatchQueue.main.async { [weak self] in

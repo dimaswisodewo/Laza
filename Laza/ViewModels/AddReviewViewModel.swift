@@ -37,14 +37,13 @@ class AddReviewViewModel {
                 guard let httpResponse = response as? HTTPURLResponse else { return }
                 print("status code: \(httpResponse.statusCode.description)")
                 // Error
-                if httpResponse.statusCode != 200 {
+                if httpResponse.statusCode != 201 {
                     onError(httpResponse.statusCode.description)
                     return
                 }
                 // Success
                 guard let data = data else { return }
-                guard let result = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) else { return }
-                print(result)
+                completion()
             case .failure(let error):
                 onError(error.localizedDescription)
             }

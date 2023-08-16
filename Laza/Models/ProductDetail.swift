@@ -19,15 +19,13 @@ struct ProductDetail: Codable {
     let description: String
     let imageUrl: String
     let price: Double
-    let categoryId: Int
-    let category: [ProductCategory]
+    let category: ProductCategory
     let size: [ProductSize]
     let reviews: [ProductReview]
     
     private enum CodingKeys: String, CodingKey {
         case id, name, description, price, category, size, reviews
         case imageUrl = "image_url"
-        case categoryId = "category_id"
     }
 }
 

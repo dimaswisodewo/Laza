@@ -56,14 +56,26 @@ class DetailViewController: UIViewController {
         
         loadProductDetail()
         
-        // Reload table view, wait 0.1 sec to make sure that collection views inside the table view is finished layouting subviews
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
-            self?.tableView.reloadData()
-        }
+        registerObserver()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         tabBarController?.tabBar.isHidden = true
+    }
+    
+    // Remove observer to reload reviews
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.newReviewAdded, object: nil)
+    }
+    
+    // Register observer to reload reviews when there are new review added
+    private func registerObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(loadRatings), name: Notification.Name.newReviewAdded, object: nil)
+    }
+    
+    @objc private func loadRatings() {
+        print("Reload ratings in DetailViewController")
+        viewModel?.loadRatings()
     }
     
     private func loadProductDetail() {
@@ -155,13 +167,12 @@ extension DetailViewController: DetailTableViewCellDelegate {
     
     func viewAllReviewsButtonPressed() {
         
-        guard let reviews = viewModel?.productReviews else { return }
         guard let productId = viewModel?.productDetail?.id else { return }
         
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
         guard let vc = storyboard.instantiateViewController(withIdentifier: AllReviewsViewController.identifier) as? AllReviewsViewController else { return }
         
-        vc.configure(productId: productId, reviews: reviews)
+        vc.configure(productId: productId, reviews: viewModel?.productReviews)
         navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -185,9 +196,8 @@ extension DetailViewController: DetailTableViewCellDelegate {
         
         productImage.loadAndCache(url: product.imageUrl)
         productName.text = product.name.capitalized
-        if let categories = viewModel?.productDetail?.category {
-            let categoryText = categories.map { $0.category.capitalized }.joined(separator: ", ")
-            productCategory.text = categoryText
+        if let category = viewModel?.productDetail?.category {
+            productCategory.text = category.category
         }
         if let productDetail = viewModel?.productDetail {
             productDesc.text = productDetail.description

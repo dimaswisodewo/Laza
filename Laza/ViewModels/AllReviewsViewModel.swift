@@ -10,22 +10,28 @@ import Foundation
 class AllReviewsViewModel {
     
     private(set) var productId: Int!
-    private(set) var productReviews: ProductReviews!
+    private(set) var productReviews: ProductReviews?
     
     var reviewsCount: Int {
-        productReviews.reviews.count
+        guard let count = productReviews?.reviews.count else {
+            return 0
+        }
+        return count
     }
     
-    func configure(productId: Int, reviews: ProductReviews) {
+    func configure(productId: Int, reviews: ProductReviews?) {
         self.productId = productId
         self.productReviews = reviews
     }
     
     func getReviewAtIndex(index: Int) -> ProductReview? {
-        if index >= productReviews.reviews.count {
+        guard let reviews = productReviews else {
             return nil
         }
-        return productReviews.reviews[index]
+        if index >= reviews.reviews.count {
+            return nil
+        }
+        return reviews.reviews[index]
     }
     
     func loadAllReviews(completion: @escaping () -> Void, onError: @escaping (String) -> Void) {
@@ -45,10 +51,11 @@ class AllReviewsViewModel {
                     return
                 }
                 // Success
-                guard let model = try? decoder.decode(ProductReviewResponse.self, from: data) else {
+                guard var model = try? decoder.decode(ProductReviewResponse.self, from: data) else {
                     onError("Load reviews success - Failed to decode")
                     return
                 }
+                model.data.reviews = model.data.reviews.sorted { $0.createdAt > $1.createdAt } // Sort by created at
                 self?.productReviews = model.data
                 completion()
                 return

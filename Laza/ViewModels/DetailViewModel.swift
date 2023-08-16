@@ -40,7 +40,8 @@ class DetailViewModel {
         endpoint.initialize(path: .Products, additionalPath: "/\(productId)/reviews")
         NetworkManager.shared.sendRequest(type: ProductReviewResponse.self, endpoint: endpoint) { [weak self] result in
             switch result {
-            case .success(let productReviewResponse):
+            case .success(var productReviewResponse):
+                productReviewResponse.data.reviews = productReviewResponse.data.reviews.sorted { $0.createdAt > $1.createdAt } // Sort by created at
                 self?.productReviews = productReviewResponse.data
                 DispatchQueue.main.async {
                     self?.reloadProductDetailCollectionView?()

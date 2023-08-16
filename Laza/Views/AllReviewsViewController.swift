@@ -32,6 +32,32 @@ class AllReviewsViewController: UIViewController {
         super.viewDidLoad()
 
         registerCells()
+        
+        registerObserver()
+    }
+    
+    // Remove observer to reload reviews
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.newReviewAdded, object: nil)
+    }
+    
+    // Register observer to reload reviews when there are new review added
+    private func registerObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(loadRatings), name: Notification.Name.newReviewAdded, object: nil)
+    }
+    
+    @objc private func loadRatings() {
+        print("Reload reviews in AllReviewsViewController")
+        viewModel.loadAllReviews(completion: {
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
+            }
+        }, onError: { errorMessage in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+            }
+        })
     }
     
     private func registerCells() {
@@ -48,7 +74,7 @@ class AllReviewsViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    func configure(productId: Int, reviews: ProductReviews) {
+    func configure(productId: Int, reviews: ProductReviews?) {
         viewModel.configure(productId: productId, reviews: reviews)
     }
 }
@@ -79,7 +105,7 @@ extension AllReviewsViewController: UITableViewDataSource, UITableViewDelegate {
                 print("Failed to dequeue ReviewsHeaderTableViewCell")
                 return UITableViewCell()
             }
-            cell.configure(reviewsCount: viewModel.reviewsCount, reviewsAverage: viewModel.productReviews.ratingAverage)
+            cell.configure(reviewsCount: viewModel.reviewsCount, reviewsAverage: viewModel.productReviews?.ratingAverage ?? 0)
             cell.delegate = self
             return cell
         case Section.Reviews.rawValue:
@@ -105,6 +131,7 @@ extension AllReviewsViewController: ReviewsHeaderTableViewCellDelegate {
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
         guard let vc = storyboard.instantiateViewController(withIdentifier: AddReviewViewController.identifier) as? AddReviewViewController else { return }
         vc.delegate = self
+        vc.configure(productId: viewModel.productId)
         navigationController?.pushViewController(vc, animated: true)
     }
 }
@@ -114,6 +141,6 @@ extension AllReviewsViewController: ReviewsHeaderTableViewCellDelegate {
 extension AllReviewsViewController: AddReviewViewControllerDelegate {
     
     func onSubmitReviewDone() {
-        SnackBarDanger.make(in: self.view, message: "Review submitted", duration: .lengthShort).show()
+        SnackBarSuccess.make(in: self.view, message: "Review submitted", duration: .lengthShort).show()
     }
 }

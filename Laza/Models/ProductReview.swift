@@ -10,13 +10,13 @@ import Foundation
 struct ProductReviewResponse: Codable {
     let status: String
     let isError: Bool
-    let data: ProductReviews
+    var data: ProductReviews
 }
 
 struct ProductReviews: Codable {
     let ratingAverage: Double
     let total: Int
-    let reviews: [ProductReview]
+    var reviews: [ProductReview]
     
     private enum CodingKeys: String, CodingKey {
         case total, reviews
