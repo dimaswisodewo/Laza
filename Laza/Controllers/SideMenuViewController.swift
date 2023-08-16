@@ -126,6 +126,8 @@ class SideMenuViewController: UIViewController {
         ])
     }
     
+    var sideMenuProfile: SideMenuProfileTableViewCell?
+    
     private func setupLogoutView() {
         logoutView.configure(
             model: SideMenuModel(
@@ -161,6 +163,7 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: SideMenuProfileTableViewCell.identifier) as? SideMenuProfileTableViewCell else {
                 return UITableViewCell()
             }
+            sideMenuProfile = cell
             cell.configure(name: model.title, image: model.icon)
             return cell
         }

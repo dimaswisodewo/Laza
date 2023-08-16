@@ -107,21 +107,32 @@ class LoginViewController: UIViewController {
         guard let username = usernameTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         
-        viewModel.login(username: username, password: password, completion: { loginUser in
+        viewModel.login(username: username, password: password, completion: { [weak self] loginUser in
             // Login success
             SessionManager.shared.setCurrentToken(token: loginUser.accessToken)
-            // Move to Home Page
-            DispatchQueue.main.async { [weak self] in
-                let storyboard = UIStoryboard(name: "Home", bundle: nil)
-                guard let vc = storyboard.instantiateViewController(withIdentifier: MainTabBarViewController.identifier) as? MainTabBarViewController else { return }
-                let nav = UINavigationController(rootViewController: vc)
-                nav.setNavigationBarHidden(true, animated: false)
+            // Get profile
+            self?.viewModel.getProfile(token: loginUser.accessToken, completion: { profile in
+                // Get profile success
+                SessionManager.shared.setCurrentProfile(profile: profile)
+                // Move to Home Page
+                DispatchQueue.main.async {
+                    let storyboard = UIStoryboard(name: "Home", bundle: nil)
+                    guard let vc = storyboard.instantiateViewController(withIdentifier: MainTabBarViewController.identifier) as? MainTabBarViewController else { return }
+                    let nav = UINavigationController(rootViewController: vc)
+                    nav.setNavigationBarHidden(true, animated: false)
 
-                self?.delegate = vc
-                self?.delegate?.onLoginSuccess()
+                    self?.delegate = vc
+                    self?.delegate?.onLoginSuccess()
 
-                self?.view.window?.windowScene?.keyWindow?.rootViewController = nav
-            }
+                    self?.view.window?.windowScene?.keyWindow?.rootViewController = nav
+                }
+            }, onError: { errorMessage in
+                // Get profile failed
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+                }
+            })
         }, onError: { errorMessage in
             // Login failed
             DispatchQueue.main.async { [weak self] in

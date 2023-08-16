@@ -23,6 +23,7 @@
 		380B4BEF2A822C5E00297B62 /* PaymentAddCardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380B4BED2A822C5E00297B62 /* PaymentAddCardTableViewCell.xib */; };
 		3815361B2A8C706500104367 /* EmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381536192A8C706500104367 /* EmptyTableViewCell.swift */; };
 		3815361C2A8C706500104367 /* EmptyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3815361A2A8C706500104367 /* EmptyTableViewCell.xib */; };
+		3815361E2A8C82AF00104367 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3815361D2A8C82AF00104367 /* Profile.swift */; };
 		3817D67A2A7202A10074D911 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3817D6792A7202A10074D911 /* RoundedButton.swift */; };
 		3825DC6E2A7F700800239E55 /* SnackBar in Frameworks */ = {isa = PBXBuildFile; productRef = 3825DC6D2A7F700800239E55 /* SnackBar */; };
 		3825DC702A7F705000239E55 /* CustomSnackBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3825DC6F2A7F705000239E55 /* CustomSnackBar.swift */; };
@@ -157,6 +158,7 @@
 		380B4BED2A822C5E00297B62 /* PaymentAddCardTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentAddCardTableViewCell.xib; sourceTree = "<group>"; };
 		381536192A8C706500104367 /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewCell.swift; sourceTree = "<group>"; };
 		3815361A2A8C706500104367 /* EmptyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyTableViewCell.xib; sourceTree = "<group>"; };
+		3815361D2A8C82AF00104367 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		3817D6792A7202A10074D911 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		3825DC6F2A7F705000239E55 /* CustomSnackBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSnackBar.swift; sourceTree = "<group>"; };
 		382640212A76911D00744726 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
@@ -395,6 +397,7 @@
 				38D1DE392A74AED1002AB0ED /* Password.swift */,
 				3847AE252A8479BC00C8D4E5 /* PaymentMethod.swift */,
 				38EAD6CD2A8363A700103947 /* CreditCard.swift */,
+				3815361D2A8C82AF00104367 /* Profile.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -677,6 +680,7 @@
 				38EAD6D02A83743B00103947 /* WalletViewModel.swift in Sources */,
 				38DBEB922A7E8FA8003BC9F3 /* VerificationCodeViewController.swift in Sources */,
 				38EAD6D32A83773700103947 /* WalletTableViewCell.swift in Sources */,
+				3815361E2A8C82AF00104367 /* Profile.swift in Sources */,
 				38DFE8812A77608700B1EE8F /* ProductTableViewCell.swift in Sources */,
 				38C51DC52A715849000324A5 /* WalletViewController.swift in Sources */,
 				3809B3F72A8A143800B34E5D /* UserRegister.swift in Sources */,

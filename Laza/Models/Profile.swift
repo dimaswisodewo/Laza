@@ -1,0 +1,28 @@
+//
+//  Profile.swift
+//  Laza
+//
+//  Created by Dimas Wisodewo on 16/08/23.
+//
+
+import Foundation
+
+struct ProfileResponse: Codable {
+    let status: String
+    let isError: Bool
+    let data: Profile
+}
+
+struct Profile: Codable {
+    let id: Int
+    var fullName: String
+    let username: String
+    let email: String
+    let isVerified: Bool
+    
+    private enum CodingKeys: String, CodingKey {
+        case id, username, email
+        case fullName = "full_name"
+        case isVerified = "is_verified"
+    }
+}

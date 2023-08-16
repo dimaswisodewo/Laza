@@ -149,6 +149,10 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
         guard let vc = storyboard.instantiateViewController(withIdentifier: SideMenuViewController.identifier) as? SideMenuViewController else { return }
         vc.delegate = self
         
+        if let profile = SessionManager.shared.currentProfile {
+            vc.sideMenuProfile?.configure(name: profile.fullName, image: nil)
+        }
+        
         sideMenuNavigationController = SideMenuNavigationController(rootViewController: vc)
         sideMenuNavigationController.delegate = self
         sideMenuNavigationController.menuWidth = view.bounds.width * 0.8

@@ -24,7 +24,7 @@ class AddReviewViewModel {
         request.httpMethod = endpoint.getMethod.rawValue
         // Header
         let token = SessionManager.shared.currentToken
-        request.setValue("X-Auth-Token", forHTTPHeaderField: "Bearer \(token)")
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
         // Http body
         request.httpBody = ApiService.getHttpBodyRaw(param: [
             "comment": reviewText,

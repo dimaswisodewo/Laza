@@ -11,9 +11,15 @@ class SessionManager {
     static let shared = SessionManager()
     
     private(set) var currentToken: String = ""
+    private(set) var currentProfile: Profile?
     
     func setCurrentToken(token: String) {
         print("Current token: \(token)")
         currentToken = token
+    }
+    
+    func setCurrentProfile(profile: Profile) {
+        print(profile)
+        currentProfile = profile
     }
 }
