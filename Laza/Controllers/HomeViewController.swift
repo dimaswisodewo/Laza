@@ -407,7 +407,7 @@ extension HomeViewController: BrandCollectionViewCellDelegate {
     func brandButtonPressed(brandName: String) {
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
         guard let vc = storyboard.instantiateViewController(withIdentifier: ProductBrandViewController.identifier) as? ProductBrandViewController else { return }
-        vc.configure(brandName: brandName, products: viewModel.getProducts)
+        vc.configure(brandName: brandName)
         navigationController?.pushViewController(vc, animated: true)
     }
 }

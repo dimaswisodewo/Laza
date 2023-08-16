@@ -717,8 +717,8 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="arrow.backward" catalog="system"/>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="365 Items" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yHU-ym-4Ky">
-                                <rect key="frame" x="20" y="173" width="68.666666666666671" height="19.666666666666657"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Items" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yHU-ym-4Ky">
+                                <rect key="frame" x="19.999999999999996" y="173" width="51.666666666666657" height="19.666666666666657"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                 <color key="textColor" name="TextPrimary"/>
                                 <nil key="highlightedColor"/>
@@ -783,6 +783,7 @@
                         <outlet property="backButton" destination="MaE-mc-JQ9" id="6oM-9c-QxK"/>
                         <outlet property="brandLabel" destination="0xw-OH-2Lc" id="7Sw-dM-wCb"/>
                         <outlet property="collectionView" destination="f3I-tw-uAg" id="TVq-E0-R5h"/>
+                        <outlet property="productsCountLabel" destination="yHU-ym-4Ky" id="Esf-AL-HOe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OVT-Ye-62S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

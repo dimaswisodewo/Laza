@@ -130,6 +130,7 @@ enum EndpointPath: String {
     case AuthGoogleCallback = "auth/google/callback"
     // Products
     case Products = "products"
+    case ProductsByBrand = "products/brand"
     case Brands = "brand"
     // User
     case UserProfile = "user/profile"

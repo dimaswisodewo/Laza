@@ -13,6 +13,8 @@ class ProductBrandViewController: UIViewController {
     
     @IBOutlet weak var brandLabel: UILabel!
     
+    @IBOutlet weak var productsCountLabel: UILabel!
+    
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
             collectionView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 20, right: 20)
@@ -43,11 +45,23 @@ class ProductBrandViewController: UIViewController {
             
         brandLabel.text = viewModel.brandName
         
+        viewModel.loadProductsByBrand(completion: { productsCount in
+            DispatchQueue.main.async { [weak self] in
+                self?.productsCountLabel.text = "\(productsCount) Items"
+                self?.collectionView.reloadData()
+            }
+        }, onError: { errorMessage in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+            }
+        })
+        
         tabBarController?.tabBar.isHidden = true
     }
     
-    func configure(brandName: String, products: [Product]) {
-        viewModel = ProductBrandViewModel(brandName: brandName, products: products)
+    func configure(brandName: String) {
+        viewModel = ProductBrandViewModel(brandName: brandName)
     }
     
     private func registerCell() {

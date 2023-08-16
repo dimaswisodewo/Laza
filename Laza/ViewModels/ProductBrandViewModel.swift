@@ -17,9 +17,8 @@ class ProductBrandViewModel {
         return products.count
     }
     
-    init(brandName: String, products: Products) {
+    init(brandName: String) {
         self.brandName = brandName
-        self.products = products
     }
     
     func getProductOnIndex(index: Int) -> Product? {
@@ -27,5 +26,37 @@ class ProductBrandViewModel {
             return nil
         }
         return products[index]
+    }
+    
+    /// completion parameter: Products count
+    /// onError parameter: Error message
+    func loadProductsByBrand(completion: @escaping (Int) -> Void, onError: @escaping (String) -> Void) {
+        var endpoint = Endpoint()
+        endpoint.initialize(path: .ProductsByBrand, query: "name=\(brandName)&limit=10&offset=0")
+        
+        guard let url = URL(string: endpoint.getURL()) else { return }
+        let request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy)
+        
+        NetworkManager.shared.sendRequest(request: request) { [weak self] result in
+            switch result {
+            case .success(let (data, response)):
+                guard let httpResponse = response as? HTTPURLResponse else { return }
+                // Error
+                if httpResponse.statusCode != 200 {
+                    onError("Error: \(httpResponse.statusCode)")
+                    return
+                }
+                // Success
+                guard let data = data else { return }
+                guard let model = try? JSONDecoder().decode(ProductResponse.self, from: data) else {
+                    onError("Load products success - Failed to decode")
+                    return
+                }
+                self?.products.append(contentsOf: model.data)
+                completion(model.data.count)
+            case .failure(let error):
+                onError(error.localizedDescription)
+            }
+        }
     }
 }
