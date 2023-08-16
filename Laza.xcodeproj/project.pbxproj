@@ -21,6 +21,8 @@
 		380B4BEB2A820B6400297B62 /* PaymentCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380B4BEA2A820B6400297B62 /* PaymentCardCollectionViewCell.swift */; };
 		380B4BEE2A822C5E00297B62 /* PaymentAddCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380B4BEC2A822C5E00297B62 /* PaymentAddCardTableViewCell.swift */; };
 		380B4BEF2A822C5E00297B62 /* PaymentAddCardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380B4BED2A822C5E00297B62 /* PaymentAddCardTableViewCell.xib */; };
+		3815361B2A8C706500104367 /* EmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381536192A8C706500104367 /* EmptyTableViewCell.swift */; };
+		3815361C2A8C706500104367 /* EmptyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3815361A2A8C706500104367 /* EmptyTableViewCell.xib */; };
 		3817D67A2A7202A10074D911 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3817D6792A7202A10074D911 /* RoundedButton.swift */; };
 		3825DC6E2A7F700800239E55 /* SnackBar in Frameworks */ = {isa = PBXBuildFile; productRef = 3825DC6D2A7F700800239E55 /* SnackBar */; };
 		3825DC702A7F705000239E55 /* CustomSnackBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3825DC6F2A7F705000239E55 /* CustomSnackBar.swift */; };
@@ -153,6 +155,8 @@
 		380B4BEA2A820B6400297B62 /* PaymentCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		380B4BEC2A822C5E00297B62 /* PaymentAddCardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentAddCardTableViewCell.swift; sourceTree = "<group>"; };
 		380B4BED2A822C5E00297B62 /* PaymentAddCardTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentAddCardTableViewCell.xib; sourceTree = "<group>"; };
+		381536192A8C706500104367 /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewCell.swift; sourceTree = "<group>"; };
+		3815361A2A8C706500104367 /* EmptyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyTableViewCell.xib; sourceTree = "<group>"; };
 		3817D6792A7202A10074D911 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		3825DC6F2A7F705000239E55 /* CustomSnackBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSnackBar.swift; sourceTree = "<group>"; };
 		382640212A76911D00744726 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
@@ -441,6 +445,8 @@
 				38EAD6D82A838B7B00103947 /* ListAddressItemTableViewCell.xib */,
 				3847AE1F2A84757700C8D4E5 /* ChoosePaymentTableViewCell.swift */,
 				3847AE202A84757700C8D4E5 /* ChoosePaymentTableViewCell.xib */,
+				381536192A8C706500104367 /* EmptyTableViewCell.swift */,
+				3815361A2A8C706500104367 /* EmptyTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -555,6 +561,7 @@
 				38EAD6DA2A838B7B00103947 /* ListAddressItemTableViewCell.xib in Resources */,
 				386272B42A7A882200962892 /* ReviewTableViewCell.xib in Resources */,
 				38C51DBD2A71559B000324A5 /* Home.storyboard in Resources */,
+				3815361C2A8C706500104367 /* EmptyTableViewCell.xib in Resources */,
 				38DCC6722A70A8B8006A3633 /* LaunchScreen.storyboard in Resources */,
 				38323F002A8088AD000732A0 /* CartTableViewCell.xib in Resources */,
 				38DCC6872A70B9D7006A3633 /* Inter-Medium.ttf in Resources */,
@@ -633,6 +640,7 @@
 				38A9E4382A74FE4000ACBBFD /* StarterViewController.swift in Sources */,
 				38A7DD652A750E9E002564AB /* UpdatePasswordViewController.swift in Sources */,
 				38C51DC92A715F45000324A5 /* MainTabBarViewController.swift in Sources */,
+				3815361B2A8C706500104367 /* EmptyTableViewCell.swift in Sources */,
 				380B4BE52A82019900297B62 /* PaymentViewController.swift in Sources */,
 				38B05D5A2A80E0B600DC3F8B /* AddCardViewController.swift in Sources */,
 				38DCC68B2A70D368006A3633 /* CircleButton.swift in Sources */,

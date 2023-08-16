@@ -46,11 +46,8 @@ class DetailViewController: UIViewController {
         }
     }
     
-    private let sizes = ["S", "M", "L", "XL", "2XL"]
-    
-    private var product: Product?
+    private var detailTableViewCell: DetailTableViewCell?
     private var viewModel: DetailViewModel?
-    private let emptyCellIdentifier = "EmptyCellIdentifier"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,6 +70,8 @@ class DetailViewController: UIViewController {
         // Assign reload table view on finished load API
         viewModel?.reloadProductDetailCollectionView = { [weak self] in
             self?.tableView.reloadData()
+            self?.detailTableViewCell?.sizeCollectionView.reloadData()
+            self?.detailTableViewCell?.productCollectionView.reloadData()
         }
         // Load necessary data
         viewModel?.loadProductDetail()
@@ -84,12 +83,11 @@ class DetailViewController: UIViewController {
         tableView.delegate = self
         tableView.register(DetailTableViewCell.self, forCellReuseIdentifier: DetailTableViewCell.identifier)
         tableView.register(ReviewTableViewCell.nib, forCellReuseIdentifier: ReviewTableViewCell.identifier)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: emptyCellIdentifier)
+        tableView.register(EmptyTableViewCell.nib, forCellReuseIdentifier: EmptyTableViewCell.identifier)
     }
     
-    func configure(product: Product) {
-        self.product = product
-        self.viewModel = DetailViewModel(productId: product.id)
+    func configure(productId: Int) {
+        self.viewModel = DetailViewModel(productId: productId)
     }
 
     @objc private func backButtonPressed() {
@@ -124,23 +122,16 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
                 print("Failed to dequeue DetailTableViewCell")
                 return UITableViewCell()
             }
+            detailTableViewCell = tableViewCell // Cache to reload size collection view
             tableViewCell.delegate = self
             return tableViewCell
         case Row.Review.rawValue:
             // There are no review for the product
-            if let reviews = viewModel?.productReviews?.reviews, reviews.isEmpty {
-                guard let emptyCell = tableView.dequeueReusableCell(withIdentifier: emptyCellIdentifier) else {
+            if viewModel?.productReviews?.reviews.isEmpty ?? true {
+                guard let emptyCell = tableView.dequeueReusableCell(withIdentifier: EmptyTableViewCell.identifier) as? EmptyTableViewCell else {
                     return UITableViewCell()
                 }
-                
-                let label = UILabel()
-                label.text = "There are no review"
-                label.textAlignment = .center
-                label.font = FontUtils.shared.getFont(font: .Poppins, weight: .regular, size: 14)
-                
-                emptyCell.contentView.addSubview(label)
-                label.frame = emptyCell.contentView.bounds
-                
+                emptyCell.setTitle(title: "There are no reviews for this product")
                 return emptyCell
             }
             // There is at least one review for the product
@@ -174,22 +165,23 @@ extension DetailViewController: DetailTableViewCellDelegate {
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    func sizeNumberOfItemsInSection() -> Int {
+        return viewModel?.productDetail?.size.count ?? 0
+    }
+    
     func productThumbnailCellForItemAt(productCell cell: DetailThumbnailCollectionViewCell, cellForItemAt indexPath: IndexPath) {
-        
-        guard let product = product else {
-            print("Product model is nil")
-            return
-        }
-        
+        guard let product = viewModel?.productDetail else { return }
         cell.productImageView.loadAndCache(url: product.imageUrl)
+    }
+    
+    func productSizeCellForItemAt(productCell cell: DetailSizeCollectionViewCell, cellForItemAt indexPath: IndexPath) {
+        guard let size = viewModel?.productDetail?.size[indexPath.item] else { return }
+        cell.configureSize(size: size.size)
     }
     
     func applyModel(productImage: UIImageView, productName: UILabel, productCategory: UILabel, productPrice: UILabel, productDesc: UILabel) {
         
-        guard let product = product else {
-            print("Product model is nil")
-            return
-        }
+        guard let product = viewModel?.productDetail else { return }
         
         productImage.loadAndCache(url: product.imageUrl)
         productName.text = product.name.capitalized

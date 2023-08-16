@@ -74,7 +74,7 @@ class AddReviewViewController: UIViewController {
     
     @objc private func submitButtonPressed() {
         
-        if !textView.hasText {
+        if isPlaceholderActive {
             SnackBarDanger.make(in: self.view, message: "Text cannot be empty", duration: .lengthShort).show()
             return
         }

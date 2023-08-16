@@ -74,7 +74,7 @@ extension WishlistViewController: UICollectionViewDataSource, UICollectionViewDe
             return
         }
         guard let product = viewModel.getProductOnIndex(index: indexPath.item) else { return }
-        vc.configure(product: product)
+        vc.configure(productId: product.id)
         navigationController?.pushViewController(vc, animated: true)
     }
     

@@ -13,6 +13,10 @@ protocol DetailTableViewCellDelegate: AnyObject {
     
     func productThumbnailCellForItemAt(productCell cell: DetailThumbnailCollectionViewCell, cellForItemAt indexPath: IndexPath)
     
+    func productSizeCellForItemAt(productCell cell: DetailSizeCollectionViewCell, cellForItemAt indexPath: IndexPath)
+    
+    func sizeNumberOfItemsInSection() -> Int
+    
     func viewAllReviewsButtonPressed()
 }
 
@@ -125,7 +129,7 @@ class DetailTableViewCell: UITableViewCell {
         return button
     }()
     
-    private let productCollectionView: DynamicHeightCollectionView = {
+    let productCollectionView: DynamicHeightCollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.estimatedItemSize = CGSize(width: 80, height: 80)
@@ -138,7 +142,7 @@ class DetailTableViewCell: UITableViewCell {
         return cv
     }()
     
-    private let sizeCollectionView: DynamicHeightCollectionView = {
+    let sizeCollectionView: DynamicHeightCollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.estimatedItemSize = CGSize(width: 60, height: 60)
@@ -150,8 +154,6 @@ class DetailTableViewCell: UITableViewCell {
         cv.translatesAutoresizingMaskIntoConstraints = false
         return cv
     }()
-    
-    private let sizes = ["S", "M", "L", "XL", "2XL"]
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -297,7 +299,7 @@ extension DetailTableViewCell: UICollectionViewDataSource, UICollectionViewDeleg
         case DetailCollectionTag.product.rawValue:
             return 1
         case DetailCollectionTag.size.rawValue:
-            return sizes.count
+            return delegate?.sizeNumberOfItemsInSection() ?? 0
         default:
             return 0
         }
@@ -317,7 +319,8 @@ extension DetailTableViewCell: UICollectionViewDataSource, UICollectionViewDeleg
                 print("Failed to dequeue DetailSizeCollectionViewCell")
                 return UICollectionViewCell()
             }
-            cell.configureSize(size: sizes[indexPath.item])
+//            cell.configureSize(size: sizes[indexPath.item])
+            delegate?.productSizeCellForItemAt(productCell: cell, cellForItemAt: indexPath)
             return cell
         default:
             return UICollectionViewCell()
