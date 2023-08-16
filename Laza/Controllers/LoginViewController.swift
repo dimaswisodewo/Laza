@@ -60,6 +60,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        print(String(describing: DataPersistentManager.shared.getTokenFromKeychain()))
     }
     
     // End editing on touch began
@@ -114,6 +115,7 @@ class LoginViewController: UIViewController {
             self?.viewModel.getProfile(token: loginUser.accessToken, completion: { profile in
                 // Get profile success
                 SessionManager.shared.setCurrentProfile(profile: profile)
+                DataPersistentManager.shared.addTokenToKeychain(token: loginUser.accessToken)
                 // Move to Home Page
                 DispatchQueue.main.async {
                     let storyboard = UIStoryboard(name: "Home", bundle: nil)

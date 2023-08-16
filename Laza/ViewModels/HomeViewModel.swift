@@ -29,7 +29,7 @@ class HomeViewModel {
     var reloadProductCollectionView: (() -> Void)?
     
     func logout() {
-        DataPersistentManager.shared.deleteUserDataInUserDefaults()
+        DataPersistentManager.shared.deleteTokenFromKeychain()
     }
     
     func loadBrands() {

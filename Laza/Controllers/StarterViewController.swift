@@ -19,7 +19,7 @@ class StarterViewController: UIViewController {
         
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         
-        if DataPersistentManager.shared.isUserLoggedIn() {
+        if /* DataPersistentManager.shared.isUserLoggedIn() */ false {
             let storyboard = UIStoryboard(name: "Home", bundle: nil)
             let vc = storyboard.instantiateViewController(withIdentifier: MainTabBarViewController.identifier)
             view.window?.windowScene?.keyWindow?.rootViewController = vc
