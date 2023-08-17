@@ -137,6 +137,8 @@ enum EndpointPath: String {
     case UserUpdate = "user/update"
     case UserChangePassword = "user/change-password"
     case Users = "user"
+    // Address
+    case Address = "address"
 }
 
 enum HttpMethod: String {

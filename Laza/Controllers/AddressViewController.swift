@@ -7,9 +7,16 @@
 
 import UIKit
 
+protocol AddressViewControllerDelegate: AnyObject {
+    
+    func onNewAddressAdded(newAddress: AddAddress)
+}
+
 class AddressViewController: UIViewController {
 
     static let identifier = "AddressViewController"
+    
+    weak var delegate: AddressViewControllerDelegate?
     
     @IBOutlet weak var backButton: CircleButton! {
         didSet {
@@ -19,7 +26,7 @@ class AddressViewController: UIViewController {
     
     @IBOutlet weak var saveAddressButton: UIButton! {
         didSet {
-            
+            saveAddressButton.addTarget(self, action: #selector(ctaButtonPressed), for: .touchUpInside)
         }
     }
     
@@ -62,6 +69,10 @@ class AddressViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var isPrimarySwitch: UISwitch!
+    
+    private let viewModel = AddressViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -77,6 +88,54 @@ class AddressViewController: UIViewController {
     }
 
     @objc private func ctaButtonPressed() {
+        if !nameField.hasText {
+            SnackBarDanger.make(in: self.view, message: "Name cannot be empty", duration: .lengthShort).show()
+            return
+        }
         
+        if !countryField.hasText {
+            SnackBarDanger.make(in: self.view, message: "Country cannot be empty", duration: .lengthShort).show()
+            return
+        }
+        
+        if !cityField.hasText {
+            SnackBarDanger.make(in: self.view, message: "City cannot be empty", duration: .lengthShort).show()
+            return
+        }
+        
+        if !phoneField.hasText {
+            SnackBarDanger.make(in: self.view, message: "Phone number cannot be empty", duration: .lengthShort).show()
+            return
+        }
+        
+        if !addressField.hasText {
+            SnackBarDanger.make(in: self.view, message: "Address cannot be empty", duration: .lengthShort).show()
+            return
+        }
+        
+        guard let name = nameField.text else { return }
+        guard let country = countryField.text else { return }
+        guard let city = cityField.text else { return }
+        guard let phone = phoneField.text else { return }
+        guard let address = addressField.text else { return }
+        
+        viewModel.addNewAddress(
+            country: country,
+            city: "\(address), \(city)",
+            receiverName: name,
+            phone: phone,
+            isPrimary: isPrimarySwitch.isOn,
+            completion: { [weak self] newAddress in
+                DispatchQueue.main.async { [weak self] in
+                    self?.delegate?.onNewAddressAdded(newAddress: newAddress)
+                    self?.navigationController?.popViewController(animated: true)
+                }
+            },
+            onError: { errorMessage in
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+                }
+            })
     }
 }

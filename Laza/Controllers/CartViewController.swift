@@ -99,12 +99,13 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension CartViewController: CartDetailViewControllerDelegate {
     
-    func addressButtonPressed() {
+    func addressButtonPressed(loadedAddress: [Address]) {
         let storyboard = UIStoryboard(name: "Checkout", bundle: nil)
         guard let vc = storyboard.instantiateViewController(withIdentifier: ListAddressViewController.identifier) as? ListAddressViewController else {
             print("Failed to get VC")
             return
         }
+        vc.configure(address: loadedAddress)
         // Present CartDetailViewController again
         vc.onDismiss = presentCartDetail
         navigationController?.pushViewController(vc, animated: true)

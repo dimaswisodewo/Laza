@@ -24,6 +24,10 @@
 		3815361B2A8C706500104367 /* EmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381536192A8C706500104367 /* EmptyTableViewCell.swift */; };
 		3815361C2A8C706500104367 /* EmptyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3815361A2A8C706500104367 /* EmptyTableViewCell.xib */; };
 		3815361E2A8C82AF00104367 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3815361D2A8C82AF00104367 /* Profile.swift */; };
+		3815A69B2A8DA3F40067BABA /* CartDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3815A69A2A8DA3F40067BABA /* CartDetailViewModel.swift */; };
+		3815A69D2A8DAC060067BABA /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3815A69C2A8DAC060067BABA /* Address.swift */; };
+		3815A69F2A8DB4A00067BABA /* ListAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3815A69E2A8DB4A00067BABA /* ListAddressViewModel.swift */; };
+		3815A6A12A8DB92C0067BABA /* AddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3815A6A02A8DB92C0067BABA /* AddressViewModel.swift */; };
 		3817D67A2A7202A10074D911 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3817D6792A7202A10074D911 /* RoundedButton.swift */; };
 		3825DC6E2A7F700800239E55 /* SnackBar in Frameworks */ = {isa = PBXBuildFile; productRef = 3825DC6D2A7F700800239E55 /* SnackBar */; };
 		3825DC702A7F705000239E55 /* CustomSnackBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3825DC6F2A7F705000239E55 /* CustomSnackBar.swift */; };
@@ -159,6 +163,10 @@
 		381536192A8C706500104367 /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewCell.swift; sourceTree = "<group>"; };
 		3815361A2A8C706500104367 /* EmptyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyTableViewCell.xib; sourceTree = "<group>"; };
 		3815361D2A8C82AF00104367 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		3815A69A2A8DA3F40067BABA /* CartDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartDetailViewModel.swift; sourceTree = "<group>"; };
+		3815A69C2A8DAC060067BABA /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		3815A69E2A8DB4A00067BABA /* ListAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAddressViewModel.swift; sourceTree = "<group>"; };
+		3815A6A02A8DB92C0067BABA /* AddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressViewModel.swift; sourceTree = "<group>"; };
 		3817D6792A7202A10074D911 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		3825DC6F2A7F705000239E55 /* CustomSnackBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSnackBar.swift; sourceTree = "<group>"; };
 		382640212A76911D00744726 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
@@ -380,6 +388,9 @@
 				3809B3EA2A89C86E00B34E5D /* DetailViewModel.swift */,
 				38D86EBF2A8B53C8006B0AF3 /* AllReviewsViewModel.swift */,
 				38D86EC12A8B6D34006B0AF3 /* AddReviewViewModel.swift */,
+				3815A69A2A8DA3F40067BABA /* CartDetailViewModel.swift */,
+				3815A69E2A8DB4A00067BABA /* ListAddressViewModel.swift */,
+				3815A6A02A8DB92C0067BABA /* AddressViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -398,6 +409,7 @@
 				3847AE252A8479BC00C8D4E5 /* PaymentMethod.swift */,
 				38EAD6CD2A8363A700103947 /* CreditCard.swift */,
 				3815361D2A8C82AF00104367 /* Profile.swift */,
+				3815A69C2A8DAC060067BABA /* Address.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -652,6 +664,7 @@
 				38B76D4A2A73B6B800C5DA0B /* DetailViewController.swift in Sources */,
 				38D11ACA2A7B8AD9008ED926 /* ReviewsHeaderTableViewCell.swift in Sources */,
 				389F25002A8283FE006E6C4B /* PaymentFormTableViewCell.swift in Sources */,
+				3815A69F2A8DB4A00067BABA /* ListAddressViewModel.swift in Sources */,
 				382F77392A7BFC350076248F /* CustomSecureTextField.swift in Sources */,
 				38E89D622A72F0D900BBDE14 /* ProductCollectionViewCell.swift in Sources */,
 				38B8F0FF2A7215F3003DA0CE /* RoundedView.swift in Sources */,
@@ -665,6 +678,7 @@
 				3809B3EB2A89C86E00B34E5D /* DetailViewModel.swift in Sources */,
 				38C51DC12A7156E7000324A5 /* WishlistViewController.swift in Sources */,
 				38D1DE382A74ADD9002AB0ED /* HashingManager.swift in Sources */,
+				3815A6A12A8DB92C0067BABA /* AddressViewModel.swift in Sources */,
 				38C51DCC2A7169C4000324A5 /* NetworkManager.swift in Sources */,
 				3847AE262A8479BC00C8D4E5 /* PaymentMethod.swift in Sources */,
 				387A6D2F2A7C88E100358DE8 /* AddReviewViewController.swift in Sources */,
@@ -672,12 +686,14 @@
 				38DFE87F2A77607500B1EE8F /* BrandTableViewCell.swift in Sources */,
 				38F216032A7218B700952E65 /* BrandCollectionViewCell.swift in Sources */,
 				380B4BEE2A822C5E00297B62 /* PaymentAddCardTableViewCell.swift in Sources */,
+				3815A69B2A8DA3F40067BABA /* CartDetailViewModel.swift in Sources */,
 				382640222A76911D00744726 /* SideMenuViewController.swift in Sources */,
 				38FB18D02A7A30A500733133 /* DetailSizeCollectionViewCell.swift in Sources */,
 				38323F022A80A10D000732A0 /* ListViewItem.swift in Sources */,
 				382640242A7695CE00744726 /* SideMenuTableViewCell.swift in Sources */,
 				3809B3F32A8A000000B34E5D /* ApiService.swift in Sources */,
 				38EAD6D02A83743B00103947 /* WalletViewModel.swift in Sources */,
+				3815A69D2A8DAC060067BABA /* Address.swift in Sources */,
 				38DBEB922A7E8FA8003BC9F3 /* VerificationCodeViewController.swift in Sources */,
 				38EAD6D32A83773700103947 /* WalletTableViewCell.swift in Sources */,
 				3815361E2A8C82AF00104367 /* Profile.swift in Sources */,

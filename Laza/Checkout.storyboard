@@ -367,6 +367,7 @@
                         <outlet property="backButton" destination="41g-GW-T2k" id="okc-Do-gJW"/>
                         <outlet property="cityField" destination="Bwj-7V-J9n" id="tNq-Xc-CaO"/>
                         <outlet property="countryField" destination="zyn-ZY-9Mx" id="F0F-Ah-NmK"/>
+                        <outlet property="isPrimarySwitch" destination="aoo-RI-Amd" id="FEk-p4-A6L"/>
                         <outlet property="nameField" destination="I3B-MN-Lca" id="0Ka-Za-xJO"/>
                         <outlet property="phoneField" destination="xjD-UL-lw2" id="ffv-kF-NkA"/>
                         <outlet property="saveAddressButton" destination="BHq-pe-gBo" id="gVZ-ls-aWa"/>

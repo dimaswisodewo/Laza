@@ -9,7 +9,7 @@ import UIKit
 
 protocol CartDetailViewControllerDelegate: AnyObject {
     
-    func addressButtonPressed()
+    func addressButtonPressed(loadedAddress: [Address])
     
     func cardButtonPressed()
 }
@@ -48,10 +48,26 @@ class CartDetailViewController: UIViewController {
     
     weak var delegate: CartDetailViewControllerDelegate?
     
+    private let viewModel = CartDetailViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
+        
+        getAllAddress()
+    }
+    
+    private func getAllAddress() {
+        viewModel.getAllAddress(completion: { [weak self] in
+            guard let self = self else { return }
+            print("Address count: \(self.viewModel.addressCount)")
+        }, onError: { errorMessage in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+            }
+        })
     }
     
     private func setupView() {
@@ -74,7 +90,7 @@ class CartDetailViewController: UIViewController {
     
     @objc private func addressButtonPressed() {
         dismiss(animated: true)
-        delegate?.addressButtonPressed()
+        delegate?.addressButtonPressed(loadedAddress: viewModel.addresses)
     }
     
     @objc private func cardButtonPressed() {

@@ -18,4 +18,10 @@ class ListAddressItemTableViewCell: UITableViewCell {
     
     @IBOutlet weak var addressLabel: UILabel!
     
+    func configure(model: Address) {
+        nameLabel.text = model.receiverName
+        phoneLabel.text = model.phoneNumber
+        addressLabel.text = "\(model.city), \(model.country)"
+    }
+    
 }

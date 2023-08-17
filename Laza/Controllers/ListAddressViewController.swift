@@ -34,10 +34,16 @@ class ListAddressViewController: UIViewController {
     
     var onDismiss: (() -> Void)?
     
+    private let viewModel = ListAddressViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tabBarController?.tabBar.isHidden = true
+    }
+    
+    func configure(address: [Address]) {
+        viewModel.configure(address: address)
     }
     
     @objc private func backButtonPressed() {
@@ -50,20 +56,41 @@ class ListAddressViewController: UIViewController {
         guard let vc = storyboard.instantiateViewController(withIdentifier: AddressViewController.identifier) as? AddressViewController else {
             return
         }
+        vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
     }
 }
 
+// MARK: - UITableView DataSource & Delegate
+
 extension ListAddressViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return viewModel.addressCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ListAddressItemTableViewCell.identifier) as? ListAddressItemTableViewCell else {
             return UITableViewCell()
         }
+        cell.configure(model: viewModel.getAddressAtIndex(index: indexPath.row))
         return cell
+    }
+}
+
+// MARK: - AddressViewControllerDelegate
+
+extension ListAddressViewController: AddressViewControllerDelegate {
+    
+    func onNewAddressAdded(newAddress: AddAddress) {
+        let address = Address(
+            id: newAddress.id,
+            country: newAddress.country,
+            city: newAddress.city,
+            receiverName: newAddress.receiverName,
+            phoneNumber: newAddress.phoneNumber)
+        viewModel.addNewAddress(newAddress: address)
+        SnackBarSuccess.make(in: self.view, message: "Added new address", duration: .lengthShort).show()
+        self.tableView.reloadData()
     }
 }
