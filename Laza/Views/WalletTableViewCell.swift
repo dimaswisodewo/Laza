@@ -30,7 +30,7 @@ class WalletTableViewCell: UITableViewCell {
         setupConstraints()
     }
     
-    func configure(model: CreditCard) {
+    func configure(model: CreditCardModel) {
         creditCard.cardHolderString = model.owner
         creditCard.paymentCardTextFieldDidChange(
             cardNumber: model.cardNumber,

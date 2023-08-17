@@ -50,6 +50,8 @@ class PaymentViewController: UIViewController {
         
         tabBarController?.tabBar.isHidden = true
         
+        getCreditCards()
+        
         // Reload table view, wait 0.1 sec to make sure that collection views inside the table view is finished layouting subviews
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
             self?.paymentCardTableViewCell?.collectionView.reloadData()
@@ -60,6 +62,22 @@ class PaymentViewController: UIViewController {
     // End editing on touch began
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    private func getCreditCards() {
+        viewModel.getCreditCards(
+            completion: {
+                DispatchQueue.main.async { [weak self] in
+                    self?.paymentCardTableViewCell?.collectionView.reloadData()
+                    self?.tableView.reloadData()
+                }
+            },
+            onError: { errorMessage in
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+                }
+            })
     }
     
     @objc private func backButtonPressed() {
@@ -134,12 +152,13 @@ extension PaymentViewController: UITableViewDataSource, UITableViewDelegate {
             paymentFormTableViewCell = tableViewCell
             paymentFormTableViewCell?.setEnableFields(isEnable: false)
             // Set first item
-            if let model = viewModel.getDataAtIndex(0) {
+            if viewModel.dataCount > 0 {
+                let model = viewModel.getDataAtIndex(0)
                 paymentFormTableViewCell?.setPredefinedValue(
-                    cardOwner: model.owner,
+                    cardOwner: "-",
                     cardNumber: model.cardNumber,
-                    exp: model.expString,
-                    cvv: model.cvc ?? "")
+                    exp: "\(model.expiredMonth)/\(model.expiredYear)",
+                    cvv: "")
             }
             return tableViewCell
         default:
@@ -153,12 +172,12 @@ extension PaymentViewController: UITableViewDataSource, UITableViewDelegate {
 extension PaymentViewController: PaymentCardTableViewCellDelegate {
     
     func onSetSelectedCardOnSwipe(selectedIndex: Int) {
-        guard let model = viewModel.getDataAtIndex(selectedIndex) else { return }
+        let model = viewModel.getDataAtIndex(selectedIndex)
         paymentFormTableViewCell?.setPredefinedValue(
-            cardOwner: model.owner,
+            cardOwner: "-",
             cardNumber: model.cardNumber,
-            exp: model.expString,
-            cvv: model.cvc ?? "")
+            exp: "\(model.expiredMonth)/\(model.expiredYear)",
+            cvv: "")
     }
     
     func collectionView(collectionView: UICollectionView, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -170,7 +189,7 @@ extension PaymentViewController: PaymentCardTableViewCellDelegate {
     }
     
     func collectionView(numberOfItemsInSection section: Int) -> Int {
-        3
+        return viewModel.dataCount
     }
     
     func collectionView(cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -178,23 +197,36 @@ extension PaymentViewController: PaymentCardTableViewCellDelegate {
             print("Failed to dequeue PaymentCardCollectionViewCell")
             return UICollectionViewCell()
         }
-        if let model = viewModel.getDataAtIndex(indexPath.item) {
-            // Wait for 0.1 sec, otherwise the CreditCardFormView will not be layouted properly
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                cell.configure(model: model)
-            }
+        let model = viewModel.getDataAtIndex(indexPath.item)
+        // Wait for 0.1 sec, otherwise the CreditCardFormView will not be layouted properly
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            cell.configure(model: model)
         }
         return cell
     }
 }
 
-// MARK: - Paymen
+// MARK: - PaymentAddCardTableViewCellDelegate
 
 extension PaymentViewController: PaymentAddCardTableViewCellDelegate {
     
     func addNewCardButtonPressed() {
         let storyboard = UIStoryboard(name: "Checkout", bundle: nil)
         guard let vc = storyboard.instantiateViewController(withIdentifier: AddCardViewController.identifier) as? AddCardViewController else { return }
+        vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+// MARK: - AddCardViewControllerDelegate
+
+extension PaymentViewController: AddCardViewControllerDelegate {
+    
+    func newCreditCardAdded(newCreditCard: CreditCard) {
+        viewModel.appendCreditCard(newCard: newCreditCard)
+        DispatchQueue.main.async { [weak self] in
+            self?.paymentCardTableViewCell?.collectionView.reloadData()
+            self?.tableView.reloadData()
+        }
     }
 }

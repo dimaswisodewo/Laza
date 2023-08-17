@@ -9,6 +9,11 @@ import UIKit
 import CreditCardForm
 import Stripe
 
+protocol AddCardViewControllerDelegate: AnyObject {
+    
+    func newCreditCardAdded(newCreditCard: CreditCard)
+}
+
 class AddCardViewController: UIViewController {
     
     static let identifier = "AddCardViewController"
@@ -53,6 +58,10 @@ class AddCardViewController: UIViewController {
     }
     
     var onDismiss: (() -> Void)? // Present CartDetailViewController again after dismiss
+    
+    private let viewModel = AddCardViewModel()
+    
+    weak var delegate: AddCardViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,7 +127,33 @@ class AddCardViewController: UIViewController {
     }
     
     @objc private func ctaButtonPressed() {
-        navigationController?.popViewController(animated: true)
+        
+        guard let cardNumber = creditCardTextField.cardNumber else {
+            SnackBarDanger.make(in: self.view, message: "Card number cannot be empty", duration: .lengthShort).show()
+            return
+        }
+        
+        if !creditCardTextField.isValid {
+            SnackBarDanger.make(in: self.view, message: "Card is not valid", duration: .lengthShort).show()
+            return
+        }
+        
+        viewModel.addCreditCard(
+            cardNumber: cardNumber,
+            expiredMonth: creditCardTextField.expirationMonth,
+            expiredYear: creditCardTextField.expirationYear,
+            completion: { newCreditCard in
+                DispatchQueue.main.async { [weak self] in
+                    self?.delegate?.newCreditCardAdded(newCreditCard: newCreditCard)
+                    self?.navigationController?.popViewController(animated: true)
+                }
+            },
+            onError: { errorMessage in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+            }
+        })
     }
     
     @objc private func cardHolderTextFieldBeginEditing() {

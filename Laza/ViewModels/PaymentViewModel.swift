@@ -9,35 +9,52 @@ import Foundation
 
 class PaymentViewModel {
     
-    private let dummy = [
-        CreditCard(
-            owner: "Dokowi Jojo",
-            cardNumber: "4242 4242 9012 3456",
-            expMonth: 5,
-            expYear: 27,
-            cvc: nil
-        ),
-        CreditCard(
-            owner: "Srabowo Pubianto",
-            cardNumber: "5151 5151 9012 3456",
-            expMonth: 9,
-            expYear: 25,
-            cvc: nil
-        ),
-        CreditCard(
-            owner: "Segawati Moekarnoputri",
-            cardNumber: "5151 5151 9452 3006",
-            expMonth: 3,
-            expYear: 27,
-            cvc: nil
-        ),
-    ]
-    var dataCount: Int { dummy.count }
+    private var creditCards = [CreditCard]()
+    var dataCount: Int { creditCards.count }
     
-    func getDataAtIndex(_ index: Int) -> CreditCard? {
-        if index >= dataCount {
-            return nil
-        }
-        return dummy[index]
+    func appendCreditCard(newCard: CreditCard) {
+        creditCards.append(newCard)
+    }
+    
+    func getDataAtIndex(_ index: Int) -> CreditCard {
+        if index >= dataCount { fatalError("Index out of bounds") }
+        return creditCards[index]
+    }
+    
+    func getCreditCards(
+        completion: @escaping () -> Void,
+        onError: @escaping (String) -> Void) {
+        
+            var endpoint = Endpoint()
+            endpoint.initialize(path: .CreditCard)
+            
+            guard let url = URL(string: endpoint.getURL()) else { return }
+            var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy)
+            guard let token = DataPersistentManager.shared.getTokenFromKeychain() else { return }
+            request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
+            
+            NetworkManager.shared.sendRequest(request: request) { [weak self] result in
+                switch result {
+                case .success(let (data, response)):
+                    guard let data = data else { return }
+                    guard let httpResponse = response as? HTTPURLResponse else { return }
+                    if httpResponse.statusCode != 200 {
+                        guard let responseError = try? JSONDecoder().decode(ResponseError.self, from: data) else {
+                            onError("Error: \(httpResponse.statusCode)")
+                            return
+                        }
+                        onError("\(responseError.status) - \(responseError.description)")
+                        return
+                    }
+                    guard let creditCardResponse = try? JSONDecoder().decode(CreditCardResponse.self, from: data) else {
+                        onError("Get credit cards success - Failed to decode")
+                        return
+                    }
+                    self?.creditCards = creditCardResponse.data
+                    completion()
+                case .failure(let error):
+                    onError(error.localizedDescription)
+                }
+            }
     }
 }

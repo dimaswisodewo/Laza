@@ -139,6 +139,10 @@ enum EndpointPath: String {
     case Users = "user"
     // Address
     case Address = "address"
+    // Wishlist
+    case Wishlist = "wishlists"
+    // Credit Card
+    case CreditCard = "credit-card"
 }
 
 enum HttpMethod: String {

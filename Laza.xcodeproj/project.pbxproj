@@ -28,6 +28,8 @@
 		3815A69D2A8DAC060067BABA /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3815A69C2A8DAC060067BABA /* Address.swift */; };
 		3815A69F2A8DB4A00067BABA /* ListAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3815A69E2A8DB4A00067BABA /* ListAddressViewModel.swift */; };
 		3815A6A12A8DB92C0067BABA /* AddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3815A6A02A8DB92C0067BABA /* AddressViewModel.swift */; };
+		3815A6A32A8E0C570067BABA /* AddCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3815A6A22A8E0C570067BABA /* AddCardViewModel.swift */; };
+		3815A6A52A8E12BB0067BABA /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3815A6A42A8E12BB0067BABA /* ResponseError.swift */; };
 		3817D67A2A7202A10074D911 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3817D6792A7202A10074D911 /* RoundedButton.swift */; };
 		3825DC6E2A7F700800239E55 /* SnackBar in Frameworks */ = {isa = PBXBuildFile; productRef = 3825DC6D2A7F700800239E55 /* SnackBar */; };
 		3825DC702A7F705000239E55 /* CustomSnackBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3825DC6F2A7F705000239E55 /* CustomSnackBar.swift */; };
@@ -167,6 +169,8 @@
 		3815A69C2A8DAC060067BABA /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		3815A69E2A8DB4A00067BABA /* ListAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListAddressViewModel.swift; sourceTree = "<group>"; };
 		3815A6A02A8DB92C0067BABA /* AddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressViewModel.swift; sourceTree = "<group>"; };
+		3815A6A22A8E0C570067BABA /* AddCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewModel.swift; sourceTree = "<group>"; };
+		3815A6A42A8E12BB0067BABA /* ResponseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseError.swift; sourceTree = "<group>"; };
 		3817D6792A7202A10074D911 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		3825DC6F2A7F705000239E55 /* CustomSnackBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSnackBar.swift; sourceTree = "<group>"; };
 		382640212A76911D00744726 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
@@ -391,6 +395,7 @@
 				3815A69A2A8DA3F40067BABA /* CartDetailViewModel.swift */,
 				3815A69E2A8DB4A00067BABA /* ListAddressViewModel.swift */,
 				3815A6A02A8DB92C0067BABA /* AddressViewModel.swift */,
+				3815A6A22A8E0C570067BABA /* AddCardViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -410,6 +415,7 @@
 				38EAD6CD2A8363A700103947 /* CreditCard.swift */,
 				3815361D2A8C82AF00104367 /* Profile.swift */,
 				3815A69C2A8DAC060067BABA /* Address.swift */,
+				3815A6A42A8E12BB0067BABA /* ResponseError.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -670,6 +676,7 @@
 				38B8F0FF2A7215F3003DA0CE /* RoundedView.swift in Sources */,
 				384C4D012A7CAD9800B85BFF /* SideMenuSwitchTableViewCell.swift in Sources */,
 				38FF0E4C2A70F478009B406F /* SignUpViewController.swift in Sources */,
+				3815A6A52A8E12BB0067BABA /* ResponseError.swift in Sources */,
 				38D86EC02A8B53C8006B0AF3 /* AllReviewsViewModel.swift in Sources */,
 				38D1DE3C2A74B55B002AB0ED /* SignUpViewModel.swift in Sources */,
 				3847AE1E2A8473BC00C8D4E5 /* ChoosePaymentViewController.swift in Sources */,
@@ -681,6 +688,7 @@
 				3815A6A12A8DB92C0067BABA /* AddressViewModel.swift in Sources */,
 				38C51DCC2A7169C4000324A5 /* NetworkManager.swift in Sources */,
 				3847AE262A8479BC00C8D4E5 /* PaymentMethod.swift in Sources */,
+				3815A6A32A8E0C570067BABA /* AddCardViewModel.swift in Sources */,
 				387A6D2F2A7C88E100358DE8 /* AddReviewViewController.swift in Sources */,
 				38D1DE362A74ACB8002AB0ED /* DataPersistentManager.swift in Sources */,
 				38DFE87F2A77607500B1EE8F /* BrandTableViewCell.swift in Sources */,

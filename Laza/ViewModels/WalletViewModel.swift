@@ -10,21 +10,21 @@ import Foundation
 class WalletViewModel {
     
     private let dummy = [
-        CreditCard(
+        CreditCardModel(
             owner: "Dokowi Jojo",
             cardNumber: "4242 4242 9012 3456",
             expMonth: 5,
             expYear: 27,
             cvc: nil
         ),
-        CreditCard(
+        CreditCardModel(
             owner: "Srabowo Pubianto",
             cardNumber: "5151 5151 9012 3456",
             expMonth: 9,
             expYear: 25,
             cvc: nil
         ),
-        CreditCard(
+        CreditCardModel(
             owner: "Segawati Moekarnoputri",
             cardNumber: "5151 5151 9452 3006",
             expMonth: 3,
@@ -34,7 +34,7 @@ class WalletViewModel {
     ]
     var dataCount: Int { dummy.count }
     
-    func getDataAtIndex(_ index: Int) -> CreditCard? {
+    func getDataAtIndex(_ index: Int) -> CreditCardModel? {
         if index >= dataCount {
             return nil
         }

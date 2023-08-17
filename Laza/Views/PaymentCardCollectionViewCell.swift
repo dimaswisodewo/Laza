@@ -44,10 +44,10 @@ class PaymentCardCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(model: CreditCard) {
-        creditCardFormView.cardHolderString = model.owner
+        creditCardFormView.cardHolderString = "-"
         creditCardFormView.paymentCardTextFieldDidChange(
             cardNumber: model.cardNumber,
-            expirationYear: UInt(model.expYear),
-            expirationMonth: UInt(model.expMonth))
+            expirationYear: UInt(model.expiredYear),
+            expirationMonth: UInt(model.expiredMonth))
     }
 }
