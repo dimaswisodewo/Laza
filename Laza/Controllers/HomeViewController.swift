@@ -104,6 +104,11 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
         // Load data
         viewModel.loadBrands()
         viewModel.loadProducts()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+            self?.brandTableViewCell?.collectionView.reloadData()
+            self?.tableView.reloadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

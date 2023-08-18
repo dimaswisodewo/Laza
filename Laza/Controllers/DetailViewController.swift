@@ -27,7 +27,7 @@ class DetailViewController: UIViewController {
             let image = cartButton.imageView?.image?.withRenderingMode(.alwaysTemplate)
             cartButton.setImage(image, for: .normal)
             cartButton.tintColor = ColorUtils.shared.getColor(color: .TextPrimary)
-            cartButton.addTarget(self, action: #selector(cartButtonPressed), for: .touchUpInside)
+            cartButton.addTarget(self, action: #selector(wishlistButtonPressed), for: .touchUpInside)
         }
     }
     
@@ -54,7 +54,10 @@ class DetailViewController: UIViewController {
         
         registerCells()
         
+        cartButton.isEnabled = false
+        
         loadProductDetail()
+        loadIsWishlisted()
         
         registerObserver()
         
@@ -94,6 +97,23 @@ class DetailViewController: UIViewController {
         viewModel?.loadRatings()
     }
     
+    private func loadIsWishlisted() {
+        viewModel?.loadIsWishlisted(completion: { isWishlisted in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                let systemName = isWishlisted ? "heart.fill" : "heart"
+                self.cartButton.setImage(UIImage(systemName: systemName), for: .normal)
+                self.cartButton.isEnabled = true
+            }
+        }, onError: { errorMessage in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.cartButton.isEnabled = true
+                SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+            }
+        })
+    }
+    
     private func registerCells() {
         tableView.dataSource = self
         tableView.delegate = self
@@ -110,8 +130,29 @@ class DetailViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    @objc private func cartButtonPressed() {
+    @objc private func wishlistButtonPressed() {
         
+        guard let isLoading = viewModel?.isWishlistLoading else { return }
+        if isLoading { return }
+        
+        cartButton.isEnabled = false
+        
+        viewModel?.toggleWishlist(completion: { isWishlisted in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                let systemName = isWishlisted ? "heart.fill" : "heart"
+                self.cartButton.setImage(UIImage(systemName: systemName), for: .normal)
+                self.cartButton.isEnabled = true
+                let message = isWishlisted ? "Added to wishlist" : "Remove from wishlist"
+                SnackBarSuccess.make(in: self.view, message: message, duration: .lengthShort).show()
+            }
+        }, onError: { errorMessage in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.cartButton.isEnabled = true
+                SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+            }
+        })
     }
     
     @objc private func addToCartButtonPressed() {
