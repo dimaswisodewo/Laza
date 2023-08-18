@@ -129,7 +129,12 @@ class AddCardViewController: UIViewController {
     @objc private func ctaButtonPressed() {
         
         guard let cardNumber = creditCardTextField.cardNumber else {
-            SnackBarDanger.make(in: self.view, message: "Card number cannot be empty", duration: .lengthShort).show()
+            SnackBarDanger.make(in: self.view, message: "Card number cannot be empty",  duration: .lengthShort).show()
+            return
+        }
+        
+        guard let cvc = creditCardTextField.cvc else {
+            SnackBarDanger.make(in: self.view, message: "CVC cannot be empty", duration: .lengthShort).show()
             return
         }
         
@@ -142,6 +147,7 @@ class AddCardViewController: UIViewController {
             cardNumber: cardNumber,
             expiredMonth: creditCardTextField.expirationMonth,
             expiredYear: creditCardTextField.expirationYear,
+            cvv: cvc,
             completion: { newCreditCard in
                 DispatchQueue.main.async { [weak self] in
                     self?.delegate?.newCreditCardAdded(newCreditCard: newCreditCard)

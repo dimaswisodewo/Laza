@@ -10,7 +10,7 @@ import Foundation
 class AddCardViewModel {
     
     func addCreditCard(
-        cardNumber: String, expiredMonth: Int, expiredYear: Int,
+        cardNumber: String, expiredMonth: Int, expiredYear: Int, cvv: String,
         completion: @escaping (CreditCard) -> Void,
         onError: @escaping (String) -> Void) {
         
@@ -24,7 +24,8 @@ class AddCardViewModel {
             request.httpBody = ApiService.getHttpBodyRaw(param: [
                 "card_number": cardNumber,
                 "expired_month": expiredMonth,
-                "expired_year": expiredYear
+                "expired_year": expiredYear,
+                "cvv": cvv
             ])
             guard let token = DataPersistentManager.shared.getTokenFromKeychain() else { return }
             request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
