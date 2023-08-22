@@ -9,6 +9,8 @@ import UIKit
 
 protocol SideMenuViewControllerDelegate: AnyObject {
     
+    func didSelectProfile()
+    
     func didSelectDarkMode()
     
     func didSelectUpdatePassword()
@@ -195,7 +197,7 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
         let type = sideMenus[indexPath.row].type
         switch type {
         case .profile:
-            break
+            delegate?.didSelectProfile()
         case .darkMode:
             delegate?.didSelectDarkMode()
             break

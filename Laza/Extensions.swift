@@ -108,4 +108,15 @@ extension Notification.Name {
     static var newReviewAdded: Notification.Name {
         return .init("ProductDetail.newReviewAdded")
     }
+    static var profileUpdated: Notification.Name {
+        return .init("Profile.profileUpdated")
+    }
+}
+
+extension Data {
+    mutating func append(_ string: String) {
+        if let data = string.data(using: .utf8) {
+            append(data)
+        }
+    }
 }

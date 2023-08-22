@@ -105,6 +105,8 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
         viewModel.loadBrands()
         viewModel.loadProducts()
         
+        registerObserver()
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
             self?.brandTableViewCell?.collectionView.reloadData()
             self?.tableView.reloadData()
@@ -114,7 +116,22 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        setupSideMenu()
         tabBarController?.tabBar.isHidden = false
+    }
+    
+    // Remove observer to reload reviews
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.profileUpdated, object: nil)
+    }
+    
+    // Register observer to reload reviews when there are new review added
+    private func registerObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(onProfileUpdated), name: Notification.Name.profileUpdated, object: nil)
+    }
+    
+    @objc private func onProfileUpdated() {
+        setupSideMenu()
     }
     
     // End editing on touch began
@@ -238,6 +255,16 @@ extension HomeViewController: SideMenuNavigationControllerDelegate {
 // MARK: - SideMenuViewController Delegate
 
 extension HomeViewController: SideMenuViewControllerDelegate {
+    
+    func didSelectProfile() {
+        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+        guard let vc = storyboard.instantiateViewController(withIdentifier: ProfileViewController.identifier) as? ProfileViewController else { return }
+        guard let profile = SessionManager.shared.currentProfile else { return }
+        vc.configure(model: profile)
+        sideMenuNavigationController.dismiss(animated: true) { [weak self] in
+            self?.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
     
     func didSelectDarkMode() {
         
