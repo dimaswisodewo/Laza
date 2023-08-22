@@ -111,6 +111,9 @@ extension Notification.Name {
     static var profileUpdated: Notification.Name {
         return .init("Profile.profileUpdated")
     }
+    static var wishlistUpdated: Notification.Name {
+        return .init("Wishlist.wishlistUpdated")
+    }
 }
 
 extension Data {

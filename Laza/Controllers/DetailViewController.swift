@@ -138,6 +138,7 @@ class DetailViewController: UIViewController {
         cartButton.isEnabled = false
         
         viewModel?.toggleWishlist(completion: { isWishlisted in
+            NotificationCenter.default.post(name: .wishlistUpdated, object: nil)
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 let systemName = isWishlisted ? "heart.fill" : "heart"

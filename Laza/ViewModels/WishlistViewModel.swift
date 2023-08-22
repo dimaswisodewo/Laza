@@ -21,18 +21,35 @@ class WishlistViewModel {
     
     var reloadProductCollectionView: (() -> Void)?
     
-    func loadProducts() {
+    func loadWishlists(completion: @escaping () -> Void, onError: @escaping (String) -> Void) {
         var endpoint = Endpoint()
-        endpoint.initialize(path: .Products)
-        NetworkManager.shared.sendRequest(type: ProductResponse.self, endpoint: endpoint) { [weak self] result in
+        endpoint.initialize(path: .Wishlist)
+        
+        guard let url = URL(string: endpoint.getURL()) else { return }
+        
+        guard let token = DataPersistentManager.shared.getTokenFromKeychain() else { return }
+        var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy)
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
+        
+        NetworkManager.shared.sendRequest(request: request) { [weak self] result in
             switch result {
-            case .success(let productResponse):
-                self?.products.append(contentsOf: productResponse.data)
-                DispatchQueue.main.async {
-                    self?.reloadProductCollectionView?()
+            case .success(let (data, response)):
+                guard let httpResponse = response as? HTTPURLResponse else { return }
+                if httpResponse.statusCode != 200 {
+                    onError("Error: \(httpResponse.statusCode)")
+                    return
                 }
+                guard let data = data else { return }
+                guard let wishlistResponse = try? JSONDecoder().decode(WishlistResponse.self, from: data) else {
+                    onError("Error decoding")
+                    return
+                }
+                if let products = wishlistResponse.data.products {
+                    self?.products = products
+                }
+                completion()
             case .failure(let error):
-                print(error)
+                onError(error.localizedDescription)
             }
         }
     }

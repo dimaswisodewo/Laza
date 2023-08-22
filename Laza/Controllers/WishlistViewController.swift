@@ -20,6 +20,14 @@ class WishlistViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var wishlistCountLabel: UILabel!
+    
+    @IBOutlet weak var sortButton: RoundedButton! {
+        didSet {
+            sortButton.addTarget(self, action: #selector(sortButtonPressed), for: .touchUpInside)
+        }
+    }
+    
     private let viewModel = WishlistViewModel()
     
     override func viewDidLoad() {
@@ -31,13 +39,23 @@ class WishlistViewController: UIViewController {
             self?.collectionView.reloadData()
         }
         
-        viewModel.loadProducts()
+        loadWishlists()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        registerObserver()
+        
         tabBarController?.tabBar.isHidden = false
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.wishlistUpdated, object: nil)
+    }
+    
+    private func registerObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(loadWishlists), name: Notification.Name.wishlistUpdated, object: nil)
     }
     
     private func setupTabBarItemImage() {
@@ -49,6 +67,25 @@ class WishlistViewController: UIViewController {
         label.sizeToFit()
         
         navigationController?.tabBarItem.selectedImage = UIImage(view: label)
+    }
+    
+    @objc private func loadWishlists() {
+        viewModel.loadWishlists(completion: {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.collectionView.reloadData()
+                self.wishlistCountLabel.text = "\(self.viewModel.productsCount) Items"
+            }
+        }, onError: { errorMessage in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+            }
+        })
+    }
+    
+    @objc private func sortButtonPressed() {
+        
     }
 }
 
