@@ -93,14 +93,11 @@ class DetailViewModel {
         isWishlistLoading = true
         
         var endpoint = Endpoint()
-        endpoint.initialize(path: .Wishlist, method: .PUT)
+        endpoint.initialize(path: .Wishlist, query: "ProductId=\(productId)", method: .PUT)
         print(productId)
         guard let url = URL(string: endpoint.getURL()) else { return }
         var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy)
         request.httpMethod = endpoint.getMethod.rawValue
-        request.httpBody = ApiService.getHttpBodyRaw(param: [
-            "product_id": productId
-        ])
         guard let token = DataPersistentManager.shared.getTokenFromKeychain() else { return }
         request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
         
@@ -111,8 +108,6 @@ class DetailViewModel {
                 guard let httpResponse = response as? HTTPURLResponse else { return }
                 if httpResponse.statusCode != 200 {
                     self?.isWishlistLoading = false
-                    guard let serializedJson = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) else { return }
-                    print(serializedJson)
                     guard let failedModel = try? JSONDecoder().decode(ResponseError.self, from: data) else { return }
                     onError("\(failedModel.status) -  \(failedModel.description)")
                     return
