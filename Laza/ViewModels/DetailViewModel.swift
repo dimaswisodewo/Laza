@@ -28,7 +28,7 @@ class DetailViewModel {
             switch result {
             case .success(let productDetailResponse):
                 self?.productDetail = productDetailResponse.data
-                DispatchQueue.main.async {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                     self?.reloadProductDetailCollectionView?()
                 }
             case .failure(let error):

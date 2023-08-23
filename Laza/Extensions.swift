@@ -28,7 +28,7 @@ extension UIImage {
 
 extension UIImageView {
     
-    func loadAndCache(url: String, cache: URLCache? = nil, placeholder: UIImage? = nil) {
+    func loadAndCache(url: String, cache: URLCache? = nil, placeholder: UIImage? = nil, onError: (() -> Void)? = nil) {
             
             guard let url = URL(string: url) else {
                 return

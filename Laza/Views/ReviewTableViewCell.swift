@@ -45,7 +45,10 @@ class ReviewTableViewCell: UITableViewCell {
     }
     
     func configureReview(model: ProductReview) {
-        profileImageView.loadAndCache(url: model.imageUrl)
+        profileImageView.image = nil
+        profileImageView.loadAndCache(url: model.imageUrl, onError: { [weak self] in
+            self?.profileImageView.image = nil
+        })
         nameLabel.text = model.fullName
         ratingNumberLabel.text = String(model.rating)
         reviewDescriptionLabel.text = model.comment
