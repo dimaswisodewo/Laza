@@ -13,7 +13,9 @@ protocol DetailTableViewCellDelegate: AnyObject {
     
     func productThumbnailCellForItemAt(productCell cell: DetailThumbnailCollectionViewCell, cellForItemAt indexPath: IndexPath)
     
-    func productSizeCellForItemAt(productCell cell: DetailSizeCollectionViewCell, cellForItemAt indexPath: IndexPath)
+    func productSizeCellForItemAt(sizeCell cell: DetailSizeCollectionViewCell, cellForItemAt indexPath: IndexPath)
+    
+    func didSelectProductSizeCell(sizeCell cell: DetailSizeCollectionViewCell, didSelectItemAt indexPath: IndexPath)
     
     func sizeNumberOfItemsInSection() -> Int
     
@@ -319,11 +321,21 @@ extension DetailTableViewCell: UICollectionViewDataSource, UICollectionViewDeleg
                 print("Failed to dequeue DetailSizeCollectionViewCell")
                 return UICollectionViewCell()
             }
-//            cell.configureSize(size: sizes[indexPath.item])
-            delegate?.productSizeCellForItemAt(productCell: cell, cellForItemAt: indexPath)
+            delegate?.productSizeCellForItemAt(sizeCell: cell, cellForItemAt: indexPath)
             return cell
         default:
             return UICollectionViewCell()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: false)
+        switch collectionView.tag {
+        case DetailCollectionTag.size.rawValue:
+            guard let cell = collectionView.cellForItem(at: indexPath) as? DetailSizeCollectionViewCell else { return }
+            delegate?.didSelectProductSizeCell(sizeCell: cell, didSelectItemAt: indexPath)
+        default:
+            break
         }
     }
 }

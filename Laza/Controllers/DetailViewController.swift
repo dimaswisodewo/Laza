@@ -46,6 +46,9 @@ class DetailViewController: UIViewController {
         }
     }
     
+    private var selectedSizeCell: DetailSizeCollectionViewCell?
+    private var deactivateAllSizeCell = [() -> Void]()
+    
     private var detailTableViewCell: DetailTableViewCell?
     private var viewModel: DetailViewModel?
     
@@ -211,6 +214,20 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension DetailViewController: DetailTableViewCellDelegate {
     
+    func didSelectProductSizeCell(sizeCell cell: DetailSizeCollectionViewCell, didSelectItemAt indexPath: IndexPath) {
+        if cell == selectedSizeCell, cell.isCellSelected {
+            selectedSizeCell?.setSelected(isSelected: false)
+            selectedSizeCell = nil
+        } else {
+            selectedSizeCell = cell // Cache selected cell, to exclude the cell when deactivating all cell
+            selectedSizeCell?.setSelected(isSelected: true)
+            // Deactivate all cell
+            deactivateAllSizeCell.forEach { deactivateCell in
+                deactivateCell()
+            }
+        }
+    }
+    
     func viewAllReviewsButtonPressed() {
         
         guard let productId = viewModel?.productDetail?.id else { return }
@@ -231,7 +248,17 @@ extension DetailViewController: DetailTableViewCellDelegate {
         cell.productImageView.loadAndCache(url: product.imageUrl)
     }
     
-    func productSizeCellForItemAt(productCell cell: DetailSizeCollectionViewCell, cellForItemAt indexPath: IndexPath) {
+    func productSizeCellForItemAt(sizeCell cell: DetailSizeCollectionViewCell, cellForItemAt indexPath: IndexPath) {
+        // Deactivate all size cell except selected cell
+        if !cell.isSubscribedDeactivateCell {
+            cell.isSubscribedDeactivateCell = true
+            deactivateAllSizeCell.append({ [weak self] in
+                guard let selectedCell = self?.selectedSizeCell else { return }
+                if cell == selectedCell { return }
+                cell.setSelected(isSelected: false)
+            })
+        }
+        
         guard let size = viewModel?.productDetail?.size[indexPath.item] else { return }
         cell.configureSize(size: size.size)
     }

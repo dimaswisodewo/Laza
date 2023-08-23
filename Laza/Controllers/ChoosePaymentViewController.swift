@@ -41,7 +41,7 @@ class ChoosePaymentViewController: UIViewController {
     
     var onDismiss: (() -> Void)?
     
-    private var deactivateAllCheckmarks = [(() -> Void)]()
+    private var deactivateAllCheckmarks = [() -> Void]()
     private var selectedRow: ChoosePaymentTableViewCell?
     
     override func viewDidLoad() {

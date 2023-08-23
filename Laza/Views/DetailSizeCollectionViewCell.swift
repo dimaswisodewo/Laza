@@ -27,6 +27,9 @@ class DetailSizeCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    var isSubscribedDeactivateCell = false
+    var isCellSelected = false
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -42,6 +45,17 @@ class DetailSizeCollectionViewCell: UICollectionViewCell {
     
     func configureSize(size: String) {
         sizeLabel.text = size
+    }
+    
+    func setSelected(isSelected: Bool) {
+        isCellSelected = isSelected
+        if isSelected {
+            containerView.backgroundColor = ColorUtils.shared.getColor(color: .PurpleButton)
+            sizeLabel.textColor = .white
+        } else {
+            containerView.backgroundColor = ColorUtils.shared.getColor(color: .WhiteButtonSecondary)
+            sizeLabel.textColor = ColorUtils.shared.getColor(color: .TextPrimary)
+        }
     }
     
     private func setupConstraints() {
