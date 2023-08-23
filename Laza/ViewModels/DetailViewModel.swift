@@ -15,6 +15,10 @@ class DetailViewModel {
     
     private(set) var isWishlistLoading = false
     
+    var getProductId: Int {
+        get { return productId }
+    }
+    
     var reloadProductDetailCollectionView: (() -> Void)?
     
     init(productId: Int) {
@@ -122,6 +126,32 @@ class DetailViewModel {
                 let isWishlisted = updateWishlist.data.contains("added")
                 self?.isWishlistLoading = false
                 completion(isWishlisted)
+            case .failure(let error):
+                onError(error.localizedDescription)
+            }
+        }
+    }
+    
+    func insertToCart(productId: Int, sizeId: Int, completion: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        var endpoint = Endpoint()
+        endpoint.initialize(path: .Cart, query: "ProductId=\(productId)&SizeId=\(sizeId)", method: .POST)
+        guard let url = URL(string: endpoint.getURL()) else { return }
+        guard let token = DataPersistentManager.shared.getTokenFromKeychain() else { return }
+        
+        var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy)
+        request.httpMethod = endpoint.getMethod.rawValue
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
+        
+        // Insert to cart
+        NetworkManager.shared.sendRequest(request: request) { result in
+            switch result {
+            case .success(let (_, response)):
+                guard let httpResponse = response as? HTTPURLResponse else { return }
+                if httpResponse.statusCode != 201 {
+                    onError("Error: \(httpResponse.statusCode)")
+                    return
+                }
+                completion()
             case .failure(let error):
                 onError(error.localizedDescription)
             }

@@ -160,7 +160,25 @@ class DetailViewController: UIViewController {
     }
     
     @objc private func addToCartButtonPressed() {
+        guard let selectedSizeId = selectedSizeCell?.sizeId else {
+            SnackBarDanger.make(in: self.view, message: "Please select product size", duration: .lengthShort).show()
+            return
+        }
+        guard let productId = viewModel?.getProductId else { return }
         
+        viewModel?.insertToCart(productId: productId, sizeId: selectedSizeId, completion: {
+            DispatchQueue.main.async { [weak self] in
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    SnackBarSuccess.make(in: self.view, message: "Item added to cart", duration: .lengthShort).show()
+                }
+            }
+        }, onError: { errorMessage in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+            }
+        })
     }
 }
 
@@ -260,7 +278,7 @@ extension DetailViewController: DetailTableViewCellDelegate {
         }
         
         guard let size = viewModel?.productDetail?.size[indexPath.item] else { return }
-        cell.configureSize(size: size.size)
+        cell.configureSize(sizeId: size.id, size: size.size)
     }
     
     func applyModel(productImage: UIImageView, productName: UILabel, productCategory: UILabel, productPrice: UILabel, productDesc: UILabel) {

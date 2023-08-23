@@ -27,6 +27,7 @@ class DetailSizeCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    private(set) var sizeId = -1
     var isSubscribedDeactivateCell = false
     var isCellSelected = false
     
@@ -43,7 +44,8 @@ class DetailSizeCollectionViewCell: UICollectionViewCell {
         super.init(coder: coder)
     }
     
-    func configureSize(size: String) {
+    func configureSize(sizeId: Int, size: String) {
+        self.sizeId = sizeId
         sizeLabel.text = size
     }
     

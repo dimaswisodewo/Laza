@@ -143,6 +143,8 @@ enum EndpointPath: String {
     case Wishlist = "wishlists"
     // Credit Card
     case CreditCard = "credit-card"
+    // Cart
+    case Cart = "carts"
 }
 
 enum HttpMethod: String {
