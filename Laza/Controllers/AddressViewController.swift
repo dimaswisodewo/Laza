@@ -117,11 +117,11 @@ class AddressViewController: UIViewController {
         guard let country = countryField.text else { return }
         guard let city = cityField.text else { return }
         guard let phone = phoneField.text else { return }
-        guard let address = addressField.text else { return }
+//        guard let address = addressField.text else { return }
         
         viewModel.addNewAddress(
             country: country,
-            city: "\(address), \(city)",
+            city: city,
             receiverName: name,
             phone: phone,
             isPrimary: isPrimarySwitch.isOn,
