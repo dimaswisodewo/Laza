@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MUa-Mp-RIO">
-    <device id="retina6_72" orientation="portrait" appearance="light"/>
+    <device id="retina6_72" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -137,6 +138,13 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iwD-fB-t5B" customClass="GIDSignInButton">
+                                <rect key="frame" x="20" y="561" width="390" height="50"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="hjh-ri-9KQ"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Boa-r4-YaK"/>
                         <color key="backgroundColor" name="WhiteBG"/>
@@ -145,6 +153,7 @@
                             <constraint firstItem="Boa-r4-YaK" firstAttribute="trailing" secondItem="GpV-16-OX7" secondAttribute="trailing" id="3xB-iQ-rte"/>
                             <constraint firstItem="Boa-r4-YaK" firstAttribute="trailing" secondItem="lD1-FF-onV" secondAttribute="trailing" constant="20" id="8Pa-Zl-87d"/>
                             <constraint firstItem="Boa-r4-YaK" firstAttribute="trailing" secondItem="iC2-Lu-4Sd" secondAttribute="trailing" constant="20" id="9Jd-Fa-Tb8"/>
+                            <constraint firstItem="Boa-r4-YaK" firstAttribute="trailing" secondItem="iwD-fB-t5B" secondAttribute="trailing" constant="20" id="BZt-8F-H1T"/>
                             <constraint firstItem="RDB-9o-haL" firstAttribute="top" secondItem="GpV-16-OX7" secondAttribute="top" constant="15" id="LAt-ox-4yl"/>
                             <constraint firstItem="GpV-16-OX7" firstAttribute="top" secondItem="kD5-Pd-ahK" secondAttribute="bottom" constant="25" id="OjI-pH-WEF"/>
                             <constraint firstItem="GpV-16-OX7" firstAttribute="leading" secondItem="Boa-r4-YaK" secondAttribute="leading" id="Pa4-OA-JNe"/>
@@ -154,10 +163,12 @@
                             <constraint firstItem="lD1-FF-onV" firstAttribute="top" secondItem="ACm-WN-n3f" secondAttribute="bottom" constant="10" id="Vi1-F5-0P2"/>
                             <constraint firstItem="kD5-Pd-ahK" firstAttribute="centerX" secondItem="XZ1-t8-PVA" secondAttribute="centerX" id="XsY-TT-6jS"/>
                             <constraint firstItem="iC2-Lu-4Sd" firstAttribute="top" secondItem="Boa-r4-YaK" secondAttribute="top" constant="113" id="a20-3L-jmc"/>
+                            <constraint firstItem="iwD-fB-t5B" firstAttribute="top" secondItem="L07-vG-9e8" secondAttribute="bottom" constant="10" id="dJJ-h3-vPn"/>
                             <constraint firstItem="iC2-Lu-4Sd" firstAttribute="leading" secondItem="Boa-r4-YaK" secondAttribute="leading" constant="20" id="dx0-0S-4m0"/>
                             <constraint firstItem="Boa-r4-YaK" firstAttribute="trailing" secondItem="ACm-WN-n3f" secondAttribute="trailing" constant="20" id="h3r-39-DZp"/>
                             <constraint firstItem="RDB-9o-haL" firstAttribute="centerX" secondItem="GpV-16-OX7" secondAttribute="centerX" id="isr-AZ-0MR"/>
                             <constraint firstItem="ACm-WN-n3f" firstAttribute="leading" secondItem="Boa-r4-YaK" secondAttribute="leading" constant="20" id="j7n-B3-gLX"/>
+                            <constraint firstItem="iwD-fB-t5B" firstAttribute="leading" secondItem="Boa-r4-YaK" secondAttribute="leading" constant="20" id="mcz-ga-Q3N"/>
                             <constraint firstAttribute="bottom" secondItem="GpV-16-OX7" secondAttribute="bottom" id="tRV-T4-lmO"/>
                             <constraint firstItem="L07-vG-9e8" firstAttribute="leading" secondItem="Boa-r4-YaK" secondAttribute="leading" constant="20" id="zph-Av-GMU"/>
                         </constraints>
@@ -165,6 +176,7 @@
                     <connections>
                         <outlet property="fbButton" destination="ACm-WN-n3f" id="LL7-7J-BLl"/>
                         <outlet property="googleButton" destination="L07-vG-9e8" id="TKo-QG-6Fj"/>
+                        <outlet property="googleSignInButton" destination="iwD-fB-t5B" id="Tc7-lM-uqv"/>
                         <outlet property="signInButton" destination="Nm1-sr-fiV" id="dI1-KV-IRT"/>
                         <outlet property="signUpButton" destination="GpV-16-OX7" id="eka-MF-yvf"/>
                         <outlet property="twitterButton" destination="lD1-FF-onV" id="QDy-VF-Igv"/>
@@ -868,5 +880,8 @@
         <namedColor name="WhiteButtonSecondary">
             <color red="0.96078431372549022" green="0.96470588235294119" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

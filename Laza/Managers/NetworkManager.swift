@@ -132,6 +132,7 @@ enum EndpointPath: String {
     case Products = "products"
     case ProductsByBrand = "products/brand"
     case Brands = "brand"
+    case ProductSize = "size"
     // User
     case UserProfile = "user/profile"
     case UserUpdate = "user/update"

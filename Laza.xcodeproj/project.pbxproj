@@ -50,6 +50,7 @@
 		383F896C2A7CB35700C41BE7 /* SideMenuProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383F896B2A7CB35700C41BE7 /* SideMenuProfileTableViewCell.swift */; };
 		383F896E2A7CB36300C41BE7 /* SideMenuProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 383F896D2A7CB36300C41BE7 /* SideMenuProfileTableViewCell.xib */; };
 		383F89702A7CDC3000C41BE7 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383F896F2A7CDC3000C41BE7 /* SideMenuView.swift */; };
+		38445CCF2A96F4B500AAB33D /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 38445CCE2A96F4B500AAB33D /* GoogleSignIn */; };
 		3847AE1E2A8473BC00C8D4E5 /* ChoosePaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847AE1D2A8473BC00C8D4E5 /* ChoosePaymentViewController.swift */; };
 		3847AE212A84757700C8D4E5 /* ChoosePaymentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847AE1F2A84757700C8D4E5 /* ChoosePaymentTableViewCell.swift */; };
 		3847AE222A84757700C8D4E5 /* ChoosePaymentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3847AE202A84757700C8D4E5 /* ChoosePaymentTableViewCell.xib */; };
@@ -80,6 +81,9 @@
 		38B7C54F2A90778B006FE010 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B7C54E2A90778B006FE010 /* ProfileViewController.swift */; };
 		38B8F0FF2A7215F3003DA0CE /* RoundedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B8F0FE2A7215F3003DA0CE /* RoundedView.swift */; };
 		38B8F1012A721615003DA0CE /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B8F1002A721615003DA0CE /* RoundedImageView.swift */; };
+		38BD6D842A95C19000E5BFEF /* CartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BD6D832A95C19000E5BFEF /* CartViewModel.swift */; };
+		38BD6D862A95C2EF00E5BFEF /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BD6D852A95C2EF00E5BFEF /* Cart.swift */; };
+		38BD6D882A95E6E000E5BFEF /* ProductSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38BD6D872A95E6E000E5BFEF /* ProductSize.swift */; };
 		38C51DBB2A7152BC000324A5 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C51DBA2A7152BC000324A5 /* ForgotPasswordViewController.swift */; };
 		38C51DBD2A71559B000324A5 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38C51DBC2A71559B000324A5 /* Home.storyboard */; };
 		38C51DBF2A7155CE000324A5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38C51DBE2A7155CE000324A5 /* HomeViewController.swift */; };
@@ -227,6 +231,9 @@
 		38B7C54E2A90778B006FE010 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		38B8F0FE2A7215F3003DA0CE /* RoundedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedView.swift; sourceTree = "<group>"; };
 		38B8F1002A721615003DA0CE /* RoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
+		38BD6D832A95C19000E5BFEF /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModel.swift; sourceTree = "<group>"; };
+		38BD6D852A95C2EF00E5BFEF /* Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
+		38BD6D872A95E6E000E5BFEF /* ProductSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductSize.swift; sourceTree = "<group>"; };
 		38C51DBA2A7152BC000324A5 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		38C51DBC2A71559B000324A5 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		38C51DBE2A7155CE000324A5 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -297,6 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				38DBEB902A7E82C1003BC9F3 /* SideMenu in Frameworks */,
+				38445CCF2A96F4B500AAB33D /* GoogleSignIn in Frameworks */,
 				3825DC6E2A7F700800239E55 /* SnackBar in Frameworks */,
 				7A908E37D34E6B591851E7F9 /* Pods_Laza.framework in Frameworks */,
 			);
@@ -415,6 +423,7 @@
 				3815A6A22A8E0C570067BABA /* AddCardViewModel.swift */,
 				38311EF12A94580400979523 /* EditProfileViewModel.swift */,
 				38311EF32A945ECA00979523 /* ProfileViewModel.swift */,
+				38BD6D832A95C19000E5BFEF /* CartViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -437,6 +446,8 @@
 				3815A6A42A8E12BB0067BABA /* ResponseError.swift */,
 				38256BB02A8F5D0C003BBFED /* Wishlist.swift */,
 				38311EF52A94631E00979523 /* Media.swift */,
+				38BD6D852A95C2EF00E5BFEF /* Cart.swift */,
+				38BD6D872A95E6E000E5BFEF /* ProductSize.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -547,6 +558,7 @@
 			packageProductDependencies = (
 				38DBEB8F2A7E82C1003BC9F3 /* SideMenu */,
 				3825DC6D2A7F700800239E55 /* SnackBar */,
+				38445CCE2A96F4B500AAB33D /* GoogleSignIn */,
 			);
 			productName = Laza;
 			productReference = 38DCC6622A70A8B7006A3633 /* Laza.app */;
@@ -579,6 +591,7 @@
 			packageReferences = (
 				38DBEB8E2A7E82C1003BC9F3 /* XCRemoteSwiftPackageReference "SideMenu" */,
 				3825DC6C2A7F700800239E55 /* XCRemoteSwiftPackageReference "SnackBar" */,
+				38445CCD2A96F4B500AAB33D /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = 38DCC6632A70A8B7006A3633 /* Products */;
 			projectDirPath = "";
@@ -738,6 +751,7 @@
 				386272B32A7A882200962892 /* ReviewTableViewCell.swift in Sources */,
 				38256BB12A8F5D0C003BBFED /* Wishlist.swift in Sources */,
 				387D4D7B2A78F45200022959 /* DetailThumbnailCollectionViewCell.swift in Sources */,
+				38BD6D862A95C2EF00E5BFEF /* Cart.swift in Sources */,
 				3891B5792A82AD0600B1CB88 /* WishlistViewModel.swift in Sources */,
 				38A7DD672A750F75002564AB /* UpdatePasswordViewModel.swift in Sources */,
 				3825DC702A7F705000239E55 /* CustomSnackBar.swift in Sources */,
@@ -746,6 +760,7 @@
 				38FF0E4A2A70F040009B406F /* CustomTextField.swift in Sources */,
 				38D11ACD2A7B9055008ED926 /* AllReviewsViewController.swift in Sources */,
 				38EAD6CE2A8363A700103947 /* CreditCard.swift in Sources */,
+				38BD6D842A95C19000E5BFEF /* CartViewModel.swift in Sources */,
 				3891B5772A82A15000B1CB88 /* ProductBrandViewModel.swift in Sources */,
 				38FF0E4E2A7103C2009B406F /* LoginViewController.swift in Sources */,
 				38EF084B2A7A37260058021F /* DetailTableViewCell.swift in Sources */,
@@ -772,6 +787,7 @@
 				38E89D602A72EE8800BBDE14 /* Product.swift in Sources */,
 				38D1DE402A74C5A6002AB0ED /* RegExManager.swift in Sources */,
 				38EAD6D92A838B7B00103947 /* ListAddressItemTableViewCell.swift in Sources */,
+				38BD6D882A95E6E000E5BFEF /* ProductSize.swift in Sources */,
 				3809B3EF2A89DBE000B34E5D /* ProductReview.swift in Sources */,
 				38EAD6CC2A83636900103947 /* PaymentViewModel.swift in Sources */,
 				38B05D5C2A80E0D300DC3F8B /* OrderConfirmedViewController.swift in Sources */,
@@ -1006,6 +1022,14 @@
 				minimumVersion = 0.1.2;
 			};
 		};
+		38445CCD2A96F4B500AAB33D /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		38DBEB8E2A7E82C1003BC9F3 /* XCRemoteSwiftPackageReference "SideMenu" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/jonkykong/SideMenu.git";
@@ -1021,6 +1045,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 3825DC6C2A7F700800239E55 /* XCRemoteSwiftPackageReference "SnackBar" */;
 			productName = SnackBar;
+		};
+		38445CCE2A96F4B500AAB33D /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 38445CCD2A96F4B500AAB33D /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
 		};
 		38DBEB8F2A7E82C1003BC9F3 /* SideMenu */ = {
 			isa = XCSwiftPackageProductDependency;

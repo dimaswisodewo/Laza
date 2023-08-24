@@ -33,15 +33,73 @@ class CartViewController: UIViewController {
         }
     }
     
+    private let viewModel = CartViewModel()
+    
+    private var timer: Timer? = Timer()
+    private let timerMax: TimeInterval = 0.5
+    private var currentTimer: TimeInterval = 0.5
+    private var isApiCallAllowed = true
+    
+    deinit {
+        timer?.invalidate()
+        timer = nil
+        
+        removeObserver()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupTabBarItemImage()
+        
+        loadAllSizesAndCartItems()
+        
+        registerObserver()
+    }
+    
+    private func registerObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(loadCartItems), name: Notification.Name.cartUpdated, object: nil)
+    }
+    
+    private func removeObserver() {
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.cartUpdated, object: nil)
+    }
+    
+    // Add delay to API call to avoid spamming on (+) and (-) buttons in cart page
+    private func activateApiCallDelay() {
+        isApiCallAllowed = false
+        timer?.invalidate()
+        currentTimer = timerMax
+        timer = Timer.scheduledTimer(withTimeInterval: timerMax, repeats: false, block: { [weak self] _ in
+            // Timer done
+            self?.isApiCallAllowed = true
+            self?.timer?.invalidate()
+        })
     }
     
     override func viewWillAppear(_ animated: Bool) {
 
         tabBarController?.tabBar.isHidden = false
+    }
+    
+    private func loadAllSizesAndCartItems() {
+        viewModel.getAllSize(completion: { [weak self] in
+            self?.loadCartItems()
+        }, onError: { [weak self] errorMessage in
+            guard let self = self else { return }
+            SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+        })
+    }
+    
+    @objc private func loadCartItems() {
+        viewModel.getCartItems(completion: {
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
+            }
+        }, onError: { [weak self] errorMessage in
+            guard let self = self else { return }
+            SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+        })
     }
     
     private func setupTabBarItemImage() {
@@ -79,12 +137,19 @@ class CartViewController: UIViewController {
 extension CartViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        print(String(describing: viewModel.cart?.products.count))
+        return viewModel.cart?.products.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CartTableViewCell.identifier) as? CartTableViewCell else {
             return UITableViewCell()
+        }
+        cell.delegate = self
+        cell.setIndexPath(indexPath: indexPath)
+        if let model = viewModel.getCartItemAtIndex(index: indexPath.item),
+           let sizeId = viewModel.getSizeId(size: model.size) {
+            cell.configure(model: model, sizeId: sizeId)
         }
         return cell
     }
@@ -92,7 +157,6 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 140
     }
-    
 }
 
 // MARK: - CartDetailViewController Delegate
@@ -120,5 +184,42 @@ extension CartViewController: CartDetailViewControllerDelegate {
         // Present CartDetailViewController again
         vc.onDismiss = presentCartDetail
         navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+// MARK: - CartTableViewCellDelegate
+
+extension CartViewController: CartTableViewCellDelegate {
+    
+    func updateCartItems(productId: Int, sizeId: Int, indexPath: IndexPath, completion: @escaping (AddToCart) -> Void) {
+        if !isApiCallAllowed { return }
+        activateApiCallDelay()
+        
+        viewModel.updateCartItems(productId: productId, sizeId: sizeId, completion: { [weak self] addToCart in
+            guard let unwrappedData = addToCart else {
+                // When passed data is nil, it means quantity reach 0, thus delete the product from carts
+                self?.loadCartItems() // Update cart items
+                // Delete cart items
+                self?.viewModel.deleteCartItemsAtIndex(index: indexPath.row)
+                DispatchQueue.main.async {
+                    self?.tableView.deleteRows(at: [indexPath], with: .left)
+                }
+                return
+            }
+            completion(unwrappedData)
+        }, onError: { errorMessage in
+            print(errorMessage)
+        })
+    }
+    
+    func insertToCart(productId: Int, sizeId: Int, completion: @escaping (AddToCart) -> Void) {
+        if !isApiCallAllowed { return }
+        activateApiCallDelay()
+        
+        viewModel.insertToCart(productId: productId, sizeId: sizeId, completion: { addToCart in
+            completion(addToCart)
+        }, onError: { errorMessage in
+            print(errorMessage)
+        })
     }
 }

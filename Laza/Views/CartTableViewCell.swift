@@ -7,9 +7,18 @@
 
 import UIKit
 
+protocol CartTableViewCellDelegate: AnyObject {
+    
+    func updateCartItems(productId: Int, sizeId: Int, indexPath: IndexPath, completion: @escaping (AddToCart) -> Void)
+    
+    func insertToCart(productId: Int, sizeId: Int, completion: @escaping (AddToCart) -> Void)
+}
+
 class CartTableViewCell: UITableViewCell {
     static let identifier = "CartTableViewCell"
     static var nib: UINib { return UINib(nibName: identifier, bundle: nil) }
+    
+    weak var delegate: CartTableViewCellDelegate?
     
     @IBOutlet weak var productImageView: UIImageView! {
         didSet {
@@ -37,7 +46,9 @@ class CartTableViewCell: UITableViewCell {
         }
     }
     
-    private var productAmountCount: Int = 1
+    private var modelId: Int = -1
+    private var sizeId: Int = -1
+    private(set) var indexPath: IndexPath?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -49,24 +60,41 @@ class CartTableViewCell: UITableViewCell {
         
     }
     
-    func configure(model: Product) {
-        productName.text = model.name
+    func configure(model: CartItem, sizeId: Int) {
+        modelId = model.id
+        self.sizeId = sizeId
+        productName.text = model.productName
         productPrice.text = "$\(model.price)".formatDecimal()
+        productAmount.text = String(model.quantity)
+        productImageView.image = nil
         productImageView.loadAndCache(url: model.imageUrl)
     }
     
-    private func refreshProductAmountLabel() {
-        productAmount.text = String(productAmountCount)
+    func setIndexPath(indexPath: IndexPath) {
+        self.indexPath = indexPath
+    }
+    
+    func configure(model: AddToCart) {
+        productAmount.text = String(model.quantity)
     }
     
     @objc private func incrementButtonPressed() {
-        productAmountCount += 1
-        refreshProductAmountLabel()
+        delegate?.insertToCart(productId: modelId, sizeId: sizeId, completion: { addToCart in
+            DispatchQueue.main.async { [weak self] in
+                self?.configure(model: addToCart)
+            }
+        })
     }
     
     @objc private func decrementButtonPressed() {
-        if productAmountCount == 0 { return }
-        productAmountCount -= 1
-        refreshProductAmountLabel()
+        guard let indexPath = self.indexPath else {
+            print("Index Path is nil")
+            return
+        }
+        delegate?.updateCartItems(productId: modelId, sizeId: sizeId, indexPath: indexPath, completion: { addToCart in
+            DispatchQueue.main.async { [weak self] in
+                self?.configure(model: addToCart)
+            }
+        })
     }
 }

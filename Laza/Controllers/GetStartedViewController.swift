@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import GoogleSignIn
 
 class GetStartedViewController: UIViewController {
     
@@ -44,6 +45,12 @@ class GetStartedViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var googleSignInButton: GIDSignInButton! {
+        didSet {
+            googleSignInButton.addTarget(self, action: #selector(googleSignInButtonPressed), for: .touchUpInside)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -66,6 +73,16 @@ class GetStartedViewController: UIViewController {
     
     @objc private func googleButtonPressed() {
         openSharedURL(appURL: "googlegmail://", webURL: "https://mail.google.com/")
+    }
+    
+    @objc private func googleSignInButtonPressed() {
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { signInResult, error in
+            guard error == nil else { return }
+            guard let signInResult = signInResult else { return }
+            
+            // If sign in succeeded, display the app's main content View.
+            print("Sign in success: \(String(describing: signInResult.user.profile?.email))")
+        }
     }
     
     @objc private func twitterButtonPressed() {
