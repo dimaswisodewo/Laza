@@ -40,28 +40,61 @@ class CartDetailViewController: UIViewController {
         }
     }
 
-    @IBOutlet weak var subtotalLabel: UILabel!
+    @IBOutlet weak var subtotalLabel: UILabel! {
+        didSet {
+            subtotalLabel.text = "$\(0)"
+        }
+    }
     
-    @IBOutlet weak var shippingCostLabel: UILabel!
+    @IBOutlet weak var shippingCostLabel: UILabel! {
+        didSet {
+            shippingCostLabel.text = "$\(0)"
+        }
+    }
     
-    @IBOutlet weak var totalLabel: UILabel!
+    @IBOutlet weak var totalLabel: UILabel! {
+        didSet {
+            totalLabel.text = "$\(0)"
+        }
+    }
     
     weak var delegate: CartDetailViewControllerDelegate?
     
-    private let viewModel = CartDetailViewModel()
+    private var viewModel: CartDetailViewModel?
+    private var selectedAddress: Address?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupView()
+        applyModel()
         
-        getAllAddress()
+        if let address = selectedAddress {
+            setupAddressView(address: address)
+        } else {
+            getAllAddress()
+        }
+    }
+    
+    func configure(address: Address?, orderInfo: OrderInfo) {
+        viewModel = CartDetailViewModel(orderInfo: orderInfo)
+        selectedAddress = address
+    }
+    
+    func applyModel() {
+        guard let orderInfo = viewModel?.orderInfo else { return }
+        subtotalLabel.text = "$\(orderInfo.subTotal)"
+        shippingCostLabel.text = "$\(orderInfo.shippingCost)"
+        totalLabel.text = "$\(orderInfo.total)"
     }
     
     private func getAllAddress() {
-        viewModel.getAllAddress(completion: { [weak self] in
-            guard let self = self else { return }
-            print("Address count: \(self.viewModel.addressCount)")
+        guard let viewModel = self.viewModel else { return }
+        viewModel.getAllAddress(completion: {
+            guard let firstAddress = viewModel.addresses.first else { return }
+            DispatchQueue.main.async { [weak self] in
+                self?.selectedAddress = firstAddress
+                self?.setupAddressView(address: firstAddress)
+            }
         }, onError: { errorMessage in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
@@ -70,25 +103,28 @@ class CartDetailViewController: UIViewController {
         })
     }
     
-    private func setupView() {
+    private func setupCardView(card: CreditCardModel) {
         let nib = UINib(nibName: String(describing: ListViewItem.self), bundle: nil)
-        
-        let paymentView = nib.instantiate(withOwner: nil).first as! UIView
-        paymentMethodViewItem.addSubview(paymentView)
-        paymentView.frame = paymentMethodViewItem.bounds
-        let listViewItemPayment = paymentView as! ListViewItem
-        listViewItemPayment.setTitle(title: "Visa Classic")
-        listViewItemPayment.setSubtitle(subtitle: "**** 7880")
-        
         let addressView = nib.instantiate(withOwner: nil).first as! UIView
         deliveryAddressViewItem.addSubview(addressView)
         addressView.frame = deliveryAddressViewItem.bounds
         let listViewItemAddress = addressView as! ListViewItem
-        listViewItemAddress.setTitle(title: "Jl. Subur Raya, Menteng Atas")
-        listViewItemAddress.setSubtitle(subtitle: "Jakarta Selatan")
+        listViewItemAddress.setTitle(title: card.cardNumber)
+        listViewItemAddress.setSubtitle(subtitle: card.owner)
+    }
+    
+    private func setupAddressView(address: Address) {
+        let nib = UINib(nibName: String(describing: ListViewItem.self), bundle: nil)
+        let addressView = nib.instantiate(withOwner: nil).first as! UIView
+        deliveryAddressViewItem.addSubview(addressView)
+        addressView.frame = deliveryAddressViewItem.bounds
+        let listViewItemAddress = addressView as! ListViewItem
+        listViewItemAddress.setTitle(title: "\(address.city), \(address.country)")
+        listViewItemAddress.setSubtitle(subtitle: address.receiverName)
     }
     
     @objc private func addressButtonPressed() {
+        guard let viewModel = self.viewModel else { return }
         dismiss(animated: true)
         delegate?.addressButtonPressed(loadedAddress: viewModel.addresses)
     }

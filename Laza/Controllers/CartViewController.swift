@@ -46,6 +46,8 @@ class CartViewController: UIViewController {
     private var currentTimer: TimeInterval = 0.7
     private var isApiCallAllowed = true
     
+    private var selectedAddress: Address?
+    
     deinit {
         timer?.invalidate()
         timer = nil
@@ -158,7 +160,9 @@ class CartViewController: UIViewController {
     private func presentCartDetail() {
         let storyboard = UIStoryboard(name: "Checkout", bundle: nil)
         guard let vc = storyboard.instantiateViewController(withIdentifier: CartDetailViewController.identifier) as? CartDetailViewController else { return }
-        
+        if let orderInfo = viewModel.cart?.orderInfo {
+            vc.configure(address: selectedAddress, orderInfo: orderInfo)
+        }
         vc.delegate = self
         present(vc, animated: true)
     }
@@ -200,6 +204,7 @@ extension CartViewController: CartDetailViewControllerDelegate {
             print("Failed to get VC")
             return
         }
+        vc.delegate = self
         vc.configure(address: loadedAddress)
         // Present CartDetailViewController again
         vc.onDismiss = presentCartDetail
@@ -257,5 +262,15 @@ extension CartViewController: CartTableViewCellDelegate {
         }, onError: { errorMessage in
             print(errorMessage)
         })
+    }
+}
+
+// MARK: - ListAddressViewControllerDelegate
+
+extension CartViewController: ListAddressViewControllerDelegate {
+    
+    func didSelectAddress(model: Address) {
+        selectedAddress = model
+        presentCartDetail()
     }
 }

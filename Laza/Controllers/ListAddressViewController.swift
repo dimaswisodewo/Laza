@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol ListAddressViewControllerDelegate: AnyObject {
+    
+    func didSelectAddress(model: Address)
+}
+
 class ListAddressViewController: UIViewController {
     
     static let identifier = "ListAddressViewController"
@@ -36,14 +41,34 @@ class ListAddressViewController: UIViewController {
     
     private let viewModel = ListAddressViewModel()
     
+    weak var delegate: ListAddressViewControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tabBarController?.tabBar.isHidden = true
+        
+        if viewModel.addressCount == 0 {
+            loadAllAddress()
+        }
     }
     
     func configure(address: [Address]) {
         viewModel.configure(address: address)
+        print("Address count: \(address.count)")
+    }
+    
+    private func loadAllAddress() {
+        viewModel.getAllAddress(completion: {
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
+            }
+        }, onError: { errorMessage in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+            }
+        })
     }
     
     @objc private func backButtonPressed() {
@@ -73,8 +98,16 @@ extension ListAddressViewController: UITableViewDataSource, UITableViewDelegate 
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ListAddressItemTableViewCell.identifier) as? ListAddressItemTableViewCell else {
             return UITableViewCell()
         }
-        cell.configure(model: viewModel.getAddressAtIndex(index: indexPath.row))
+        if let model = viewModel.getAddressAtIndex(index: indexPath.row) {
+            cell.configure(model: model)
+        }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let address = viewModel.getAddressAtIndex(index: indexPath.row) else { return }
+        navigationController?.popViewController(animated: true)
+        delegate?.didSelectAddress(model: address)
     }
 }
 

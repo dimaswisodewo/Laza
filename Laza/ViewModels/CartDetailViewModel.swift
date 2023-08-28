@@ -9,9 +9,15 @@ import Foundation
 
 class CartDetailViewModel {
     
+    private(set) var orderInfo: OrderInfo
+    
     private(set) var addresses = [Address]()
     var addressCount: Int {
         return addresses.count
+    }
+    
+    init(orderInfo: OrderInfo) {
+        self.orderInfo = orderInfo
     }
     
     func getAddressAtIndex(index: Int) -> Address {

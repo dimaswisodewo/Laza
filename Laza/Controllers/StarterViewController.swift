@@ -19,7 +19,8 @@ class StarterViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        detectSignedAccountUsingUsername()
+//        detectSignedAccountUsingUsername()
+        goToLoginPage()
         
 //        detectSignedGoogleAccount(onSignedIn: { [weak self] in
 //            // Get google profile
