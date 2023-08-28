@@ -14,8 +14,8 @@ struct CartResponse: Codable {
 }
 
 struct Cart: Codable {
-    var products: [CartItem]
-    let orderInfo: OrderInfo
+    var products: [CartItem]?
+    var orderInfo: OrderInfo
     
     private enum CodingKeys: String, CodingKey {
         case products

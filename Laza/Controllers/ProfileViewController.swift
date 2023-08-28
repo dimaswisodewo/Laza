@@ -99,4 +99,13 @@ class ProfileViewController: UIViewController {
         vc.configure(model: model)
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    @IBAction func resfreshTokenButtonPressed(_ sender: UIButton) {
+        guard let token = DataPersistentManager.shared.getTokenFromKeychain() else { return }
+        Task {
+            await SessionManager.shared.refreshTokenIfNeeded(token: token)
+            print("Await done")
+        }
+    }
+    
 }

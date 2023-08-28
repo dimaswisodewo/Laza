@@ -253,6 +253,7 @@
                         <outlet property="cartDetailButton" destination="c1f-4g-dOs" id="MCM-zv-M1O"/>
                         <outlet property="checkoutButton" destination="wWM-9L-deC" id="0M5-Uo-BSs"/>
                         <outlet property="tableView" destination="oua-Eb-pfa" id="PVV-tD-Jwy"/>
+                        <outlet property="totalPriceLabel" destination="vn7-Z8-wps" id="0k7-tW-2HC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="USo-HD-Cbb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -946,18 +947,34 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ohb-vK-ePW">
+                                <rect key="frame" x="20" y="578.66666666666663" width="390" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="oU2-7e-dqZ"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Refresh Token">
+                                    <fontDescription key="titleFontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="resfreshTokenButtonPressed:" destination="0nP-zS-uc0" eventType="touchUpInside" id="UsQ-0N-qcc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="uaJ-fB-eDY"/>
                         <color key="backgroundColor" name="WhiteBG"/>
                         <constraints>
                             <constraint firstItem="wOU-ZU-RGz" firstAttribute="leading" secondItem="uaJ-fB-eDY" secondAttribute="leading" constant="20" id="0ll-p2-yoB"/>
+                            <constraint firstItem="uaJ-fB-eDY" firstAttribute="trailing" secondItem="ohb-vK-ePW" secondAttribute="trailing" constant="20" id="4B8-p8-mSn"/>
                             <constraint firstItem="Nsl-lB-M95" firstAttribute="leading" secondItem="uaJ-fB-eDY" secondAttribute="leading" constant="20" id="6Im-Ps-YNV"/>
                             <constraint firstAttribute="trailing" secondItem="Esh-Qc-eMH" secondAttribute="trailing" constant="20" id="73E-Kl-MpF"/>
                             <constraint firstItem="uaJ-fB-eDY" firstAttribute="trailing" secondItem="wOU-ZU-RGz" secondAttribute="trailing" constant="20" id="AOz-V8-MBJ"/>
                             <constraint firstItem="zAw-pw-kdf" firstAttribute="top" secondItem="uaJ-fB-eDY" secondAttribute="top" id="BDF-f5-NPz"/>
                             <constraint firstAttribute="trailing" secondItem="p0f-Ko-WmQ" secondAttribute="trailing" id="BqA-Sa-wNZ"/>
                             <constraint firstItem="wOU-ZU-RGz" firstAttribute="top" secondItem="VYU-Jh-rVf" secondAttribute="bottom" constant="24" id="ElE-Kq-0Xg"/>
+                            <constraint firstItem="ohb-vK-ePW" firstAttribute="leading" secondItem="uaJ-fB-eDY" secondAttribute="leading" constant="20" id="FbW-Ym-ff8"/>
                             <constraint firstItem="VYU-Jh-rVf" firstAttribute="centerX" secondItem="uaJ-fB-eDY" secondAttribute="centerX" id="J91-LI-n9s"/>
+                            <constraint firstItem="ohb-vK-ePW" firstAttribute="top" secondItem="t1R-jJ-b3K" secondAttribute="bottom" constant="20" id="NGJ-rV-dq4"/>
                             <constraint firstItem="Nsl-lB-M95" firstAttribute="top" secondItem="uaJ-fB-eDY" secondAttribute="top" constant="45" id="QKe-jl-jIH"/>
                             <constraint firstItem="p0f-Ko-WmQ" firstAttribute="leading" secondItem="uaJ-fB-eDY" secondAttribute="leading" id="Rp3-ed-MqP"/>
                             <constraint firstItem="9o6-5l-hWB" firstAttribute="centerX" secondItem="uaJ-fB-eDY" secondAttribute="centerX" id="UYh-6X-n26"/>

@@ -33,11 +33,17 @@ class CartViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var totalPriceLabel: UILabel! {
+        didSet {
+            totalPriceLabel.text = "$0"
+        }
+    }
+    
     private let viewModel = CartViewModel()
     
     private var timer: Timer? = Timer()
-    private let timerMax: TimeInterval = 0.5
-    private var currentTimer: TimeInterval = 0.5
+    private let timerMax: TimeInterval = 0.7
+    private var currentTimer: TimeInterval = 0.7
     private var isApiCallAllowed = true
     
     deinit {
@@ -95,11 +101,37 @@ class CartViewController: UIViewController {
         viewModel.getCartItems(completion: {
             DispatchQueue.main.async { [weak self] in
                 self?.tableView.reloadData()
+                guard let totalPrice = self?.viewModel.cart?.orderInfo.total else {
+                    return
+                }
+                self?.setTotalPriceLabel(totalPrice: totalPrice)
             }
-        }, onError: { [weak self] errorMessage in
-            guard let self = self else { return }
-            SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+        }, onError: { errorMessage in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+            }
         })
+    }
+    
+    private func loadOrderInfo() {
+        viewModel.getOrderInfo(completion: {
+            DispatchQueue.main.async { [weak self] in
+                guard let totalPrice = self?.viewModel.cart?.orderInfo.total else {
+                    return
+                }
+                self?.setTotalPriceLabel(totalPrice: totalPrice)
+            }
+        }, onError: { errorMessage in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+            }
+        })
+    }
+    
+    private func setTotalPriceLabel(totalPrice: Int) {
+        totalPriceLabel.text = "$\(totalPrice)".formatDecimal()
     }
     
     private func setupTabBarItemImage() {
@@ -137,8 +169,7 @@ class CartViewController: UIViewController {
 extension CartViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(String(describing: viewModel.cart?.products.count))
-        return viewModel.cart?.products.count ?? 0
+        return viewModel.cart?.products?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -198,15 +229,19 @@ extension CartViewController: CartTableViewCellDelegate {
         viewModel.updateCartItems(productId: productId, sizeId: sizeId, completion: { [weak self] addToCart in
             guard let unwrappedData = addToCart else {
                 // When passed data is nil, it means quantity reach 0, thus delete the product from carts
-                self?.loadCartItems() // Update cart items
                 // Delete cart items
                 self?.viewModel.deleteCartItemsAtIndex(index: indexPath.row)
                 DispatchQueue.main.async {
                     self?.tableView.deleteRows(at: [indexPath], with: .left)
                 }
+                // Update cart items
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self?.loadCartItems() // Update cart items
+                }
                 return
             }
             completion(unwrappedData)
+            self?.loadOrderInfo()
         }, onError: { errorMessage in
             print(errorMessage)
         })
@@ -216,8 +251,9 @@ extension CartViewController: CartTableViewCellDelegate {
         if !isApiCallAllowed { return }
         activateApiCallDelay()
         
-        viewModel.insertToCart(productId: productId, sizeId: sizeId, completion: { addToCart in
+        viewModel.insertToCart(productId: productId, sizeId: sizeId, completion: { [weak self] addToCart in
             completion(addToCart)
+            self?.loadOrderInfo()
         }, onError: { errorMessage in
             print(errorMessage)
         })

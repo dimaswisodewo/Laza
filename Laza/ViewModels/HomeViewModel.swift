@@ -30,6 +30,7 @@ class HomeViewModel {
     
     func logout() {
         DataPersistentManager.shared.deleteTokenFromKeychain()
+        DataPersistentManager.shared.deleteRefreshTokenFromKeychain()
     }
     
     func loadBrands() {

@@ -100,6 +100,7 @@ class LoginViewController: UIViewController {
                 // Get profile success
                 SessionManager.shared.setCurrentProfile(profile: profile)
                 DataPersistentManager.shared.addTokenToKeychain(token: loginUser.accessToken)
+                DataPersistentManager.shared.addRefreshTokenToKeychain(token: loginUser.refreshToken)
                 // Move to Home Page
                 DispatchQueue.main.async {
                     let storyboard = UIStoryboard(name: "Home", bundle: nil)

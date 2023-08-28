@@ -80,7 +80,7 @@ struct Endpoint {
     
     private let isMockApi = false
     private var baseUrl: String {
-        if isMockApi { return "http://localhost:3001/" }
+        if isMockApi { return "http://localhost:3002/" }
         else { return "https://lazaapp.shop/" }
     }
     
@@ -125,6 +125,7 @@ enum EndpointPath: String {
     case AuthForgotPassword = "auth/forgot-password"
     case AuthVerificationCode = "auth/verification-code"
     case AuthResetPassword = "auth/reset-password"
+    case AuthRefreshToken = "auth/refresh"
     // Google
     case AuthGoogle = "auth/google"
     case AuthGoogleCallback = "auth/google/callback"

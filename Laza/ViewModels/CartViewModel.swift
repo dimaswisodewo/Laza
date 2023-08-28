@@ -18,7 +18,7 @@ class CartViewModel {
             return
         }
         if index >= products.count { fatalError("Index out of bounds") }
-        cart?.products.remove(at: index)
+        cart?.products?.remove(at: index)
     }
     
     func getCartItemAtIndex(index: Int) -> CartItem? {
@@ -84,6 +84,37 @@ class CartViewModel {
                     return
                 }
                 self?.cart = cart.data
+                completion()
+            case .failure(let error):
+                onError(error.localizedDescription)
+            }
+        }
+    }
+    
+    func getOrderInfo(completion: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        var endpoint = Endpoint()
+        endpoint.initialize(path: .Cart)
+        
+        guard let url = URL(string: endpoint.getURL()) else { return }
+        guard let token = DataPersistentManager.shared.getTokenFromKeychain() else { return }
+        
+        var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy)
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
+        
+        NetworkManager.shared.sendRequest(request: request) { [weak self] result in
+            switch result {
+            case .success(let (data, response)):
+                guard let httpResponse = response as? HTTPURLResponse else { return }
+                if httpResponse.statusCode != 200 {
+                    onError("Error: \(httpResponse.statusCode)")
+                    return
+                }
+                guard let data = data else { return }
+                guard let cart = try? JSONDecoder().decode(CartResponse.self, from: data) else {
+                    onError("Get cart items success - Failed to decode")
+                    return
+                }
+                self?.cart?.orderInfo = cart.data.orderInfo
                 completion()
             case .failure(let error):
                 onError(error.localizedDescription)

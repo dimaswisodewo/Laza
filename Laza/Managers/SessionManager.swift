@@ -7,6 +7,10 @@
 
 import Foundation
 
+enum AuthError: Error {
+    case RefreshTokenError
+}
+
 class SessionManager {
     static let shared = SessionManager()
     
@@ -16,6 +20,37 @@ class SessionManager {
     func setCurrentProfile(profile: Profile) {
         print(profile)
         currentProfile = profile
+    }
+    
+    func refreshTokenIfNeeded(token: String) async {
+        if !isSessionExpired(token: token) { return }
+        
+        guard let refreshToken = DataPersistentManager.shared.getRefreshTokenFromKeychain() else {
+            print("Failed while trying to refresh token")
+            return
+        }
+        
+        var endpoint = Endpoint()
+        endpoint.initialize(path: .AuthRefreshToken)
+        
+        guard let url = URL(string: endpoint.getURL()) else { return }
+        
+        var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy)
+        request.setValue("Bearer \(refreshToken)", forHTTPHeaderField: "X-Auth-Refresh")
+        
+        do {
+            let (data, response) = try await URLSession.shared.data(for: request)
+            guard let httpResponse = response as? HTTPURLResponse else { return }
+            if httpResponse.statusCode != 200 {
+                throw AuthError.RefreshTokenError
+            }
+            let result = try JSONDecoder().decode(LoginUserResponse.self, from: data)
+            DataPersistentManager.shared.addTokenToKeychain(token: result.data.accessToken)
+            DataPersistentManager.shared.addRefreshTokenToKeychain(token: result.data.refreshToken)
+            print("Refresh token success: \(result.data)")
+        } catch {
+            print("Error: \(error)")
+        }
     }
     
     func isSessionExpired(token: String) -> Bool {

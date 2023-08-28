@@ -29,7 +29,7 @@ class GetStartedViewController: UIViewController {
     @IBOutlet weak var googleButton: RoundedButton! {
         didSet {
             googleButton.layer.cornerRadius = 10
-            googleButton.addTarget(self, action: #selector(googleButtonPressed), for: .touchUpInside)
+            googleButton.addTarget(self, action: #selector(googleSignInButtonPressed), for: .touchUpInside)
         }
     }
     
@@ -42,12 +42,6 @@ class GetStartedViewController: UIViewController {
     @IBOutlet weak var signInButton: UIButton! {
         didSet {
             signInButton.addTarget(self, action: #selector(signInButtonPressed), for: .touchUpInside)
-        }
-    }
-    
-    @IBOutlet weak var googleSignInButton: GIDSignInButton! {
-        didSet {
-            googleSignInButton.addTarget(self, action: #selector(googleSignInButtonPressed), for: .touchUpInside)
         }
     }
     
