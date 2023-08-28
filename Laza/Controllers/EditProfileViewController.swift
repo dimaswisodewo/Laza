@@ -89,6 +89,9 @@ class EditProfileViewController: UIViewController {
         fullNameLabel.text = model?.fullName
         usernameLabel.text = model?.username
         emailLabel.text = model?.email
+        if let imageUrl = model?.imageUrl {
+            profileImageView.loadAndCache(url: imageUrl)
+        }
     }
     
     @objc private func changeProfileButtonPressed() {

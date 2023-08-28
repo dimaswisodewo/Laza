@@ -51,7 +51,7 @@ class LoginViewModel {
     
     func getProfile(token: String, completion: @escaping (Profile) -> Void, onError: @escaping (String) -> Void) {
         var endpoint = Endpoint()
-        endpoint.initialize(path: .UserProfile)
+        endpoint.initialize(path: .UserProfile, isMockApi: true)
         
         guard let url = URL(string: endpoint.getURL()) else { return }
         var request = URLRequest(url: url)

@@ -18,12 +18,14 @@ struct Profile: Codable {
     var fullName: String
     let username: String
     let email: String
+    let imageUrl: String
     let isVerified: Bool
     
     private enum CodingKeys: String, CodingKey {
         case id, username, email
         case fullName = "full_name"
         case isVerified = "is_verified"
+        case imageUrl = "image_url"
     }
 }
 

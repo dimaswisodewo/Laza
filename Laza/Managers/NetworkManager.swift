@@ -78,7 +78,7 @@ enum APIError: Error {
 
 struct Endpoint {
     
-    private let isMockApi = false
+    private var isMockApi = false
     private var baseUrl: String {
         if isMockApi { return "http://localhost:3002/" }
         else { return "https://lazaapp.shop/" }
@@ -94,7 +94,8 @@ struct Endpoint {
         }
     }
     
-    mutating func initialize(path: EndpointPath?, additionalPath: String? = nil, query: String? = nil, method: HttpMethod = .GET) {
+    mutating func initialize(path: EndpointPath?, additionalPath: String? = nil, query: String? = nil, isMockApi: Bool = false, method: HttpMethod = .GET) {
+        self.isMockApi = isMockApi
         self.path = path
         self.additionalPath = additionalPath
         self.query = query

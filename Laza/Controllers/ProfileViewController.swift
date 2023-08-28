@@ -64,10 +64,12 @@ class ProfileViewController: UIViewController {
     }
     
     private func applyModel() {
-//        profileImageView.loadAndCache(url: )
         fullNameLabel.text = model?.fullName
         usernameLabel.text = model?.username
         emailLabel.text = model?.email
+        if let imageUrl = model?.imageUrl {
+            profileImageView.loadAndCache(url: imageUrl)
+        }
     }
     
     private func getProfile() {

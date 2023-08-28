@@ -23,7 +23,10 @@ class SessionManager {
     }
     
     func refreshTokenIfNeeded(token: String) async {
-        if !isSessionExpired(token: token) { return }
+        if !isSessionExpired(token: token) {
+            print("Session has not yet expired")
+            return
+        }
         
         guard let refreshToken = DataPersistentManager.shared.getRefreshTokenFromKeychain() else {
             print("Failed while trying to refresh token")
@@ -41,6 +44,8 @@ class SessionManager {
         do {
             let (data, response) = try await URLSession.shared.data(for: request)
             guard let httpResponse = response as? HTTPURLResponse else { return }
+            let serialized = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
+            print(serialized)
             if httpResponse.statusCode != 200 {
                 throw AuthError.RefreshTokenError
             }
@@ -70,6 +75,7 @@ class SessionManager {
             return true
         }
         expiryDate = Date(timeIntervalSince1970: TimeInterval(integerLiteral: expiry))
+        print(String(describing: expiryDate?.formatted(.dateTime)))
         return Date.now.timeIntervalSince(expiryDate!) > 0
     }
 }

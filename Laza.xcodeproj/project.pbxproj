@@ -99,7 +99,6 @@
 		38D11AD12A7BA923008ED926 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 38D11ACE2A7BA922008ED926 /* Poppins-SemiBold.ttf */; };
 		38D11AD22A7BA923008ED926 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 38D11ACF2A7BA922008ED926 /* Poppins-Bold.ttf */; };
 		38D11AD32A7BA923008ED926 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 38D11AD02A7BA922008ED926 /* Poppins-Regular.ttf */; };
-		38D1DE342A749347002AB0ED /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D1DE332A749347002AB0ED /* User.swift */; };
 		38D1DE362A74ACB8002AB0ED /* DataPersistentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D1DE352A74ACB8002AB0ED /* DataPersistentManager.swift */; };
 		38D1DE382A74ADD9002AB0ED /* HashingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D1DE372A74ADD9002AB0ED /* HashingManager.swift */; };
 		38D1DE3A2A74AED2002AB0ED /* Password.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D1DE392A74AED1002AB0ED /* Password.swift */; };
@@ -249,7 +248,6 @@
 		38D11ACE2A7BA922008ED926 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-SemiBold.ttf"; path = "../../../../../Downloads/Poppins/Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		38D11ACF2A7BA922008ED926 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Bold.ttf"; path = "../../../../../Downloads/Poppins/Poppins-Bold.ttf"; sourceTree = "<group>"; };
 		38D11AD02A7BA922008ED926 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Poppins-Regular.ttf"; path = "../../../../../Downloads/Poppins/Poppins-Regular.ttf"; sourceTree = "<group>"; };
-		38D1DE332A749347002AB0ED /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		38D1DE352A74ACB8002AB0ED /* DataPersistentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPersistentManager.swift; sourceTree = "<group>"; };
 		38D1DE372A74ADD9002AB0ED /* HashingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashingManager.swift; sourceTree = "<group>"; };
 		38D1DE392A74AED1002AB0ED /* Password.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Password.swift; sourceTree = "<group>"; };
@@ -435,7 +433,6 @@
 				38E89D5F2A72EE8800BBDE14 /* Product.swift */,
 				3809B3EC2A89C89800B34E5D /* ProductDetail.swift */,
 				3809B3EE2A89DBE000B34E5D /* ProductReview.swift */,
-				38D1DE332A749347002AB0ED /* User.swift */,
 				38D1DE412A74CA54002AB0ED /* UserLogin.swift */,
 				3809B3F62A8A143800B34E5D /* UserRegister.swift */,
 				38D1DE392A74AED1002AB0ED /* Password.swift */,
@@ -781,7 +778,6 @@
 				38DCC6682A70A8B7006A3633 /* SceneDelegate.swift in Sources */,
 				38323EFF2A8088AD000732A0 /* CartTableViewCell.swift in Sources */,
 				387A466F2A80A9F5007C3653 /* CartDetailViewController.swift in Sources */,
-				38D1DE342A749347002AB0ED /* User.swift in Sources */,
 				38DCC6892A70D2C7006A3633 /* GetStartedViewController.swift in Sources */,
 				38C51DC72A715A29000324A5 /* Extensions.swift in Sources */,
 				38E89D602A72EE8800BBDE14 /* Product.swift in Sources */,

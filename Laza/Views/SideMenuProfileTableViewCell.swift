@@ -29,6 +29,6 @@ class SideMenuProfileTableViewCell: UITableViewCell {
     
     func configure(profile: Profile) {
         nameLabel.text = profile.fullName
-        profileImage.image = nil
+        profileImage.loadAndCache(url: profile.imageUrl)
     }
 }

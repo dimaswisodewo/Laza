@@ -19,19 +19,21 @@ class StarterViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        detectSignedGoogleAccount(onSignedIn: { [weak self] in
-            // Get google profile
-            self?.getGoogleProfile(completion: {
-                DispatchQueue.main.async {
-                    self?.goToLoginPage()
-                }
-            }, onError: { errorMessage in
-                print(errorMessage)
-                self?.detectSignedAccountUsingUsername()
-            })
-        }, onSignedOut: { [weak self] in
-            self?.detectSignedAccountUsingUsername()
-        })
+        detectSignedAccountUsingUsername()
+        
+//        detectSignedGoogleAccount(onSignedIn: { [weak self] in
+//            // Get google profile
+//            self?.getGoogleProfile(completion: {
+//                DispatchQueue.main.async {
+//                    self?.goToLoginPage()
+//                }
+//            }, onError: { errorMessage in
+//                print(errorMessage)
+//                self?.detectSignedAccountUsingUsername()
+//            })
+//        }, onSignedOut: { [weak self] in
+//            self?.detectSignedAccountUsingUsername()
+//        })
     }
     
     private func detectSignedGoogleAccount(onSignedIn: @escaping () -> Void, onSignedOut: @escaping () -> Void) {
@@ -50,16 +52,19 @@ class StarterViewController: UIViewController {
     }
     
     private func detectSignedAccountUsingUsername() {
-        var isExpired = true
         if let token = DataPersistentManager.shared.getTokenFromKeychain() {
-            isExpired = SessionManager.shared.isSessionExpired(token: token)
-        }
-        print("Is token expired: \(isExpired)")
-        
-        if !isExpired {
-            goToHomePage()
+            refreshTokenIfNeeded(token: token) { [weak self] in
+                self?.goToHomePage()
+            }
         } else {
             goToLoginPage()
+        }
+    }
+    
+    private func refreshTokenIfNeeded(token: String, completion: @escaping () async -> Void) {
+        Task {
+            await SessionManager.shared.refreshTokenIfNeeded(token: token)
+            await completion()
         }
     }
     
