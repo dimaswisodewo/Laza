@@ -138,6 +138,8 @@
 		38EF084B2A7A37260058021F /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38EF084A2A7A37260058021F /* DetailTableViewCell.swift */; };
 		38F216032A7218B700952E65 /* BrandCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38F216022A7218B700952E65 /* BrandCollectionViewCell.swift */; };
 		38FB18D02A7A30A500733133 /* DetailSizeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FB18CF2A7A30A500733133 /* DetailSizeCollectionViewCell.swift */; };
+		38FBA1D32A9D8CE70055A97F /* EditAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FBA1D22A9D8CE70055A97F /* EditAddressViewModel.swift */; };
+		38FBA1D52A9D8D250055A97F /* EditAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FBA1D42A9D8D250055A97F /* EditAddressViewController.swift */; };
 		38FF0E4A2A70F040009B406F /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF0E492A70F040009B406F /* CustomTextField.swift */; };
 		38FF0E4C2A70F478009B406F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF0E4B2A70F478009B406F /* SignUpViewController.swift */; };
 		38FF0E4E2A7103C2009B406F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF0E4D2A7103C2009B406F /* LoginViewController.swift */; };
@@ -288,6 +290,8 @@
 		38EF084A2A7A37260058021F /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		38F216022A7218B700952E65 /* BrandCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandCollectionViewCell.swift; sourceTree = "<group>"; };
 		38FB18CF2A7A30A500733133 /* DetailSizeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSizeCollectionViewCell.swift; sourceTree = "<group>"; };
+		38FBA1D22A9D8CE70055A97F /* EditAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAddressViewModel.swift; sourceTree = "<group>"; };
+		38FBA1D42A9D8D250055A97F /* EditAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAddressViewController.swift; sourceTree = "<group>"; };
 		38FF0E492A70F040009B406F /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		38FF0E4B2A70F478009B406F /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		38FF0E4D2A7103C2009B406F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -396,6 +400,7 @@
 				3847AE1D2A8473BC00C8D4E5 /* ChoosePaymentViewController.swift */,
 				38B7C54E2A90778B006FE010 /* ProfileViewController.swift */,
 				38311EEF2A9444C700979523 /* EditProfileViewController.swift */,
+				38FBA1D42A9D8D250055A97F /* EditAddressViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -422,6 +427,7 @@
 				38311EF12A94580400979523 /* EditProfileViewModel.swift */,
 				38311EF32A945ECA00979523 /* ProfileViewModel.swift */,
 				38BD6D832A95C19000E5BFEF /* CartViewModel.swift */,
+				38FBA1D22A9D8CE70055A97F /* EditAddressViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -700,11 +706,13 @@
 				38DCC68B2A70D368006A3633 /* CircleButton.swift in Sources */,
 				383F896C2A7CB35700C41BE7 /* SideMenuProfileTableViewCell.swift in Sources */,
 				38D1DE462A74E342002AB0ED /* HomeViewModel.swift in Sources */,
+				38FBA1D52A9D8D250055A97F /* EditAddressViewController.swift in Sources */,
 				38B76D4A2A73B6B800C5DA0B /* DetailViewController.swift in Sources */,
 				38D11ACA2A7B8AD9008ED926 /* ReviewsHeaderTableViewCell.swift in Sources */,
 				389F25002A8283FE006E6C4B /* PaymentFormTableViewCell.swift in Sources */,
 				3815A69F2A8DB4A00067BABA /* ListAddressViewModel.swift in Sources */,
 				38B7C54F2A90778B006FE010 /* ProfileViewController.swift in Sources */,
+				38FBA1D32A9D8CE70055A97F /* EditAddressViewModel.swift in Sources */,
 				382F77392A7BFC350076248F /* CustomSecureTextField.swift in Sources */,
 				38E89D622A72F0D900BBDE14 /* ProductCollectionViewCell.swift in Sources */,
 				38B8F0FF2A7215F3003DA0CE /* RoundedView.swift in Sources */,

@@ -164,6 +164,9 @@ class CartViewController: UIViewController {
             vc.configure(address: selectedAddress, orderInfo: orderInfo)
         }
         vc.delegate = self
+        vc.setSelectedAddress = { [weak self] newAddress in
+            self?.selectedAddress = newAddress
+        }
         present(vc, animated: true)
     }
 }

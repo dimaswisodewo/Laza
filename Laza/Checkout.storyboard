@@ -772,6 +772,159 @@
             </objects>
             <point key="canvasLocation" x="41.860465116279066" y="651.50214592274688"/>
         </scene>
+        <!--Edit Address View Controller-->
+        <scene sceneID="b3z-Rr-xRK">
+            <objects>
+                <viewController storyboardIdentifier="EditAddressViewController" id="69q-Jc-xH9" customClass="EditAddressViewController" customModule="Laza" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xI7-A3-Zzn">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qxb-Uv-LMe">
+                                <rect key="frame" x="0.0" y="59" width="430" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="120" id="0Uo-hD-beu"/>
+                                    <constraint firstAttribute="height" constant="120" id="dHY-OD-lVJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="18"/>
+                                <color key="textColor" name="TextPrimary"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xnh-Yf-2y1" customClass="CircleButton" customModule="Laza" customModuleProvider="target">
+                                <rect key="frame" x="25" y="104" width="45" height="45"/>
+                                <color key="backgroundColor" name="WhiteButtonSecondary"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="hwL-iO-bc1"/>
+                                    <constraint firstAttribute="height" constant="45" id="uI1-MR-ako"/>
+                                </constraints>
+                                <color key="tintColor" name="TextPrimary"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="arrow.backward" catalog="system"/>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8W9-3L-0PW" customClass="CustomTextField" customModule="Laza" customModuleProvider="target">
+                                <rect key="frame" x="20" y="227" width="390" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="AgM-XV-vbm"/>
+                                </constraints>
+                                <color key="textColor" name="TextPrimary"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="M1K-oY-6Pr">
+                                <rect key="frame" x="20" y="335" width="390" height="60"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Country..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lSC-XO-3sN" customClass="CustomTextField" customModule="Laza" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="189" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="AgQ-MF-0Aa"/>
+                                            <constraint firstAttribute="height" constant="60" id="XkU-gq-pYO"/>
+                                        </constraints>
+                                        <color key="textColor" name="TextPrimary"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CCO-XA-tpg" customClass="CustomTextField" customModule="Laza" customModuleProvider="target">
+                                        <rect key="frame" x="201" y="0.0" width="189" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="0H6-SE-2qc"/>
+                                            <constraint firstAttribute="height" constant="60" id="SQd-n3-6e1"/>
+                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="60" id="zQg-sI-QLD"/>
+                                        </constraints>
+                                        <color key="textColor" name="TextPrimary"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z5n-Zp-BBx" customClass="CustomTextField" customModule="Laza" customModuleProvider="target">
+                                <rect key="frame" x="20" y="443" width="390" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="eF0-Wn-iWh"/>
+                                </constraints>
+                                <color key="textColor" name="TextPrimary"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zcq-CR-ekZ" customClass="CustomTextField" customModule="Laza" customModuleProvider="target">
+                                <rect key="frame" x="20" y="551" width="390" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="Ots-Dj-pHz"/>
+                                </constraints>
+                                <color key="textColor" name="TextPrimary"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9KH-nf-Ugf">
+                                <rect key="frame" x="361" y="647" width="51" height="31"/>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save as primary address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uAj-B2-Kfw">
+                                <rect key="frame" x="20" y="652.66666666666663" width="174.33333333333334" height="19.666666666666629"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                <color key="textColor" name="TextPrimary"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eRe-b9-SEj">
+                                <rect key="frame" x="0.0" y="857" width="430" height="75"/>
+                                <color key="backgroundColor" name="PurpleButton"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="2fc-Hf-Ovy"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save Address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="it0-dT-CTC">
+                                <rect key="frame" x="154" y="872" width="122" height="25.333333333333371"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="IX7-l1-cpU"/>
+                        <color key="backgroundColor" name="WhiteBG"/>
+                        <constraints>
+                            <constraint firstItem="zcq-CR-ekZ" firstAttribute="top" secondItem="z5n-Zp-BBx" secondAttribute="bottom" constant="48" id="4RX-Yc-IbI"/>
+                            <constraint firstItem="9KH-nf-Ugf" firstAttribute="top" secondItem="zcq-CR-ekZ" secondAttribute="bottom" constant="36" id="5Po-Dk-yNZ"/>
+                            <constraint firstAttribute="bottom" secondItem="eRe-b9-SEj" secondAttribute="bottom" id="8Ol-1D-w9v"/>
+                            <constraint firstItem="IX7-l1-cpU" firstAttribute="trailing" secondItem="M1K-oY-6Pr" secondAttribute="trailing" constant="20" id="BTL-Wm-zGP"/>
+                            <constraint firstItem="uAj-B2-Kfw" firstAttribute="leading" secondItem="IX7-l1-cpU" secondAttribute="leading" constant="20" id="Bj9-fH-097"/>
+                            <constraint firstItem="z5n-Zp-BBx" firstAttribute="top" secondItem="M1K-oY-6Pr" secondAttribute="bottom" constant="48" id="C7g-Pm-WvQ"/>
+                            <constraint firstItem="M1K-oY-6Pr" firstAttribute="top" secondItem="8W9-3L-0PW" secondAttribute="bottom" constant="48" id="FZ1-2o-xvq"/>
+                            <constraint firstItem="Qxb-Uv-LMe" firstAttribute="top" secondItem="IX7-l1-cpU" secondAttribute="top" id="HcD-ve-n8e"/>
+                            <constraint firstItem="zcq-CR-ekZ" firstAttribute="leading" secondItem="IX7-l1-cpU" secondAttribute="leading" constant="20" id="J00-OI-Szp"/>
+                            <constraint firstItem="it0-dT-CTC" firstAttribute="centerX" secondItem="eRe-b9-SEj" secondAttribute="centerX" id="Lkf-D5-sdb"/>
+                            <constraint firstItem="IX7-l1-cpU" firstAttribute="trailing" secondItem="9KH-nf-Ugf" secondAttribute="trailing" constant="20" id="Mvs-Uq-Sau"/>
+                            <constraint firstItem="IX7-l1-cpU" firstAttribute="trailing" secondItem="zcq-CR-ekZ" secondAttribute="trailing" constant="20" id="Nst-As-0Al"/>
+                            <constraint firstItem="Xnh-Yf-2y1" firstAttribute="leading" secondItem="IX7-l1-cpU" secondAttribute="leading" constant="25" id="OoK-AY-sFg"/>
+                            <constraint firstItem="M1K-oY-6Pr" firstAttribute="leading" secondItem="IX7-l1-cpU" secondAttribute="leading" constant="20" id="SQQ-hl-GxK"/>
+                            <constraint firstItem="IX7-l1-cpU" firstAttribute="trailing" secondItem="z5n-Zp-BBx" secondAttribute="trailing" constant="20" id="SUS-ri-Ohw"/>
+                            <constraint firstItem="eRe-b9-SEj" firstAttribute="leading" secondItem="IX7-l1-cpU" secondAttribute="leading" id="V7r-1I-NAg"/>
+                            <constraint firstItem="it0-dT-CTC" firstAttribute="top" secondItem="eRe-b9-SEj" secondAttribute="top" constant="15" id="Xkd-Js-yZj"/>
+                            <constraint firstItem="IX7-l1-cpU" firstAttribute="trailing" secondItem="8W9-3L-0PW" secondAttribute="trailing" constant="20" id="ZcH-I2-AOL"/>
+                            <constraint firstAttribute="trailing" secondItem="eRe-b9-SEj" secondAttribute="trailing" id="bbi-fH-3NN"/>
+                            <constraint firstItem="Xnh-Yf-2y1" firstAttribute="top" secondItem="IX7-l1-cpU" secondAttribute="top" constant="45" id="gAn-Yd-LWH"/>
+                            <constraint firstItem="8W9-3L-0PW" firstAttribute="leading" secondItem="IX7-l1-cpU" secondAttribute="leading" constant="20" id="iZL-5C-Rno"/>
+                            <constraint firstItem="9KH-nf-Ugf" firstAttribute="centerY" secondItem="uAj-B2-Kfw" secondAttribute="centerY" id="m0S-8v-fyJ"/>
+                            <constraint firstItem="8W9-3L-0PW" firstAttribute="top" secondItem="Qxb-Uv-LMe" secondAttribute="bottom" constant="48" id="mVo-0d-PJt"/>
+                            <constraint firstItem="Qxb-Uv-LMe" firstAttribute="leading" secondItem="IX7-l1-cpU" secondAttribute="leading" id="uxs-h4-noi"/>
+                            <constraint firstItem="z5n-Zp-BBx" firstAttribute="leading" secondItem="IX7-l1-cpU" secondAttribute="leading" constant="20" id="weA-1Y-pcB"/>
+                            <constraint firstAttribute="trailing" secondItem="Qxb-Uv-LMe" secondAttribute="trailing" id="yJd-XM-LJW"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="addressField" destination="zcq-CR-ekZ" id="UtH-7J-8Xt"/>
+                        <outlet property="backButton" destination="Xnh-Yf-2y1" id="qhr-bb-8CY"/>
+                        <outlet property="cityField" destination="CCO-XA-tpg" id="BqY-vT-aqs"/>
+                        <outlet property="countryField" destination="lSC-XO-3sN" id="E6h-Tp-015"/>
+                        <outlet property="ctaButton" destination="eRe-b9-SEj" id="Fug-hk-5Vu"/>
+                        <outlet property="isPrimarySwitch" destination="9KH-nf-Ugf" id="Ful-xp-H5M"/>
+                        <outlet property="nameField" destination="8W9-3L-0PW" id="YmK-pV-fWm"/>
+                        <outlet property="phoneField" destination="z5n-Zp-BBx" id="n0q-03-beK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bcG-Wq-pzR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="752" y="-712"/>
+        </scene>
     </scenes>
     <designables>
         <designable name="41g-GW-T2k">
@@ -784,6 +937,9 @@
             <size key="intrinsicContentSize" width="49.333333333333336" height="34.333333333333336"/>
         </designable>
         <designable name="Wn0-hb-eiT">
+            <size key="intrinsicContentSize" width="49.333333333333336" height="34.333333333333336"/>
+        </designable>
+        <designable name="Xnh-Yf-2y1">
             <size key="intrinsicContentSize" width="49.333333333333336" height="34.333333333333336"/>
         </designable>
         <designable name="czA-0G-eGq">

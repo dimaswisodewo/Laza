@@ -117,6 +117,9 @@ extension Notification.Name {
     static var cartUpdated: Notification.Name {
         return .init("Cart.cartUpdated")
     }
+    static var addressUpdated: Notification.Name {
+        return .init("Address.addressUpdated")
+    }
 }
 
 extension Data {

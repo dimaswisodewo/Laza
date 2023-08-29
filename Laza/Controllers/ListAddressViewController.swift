@@ -48,9 +48,23 @@ class ListAddressViewController: UIViewController {
 
         tabBarController?.tabBar.isHidden = true
         
+        registerObserver()
+        
         if viewModel.addressCount == 0 {
             loadAllAddress()
         }
+    }
+    
+    deinit {
+        removeObserver()
+    }
+    
+    private func registerObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(loadAllAddress), name: .addressUpdated, object: nil)
+    }
+    
+    private func removeObserver() {
+        NotificationCenter.default.removeObserver(self, name: .addressUpdated, object: nil)
     }
     
     func configure(address: [Address]) {
@@ -58,7 +72,7 @@ class ListAddressViewController: UIViewController {
         print("Address count: \(address.count)")
     }
     
-    private func loadAllAddress() {
+    @objc private func loadAllAddress() {
         viewModel.getAllAddress(completion: {
             DispatchQueue.main.async { [weak self] in
                 self?.tableView.reloadData()
@@ -109,6 +123,80 @@ extension ListAddressViewController: UITableViewDataSource, UITableViewDelegate 
         navigationController?.popViewController(animated: true)
         delegate?.didSelectAddress(model: address)
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+           
+           // Font metrics used to set font of UILabel
+           let fontMetrics = UIFontMetrics(forTextStyle: .body).scaledFont(
+            for: FontUtils.shared.getFont(font: .Poppins, weight: .regular, size: 14),
+            maximumPointSize: 14)
+           
+           // Change Name Action
+           let edit = UIContextualAction(style: .normal, title: nil) { [weak self] action, view, completion in
+               self?.handleEditSwipeAction(indexPath: indexPath)
+               completion(true)
+           }
+           
+           /// Since we cannot change the font on `UIContextualAction`, we can just convert
+           /// a `UILabel` into an image, then set it into the `UIContextualAction`
+           let namelabel = UILabel()
+           namelabel.numberOfLines = 2
+           namelabel.textAlignment = .center
+           namelabel.text = "Edit"
+           namelabel.textColor = .white
+           namelabel.font = fontMetrics
+           namelabel.sizeToFit()
+           edit.image = UIImage(view: namelabel)
+           edit.backgroundColor = .systemBlue
+           
+           // Delete Action
+           let delete = UIContextualAction(style: .destructive, title: nil) { [weak self] action, view, completion in
+               self?.handleDeleteSwipeAction(indexPath: indexPath)
+               completion(true)
+           }
+           
+           /// Since we cannot change the font on `UIContextualAction`, we can just convert
+           /// a `UILabel` into an image, then set it into the `UIContextualAction`
+           let deleteLabel = UILabel()
+           deleteLabel.text = "Delete"
+           deleteLabel.textColor = .white
+           deleteLabel.font = fontMetrics
+           deleteLabel.sizeToFit()
+           delete.image = UIImage(view: deleteLabel)
+           delete.backgroundColor = .systemRed
+           
+           let configuration = UISwipeActionsConfiguration(actions: [delete, edit])
+           configuration.performsFirstActionWithFullSwipe = false
+           return configuration
+       }
+       
+       private func handleEditSwipeAction(indexPath: IndexPath) {
+           guard let address = viewModel.getAddressAtIndex(index: indexPath.row) else { return }
+           let storyboard = UIStoryboard(name: "Checkout", bundle: nil)
+           guard let vc = storyboard.instantiateViewController(withIdentifier: EditAddressViewController.identifier) as? EditAddressViewController else { return }
+           vc.configure(address: address)
+           navigationController?.pushViewController(vc, animated: true)
+       }
+       
+       private func handleDeleteSwipeAction(indexPath: IndexPath) {
+           print(indexPath.row)
+           guard let addressId = viewModel.getAddressAtIndex(index: indexPath.row)?.id else { return }
+           print(addressId)
+           viewModel.deleteAddress(
+            addressId: addressId,
+            completion: {
+                DispatchQueue.main.async { [weak self] in
+                    self?.viewModel.deleteAddressAtIndex(index: indexPath.row)
+                    self?.tableView.deleteRows(at: [indexPath], with: .left)
+                }
+            },
+            onError: { errorMessage in
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+                }
+            })
+       }
 }
 
 // MARK: - AddressViewControllerDelegate
@@ -123,7 +211,7 @@ extension ListAddressViewController: AddressViewControllerDelegate {
             receiverName: newAddress.receiverName,
             phoneNumber: newAddress.phoneNumber)
         viewModel.addNewAddress(newAddress: address)
-        SnackBarSuccess.make(in: self.view, message: "Added new address", duration: .lengthShort).show()
+        SnackBarSuccess.make(in: self.view, message: "Address updated", duration: .lengthShort).show()
         self.tableView.reloadData()
     }
 }

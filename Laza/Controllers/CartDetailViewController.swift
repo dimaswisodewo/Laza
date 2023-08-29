@@ -61,7 +61,13 @@ class CartDetailViewController: UIViewController {
     weak var delegate: CartDetailViewControllerDelegate?
     
     private var viewModel: CartDetailViewModel?
-    private var selectedAddress: Address?
+    private var selectedAddress: Address? {
+        didSet {
+            guard let selectedAddress = self.selectedAddress else { return }
+            setSelectedAddress?(selectedAddress)
+        }
+    }
+    var setSelectedAddress: ((Address) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -19,6 +19,13 @@ class ListAddressViewModel {
         return address[index]
     }
     
+    func deleteAddressAtIndex(index: Int) {
+        if index >= address.count {
+            fatalError("Index out of bounds")
+        }
+        address.remove(at: index)
+    }
+    
     func configure(address: [Address]) {
         self.address = address
     }
@@ -50,6 +57,34 @@ class ListAddressViewModel {
                     return
                 }
                 self?.address = result.data
+                completion()
+            case .failure(let error):
+                onError(error.localizedDescription)
+            }
+        }
+    }
+    
+    func deleteAddress(addressId: Int, completion: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        
+        var endpoint = Endpoint()
+        endpoint.initialize(path: .Address, additionalPath: "/\(addressId)", method: .DELETE)
+        
+        guard let url = URL(string: endpoint.getURL()) else { return }
+        
+        guard let token = DataPersistentManager.shared.getTokenFromKeychain() else { return }
+        
+        var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy)
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
+        request.httpMethod = endpoint.getMethod.rawValue
+        
+        NetworkManager.shared.sendRequest(request: request) { result in
+            switch result {
+            case .success(let (_, response)):
+                guard let httpResponse = response as? HTTPURLResponse else { return }
+                if httpResponse.statusCode != 200 {
+                    onError("Error: \(httpResponse.statusCode)")
+                    return
+                }
                 completion()
             case .failure(let error):
                 onError(error.localizedDescription)
