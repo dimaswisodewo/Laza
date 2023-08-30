@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -27,7 +28,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wje-WM-O1g">
-                        <rect key="frame" x="20" y="24" width="346" height="25.333333333333329"/>
+                        <rect key="frame" x="20" y="24" width="308" height="25.333333333333329"/>
                         <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="18"/>
                         <color key="textColor" name="TextPrimary"/>
                         <nil key="highlightedColor"/>
@@ -44,14 +45,24 @@
                         <color key="textColor" name="TextPrimary"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="vbp-Rn-eVQ">
+                        <rect key="frame" x="336" y="21" width="30" height="28.666666666666671"/>
+                        <color key="tintColor" systemColor="systemGreenColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="5fx-YT-Who"/>
+                            <constraint firstAttribute="width" secondItem="vbp-Rn-eVQ" secondAttribute="height" multiplier="1:1" id="Ahm-t3-HUn"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" name="WhiteBG"/>
                 <constraints>
                     <constraint firstItem="PUI-1w-AR0" firstAttribute="top" secondItem="pqc-HV-ueH" secondAttribute="bottom" constant="4" id="4A8-Fz-ZRj"/>
                     <constraint firstItem="PUI-1w-AR0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="4ti-Qx-ABl"/>
                     <constraint firstAttribute="trailing" secondItem="PUI-1w-AR0" secondAttribute="trailing" constant="20" id="BS6-Uf-OML"/>
+                    <constraint firstItem="vbp-Rn-eVQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="Bcj-Je-bq7"/>
+                    <constraint firstAttribute="trailing" secondItem="vbp-Rn-eVQ" secondAttribute="trailing" constant="20" symbolic="YES" id="FDR-DE-1zg"/>
                     <constraint firstItem="Wje-WM-O1g" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="SKF-Au-bqz"/>
-                    <constraint firstAttribute="trailing" secondItem="Wje-WM-O1g" secondAttribute="trailing" constant="20" id="TSS-WU-ZfC"/>
+                    <constraint firstItem="vbp-Rn-eVQ" firstAttribute="leading" secondItem="Wje-WM-O1g" secondAttribute="trailing" constant="8" id="TSS-WU-ZfC"/>
                     <constraint firstAttribute="trailing" secondItem="pqc-HV-ueH" secondAttribute="trailing" constant="20" id="a9q-Se-qft"/>
                     <constraint firstItem="Wje-WM-O1g" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="cAZ-t9-I30"/>
                     <constraint firstItem="pqc-HV-ueH" firstAttribute="top" secondItem="Wje-WM-O1g" secondAttribute="bottom" constant="4" id="h8X-CL-si7"/>
@@ -62,6 +73,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="addressLabel" destination="PUI-1w-AR0" id="8Vt-rt-0Gz"/>
+                <outlet property="checkmarkImage" destination="vbp-Rn-eVQ" id="Vjx-fX-2Mb"/>
                 <outlet property="nameLabel" destination="Wje-WM-O1g" id="dg7-0O-dPv"/>
                 <outlet property="phoneLabel" destination="pqc-HV-ueH" id="fLI-Gs-lEE"/>
             </connections>
@@ -69,11 +81,15 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="checkmark.circle.fill" catalog="system" width="128" height="123"/>
         <namedColor name="TextPrimary">
             <color red="0.11372549019607843" green="0.11764705882352941" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="WhiteBG">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

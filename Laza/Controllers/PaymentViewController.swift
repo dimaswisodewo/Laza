@@ -40,9 +40,7 @@ class PaymentViewController: UIViewController {
     
     private weak var paymentCardTableViewCell: PaymentCardTableViewCell?
     private weak var paymentFormTableViewCell: PaymentFormTableViewCell?
-    
-    private let isCardEmpty = false
-    
+        
     private let viewModel: PaymentViewModel = PaymentViewModel()
     
     override func viewDidLoad() {
@@ -50,7 +48,7 @@ class PaymentViewController: UIViewController {
         
         tabBarController?.tabBar.isHidden = true
         
-        getCreditCards()
+//        getCreditCards()
         
         // Reload table view, wait 0.1 sec to make sure that collection views inside the table view is finished layouting subviews
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
@@ -91,14 +89,14 @@ extension PaymentViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // There is no card added
-        if isCardEmpty { return 1 }
+        if viewModel.dataCount == 0 { return 1 }
         // At least one card added
         return Rows.allCases.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         // There is no card added
-        if isCardEmpty {
+        if viewModel.dataCount == 0 {
             return 80
         }
         // At least one card added
@@ -119,7 +117,7 @@ extension PaymentViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // There is no card added
-        if isCardEmpty {
+        if viewModel.dataCount == 0 {
             guard let tableViewCell = tableView.dequeueReusableCell(withIdentifier: PaymentAddCardTableViewCell.identifier) as? PaymentAddCardTableViewCell else {
                 print("Failed to dequeue PaymentAddCardTableViewCell")
                 return UITableViewCell()

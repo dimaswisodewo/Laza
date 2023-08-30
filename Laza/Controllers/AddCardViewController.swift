@@ -43,6 +43,7 @@ class AddCardViewController: UIViewController {
         let textField = CustomTextField()
         textField.autocorrectionType = .no
         textField.autocapitalizationType = .words
+        textField.font = FontUtils.shared.getFont(font: .Poppins, weight: .regular, size: 14)
         textField.setTitle(title: "Card Holder")
         textField.placeholder = "Card Holder..."
         textField.translatesAutoresizingMaskIntoConstraints = false

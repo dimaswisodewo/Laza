@@ -30,10 +30,6 @@ class ListAddressViewModel {
         self.address = address
     }
     
-    func addNewAddress(newAddress: Address) {
-        address.append(newAddress)
-    }
-    
     func getAllAddress(completion: @escaping () -> Void, onError: @escaping (String) -> Void) {
         var endpoint = Endpoint()
         endpoint.initialize(path: .Address)
@@ -56,7 +52,7 @@ class ListAddressViewModel {
                     onError("Get all address success - Failed to decode")
                     return
                 }
-                self?.address = result.data
+                self?.address = result.data.reversed()
                 completion()
             case .failure(let error):
                 onError(error.localizedDescription)

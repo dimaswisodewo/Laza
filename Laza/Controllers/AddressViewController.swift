@@ -9,8 +9,6 @@ import UIKit
 
 protocol AddressViewControllerDelegate: AnyObject {
     
-    func onPrimaryAddressDeleted()
-    
     func onNewAddressAdded(newAddress: Address)
 }
 
@@ -80,6 +78,10 @@ class AddressViewController: UIViewController {
 
     }
     
+    private func notifyObserver() {
+        NotificationCenter.default.post(name: .addressUpdated, object: nil)
+    }
+    
     // End editing on touch began
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -128,6 +130,7 @@ class AddressViewController: UIViewController {
             phone: phone,
             isPrimary: isPrimarySwitch.isOn,
             completion: { [weak self] newAddress in
+                self?.notifyObserver()
                 DispatchQueue.main.async { [weak self] in
                     self?.delegate?.onNewAddressAdded(newAddress: newAddress)
                     self?.navigationController?.popViewController(animated: true)

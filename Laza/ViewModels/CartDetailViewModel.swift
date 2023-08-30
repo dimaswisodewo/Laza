@@ -47,7 +47,7 @@ class CartDetailViewModel {
                     onError("Get all address success - Failed to decode")
                     return
                 }
-                self?.addresses.append(contentsOf: result.data)
+                self?.addresses = result.data.reversed()
                 completion()
             case .failure(let error):
                 onError(error.localizedDescription)

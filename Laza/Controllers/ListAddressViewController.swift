@@ -71,6 +71,10 @@ class ListAddressViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: .addressUpdated, object: nil)
     }
     
+    private func notifyObserver() {
+        NotificationCenter.default.post(name: .addressUpdated, object: nil)
+    }
+    
     func configure(address: [Address]) {
         viewModel.configure(address: address)
         print("Address count: \(address.count)")
@@ -200,6 +204,9 @@ extension ListAddressViewController: UITableViewDataSource, UITableViewDelegate 
                     self?.viewModel.deleteAddressAtIndex(index: indexPath.row)
                     self?.tableView.deleteRows(at: [indexPath], with: .left)
                 }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                    self?.notifyObserver()
+                }
             },
             onError: { errorMessage in
                 DispatchQueue.main.async { [weak self] in
@@ -214,12 +221,7 @@ extension ListAddressViewController: UITableViewDataSource, UITableViewDelegate 
 
 extension ListAddressViewController: AddressViewControllerDelegate {
     
-    func onPrimaryAddressDeleted() {
-        
-    }
-    
     func onNewAddressAdded(newAddress: Address) {
-        viewModel.addNewAddress(newAddress: newAddress)
         SnackBarSuccess.make(in: self.view, message: "Address updated", duration: .lengthShort).show()
         // Set primary address
         if let isPrimary = newAddress.isPrimary, isPrimary {

@@ -54,6 +54,7 @@ class EditAddressViewController: UIViewController {
         countryField.text = address?.country
         cityField.text = address?.city
         phoneField.text = address?.phoneNumber
+        isPrimarySwitch.isOn = address?.isPrimary ?? false
     }
     
     private func notifyObserver() {

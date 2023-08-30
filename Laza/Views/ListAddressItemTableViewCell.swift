@@ -18,10 +18,16 @@ class ListAddressItemTableViewCell: UITableViewCell {
     
     @IBOutlet weak var addressLabel: UILabel!
     
+    @IBOutlet weak var checkmarkImage: UIImageView!
+    
     func configure(model: Address) {
         nameLabel.text = model.receiverName
         phoneLabel.text = model.phoneNumber
         addressLabel.text = "\(model.city), \(model.country)"
+        setEnableCheckMark(isEnable: model.isPrimary ?? false)
     }
     
+    private func setEnableCheckMark(isEnable: Bool) {
+        checkmarkImage.isHidden = !isEnable
+    }
 }

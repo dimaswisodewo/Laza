@@ -9,7 +9,30 @@ import Foundation
 
 class PaymentViewModel {
     
-    private var creditCards = [CreditCard]()
+    private var creditCards = [
+        CreditCard(
+            id: 0,
+            userId: 0,
+            cardNumber: "4242 4242 9012 3456",
+            expiredMonth: 5,
+            expiredYear: 27
+        ),
+        CreditCard(
+            id: 1,
+            userId: 1,
+            cardNumber: "5151 5151 9012 3456",
+            expiredMonth: 9,
+            expiredYear: 25
+        ),
+        CreditCard(
+            id: 2,
+            userId: 2,
+            cardNumber: "5151 5151 9452 3006",
+            expiredMonth: 3,
+            expiredYear: 27
+        ),
+    ]
+    
     var dataCount: Int { creditCards.count }
     
     func appendCreditCard(newCard: CreditCard) {
@@ -37,6 +60,8 @@ class PaymentViewModel {
                 switch result {
                 case .success(let (data, response)):
                     guard let data = data else { return }
+                    guard let result = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) else { return }
+                    print(result)
                     guard let httpResponse = response as? HTTPURLResponse else { return }
                     if httpResponse.statusCode != 200 {
                         guard let responseError = try? JSONDecoder().decode(ResponseError.self, from: data) else {
@@ -50,7 +75,11 @@ class PaymentViewModel {
                         onError("Get credit cards success - Failed to decode")
                         return
                     }
-                    self?.creditCards = creditCardResponse.data
+                    if let creditCards = creditCardResponse.data {
+                        self?.creditCards = creditCards
+                    } else {
+                        self?.creditCards.removeAll()
+                    }
                     completion()
                 case .failure(let error):
                     onError(error.localizedDescription)
