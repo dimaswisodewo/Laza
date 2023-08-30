@@ -26,8 +26,11 @@ class ForgotPasswordViewController: UIViewController {
     @IBOutlet weak var emailTextField: CustomTextField! {
         didSet {
             emailTextField.setTitle(title: "Email Address")
+            emailTextField.autocorrectionType = .no
         }
     }
+    
+    private let viewModel = ForgotPasswordViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,9 +48,31 @@ class ForgotPasswordViewController: UIViewController {
     }
     
     @objc private func confirmButtonPressed() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc =  storyboard.instantiateViewController(withIdentifier: VerificationCodeViewController.identifier)
         
-        navigationController?.pushViewController(vc, animated: true)
+        if !emailTextField.hasText {
+            SnackBarDanger.make(in: self.view, message: "Email address cannot be empty", duration: .lengthShort).show()
+            return
+        }
+        
+        guard let email = emailTextField.text else { return }
+        
+        if !RegExManager.shared.isEmailValid(emailText: email) {
+            SnackBarDanger.make(in: self.view, message: "Email address is not valid", duration: .lengthShort).show()
+            return
+        }
+        
+        viewModel.forgotPassword(email: email, completion: {
+            DispatchQueue.main.async { [weak self] in
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                guard let vc =  storyboard.instantiateViewController(withIdentifier: VerificationCodeViewController.identifier) as? VerificationCodeViewController else { return }
+                vc.configure(emailAddress: email)
+                self?.navigationController?.pushViewController(vc, animated: true)
+            }
+        }, onError: { errorMessage in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+            }
+        })
     }
 }

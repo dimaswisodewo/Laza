@@ -46,7 +46,7 @@ class UpdatePasswordViewController: UIViewController {
         }
     }
     
-    private let viewModel = UpdatePasswordViewModel()
+    private var viewModel: UpdatePasswordViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +58,14 @@ class UpdatePasswordViewController: UIViewController {
         super.viewWillAppear(animated)
         
         tabBarController?.tabBar.isHidden = true
+    }
+    
+    private func notifyObserver() {
+        NotificationCenter.default.post(name: .passwordUpdated, object: nil)
+    }
+    
+    func configure(emailAddress: String, code: String) {
+        viewModel = UpdatePasswordViewModel(emailAddress: emailAddress, code: code)
     }
     
     // End editing on touch began
@@ -75,29 +83,35 @@ class UpdatePasswordViewController: UIViewController {
     
     @objc private func resetPasswordButtonPressed() {
         
-        guard let password = passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
-            SnackBarDanger.make(in: self.view, message: "Please fill out all required forms.", duration: .lengthShort).show()
+        if !passwordTextField.hasText {
+            SnackBarDanger.make(in: self.view, message: "Password cannot be empty", duration: .lengthShort).show()
             return
         }
         
-        guard let confirmPassword = confirmPasswordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {
-            SnackBarDanger.make(in: self.view, message: "Please fill out all required forms.", duration: .lengthShort).show()
-            return
-        }
+        guard let password = passwordTextField.text else { return }
         
         if !RegExManager.shared.isPasswordValid(passwordText: password) {
-            SnackBarDanger.make(in: self.view, message: "Password min 8 characters, 1 letter, 1 number, & 1 special character.", duration: .lengthShort).show()
+            SnackBarDanger.make(in: self.view, message: "Password min 8 characters, 1 letter, 1 number, & 1 special character", duration: .lengthShort).show()
+            return
+        }
+
+        if confirmPasswordTextField.text != password {
+            SnackBarDanger.make(in: self.view, message: "Password confirmation does not match", duration: .lengthShort).show()
             return
         }
         
-        if password != confirmPassword {
-            SnackBarDanger.make(in: self.view, message: "Password confirmation does not match.", duration: .lengthShort).show()
-            return
-        }
-        
-        viewModel.updatePassword(newPassword: password)
-        delegate?.onPasswordUpdated()
-        navigationController?.popViewController(animated: true)
+        viewModel.updatePassword(newPassword: password, completion: {
+            DispatchQueue.main.async { [weak self] in
+                self?.delegate?.onPasswordUpdated()
+                self?.navigationController?.popToRootViewController(animated: true)
+                self?.notifyObserver()
+            }
+        }, onError: { errorMessage in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+            }
+        })
     }
     
     @objc private func backButtonPressed() {

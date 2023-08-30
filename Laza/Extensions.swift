@@ -120,6 +120,9 @@ extension Notification.Name {
     static var addressUpdated: Notification.Name {
         return .init("Address.addressUpdated")
     }
+    static var passwordUpdated: Notification.Name {
+        return .init("Profile.passwordUpdated")
+    }
 }
 
 extension Data {

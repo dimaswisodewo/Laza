@@ -123,9 +123,9 @@ enum EndpointPath: String {
     case Register = "register"
     case AuthVerifyEmail = "auth/verify-email"
     case AuthResendVerify = "auth/confirm/resend"
-    case AuthForgotPassword = "auth/forgot-password"
-    case AuthVerificationCode = "auth/verification-code"
-    case AuthResetPassword = "auth/reset-password"
+    case AuthForgotPassword = "auth/forgotpassword"
+    case AuthVerificationCode = "auth/recover/code"
+    case AuthResetPassword = "auth/recover/password"
     case AuthRefreshToken = "auth/refresh"
     // Google
     case AuthGoogle = "auth/google"

@@ -47,7 +47,23 @@ class GetStartedViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        registerObserver()
+    }
+    
+    deinit {
+        removeObserver()
+    }
+    
+    private func registerObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(onPasswordUpdated), name: .passwordUpdated, object: nil)
+    }
+    
+    private func removeObserver() {
+        NotificationCenter.default.removeObserver(self, name: .passwordUpdated, object: nil)
+    }
+    
+    @objc private func onPasswordUpdated() {
+        SnackBarSuccess.make(in: self.view, message: "Password updated", duration: .lengthShort).show()
     }
     
     @objc private func signUpButtonPressed() {

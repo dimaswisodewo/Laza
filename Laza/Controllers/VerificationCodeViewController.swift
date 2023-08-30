@@ -24,6 +24,12 @@ class VerificationCodeViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var ctaButton: UIButton! {
+        didSet {
+            ctaButton.addTarget(self, action: #selector(ctaButtonPressed), for: .touchUpInside)
+        }
+    }
+    
     @IBOutlet weak var resendCodeButton: UIButton! {
         didSet {
             resendCodeButton.addTarget(self, action: #selector(resendButtonPressed), for: .touchUpInside)
@@ -76,7 +82,9 @@ class VerificationCodeViewController: UIViewController {
     
     @IBOutlet weak var timerLabel: UILabel!
     
-    private let maxSeconds: Int = 62
+    private var viewModel: VerificationCodeViewModel!
+    
+    private let maxSeconds: Int = 300 // 5 minutes
     private var secondsRemaining: Int = 0
     
     private var timer: Timer?
@@ -91,6 +99,10 @@ class VerificationCodeViewController: UIViewController {
         super.viewDidDisappear(animated)
         
         timer?.invalidate()
+    }
+    
+    func configure(emailAddress: String) {
+        viewModel = VerificationCodeViewModel(emailAddress: emailAddress)
     }
     
     // End editing on touch began
@@ -138,8 +150,49 @@ class VerificationCodeViewController: UIViewController {
         return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
     }
     
+    private func getCodeFromTextField() -> String? {
+        
+        guard let tf1 = firstTextField.text else { return nil }
+        guard let tf2 = secondTextField.text else { return nil }
+        guard let tf3 = thirdTextField.text else { return nil }
+        guard let tf4 = fourthTextField.text else { return nil }
+        
+        return "\(tf1)\(tf2)\(tf3)\(tf4)"
+    }
+    
     @objc private func backButtonPressed() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc private func ctaButtonPressed() {
+        if !firstTextField.hasText || !secondTextField.hasText || !thirdTextField.hasText || !fourthTextField.hasText {
+            SnackBarDanger.make(in: self.view, message: "Verification code is not complete", duration: .lengthShort).show()
+            return
+        }
+        
+        guard let code = getCodeFromTextField() else {
+            SnackBarDanger.make(in: self.view, message: "Failed to get verification code in form", duration: .lengthShort).show()
+            return
+        }
+        
+        viewModel.sendVerificationCode(code: code, completion: {
+            DispatchQueue.main.async { [weak self] in
+                print("Completion")
+                guard let self = self else { return }
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                guard let vc = storyboard.instantiateViewController(withIdentifier: UpdatePasswordViewController.identifier) as? UpdatePasswordViewController else {
+                    print("Error")
+                    return
+                }
+                vc.configure(emailAddress: self.viewModel.emailAddress, code: code)
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+        }, onError: { errorMessage in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+            }
+        })
     }
     
     @objc private func resendButtonPressed() {
@@ -168,6 +221,12 @@ class VerificationCodeViewController: UIViewController {
     
     private func dismissKeyboard() {
         self.view.endEditing(true)
+    }
+    
+    private func goToResetPassword() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let vc = storyboard.instantiateViewController(withIdentifier: UpdatePasswordViewController.identifier) as? UpdatePasswordViewController else { return }
+        
     }
 }
 

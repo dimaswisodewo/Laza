@@ -15,6 +15,8 @@
 		3809B3F32A8A000000B34E5D /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3809B3F22A8A000000B34E5D /* ApiService.swift */; };
 		3809B3F52A8A093700B34E5D /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3809B3F42A8A093700B34E5D /* SessionManager.swift */; };
 		3809B3F72A8A143800B34E5D /* UserRegister.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3809B3F62A8A143800B34E5D /* UserRegister.swift */; };
+		380A5A642A9F31BE00887845 /* VerificationCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380A5A632A9F31BE00887845 /* VerificationCodeViewModel.swift */; };
+		380A5A662A9F3CD800887845 /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380A5A652A9F3CD800887845 /* ForgotPasswordViewModel.swift */; };
 		380B4BE52A82019900297B62 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380B4BE42A82019900297B62 /* PaymentViewController.swift */; };
 		380B4BE82A8202FC00297B62 /* PaymentCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 380B4BE62A8202FC00297B62 /* PaymentCardTableViewCell.swift */; };
 		380B4BE92A8202FC00297B62 /* PaymentCardTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 380B4BE72A8202FC00297B62 /* PaymentCardTableViewCell.xib */; };
@@ -168,6 +170,8 @@
 		3809B3F22A8A000000B34E5D /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		3809B3F42A8A093700B34E5D /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		3809B3F62A8A143800B34E5D /* UserRegister.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegister.swift; sourceTree = "<group>"; };
+		380A5A632A9F31BE00887845 /* VerificationCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationCodeViewModel.swift; sourceTree = "<group>"; };
+		380A5A652A9F3CD800887845 /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		380B4BE42A82019900297B62 /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		380B4BE62A8202FC00297B62 /* PaymentCardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentCardTableViewCell.swift; sourceTree = "<group>"; };
 		380B4BE72A8202FC00297B62 /* PaymentCardTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentCardTableViewCell.xib; sourceTree = "<group>"; };
@@ -428,6 +432,8 @@
 				38311EF32A945ECA00979523 /* ProfileViewModel.swift */,
 				38BD6D832A95C19000E5BFEF /* CartViewModel.swift */,
 				38FBA1D22A9D8CE70055A97F /* EditAddressViewModel.swift */,
+				380A5A632A9F31BE00887845 /* VerificationCodeViewModel.swift */,
+				380A5A652A9F3CD800887845 /* ForgotPasswordViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -764,6 +770,7 @@
 				3891B5752A829B4600B1CB88 /* ProductBrandViewController.swift in Sources */,
 				38FF0E4A2A70F040009B406F /* CustomTextField.swift in Sources */,
 				38D11ACD2A7B9055008ED926 /* AllReviewsViewController.swift in Sources */,
+				380A5A642A9F31BE00887845 /* VerificationCodeViewModel.swift in Sources */,
 				38EAD6CE2A8363A700103947 /* CreditCard.swift in Sources */,
 				38BD6D842A95C19000E5BFEF /* CartViewModel.swift in Sources */,
 				3891B5772A82A15000B1CB88 /* ProductBrandViewModel.swift in Sources */,
@@ -781,6 +788,7 @@
 				387D4D792A78A51900022959 /* DynamicHeightCollectionView.swift in Sources */,
 				3847AE212A84757700C8D4E5 /* ChoosePaymentTableViewCell.swift in Sources */,
 				38DCC6662A70A8B7006A3633 /* AppDelegate.swift in Sources */,
+				380A5A662A9F3CD800887845 /* ForgotPasswordViewModel.swift in Sources */,
 				38D86EC22A8B6D34006B0AF3 /* AddReviewViewModel.swift in Sources */,
 				38D1DE3A2A74AED2002AB0ED /* Password.swift in Sources */,
 				38DCC6682A70A8B7006A3633 /* SceneDelegate.swift in Sources */,
