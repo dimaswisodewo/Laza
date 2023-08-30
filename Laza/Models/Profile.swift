@@ -18,7 +18,7 @@ struct Profile: Codable {
     var fullName: String
     let username: String
     let email: String
-    let imageUrl: String
+    var imageUrl: String?
     let isVerified: Bool
     
     private enum CodingKeys: String, CodingKey {

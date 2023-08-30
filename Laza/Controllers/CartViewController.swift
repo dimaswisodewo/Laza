@@ -272,8 +272,16 @@ extension CartViewController: CartTableViewCellDelegate {
 
 extension CartViewController: ListAddressViewControllerDelegate {
     
+    func didDeleteAddress() {
+        selectedAddress = nil
+    }
+    
     func didSelectAddress(model: Address) {
         selectedAddress = model
         presentCartDetail()
+    }
+    
+    func didUpdateAddress(model: Address) {
+        selectedAddress = model
     }
 }

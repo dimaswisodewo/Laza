@@ -10,6 +10,10 @@ import UIKit
 protocol ListAddressViewControllerDelegate: AnyObject {
     
     func didSelectAddress(model: Address)
+    
+    func didUpdateAddress(model: Address)
+    
+    func didDeleteAddress()
 }
 
 class ListAddressViewController: UIViewController {
@@ -73,7 +77,15 @@ class ListAddressViewController: UIViewController {
     }
     
     @objc private func loadAllAddress() {
-        viewModel.getAllAddress(completion: {
+        viewModel.getAllAddress(completion: { [weak self] in
+            guard let self = self else { return }
+            // Get primary address
+            for address in self.viewModel.address {
+                if let isPrimary = address.isPrimary, isPrimary {
+                    self.delegate?.didUpdateAddress(model: address)
+                    break
+                }
+            }
             DispatchQueue.main.async { [weak self] in
                 self?.tableView.reloadData()
             }
@@ -179,13 +191,12 @@ extension ListAddressViewController: UITableViewDataSource, UITableViewDelegate 
        }
        
        private func handleDeleteSwipeAction(indexPath: IndexPath) {
-           print(indexPath.row)
            guard let addressId = viewModel.getAddressAtIndex(index: indexPath.row)?.id else { return }
-           print(addressId)
            viewModel.deleteAddress(
             addressId: addressId,
             completion: {
                 DispatchQueue.main.async { [weak self] in
+                    self?.delegate?.didDeleteAddress()
                     self?.viewModel.deleteAddressAtIndex(index: indexPath.row)
                     self?.tableView.deleteRows(at: [indexPath], with: .left)
                 }
@@ -203,15 +214,17 @@ extension ListAddressViewController: UITableViewDataSource, UITableViewDelegate 
 
 extension ListAddressViewController: AddressViewControllerDelegate {
     
-    func onNewAddressAdded(newAddress: AddAddress) {
-        let address = Address(
-            id: newAddress.id,
-            country: newAddress.country,
-            city: newAddress.city,
-            receiverName: newAddress.receiverName,
-            phoneNumber: newAddress.phoneNumber)
-        viewModel.addNewAddress(newAddress: address)
+    func onPrimaryAddressDeleted() {
+        
+    }
+    
+    func onNewAddressAdded(newAddress: Address) {
+        viewModel.addNewAddress(newAddress: newAddress)
         SnackBarSuccess.make(in: self.view, message: "Address updated", duration: .lengthShort).show()
+        // Set primary address
+        if let isPrimary = newAddress.isPrimary, isPrimary {
+            self.delegate?.didUpdateAddress(model: newAddress)
+        }
         self.tableView.reloadData()
     }
 }

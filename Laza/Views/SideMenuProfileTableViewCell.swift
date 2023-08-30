@@ -29,6 +29,8 @@ class SideMenuProfileTableViewCell: UITableViewCell {
     
     func configure(profile: Profile) {
         nameLabel.text = profile.fullName
-        profileImage.loadAndCache(url: profile.imageUrl)
+        if let imageUrl = profile.imageUrl {
+            profileImage.loadAndCache(url: imageUrl)
+        }
     }
 }

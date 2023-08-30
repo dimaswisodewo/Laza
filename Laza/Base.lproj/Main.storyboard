@@ -41,22 +41,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let’s Get Started" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iC2-Lu-4Sd">
-                                <rect key="frame" x="20" y="172" width="390" height="39.333333333333343"/>
+                                <rect key="frame" x="20" y="172" width="390" height="32.666666666666657"/>
                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="28"/>
                                 <color key="textColor" name="TextPrimary"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="-8" translatesAutoresizingMaskIntoConstraints="NO" id="kD5-Pd-ahK">
-                                <rect key="frame" x="91" y="798.33333333333337" width="248" height="33.666666666666629"/>
+                                <rect key="frame" x="102.00000000000001" y="801.66666666666663" width="226.33333333333337" height="30.333333333333371"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xYT-ga-Feo">
-                                        <rect key="frame" x="0.0" y="0.0" width="184" height="33.666666666666664"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="162.33333333333334" height="30.333333333333332"/>
                                         <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                         <color key="textColor" name="TextSecondary"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nm1-sr-fiV">
-                                        <rect key="frame" x="176" y="0.0" width="72" height="33.666666666666664"/>
+                                        <rect key="frame" x="154.33333333333331" y="0.0" width="72" height="30.333333333333332"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="72" id="to9-kc-I2c"/>
                                         </constraints>
@@ -132,7 +132,7 @@
                                 <buttonConfiguration key="configuration" style="plain"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create an Account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RDB-9o-haL">
-                                <rect key="frame" x="130" y="872" width="170.33333333333337" height="25.333333333333371"/>
+                                <rect key="frame" x="140" y="872" width="150.33333333333337" height="21"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -814,10 +814,10 @@
     </scenes>
     <designables>
         <designable name="ACm-WN-n3f">
-            <size key="intrinsicContentSize" width="124.33333333333333" height="36.666666666666664"/>
+            <size key="intrinsicContentSize" width="117.33333333333333" height="36"/>
         </designable>
         <designable name="L07-vG-9e8">
-            <size key="intrinsicContentSize" width="103.66666666666667" height="36.666666666666664"/>
+            <size key="intrinsicContentSize" width="98" height="36"/>
         </designable>
         <designable name="MYy-sn-5AK">
             <size key="intrinsicContentSize" width="49.333333333333336" height="34.333333333333336"/>
@@ -835,7 +835,7 @@
             <size key="intrinsicContentSize" width="49.333333333333336" height="34.333333333333336"/>
         </designable>
         <designable name="lD1-FF-onV">
-            <size key="intrinsicContentSize" width="100.33333333333333" height="36.666666666666664"/>
+            <size key="intrinsicContentSize" width="94.333333333333329" height="36"/>
         </designable>
     </designables>
     <resources>

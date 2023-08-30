@@ -10,7 +10,7 @@ import Foundation
 class AddressViewModel {
     
     func addNewAddress(country: String, city: String, receiverName: String, phone: String, isPrimary: Bool,
-                       completion: @escaping (AddAddress) -> Void, onError: @escaping (String) -> Void) {
+                       completion: @escaping (Address) -> Void, onError: @escaping (String) -> Void) {
         var endpoint = Endpoint()
         endpoint.initialize(path: .Address, method: .POST)
         

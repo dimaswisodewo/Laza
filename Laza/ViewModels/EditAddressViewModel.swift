@@ -19,7 +19,7 @@ class EditAddressViewModel {
     func updateAddress(country: String, city: String, receiverName: String, phone: String, isPrimary: Bool, completion: @escaping () -> Void, onError: @escaping (String) -> Void) {
         
         var endpoint = Endpoint()
-        endpoint.initialize(path: .Address, additionalPath: "\(addressId)", method: .PUT)
+        endpoint.initialize(path: .Address, additionalPath: "/\(addressId)", method: .PUT)
         
         guard let url = URL(string: endpoint.getURL()) else { return }
         

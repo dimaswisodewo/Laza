@@ -58,6 +58,27 @@ class CartDetailViewController: UIViewController {
         }
     }
     
+    private var listViewItemAddress: ListViewItem?
+    private var listViewItemPayment: ListViewItem?
+    
+    private let addressEmptyLabel: UILabel = {
+        let label = UILabel()
+        label.font = FontUtils.shared.getFont(font: .Poppins, weight: .regular, size: 14)
+        label.textColor = ColorUtils.shared.getColor(color: .TextPrimary)
+        label.textAlignment = .center
+        label.text = "No address added"
+        return label
+    }()
+    
+    private let paymentMethodEmptyLabel: UILabel = {
+        let label = UILabel()
+        label.font = FontUtils.shared.getFont(font: .Poppins, weight: .regular, size: 14)
+        label.textColor = ColorUtils.shared.getColor(color: .TextPrimary)
+        label.textAlignment = .center
+        label.text = "No payment method added"
+        return label
+    }()
+    
     weak var delegate: CartDetailViewControllerDelegate?
     
     private var viewModel: CartDetailViewModel?
@@ -74,9 +95,15 @@ class CartDetailViewController: UIViewController {
         
         applyModel()
         
+        setupView()
+        
         if let address = selectedAddress {
+            print("address is not nil")
             setupAddressView(address: address)
+            addressEmptyLabel.isHidden = true
+            listViewItemAddress?.isHidden = false
         } else {
+            print("address is nil")
             getAllAddress()
         }
     }
@@ -96,10 +123,25 @@ class CartDetailViewController: UIViewController {
     private func getAllAddress() {
         guard let viewModel = self.viewModel else { return }
         viewModel.getAllAddress(completion: {
-            guard let firstAddress = viewModel.addresses.first else { return }
+            // Get primary address
+            var primaryAddress: Address?
+            for address in viewModel.addresses {
+                if let isPrimary = address.isPrimary, isPrimary {
+                    primaryAddress = address
+                    break
+                }
+            }
             DispatchQueue.main.async { [weak self] in
-                self?.selectedAddress = firstAddress
-                self?.setupAddressView(address: firstAddress)
+                self?.selectedAddress = primaryAddress
+                // Primary address does exists
+                if let primaryAddress = primaryAddress {
+                    self?.setupAddressView(address: primaryAddress)
+                    self?.addressEmptyLabel.isHidden = true
+                    self?.listViewItemAddress?.isHidden = false
+                } else {
+                    self?.addressEmptyLabel.isHidden = false
+                    self?.listViewItemAddress?.isHidden = true
+                }
             }
         }, onError: { errorMessage in
             DispatchQueue.main.async { [weak self] in
@@ -110,23 +152,35 @@ class CartDetailViewController: UIViewController {
     }
     
     private func setupCardView(card: CreditCardModel) {
-        let nib = UINib(nibName: String(describing: ListViewItem.self), bundle: nil)
-        let addressView = nib.instantiate(withOwner: nil).first as! UIView
-        deliveryAddressViewItem.addSubview(addressView)
-        addressView.frame = deliveryAddressViewItem.bounds
-        let listViewItemAddress = addressView as! ListViewItem
-        listViewItemAddress.setTitle(title: card.cardNumber)
-        listViewItemAddress.setSubtitle(subtitle: card.owner)
+        listViewItemPayment?.setTitle(title: card.cardNumber)
+        listViewItemPayment?.setSubtitle(subtitle: card.owner)
     }
     
     private func setupAddressView(address: Address) {
+        listViewItemAddress?.setTitle(title: "\(address.city), \(address.country)")
+        listViewItemAddress?.setSubtitle(subtitle: address.receiverName)
+    }
+    
+    private func setupView() {
         let nib = UINib(nibName: String(describing: ListViewItem.self), bundle: nil)
+        // Payment method
+        let cardView = nib.instantiate(withOwner: nil).first as! UIView
+        paymentMethodViewItem.addSubview(cardView)
+        cardView.frame = paymentMethodViewItem.bounds
+        listViewItemPayment = cardView as? ListViewItem
+        listViewItemPayment?.isHidden = true
+        // Address
         let addressView = nib.instantiate(withOwner: nil).first as! UIView
         deliveryAddressViewItem.addSubview(addressView)
         addressView.frame = deliveryAddressViewItem.bounds
-        let listViewItemAddress = addressView as! ListViewItem
-        listViewItemAddress.setTitle(title: "\(address.city), \(address.country)")
-        listViewItemAddress.setSubtitle(subtitle: address.receiverName)
+        listViewItemAddress = addressView as? ListViewItem
+        listViewItemAddress?.isHidden = true
+        // Empty label payment method
+        paymentMethodViewItem.addSubview(paymentMethodEmptyLabel)
+        paymentMethodEmptyLabel.frame = paymentMethodViewItem.bounds
+        // Empty label address
+        deliveryAddressViewItem.addSubview(addressEmptyLabel)
+        addressEmptyLabel.frame = deliveryAddressViewItem.bounds
     }
     
     @objc private func addressButtonPressed() {

@@ -19,8 +19,8 @@ class StarterViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-//        detectSignedAccountUsingUsername()
-        goToLoginPage()
+        detectSignedAccountUsingUsername()
+//        goToLoginPage()
         
 //        detectSignedGoogleAccount(onSignedIn: { [weak self] in
 //            // Get google profile
@@ -55,7 +55,15 @@ class StarterViewController: UIViewController {
     private func detectSignedAccountUsingUsername() {
         if let token = DataPersistentManager.shared.getTokenFromKeychain() {
             refreshTokenIfNeeded(token: token) { [weak self] in
-                self?.goToHomePage()
+                self?.getProfile(token: token, completion: { profile in
+                    SessionManager.shared.setCurrentProfile(profile: profile)
+                    DispatchQueue.main.async {
+                        self?.goToHomePage()
+                    }
+                }, onError: { [weak self] errorMessage in
+                    print("Get profile error")
+                    self?.goToLoginPage()
+                })
             }
         } else {
             goToLoginPage()
@@ -102,5 +110,35 @@ class StarterViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: MainTabBarViewController.identifier)
         view.window?.windowScene?.keyWindow?.rootViewController = vc
+    }
+    
+    private func getProfile(token: String, completion: @escaping (Profile) -> Void, onError: @escaping (String) -> Void) {
+        var endpoint = Endpoint()
+        endpoint.initialize(path: .UserProfile)
+        
+        guard let url = URL(string: endpoint.getURL()) else { return }
+        var request = URLRequest(url: url)
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
+        
+        NetworkManager.shared.sendRequest(request: request) { result in
+            switch result {
+            case .success(let (data, response)):
+                guard let httpResponse = response as? HTTPURLResponse else { return }
+                if httpResponse.statusCode != 200 {
+                    // Login failed
+                    onError("Error: \(httpResponse.statusCode)")
+                    return
+                }
+                // Login success
+                guard let data = data else { return }
+                guard let profile = try? JSONDecoder().decode(ProfileResponse.self, from: data) else {
+                    onError("Get profile success - Failed to decode")
+                    return
+                }
+                completion(profile.data)
+            case .failure(let error):
+                onError(String(describing: error))
+            }
+        }
     }
 }

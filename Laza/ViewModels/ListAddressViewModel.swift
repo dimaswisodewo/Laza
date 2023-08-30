@@ -9,7 +9,7 @@ import Foundation
 
 class ListAddressViewModel {
     
-    private var address = [Address]()
+    private(set) var address = [Address]()
     var addressCount: Int { return address.count }
     
     func getAddressAtIndex(index: Int) -> Address? {

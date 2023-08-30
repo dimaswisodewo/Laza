@@ -9,7 +9,9 @@ import UIKit
 
 protocol AddressViewControllerDelegate: AnyObject {
     
-    func onNewAddressAdded(newAddress: AddAddress)
+    func onPrimaryAddressDeleted()
+    
+    func onNewAddressAdded(newAddress: Address)
 }
 
 class AddressViewController: UIViewController {
