@@ -18,7 +18,6 @@ class SessionManager {
     private var expiryDate: Date?
     
     func setCurrentProfile(profile: Profile) {
-        print(profile)
         currentProfile = profile
     }
     

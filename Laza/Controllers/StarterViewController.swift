@@ -62,7 +62,9 @@ class StarterViewController: UIViewController {
                     }
                 }, onError: { [weak self] errorMessage in
                     print("Get profile error")
-                    self?.goToLoginPage()
+                    DispatchQueue.main.async {
+                        self?.goToLoginPage()
+                    }
                 })
             }
         } else {

@@ -34,18 +34,13 @@ class WishlistViewController: UIViewController {
         super.viewDidLoad()
 
         setupTabBarItemImage()
-        
-        viewModel.reloadProductCollectionView = { [weak self] in
-            self?.collectionView.reloadData()
-        }
+        registerObserver()
         
         loadWishlists()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        registerObserver()
         
         tabBarController?.tabBar.isHidden = false
     }

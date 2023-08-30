@@ -54,7 +54,6 @@ extension WalletViewController: UITableViewDataSource, UITableViewDelegate {
         if let model = viewModel.getDataAtIndex(indexPath.row) {
             // Wait 0.1 sec before set the CreditCardFormView, otherwise the CreditCardFormView will not be layouted properly
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                print("Configure: ", model)
                 cell.configure(model: model)
             }
         }

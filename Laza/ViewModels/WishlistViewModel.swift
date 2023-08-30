@@ -19,8 +19,6 @@ class WishlistViewModel {
         return products
     }
     
-    var reloadProductCollectionView: (() -> Void)?
-    
     func loadWishlists(completion: @escaping () -> Void, onError: @escaping (String) -> Void) {
         var endpoint = Endpoint()
         endpoint.initialize(path: .Wishlist)
@@ -46,6 +44,8 @@ class WishlistViewModel {
                 }
                 if let products = wishlistResponse.data.products {
                     self?.products = products
+                } else {
+                    self?.products.removeAll()
                 }
                 completion()
             case .failure(let error):
