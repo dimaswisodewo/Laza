@@ -192,6 +192,32 @@ class CartViewModel {
         }
     }
     
+    func deleteCartItems(productId: Int, sizeId: Int, completion: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        var endpoint = Endpoint()
+        endpoint.initialize(path: .Cart, query: "ProductId=\(productId)&SizeId=\(sizeId)", method: .DELETE)
+        
+        guard let url = URL(string: endpoint.getURL()) else { return }
+        guard let token = DataPersistentManager.shared.getTokenFromKeychain() else { return }
+        
+        var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy)
+        request.httpMethod = endpoint.getMethod.rawValue
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
+        
+        NetworkManager.shared.sendRequest(request: request) { result in
+            switch result {
+            case .success(let (_, response)):
+                guard let httpResponse = response as? HTTPURLResponse else { return }
+                if httpResponse.statusCode != 200 {
+                    onError("Error: \(httpResponse.statusCode)")
+                    return
+                }
+                completion()
+            case .failure(let error):
+                onError(error.localizedDescription)
+            }
+        }
+    }
+    
     func getSizeId(size: String) -> Int? {
         for productSize in sizes {
             if productSize.size == size {

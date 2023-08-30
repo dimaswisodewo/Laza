@@ -12,6 +12,8 @@ protocol CartTableViewCellDelegate: AnyObject {
     func updateCartItems(productId: Int, sizeId: Int, indexPath: IndexPath, completion: @escaping (AddToCart) -> Void)
     
     func insertToCart(productId: Int, sizeId: Int, completion: @escaping (AddToCart) -> Void)
+    
+    func deleteCartItems(productId: Int, sizeId: Int, indexPath: IndexPath)
 }
 
 class CartTableViewCell: UITableViewCell {
@@ -43,6 +45,12 @@ class CartTableViewCell: UITableViewCell {
     @IBOutlet weak var incrementButton: CircleButton! {
         didSet {
             incrementButton.addTarget(self, action: #selector(incrementButtonPressed), for: .touchUpInside)
+        }
+    }
+    
+    @IBOutlet weak var deleteButton: CircleButton! {
+        didSet {
+            deleteButton.addTarget(self, action: #selector(deleteButtonPressed), for: .touchUpInside)
         }
     }
     
@@ -96,5 +104,13 @@ class CartTableViewCell: UITableViewCell {
                 self?.configure(model: addToCart)
             }
         })
+    }
+    
+    @objc private func deleteButtonPressed() {
+        guard let indexPath = self.indexPath else {
+            print("Index Path is nil")
+            return
+        }
+        delegate?.deleteCartItems(productId: modelId, sizeId: sizeId, indexPath: indexPath)
     }
 }

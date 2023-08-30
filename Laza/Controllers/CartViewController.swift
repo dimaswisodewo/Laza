@@ -230,6 +230,26 @@ extension CartViewController: CartDetailViewControllerDelegate {
 
 extension CartViewController: CartTableViewCellDelegate {
     
+    func deleteCartItems(productId: Int, sizeId: Int, indexPath: IndexPath) {
+        if !isApiCallAllowed { return }
+        activateApiCallDelay()
+        
+        viewModel.deleteCartItems(productId: productId, sizeId: sizeId, completion: { [weak self] in
+            // Delete cart items
+            self?.viewModel.deleteCartItemsAtIndex(index: indexPath.row)
+            DispatchQueue.main.async {
+                self?.tableView.deleteRows(at: [indexPath], with: .left)
+            }
+            // Update cart items
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self?.loadCartItems() // Update cart items
+            }
+            self?.loadOrderInfo()
+        }, onError: { errorMessage in
+            print(errorMessage)
+        })
+    }
+    
     func updateCartItems(productId: Int, sizeId: Int, indexPath: IndexPath, completion: @escaping (AddToCart) -> Void) {
         if !isApiCallAllowed { return }
         activateApiCallDelay()
