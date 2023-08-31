@@ -102,8 +102,10 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
         }
         
         // Load data
-        viewModel.loadBrands()
-        viewModel.loadProducts()
+        SessionManager.shared.refreshTokenIfNeeded { [weak self] in
+            self?.viewModel.loadBrands()
+            self?.viewModel.loadProducts()
+        }
         
         registerObserver()
         
@@ -179,15 +181,17 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
                 SnackBarDanger.make(in: self.view, message: "Failed to get token from keychain", duration: .lengthShort).show()
                 return
             }
-            viewModel.getProfile(token: token, completion: { profile in
-                SessionManager.shared.setCurrentProfile(profile: profile)
-                vc.configure(profile: profile)
-            }, onError: { errorMessage in
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
-                }
-            })
+            SessionManager.shared.refreshTokenIfNeeded { [weak self] in
+                self?.viewModel.getProfile(token: token, completion: { profile in
+                    SessionManager.shared.setCurrentProfile(profile: profile)
+                    vc.configure(profile: profile)
+                }, onError: { errorMessage in
+                    DispatchQueue.main.async { [weak self] in
+                        guard let self = self else { return }
+                        SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+                    }
+                })
+            }
         }
         
         sideMenuNavigationController = SideMenuNavigationController(rootViewController: vc)

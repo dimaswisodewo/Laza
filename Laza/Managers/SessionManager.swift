@@ -21,10 +21,10 @@ class SessionManager {
         currentProfile = profile
     }
     
-    func refreshTokenIfNeeded(completion: @escaping () async -> Void, onError: @escaping () async -> Void) {
+    func refreshTokenIfNeeded(completion: @escaping () async -> Void, onError: (() async -> Void)? = nil) {
         Task {
             let isSuccess = await SessionManager.shared.refreshTokenIfNeeded()
-            await isSuccess ? completion() : onError()
+            await isSuccess ? completion() : onError?()
         }
     }
     
@@ -32,7 +32,7 @@ class SessionManager {
     private func refreshTokenIfNeeded() async -> Bool {
         guard let token = DataPersistentManager.shared.getTokenFromKeychain() else { return false }
         if !isSessionExpired(token: token) {
-            print("Session has not yet expired")
+//            print("Session has not yet expired")
             return true
         }
         

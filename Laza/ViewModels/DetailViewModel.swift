@@ -110,15 +110,14 @@ class DetailViewModel {
             case .success(let (data, response)):
                 guard let data = data else { return }
                 guard let httpResponse = response as? HTTPURLResponse else { return }
+                let decoder = JSONDecoder()
                 if httpResponse.statusCode != 200 {
                     self?.isWishlistLoading = false
-                    guard let failedModel = try? JSONDecoder().decode(ResponseError.self, from: data) else { return }
+                    guard let failedModel = try? decoder.decode(ResponseError.self, from: data) else { return }
                     onError("\(failedModel.status) -  \(failedModel.description)")
                     return
                 }
-                guard let serialized = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) else { return }
-                print(serialized)
-                guard let updateWishlist = try? JSONDecoder().decode(UpdateWishlist.self, from: data) else {
+                guard let updateWishlist = try? decoder.decode(UpdateWishlist.self, from: data) else {
                     self?.isWishlistLoading = false
                     onError("Update wishlist success - Failed to decode")
                     return

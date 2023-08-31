@@ -65,18 +65,20 @@ class WishlistViewController: UIViewController {
     }
     
     @objc private func loadWishlists() {
-        viewModel.loadWishlists(completion: {
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.collectionView.reloadData()
-                self.wishlistCountLabel.text = "\(self.viewModel.productsCount) Items"
-            }
-        }, onError: { errorMessage in
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
-            }
-        })
+        SessionManager.shared.refreshTokenIfNeeded { [weak self] in
+            self?.viewModel.loadWishlists(completion: {
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    self.collectionView.reloadData()
+                    self.wishlistCountLabel.text = "\(self.viewModel.productsCount) Items"
+                }
+            }, onError: { errorMessage in
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+                }
+            })
+        }
     }
     
     @objc private func sortButtonPressed() {

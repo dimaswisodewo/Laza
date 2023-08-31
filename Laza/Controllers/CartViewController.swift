@@ -91,45 +91,51 @@ class CartViewController: UIViewController {
     }
     
     private func loadAllSizesAndCartItems() {
-        viewModel.getAllSize(completion: { [weak self] in
-            self?.loadCartItems()
-        }, onError: { [weak self] errorMessage in
-            guard let self = self else { return }
-            SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
-        })
+        SessionManager.shared.refreshTokenIfNeeded { [weak self] in
+            self?.viewModel.getAllSize(completion: { [weak self] in
+                self?.loadCartItems()
+            }, onError: { [weak self] errorMessage in
+                guard let self = self else { return }
+                SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+            })
+        }
     }
     
     @objc private func loadCartItems() {
-        viewModel.getCartItems(completion: {
-            DispatchQueue.main.async { [weak self] in
-                self?.tableView.reloadData()
-                guard let totalPrice = self?.viewModel.cart?.orderInfo.total else {
-                    return
+        SessionManager.shared.refreshTokenIfNeeded { [weak self] in
+            self?.viewModel.getCartItems(completion: {
+                DispatchQueue.main.async { [weak self] in
+                    self?.tableView.reloadData()
+                    guard let totalPrice = self?.viewModel.cart?.orderInfo.total else {
+                        return
+                    }
+                    self?.setTotalPriceLabel(totalPrice: totalPrice)
                 }
-                self?.setTotalPriceLabel(totalPrice: totalPrice)
-            }
-        }, onError: { errorMessage in
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
-            }
-        })
+            }, onError: { errorMessage in
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+                }
+            })
+        }
     }
     
     private func loadOrderInfo() {
-        viewModel.getOrderInfo(completion: {
-            DispatchQueue.main.async { [weak self] in
-                guard let totalPrice = self?.viewModel.cart?.orderInfo.total else {
-                    return
+        SessionManager.shared.refreshTokenIfNeeded { [weak self] in
+            self?.viewModel.getOrderInfo(completion: {
+                DispatchQueue.main.async { [weak self] in
+                    guard let totalPrice = self?.viewModel.cart?.orderInfo.total else {
+                        return
+                    }
+                    self?.setTotalPriceLabel(totalPrice: totalPrice)
                 }
-                self?.setTotalPriceLabel(totalPrice: totalPrice)
-            }
-        }, onError: { errorMessage in
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
-            }
-        })
+            }, onError: { errorMessage in
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+                }
+            })
+        }
     }
     
     private func setTotalPriceLabel(totalPrice: Int) {
@@ -234,29 +240,8 @@ extension CartViewController: CartTableViewCellDelegate {
         if !isApiCallAllowed { return }
         activateApiCallDelay()
         
-        viewModel.deleteCartItems(productId: productId, sizeId: sizeId, completion: { [weak self] in
-            // Delete cart items
-            self?.viewModel.deleteCartItemsAtIndex(index: indexPath.row)
-            DispatchQueue.main.async {
-                self?.tableView.deleteRows(at: [indexPath], with: .left)
-            }
-            // Update cart items
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                self?.loadCartItems() // Update cart items
-            }
-            self?.loadOrderInfo()
-        }, onError: { errorMessage in
-            print(errorMessage)
-        })
-    }
-    
-    func updateCartItems(productId: Int, sizeId: Int, indexPath: IndexPath, completion: @escaping (AddToCart) -> Void) {
-        if !isApiCallAllowed { return }
-        activateApiCallDelay()
-        
-        viewModel.updateCartItems(productId: productId, sizeId: sizeId, completion: { [weak self] addToCart in
-            guard let unwrappedData = addToCart else {
-                // When passed data is nil, it means quantity reach 0, thus delete the product from carts
+        SessionManager.shared.refreshTokenIfNeeded { [weak self] in
+            self?.viewModel.deleteCartItems(productId: productId, sizeId: sizeId, completion: { [weak self] in
                 // Delete cart items
                 self?.viewModel.deleteCartItemsAtIndex(index: indexPath.row)
                 DispatchQueue.main.async {
@@ -266,25 +251,52 @@ extension CartViewController: CartTableViewCellDelegate {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     self?.loadCartItems() // Update cart items
                 }
-                return
-            }
-            completion(unwrappedData)
-            self?.loadOrderInfo()
-        }, onError: { errorMessage in
-            print(errorMessage)
-        })
+                self?.loadOrderInfo()
+            }, onError: { errorMessage in
+                print(errorMessage)
+            })
+        }
+    }
+    
+    func updateCartItems(productId: Int, sizeId: Int, indexPath: IndexPath, completion: @escaping (AddToCart) -> Void) {
+        if !isApiCallAllowed { return }
+        activateApiCallDelay()
+        
+        SessionManager.shared.refreshTokenIfNeeded { [weak self] in
+            self?.viewModel.updateCartItems(productId: productId, sizeId: sizeId, completion: { [weak self] addToCart in
+                guard let unwrappedData = addToCart else {
+                    // When passed data is nil, it means quantity reach 0, thus delete the product from carts
+                    // Delete cart items
+                    self?.viewModel.deleteCartItemsAtIndex(index: indexPath.row)
+                    DispatchQueue.main.async {
+                        self?.tableView.deleteRows(at: [indexPath], with: .left)
+                    }
+                    // Update cart items
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        self?.loadCartItems() // Update cart items
+                    }
+                    return
+                }
+                completion(unwrappedData)
+                self?.loadOrderInfo()
+            }, onError: { errorMessage in
+                print(errorMessage)
+            })
+        }
     }
     
     func insertToCart(productId: Int, sizeId: Int, completion: @escaping (AddToCart) -> Void) {
         if !isApiCallAllowed { return }
         activateApiCallDelay()
         
-        viewModel.insertToCart(productId: productId, sizeId: sizeId, completion: { [weak self] addToCart in
-            completion(addToCart)
-            self?.loadOrderInfo()
-        }, onError: { errorMessage in
-            print(errorMessage)
-        })
+        SessionManager.shared.refreshTokenIfNeeded { [weak self] in
+            self?.viewModel.insertToCart(productId: productId, sizeId: sizeId, completion: { [weak self] addToCart in
+                completion(addToCart)
+                self?.loadOrderInfo()
+            }, onError: { errorMessage in
+                print(errorMessage)
+            })
+        }
     }
 }
 

@@ -48,16 +48,18 @@ class AllReviewsViewController: UIViewController {
     
     @objc private func loadRatings() {
         print("Reload reviews in AllReviewsViewController")
-        viewModel.loadAllReviews(completion: {
-            DispatchQueue.main.async { [weak self] in
-                self?.tableView.reloadData()
-            }
-        }, onError: { errorMessage in
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
-            }
-        })
+        SessionManager.shared.refreshTokenIfNeeded { [weak self] in
+            self?.viewModel.loadAllReviews(completion: {
+                DispatchQueue.main.async { [weak self] in
+                    self?.tableView.reloadData()
+                }
+            }, onError: { errorMessage in
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+                }
+            })
+        }
     }
     
     private func registerCells() {

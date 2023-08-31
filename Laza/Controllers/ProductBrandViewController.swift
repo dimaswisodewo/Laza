@@ -45,19 +45,25 @@ class ProductBrandViewController: UIViewController {
             
         brandLabel.text = viewModel.brandName
         
-        viewModel.loadProductsByBrand(completion: { productsCount in
-            DispatchQueue.main.async { [weak self] in
-                self?.productsCountLabel.text = "\(productsCount) Items"
-                self?.collectionView.reloadData()
-            }
-        }, onError: { errorMessage in
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
-            }
-        })
+        loadProductsByBrand()
         
         tabBarController?.tabBar.isHidden = true
+    }
+    
+    private func loadProductsByBrand() {
+        SessionManager.shared.refreshTokenIfNeeded { [weak self] in
+            self?.viewModel.loadProductsByBrand(completion: { productsCount in
+                DispatchQueue.main.async { [weak self] in
+                    self?.productsCountLabel.text = "\(productsCount) Items"
+                    self?.collectionView.reloadData()
+                }
+            }, onError: { errorMessage in
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+                }
+            })
+        }
     }
     
     func configure(brandName: String) {

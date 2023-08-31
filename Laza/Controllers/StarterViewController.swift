@@ -66,8 +66,6 @@ class StarterViewController: UIViewController {
                     self?.goToLoginPage()
                 }
             })
-        } onError: { [weak self] in
-            self?.goToLoginPage()
         }
     }
     

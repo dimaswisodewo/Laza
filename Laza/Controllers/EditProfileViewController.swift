@@ -133,22 +133,24 @@ class EditProfileViewController: UIViewController {
         if let image = profileImageView.image {
             media = Media(withImage: image, forKey: "image")
         }
-        viewModel.updateProfile(
-            fullName: fullName,
-            username: username,
-            email: email,
-            media: media,
-            completion: {
-                DispatchQueue.main.async { [weak self] in
-                    NotificationCenter.default.post(name: Notification.Name.profileUpdated, object: nil)
-                    self?.navigationController?.popViewController(animated: true)
-                }
-            }, onError: { errorMessage in
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
-                }
-            })
+        SessionManager.shared.refreshTokenIfNeeded { [weak self] in
+            self?.viewModel.updateProfile(
+                fullName: fullName,
+                username: username,
+                email: email,
+                media: media,
+                completion: {
+                    DispatchQueue.main.async { [weak self] in
+                        NotificationCenter.default.post(name: Notification.Name.profileUpdated, object: nil)
+                        self?.navigationController?.popViewController(animated: true)
+                    }
+                }, onError: { errorMessage in
+                    DispatchQueue.main.async { [weak self] in
+                        guard let self = self else { return }
+                        SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+                    }
+                })
+        }
     }
 }
 
