@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PhotosUI
 
 protocol EditProfileViewControllerDelegate: AnyObject {
     
@@ -70,19 +71,27 @@ class EditProfileViewController: UIViewController {
     
     private let viewModel = EditProfileViewModel()
     
-    private let imagePicker = UIImagePickerController()
+    private var phPicker: PHPickerViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         applyModel()
         
-        imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
+        setupPHPicker()
     }
     
     func configure(model: Profile) {
         self.model = model
+    }
+    
+    private func setupPHPicker() {
+        var config = PHPickerConfiguration()
+        config.selectionLimit = 1
+        config.filter = .images
+
+        phPicker = PHPickerViewController(configuration: config)
+        phPicker.delegate = self
     }
     
     private func applyModel() {
@@ -95,7 +104,8 @@ class EditProfileViewController: UIViewController {
     }
     
     @objc private func changeProfileButtonPressed() {
-        present(imagePicker, animated: true)
+//        present(imagePicker, animated: true)
+        present(phPicker, animated: true)
     }
     
     @objc private func backButtonPressed() {
@@ -142,13 +152,30 @@ class EditProfileViewController: UIViewController {
     }
 }
 
-extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension EditProfileViewController: PHPickerViewControllerDelegate {
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let pickedImage = info[.originalImage] as? UIImage else { return }
-        let resized = ImageUtils.shared.resize(image: pickedImage, size: CGSize(width: 300, height: 300))
-        imagePicker.dismiss(animated: true) { [weak self] in
-            self?.profileImageView.image = resized
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        guard let result = results.first else {
+            print("Failed to get picked image")
+            return
+        }
+        result.itemProvider.loadObject(ofClass: UIImage.self) { object, error in
+            if error != nil {
+                print("PHPickerViewController Error load object \(error?.localizedDescription ?? "")")
+                return
+            }
+            print("Load object success")
+            guard let image = object as? UIImage else { return }
+            let resizedWidth: Double = 300
+            let resizedHeight = resizedWidth * (image.size.height / image.size.width)
+            print("Resized: \(resizedWidth) - \(resizedHeight)")
+            let resized = ImageUtils.shared.resize(image: image, size: CGSize(width: resizedWidth, height: resizedHeight))
+            DispatchQueue.main.async { [weak self] in
+                self?.phPicker.dismiss(animated: true, completion: {
+                    self?.profileImageView.image = resized
+                })
+                print("set image view profile success")
+            }
         }
     }
 }

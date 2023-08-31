@@ -21,6 +21,7 @@ class ReviewTableViewCell: UITableViewCell {
     @IBOutlet private weak var profileImageView: UIImageView! {
         didSet {
             profileImageView.layer.cornerRadius = profileImageView.bounds.width / 2
+            profileImageView.contentMode = .scaleAspectFill
         }
     }
     

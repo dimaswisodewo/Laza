@@ -21,39 +21,48 @@ class SessionManager {
         currentProfile = profile
     }
     
-    func refreshTokenIfNeeded(token: String) async {
+    func refreshTokenIfNeeded(completion: @escaping () async -> Void, onError: @escaping () async -> Void) {
+        Task {
+            let isSuccess = await SessionManager.shared.refreshTokenIfNeeded()
+            await isSuccess ? completion() : onError()
+        }
+    }
+    
+    // Return a Boolean indicating that the process is success
+    private func refreshTokenIfNeeded() async -> Bool {
+        guard let token = DataPersistentManager.shared.getTokenFromKeychain() else { return false }
         if !isSessionExpired(token: token) {
             print("Session has not yet expired")
-            return
+            return true
         }
         
         guard let refreshToken = DataPersistentManager.shared.getRefreshTokenFromKeychain() else {
             print("Failed while trying to refresh token")
-            return
+            return false
         }
         
         var endpoint = Endpoint()
         endpoint.initialize(path: .AuthRefreshToken)
         
-        guard let url = URL(string: endpoint.getURL()) else { return }
+        guard let url = URL(string: endpoint.getURL()) else { return false }
         
         var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy)
         request.setValue("Bearer \(refreshToken)", forHTTPHeaderField: "X-Auth-Refresh")
         
         do {
             let (data, response) = try await URLSession.shared.data(for: request)
-            guard let httpResponse = response as? HTTPURLResponse else { return }
-            let serialized = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
-            print(serialized)
+            guard let httpResponse = response as? HTTPURLResponse else { return false }
             if httpResponse.statusCode != 200 {
                 throw AuthError.RefreshTokenError
             }
             let result = try JSONDecoder().decode(LoginUserResponse.self, from: data)
             DataPersistentManager.shared.addTokenToKeychain(token: result.data.accessToken)
             DataPersistentManager.shared.addRefreshTokenToKeychain(token: result.data.refreshToken)
-            print("Refresh token success: \(result.data)")
+            print("Refresh token success")
+            return true
         } catch {
-            print("Error: \(error)")
+            print("Refresh token error: \(error)")
+            return false
         }
     }
     
@@ -74,7 +83,7 @@ class SessionManager {
             return true
         }
         expiryDate = Date(timeIntervalSince1970: TimeInterval(integerLiteral: expiry))
-        print(String(describing: expiryDate?.formatted(.dateTime)))
+        print("Access token expiry: " + expiryDate!.formatted(.dateTime))
         return Date.now.timeIntervalSince(expiryDate!) > 0
     }
 }

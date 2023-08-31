@@ -53,29 +53,21 @@ class StarterViewController: UIViewController {
     }
     
     private func detectSignedAccountUsingUsername() {
-        if let token = DataPersistentManager.shared.getTokenFromKeychain() {
-            refreshTokenIfNeeded(token: token) { [weak self] in
-                self?.getProfile(token: token, completion: { profile in
-                    SessionManager.shared.setCurrentProfile(profile: profile)
-                    DispatchQueue.main.async {
-                        self?.goToHomePage()
-                    }
-                }, onError: { [weak self] errorMessage in
-                    print("Get profile error")
-                    DispatchQueue.main.async {
-                        self?.goToLoginPage()
-                    }
-                })
-            }
-        } else {
-            goToLoginPage()
-        }
-    }
-    
-    private func refreshTokenIfNeeded(token: String, completion: @escaping () async -> Void) {
-        Task {
-            await SessionManager.shared.refreshTokenIfNeeded(token: token)
-            await completion()
+        SessionManager.shared.refreshTokenIfNeeded { [weak self] in
+            guard let token = DataPersistentManager.shared.getTokenFromKeychain() else { return }
+            self?.getProfile(token: token, completion: { profile in
+                SessionManager.shared.setCurrentProfile(profile: profile)
+                DispatchQueue.main.async {
+                    self?.goToHomePage()
+                }
+            }, onError: { [weak self] errorMessage in
+                print("Get profile error")
+                DispatchQueue.main.async {
+                    self?.goToLoginPage()
+                }
+            })
+        } onError: { [weak self] in
+            self?.goToLoginPage()
         }
     }
     

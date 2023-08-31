@@ -33,16 +33,11 @@ class DataPersistentManager {
             let attributeToUpdate = [kSecValueData: data] as CFDictionary
             // Update to keychain
             let updateStatus = SecItemUpdate(updatequery, attributeToUpdate)
-            if updateStatus == errSecSuccess {
-                print("Updated in keychain, status: \(status)")
-            } else {
-                print("Error updating to keychain, status: \(status)")
+            if updateStatus != errSecSuccess {
+                print("Error updating token to keychain, status: \(status)")
             }
-        } else if status == errSecSuccess {
-            // Success adding to keychain
-            print("Added to keychain, status: \(status)")
-        } else {
-            print("Error adding to keychain, status: \(status)")
+        } else if status != errSecSuccess {
+            print("Error adding token to keychain, status: \(status)")
         }
     }
     
@@ -58,10 +53,9 @@ class DataPersistentManager {
         let status = SecItemCopyMatching(getquery, &ref)
         guard status == errSecSuccess else {
             // Error
-            print("Error retrieving from keychain, status: \(status)")
+            print("Error retrieving token from keychain, status: \(status)")
             return nil
         }
-        print("Retrieved from keychain, status: \(status)")
         let data = ref as! Data
         return String(decoding: data, as: UTF8.self)
     }
@@ -74,10 +68,9 @@ class DataPersistentManager {
         ] as CFDictionary
         let status = SecItemDelete(query)
         guard status == errSecSuccess || status == errSecItemNotFound else {
-            print("Delete from keychain failed")
+            print("Delete token from keychain failed, status")
             return
         }
-        print("Deleted from keychain")
     }
     
     func addRefreshTokenToKeychain(token: String) {
@@ -100,16 +93,11 @@ class DataPersistentManager {
             let attributeToUpdate = [kSecValueData: data] as CFDictionary
             // Update to keychain
             let updateStatus = SecItemUpdate(updatequery, attributeToUpdate)
-            if updateStatus == errSecSuccess {
-                print("Updated in keychain, status: \(status)")
-            } else {
-                print("Error updating to keychain, status: \(status)")
+            if updateStatus != errSecSuccess {
+                print("Error updating refresh token to keychain, status: \(status)")
             }
-        } else if status == errSecSuccess {
-            // Success adding to keychain
-            print("Added to keychain, status: \(status)")
-        } else {
-            print("Error adding to keychain, status: \(status)")
+        } else if status != errSecSuccess {
+            print("Error adding refresh token to keychain, status: \(status)")
         }
     }
     
@@ -125,10 +113,9 @@ class DataPersistentManager {
         let status = SecItemCopyMatching(getquery, &ref)
         guard status == errSecSuccess else {
             // Error
-            print("Error retrieving from keychain, status: \(status)")
+            print("Error retrieving refresh token from keychain, status: \(status)")
             return nil
         }
-        print("Retrieved from keychain, status: \(status)")
         let data = ref as! Data
         return String(decoding: data, as: UTF8.self)
     }
@@ -141,9 +128,8 @@ class DataPersistentManager {
         ] as CFDictionary
         let status = SecItemDelete(query)
         guard status == errSecSuccess || status == errSecItemNotFound else {
-            print("Delete from keychain failed")
+            print("Delete refresh token from keychain failed")
             return
         }
-        print("Deleted from keychain")
     }
 }
