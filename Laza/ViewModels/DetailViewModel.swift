@@ -28,7 +28,7 @@ class DetailViewModel {
     func loadProductDetail() {
         var endpoint = Endpoint()
         endpoint.initialize(path: .Products, additionalPath: "/\(productId)")
-        NetworkManager.shared.sendRequest(type: ProductDetailResponse.self, endpoint: endpoint) { [weak self] result in
+        NetworkManager.shared.sendRequestRefreshTokenIfNeeded(type: ProductDetailResponse.self, endpoint: endpoint) { [weak self] result in
             switch result {
             case .success(let productDetailResponse):
                 self?.productDetail = productDetailResponse.data
@@ -44,7 +44,7 @@ class DetailViewModel {
     func loadRatings() {
         var endpoint = Endpoint()
         endpoint.initialize(path: .Products, additionalPath: "/\(productId)/reviews")
-        NetworkManager.shared.sendRequest(type: ProductReviewResponse.self, endpoint: endpoint) { [weak self] result in
+        NetworkManager.shared.sendRequestRefreshTokenIfNeeded(type: ProductReviewResponse.self, endpoint: endpoint) { [weak self] result in
             switch result {
             case .success(var productReviewResponse):
                 productReviewResponse.data.reviews = productReviewResponse.data.reviews.sorted { $0.createdAt > $1.createdAt } // Sort by created at
@@ -67,7 +67,7 @@ class DetailViewModel {
         guard let token = DataPersistentManager.shared.getTokenFromKeychain() else { return }
         request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
         
-        NetworkManager.shared.sendRequest(request: request) { result in
+        NetworkManager.shared.sendRequestRefreshTokenIfNeeded(request: request) { result in
             switch result {
             case .success(let (data, response)):
                 guard let httpResponse = response as? HTTPURLResponse else { return }
@@ -105,7 +105,7 @@ class DetailViewModel {
         guard let token = DataPersistentManager.shared.getTokenFromKeychain() else { return }
         request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
         
-        NetworkManager.shared.sendRequest(request: request) { [weak self] result in
+        NetworkManager.shared.sendRequestRefreshTokenIfNeeded(request: request) { [weak self] result in
             switch result {
             case .success(let (data, response)):
                 guard let data = data else { return }
@@ -142,7 +142,7 @@ class DetailViewModel {
         request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
         
         // Insert to cart
-        NetworkManager.shared.sendRequest(request: request) { result in
+        NetworkManager.shared.sendRequestRefreshTokenIfNeeded(request: request) { result in
             switch result {
             case .success(let (_, response)):
                 guard let httpResponse = response as? HTTPURLResponse else { return }

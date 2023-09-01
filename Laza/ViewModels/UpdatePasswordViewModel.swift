@@ -30,7 +30,7 @@ class UpdatePasswordViewModel {
             "re_password": newPassword
         ])
         
-        NetworkManager.shared.sendRequest(request: request) { result in
+        NetworkManager.shared.sendRequestRefreshTokenIfNeeded(request: request) { result in
             switch result {
             case .success(let (_, response)):
                 guard let httpResponse = response as? HTTPURLResponse else { return }

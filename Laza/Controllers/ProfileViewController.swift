@@ -73,19 +73,17 @@ class ProfileViewController: UIViewController {
     }
     
     private func getProfile() {
-        SessionManager.shared.refreshTokenIfNeeded { [weak self] in
-            self?.viewModel.getProfile(completion: { profile in
-                DispatchQueue.main.async { [weak self] in
-                    self?.model = profile
-                    self?.applyModel()
-                }
-            }, onError: { errorMessage in
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
-                }
-            })
-        }
+        viewModel.getProfile(completion: { profile in
+            DispatchQueue.main.async { [weak self] in
+                self?.model = profile
+                self?.applyModel()
+            }
+        }, onError: { errorMessage in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+            }
+        })
     }
     
     @objc private func onProfileUpdated() {

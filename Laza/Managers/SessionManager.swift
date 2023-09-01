@@ -21,15 +21,8 @@ class SessionManager {
         currentProfile = profile
     }
     
-    func refreshTokenIfNeeded(completion: @escaping () async -> Void, onError: (() async -> Void)? = nil) {
-        Task {
-            let isSuccess = await SessionManager.shared.refreshTokenIfNeeded()
-            await isSuccess ? completion() : onError?()
-        }
-    }
-    
     // Return a Boolean indicating that the process is success
-    private func refreshTokenIfNeeded() async -> Bool {
+    func refreshTokenIfNeeded() async -> Bool {
         guard let token = DataPersistentManager.shared.getTokenFromKeychain() else { return false }
         if !isSessionExpired(token: token) {
 //            print("Session has not yet expired")

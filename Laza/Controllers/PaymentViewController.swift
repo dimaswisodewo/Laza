@@ -63,21 +63,19 @@ class PaymentViewController: UIViewController {
     }
     
     private func getCreditCards() {
-        SessionManager.shared.refreshTokenIfNeeded { [weak self] in
-            self?.viewModel.getCreditCards(
-                completion: {
-                    DispatchQueue.main.async { [weak self] in
-                        self?.paymentCardTableViewCell?.collectionView.reloadData()
-                        self?.tableView.reloadData()
-                    }
-                },
-                onError: { errorMessage in
-                    DispatchQueue.main.async { [weak self] in
-                        guard let self = self else { return }
-                        SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
-                    }
-                })
-        }
+        viewModel.getCreditCards(
+            completion: {
+                DispatchQueue.main.async { [weak self] in
+                    self?.paymentCardTableViewCell?.collectionView.reloadData()
+                    self?.tableView.reloadData()
+                }
+            },
+            onError: { errorMessage in
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+                }
+            })
     }
     
     @objc private func backButtonPressed() {

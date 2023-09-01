@@ -84,9 +84,7 @@ class DetailViewController: UIViewController {
     }
     
     @objc private func loadRatings() {
-        SessionManager.shared.refreshTokenIfNeeded { [weak self] in
-            self?.viewModel?.loadRatings()
-        }
+        viewModel?.loadRatings()
     }
     
     private func loadProductDetail() {
@@ -97,29 +95,25 @@ class DetailViewController: UIViewController {
             self?.detailTableViewCell?.productCollectionView.reloadData()
         }
         // Load necessary data
-        SessionManager.shared.refreshTokenIfNeeded { [weak self] in
-            self?.viewModel?.loadProductDetail()
-            self?.viewModel?.loadRatings()
-        }
+        viewModel?.loadProductDetail()
+        viewModel?.loadRatings()
     }
     
     private func loadIsWishlisted() {
-        SessionManager.shared.refreshTokenIfNeeded { [weak self] in
-            self?.viewModel?.loadIsWishlisted(completion: { isWishlisted in
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    let systemName = isWishlisted ? "heart.fill" : "heart"
-                    self.cartButton.setImage(UIImage(systemName: systemName), for: .normal)
-                    self.cartButton.isEnabled = true
-                }
-            }, onError: { errorMessage in
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    self.cartButton.isEnabled = true
-                    SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
-                }
-            })
-        }
+        viewModel?.loadIsWishlisted(completion: { isWishlisted in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                let systemName = isWishlisted ? "heart.fill" : "heart"
+                self.cartButton.setImage(UIImage(systemName: systemName), for: .normal)
+                self.cartButton.isEnabled = true
+            }
+        }, onError: { errorMessage in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.cartButton.isEnabled = true
+                SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+            }
+        })
     }
     
     private func registerCells() {
@@ -145,25 +139,23 @@ class DetailViewController: UIViewController {
         
         cartButton.isEnabled = false
         
-        SessionManager.shared.refreshTokenIfNeeded { [weak self] in
-            self?.viewModel?.toggleWishlist(completion: { isWishlisted in
-                NotificationCenter.default.post(name: .wishlistUpdated, object: nil)
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    let systemName = isWishlisted ? "heart.fill" : "heart"
-                    self.cartButton.setImage(UIImage(systemName: systemName), for: .normal)
-                    self.cartButton.isEnabled = true
-                    let message = isWishlisted ? "Added to wishlist" : "Remove from wishlist"
-                    SnackBarSuccess.make(in: self.view, message: message, duration: .lengthShort).show()
-                }
-            }, onError: { errorMessage in
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    self.cartButton.isEnabled = true
-                    SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
-                }
-            })
-        }
+        viewModel?.toggleWishlist(completion: { isWishlisted in
+            NotificationCenter.default.post(name: .wishlistUpdated, object: nil)
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                let systemName = isWishlisted ? "heart.fill" : "heart"
+                self.cartButton.setImage(UIImage(systemName: systemName), for: .normal)
+                self.cartButton.isEnabled = true
+                let message = isWishlisted ? "Added to wishlist" : "Remove from wishlist"
+                SnackBarSuccess.make(in: self.view, message: message, duration: .lengthShort).show()
+            }
+        }, onError: { errorMessage in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.cartButton.isEnabled = true
+                SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+            }
+        })
     }
     
     @objc private func addToCartButtonPressed() {
@@ -173,23 +165,21 @@ class DetailViewController: UIViewController {
         }
         guard let productId = viewModel?.getProductId else { return }
         
-        SessionManager.shared.refreshTokenIfNeeded { [weak self] in
-            self?.viewModel?.insertToCart(productId: productId, sizeId: selectedSizeId, completion: {
-                DispatchQueue.main.async { [weak self] in
-                    DispatchQueue.main.async { [weak self] in
-                        guard let self = self else { return }
-                        SnackBarSuccess.make(in: self.view, message: "Item added to cart", duration: .lengthShort).show()
-                    }
-                    // Notify to update cart items
-                    NotificationCenter.default.post(name: Notification.Name.cartUpdated, object: nil)
-                }
-            }, onError: { errorMessage in
+        viewModel?.insertToCart(productId: productId, sizeId: selectedSizeId, completion: {
+            DispatchQueue.main.async { [weak self] in
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
-                    SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+                    SnackBarSuccess.make(in: self.view, message: "Item added to cart", duration: .lengthShort).show()
                 }
-            })
-        }
+                // Notify to update cart items
+                NotificationCenter.default.post(name: Notification.Name.cartUpdated, object: nil)
+            }
+        }, onError: { errorMessage in
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+            }
+        })
     }
 }
 

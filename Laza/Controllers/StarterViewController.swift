@@ -13,14 +13,12 @@ class StarterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         detectSignedAccountUsingUsername()
-//        goToLoginPage()
         
 //        detectSignedGoogleAccount(onSignedIn: { [weak self] in
 //            // Get google profile
@@ -53,19 +51,16 @@ class StarterViewController: UIViewController {
     }
     
     private func detectSignedAccountUsingUsername() {
-        SessionManager.shared.refreshTokenIfNeeded { [weak self] in
-            guard let token = DataPersistentManager.shared.getTokenFromKeychain() else { return }
-            self?.getProfile(token: token, completion: { profile in
-                SessionManager.shared.setCurrentProfile(profile: profile)
-                DispatchQueue.main.async {
-                    self?.goToHomePage()
-                }
-            }, onError: { [weak self] errorMessage in
-                print("Get profile error")
-                DispatchQueue.main.async {
-                    self?.goToLoginPage()
-                }
-            })
+        getProfile { profile in
+            SessionManager.shared.setCurrentProfile(profile: profile)
+            DispatchQueue.main.async { [weak self] in
+                self?.goToHomePage()
+            }
+        } onError: { [weak self] errorMessage in
+            print("Get profile error")
+            DispatchQueue.main.async {
+                self?.goToLoginPage()
+            }
         }
     }
     
@@ -104,15 +99,17 @@ class StarterViewController: UIViewController {
         view.window?.windowScene?.keyWindow?.rootViewController = vc
     }
     
-    private func getProfile(token: String, completion: @escaping (Profile) -> Void, onError: @escaping (String) -> Void) {
+    private func getProfile(completion: @escaping (Profile) -> Void, onError: @escaping (String) -> Void) {
         var endpoint = Endpoint()
         endpoint.initialize(path: .UserProfile)
+        
+        guard let token = DataPersistentManager.shared.getTokenFromKeychain() else { return }
         
         guard let url = URL(string: endpoint.getURL()) else { return }
         var request = URLRequest(url: url)
         request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
         
-        NetworkManager.shared.sendRequest(request: request) { result in
+        NetworkManager.shared.sendRequestRefreshTokenIfNeeded(request: request) { result in
             switch result {
             case .success(let (data, response)):
                 guard let httpResponse = response as? HTTPURLResponse else { return }

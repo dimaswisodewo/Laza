@@ -29,7 +29,7 @@ class VerificationCodeViewModel {
             "code": code
         ])
         
-        NetworkManager.shared.sendRequest(request: request) { result in
+        NetworkManager.shared.sendRequestRefreshTokenIfNeeded(request: request) { result in
             switch result {
             case .success(let (data, response)):
                 print("Success")

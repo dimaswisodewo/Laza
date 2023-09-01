@@ -39,7 +39,7 @@ class CartViewModel {
         
         let request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy)
         
-        NetworkManager.shared.sendRequest(request: request) { [weak self] result in
+        NetworkManager.shared.sendRequestRefreshTokenIfNeeded(request: request) { [weak self] result in
             switch result {
             case .success(let (data, response)):
                 guard let httpResponse = response as? HTTPURLResponse else { return }
@@ -70,7 +70,7 @@ class CartViewModel {
         var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy)
         request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
         
-        NetworkManager.shared.sendRequest(request: request) { [weak self] result in
+        NetworkManager.shared.sendRequestRefreshTokenIfNeeded(request: request) { [weak self] result in
             switch result {
             case .success(let (data, response)):
                 guard let httpResponse = response as? HTTPURLResponse else { return }
@@ -101,7 +101,7 @@ class CartViewModel {
         var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy)
         request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
         
-        NetworkManager.shared.sendRequest(request: request) { [weak self] result in
+        NetworkManager.shared.sendRequestRefreshTokenIfNeeded(request: request) { [weak self] result in
             switch result {
             case .success(let (data, response)):
                 guard let httpResponse = response as? HTTPURLResponse else { return }
@@ -133,7 +133,7 @@ class CartViewModel {
         request.httpMethod = endpoint.getMethod.rawValue
         request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
         
-        NetworkManager.shared.sendRequest(request: request) { result in
+        NetworkManager.shared.sendRequestRefreshTokenIfNeeded(request: request) { result in
             switch result {
             case .success(let (data, response)):
                 guard let httpResponse = response as? HTTPURLResponse else { return }
@@ -172,7 +172,7 @@ class CartViewModel {
         request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
         
         // Insert to cart
-        NetworkManager.shared.sendRequest(request: request) { result in
+        NetworkManager.shared.sendRequestRefreshTokenIfNeeded(request: request) { result in
             switch result {
             case .success(let (data, response)):
                 guard let httpResponse = response as? HTTPURLResponse else { return }
@@ -203,7 +203,7 @@ class CartViewModel {
         request.httpMethod = endpoint.getMethod.rawValue
         request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
         
-        NetworkManager.shared.sendRequest(request: request) { result in
+        NetworkManager.shared.sendRequestRefreshTokenIfNeeded(request: request) { result in
             switch result {
             case .success(let (_, response)):
                 guard let httpResponse = response as? HTTPURLResponse else { return }

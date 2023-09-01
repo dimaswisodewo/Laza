@@ -85,25 +85,22 @@ class AddReviewViewController: UIViewController {
         
         guard let reviewText = textView.text else { return }
         
-        SessionManager.shared.refreshTokenIfNeeded { [weak self] in
-            guard let sliderValue = self?.slider.value.rounded() else { return }
-            self?.viewModel.addReview(
-                reviewText: reviewText,
-                rating: sliderValue,
-                completion: {
-                    NotificationCenter.default.post(name: Notification.Name.newReviewAdded, object: nil)
-                    DispatchQueue.main.async { [weak self] in
-                        self?.delegate?.onSubmitReviewDone()
-                        self?.navigationController?.popViewController(animated: true)
-                    }
-                }, onError: { errorMessage in
-                    print(errorMessage)
-                    DispatchQueue.main.async { [weak self] in
-                        guard let self = self else { return }
-                        SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
-                    }
-                })
-        }
+        viewModel.addReview(
+            reviewText: reviewText,
+            rating: slider.value.rounded(),
+            completion: {
+                NotificationCenter.default.post(name: Notification.Name.newReviewAdded, object: nil)
+                DispatchQueue.main.async { [weak self] in
+                    self?.delegate?.onSubmitReviewDone()
+                    self?.navigationController?.popViewController(animated: true)
+                }
+            }, onError: { errorMessage in
+                print(errorMessage)
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+                }
+            })
     }
     
     // End editing on touch began

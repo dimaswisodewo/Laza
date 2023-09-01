@@ -18,7 +18,7 @@ class ProfileViewModel {
         guard let token = DataPersistentManager.shared.getTokenFromKeychain() else { return }
         request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
         
-        NetworkManager.shared.sendRequest(request: request) { result in
+        NetworkManager.shared.sendRequestRefreshTokenIfNeeded(request: request) { result in
             switch result {
             case .success(let (data, response)):
                 guard let httpResponse = response as? HTTPURLResponse else { return }

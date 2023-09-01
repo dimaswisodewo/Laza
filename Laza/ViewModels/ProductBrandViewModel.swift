@@ -37,7 +37,7 @@ class ProductBrandViewModel {
         guard let url = URL(string: endpoint.getURL()) else { return }
         let request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy)
         
-        NetworkManager.shared.sendRequest(request: request) { [weak self] result in
+        NetworkManager.shared.sendRequestRefreshTokenIfNeeded(request: request) { [weak self] result in
             switch result {
             case .success(let (data, response)):
                 guard let httpResponse = response as? HTTPURLResponse else { return }

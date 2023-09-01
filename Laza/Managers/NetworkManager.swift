@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class NetworkManager {
     
@@ -66,6 +67,58 @@ class NetworkManager {
         }
         
         task.resume()
+    }
+    
+    func sendRequestRefreshTokenIfNeeded<T: Codable>(type: T.Type, endpoint: Endpoint, completion: @escaping (Result<T, Error>) -> Void) {
+        
+        Task {
+            let isSuccess = await SessionManager.shared.refreshTokenIfNeeded()
+            if isSuccess {
+                print("Refresh token success")
+                sendRequest(type: type, endpoint: endpoint, completion: completion)
+            } else {
+                print("Refresh token failed")
+                refreshTokenFailed()
+            }
+        }
+    }
+    
+    func sendRequestRefreshTokenIfNeeded(endpoint: Endpoint, completion: @escaping (Data?, URLResponse?, Error?) -> Void) {
+        
+        Task {
+            let isSuccess = await SessionManager.shared.refreshTokenIfNeeded()
+            if isSuccess {
+                print("Refresh token success")
+                sendRequest(endpoint: endpoint, completion: completion)
+            } else {
+                print("Refresh token failed")
+                refreshTokenFailed()
+            }
+        }
+    }
+    
+    func sendRequestRefreshTokenIfNeeded(request: URLRequest, completion: @escaping (Result<(Data?, URLResponse?), Error>) -> Void) {
+        
+        Task {
+            let isSuccess = await SessionManager.shared.refreshTokenIfNeeded()
+            if isSuccess {
+                print("Refresh token success")
+                sendRequest(request: request, completion: completion)
+            } else {
+                print("Refresh token failed")
+                refreshTokenFailed()
+            }
+        }
+    }
+    
+    private func refreshTokenFailed() {
+        // Go to login
+        DispatchQueue.main.async {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let viewController = storyboard.instantiateViewController(withIdentifier: GetStartedViewController.identifier)
+            UIApplication.shared.windows.first?.rootViewController = viewController
+            UIApplication.shared.keyWindow?.makeKeyAndVisible()
+        }
     }
 }
 

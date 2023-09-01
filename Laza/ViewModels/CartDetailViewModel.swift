@@ -34,7 +34,7 @@ class CartDetailViewModel {
         guard let token = DataPersistentManager.shared.getTokenFromKeychain() else { return }
         request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
         
-        NetworkManager.shared.sendRequest(request: request) { [weak self] result in
+        NetworkManager.shared.sendRequestRefreshTokenIfNeeded(request: request) { [weak self] result in
             switch result {
             case .success(let (data, response)):
                 guard let httpResponse = response as? HTTPURLResponse else { return }
