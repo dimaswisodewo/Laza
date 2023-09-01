@@ -222,6 +222,11 @@ extension DetailViewController: UITableViewDataSource, UITableViewDelegate {
                     return UITableViewCell()
                 }
                 emptyCell.setTitle(title: "There are no reviews for this product")
+                if let _ = viewModel?.productReviews?.reviews.count {
+                    emptyCell.hideSkeleton()
+                } else {
+                    emptyCell.showSkeleton()
+                }
                 return emptyCell
             }
             // There is at least one review for the product
@@ -273,7 +278,11 @@ extension DetailViewController: DetailTableViewCellDelegate {
     }
     
     func productThumbnailCellForItemAt(productCell cell: DetailThumbnailCollectionViewCell, cellForItemAt indexPath: IndexPath) {
-        guard let product = viewModel?.productDetail else { return }
+        guard let product = viewModel?.productDetail else {
+            cell.showSkeleton()
+            return
+        }
+        cell.hideSkeleton()
         cell.productImageView.loadAndCache(url: product.imageUrl)
     }
     
@@ -288,11 +297,15 @@ extension DetailViewController: DetailTableViewCellDelegate {
             })
         }
         
-        guard let size = viewModel?.productDetail?.size[indexPath.item] else { return }
-        cell.configureSize(sizeId: size.id, size: size.size)
+        if let size = viewModel?.productDetail?.size[indexPath.item] {
+            cell.hideSkeleton()
+            cell.configureSize(sizeId: size.id, size: size.size)
+        } else {
+            cell.showAnimatedGradientSkeleton()
+        }
     }
     
-    func applyModel(productImage: UIImageView, productName: UILabel, productCategory: UILabel, productPrice: UILabel, productDesc: UILabel) {
+    func applyModel(productImage: UIImageView, productName: UILabel, productCategory: UILabel, productPrice: UILabel, productDesc: UILabel, completion: () -> Void) {
         
         guard let product = viewModel?.productDetail else { return }
         
@@ -305,5 +318,6 @@ extension DetailViewController: DetailTableViewCellDelegate {
             productDesc.text = productDetail.description
         }
         productPrice.text = "$\(product.price)".formatDecimal()
+        completion()
     }
 }

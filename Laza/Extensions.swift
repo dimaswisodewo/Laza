@@ -28,7 +28,7 @@ extension UIImage {
 
 extension UIImageView {
     
-    func loadAndCache(url: String, cache: URLCache? = nil, placeholder: UIImage? = nil, onError: (() -> Void)? = nil) {
+    func loadAndCache(url: String, cache: URLCache? = nil, placeholder: UIImage? = nil, completion: (() -> Void)? = nil, onError: (() -> Void)? = nil) {
             
             guard let url = URL(string: url) else {
                 return
@@ -40,6 +40,7 @@ extension UIImageView {
         
             if let data = cache.cachedResponse(for: request)?.data, let image = UIImage(data: data) {
                 self.image = image
+                completion?()
             } else {
                 request.httpMethod = "GET"
                 
@@ -54,11 +55,13 @@ extension UIImageView {
                             DispatchQueue.main.async { [weak self] in
                                 self?.image = UIImage(data: unwrappedData)
                             }
+                            completion?()
                         } else {
                             print("Failed to unwrap data and response")
                         }
                     case .failure(let error):
                         print(error.localizedDescription)
+                        onError?()
                     }
                 }
             }

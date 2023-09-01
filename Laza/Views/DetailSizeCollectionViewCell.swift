@@ -38,10 +38,23 @@ class DetailSizeCollectionViewCell: UICollectionViewCell {
         containerView.addSubview(sizeLabel)
         
         setupConstraints()
+        setupSkeleton()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
+    }
+    
+    private func setupSkeleton() {
+        containerView.isSkeletonable = true
+    }
+    
+    func showSkeleton() {
+        containerView.showAnimatedGradientSkeleton()
+    }
+    
+    func hideSkeleton() {
+        containerView.hideSkeleton()
     }
     
     func configureSize(sizeId: Int, size: String) {

@@ -81,24 +81,26 @@ class ListAddressViewController: UIViewController {
     }
     
     @objc private func loadAllAddress() {
-        viewModel.getAllAddress(completion: { [weak self] in
-            guard let self = self else { return }
-            // Get primary address
-            for address in self.viewModel.address {
-                if let isPrimary = address.isPrimary, isPrimary {
-                    self.delegate?.didUpdateAddress(model: address)
-                    break
-                }
-            }
-            DispatchQueue.main.async { [weak self] in
-                self?.tableView.reloadData()
-            }
-        }, onError: { errorMessage in
-            DispatchQueue.main.async { [weak self] in
+        SessionManager.shared.refreshTokenIfNeeded { [weak self] in
+            self?.viewModel.getAllAddress(completion: { [weak self] in
                 guard let self = self else { return }
-                SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
-            }
-        })
+                // Get primary address
+                for address in self.viewModel.address {
+                    if let isPrimary = address.isPrimary, isPrimary {
+                        self.delegate?.didUpdateAddress(model: address)
+                        break
+                    }
+                }
+                DispatchQueue.main.async { [weak self] in
+                    self?.tableView.reloadData()
+                }
+            }, onError: { errorMessage in
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+                }
+            })
+        }
     }
     
     @objc private func backButtonPressed() {
@@ -196,24 +198,26 @@ extension ListAddressViewController: UITableViewDataSource, UITableViewDelegate 
        
        private func handleDeleteSwipeAction(indexPath: IndexPath) {
            guard let addressId = viewModel.getAddressAtIndex(index: indexPath.row)?.id else { return }
-           viewModel.deleteAddress(
-            addressId: addressId,
-            completion: {
-                DispatchQueue.main.async { [weak self] in
-                    self?.delegate?.didDeleteAddress()
-                    self?.viewModel.deleteAddressAtIndex(index: indexPath.row)
-                    self?.tableView.deleteRows(at: [indexPath], with: .left)
-                }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-                    self?.notifyObserver()
-                }
-            },
-            onError: { errorMessage in
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
-                }
-            })
+           SessionManager.shared.refreshTokenIfNeeded { [weak self] in
+               self?.viewModel.deleteAddress(
+                addressId: addressId,
+                completion: {
+                    DispatchQueue.main.async { [weak self] in
+                        self?.delegate?.didDeleteAddress()
+                        self?.viewModel.deleteAddressAtIndex(index: indexPath.row)
+                        self?.tableView.deleteRows(at: [indexPath], with: .left)
+                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+                        self?.notifyObserver()
+                    }
+                },
+                onError: { errorMessage in
+                    DispatchQueue.main.async { [weak self] in
+                        guard let self = self else { return }
+                        SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+                    }
+                })
+           }
        }
 }
 

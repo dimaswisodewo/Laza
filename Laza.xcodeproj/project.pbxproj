@@ -63,6 +63,7 @@
 		386272B32A7A882200962892 /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386272B12A7A882200962892 /* ReviewTableViewCell.swift */; };
 		386272B42A7A882200962892 /* ReviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386272B22A7A882200962892 /* ReviewTableViewCell.xib */; };
 		386272B62A7A903400962892 /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386272B52A7A903400962892 /* ColorUtils.swift */; };
+		3873C97C2AA06B3B006AA648 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = 3873C97B2AA06B3B006AA648 /* SkeletonView */; };
 		387A466F2A80A9F5007C3653 /* CartDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387A466E2A80A9F5007C3653 /* CartDetailViewController.swift */; };
 		387A6D2F2A7C88E100358DE8 /* AddReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387A6D2E2A7C88E100358DE8 /* AddReviewViewController.swift */; };
 		387A6D312A7C8F2200358DE8 /* CustomSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387A6D302A7C8F2200358DE8 /* CustomSlider.swift */; };
@@ -313,6 +314,7 @@
 				38445CCF2A96F4B500AAB33D /* GoogleSignIn in Frameworks */,
 				3825DC6E2A7F700800239E55 /* SnackBar in Frameworks */,
 				7A908E37D34E6B591851E7F9 /* Pods_Laza.framework in Frameworks */,
+				3873C97C2AA06B3B006AA648 /* SkeletonView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -568,6 +570,7 @@
 				38DBEB8F2A7E82C1003BC9F3 /* SideMenu */,
 				3825DC6D2A7F700800239E55 /* SnackBar */,
 				38445CCE2A96F4B500AAB33D /* GoogleSignIn */,
+				3873C97B2AA06B3B006AA648 /* SkeletonView */,
 			);
 			productName = Laza;
 			productReference = 38DCC6622A70A8B7006A3633 /* Laza.app */;
@@ -601,6 +604,7 @@
 				38DBEB8E2A7E82C1003BC9F3 /* XCRemoteSwiftPackageReference "SideMenu" */,
 				3825DC6C2A7F700800239E55 /* XCRemoteSwiftPackageReference "SnackBar" */,
 				38445CCD2A96F4B500AAB33D /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				3873C97A2AA06B3B006AA648 /* XCRemoteSwiftPackageReference "SkeletonView" */,
 			);
 			productRefGroup = 38DCC6632A70A8B7006A3633 /* Products */;
 			projectDirPath = "";
@@ -1042,6 +1046,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		3873C97A2AA06B3B006AA648 /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Juanpe/SkeletonView.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		38DBEB8E2A7E82C1003BC9F3 /* XCRemoteSwiftPackageReference "SideMenu" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/jonkykong/SideMenu.git";
@@ -1062,6 +1074,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 38445CCD2A96F4B500AAB33D /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignIn;
+		};
+		3873C97B2AA06B3B006AA648 /* SkeletonView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3873C97A2AA06B3B006AA648 /* XCRemoteSwiftPackageReference "SkeletonView" */;
+			productName = SkeletonView;
 		};
 		38DBEB8F2A7E82C1003BC9F3 /* SideMenu */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -122,33 +122,29 @@ class CartDetailViewController: UIViewController {
     
     private func getAllAddress() {
         guard let viewModel = self.viewModel else { return }
-        viewModel.getAllAddress(completion: {
-            // Get primary address
-            var primaryAddress: Address?
-            for address in viewModel.addresses {
-                if let isPrimary = address.isPrimary, isPrimary {
-                    primaryAddress = address
-                    break
+        SessionManager.shared.refreshTokenIfNeeded { [weak self] in
+            viewModel.getAllAddress(completion: {
+                // Get primary address
+                let primaryAddress = viewModel.addresses.first
+                DispatchQueue.main.async { [weak self] in
+                    self?.selectedAddress = primaryAddress
+                    // Primary address does exists
+                    if let primaryAddress = primaryAddress {
+                        self?.setupAddressView(address: primaryAddress)
+                        self?.addressEmptyLabel.isHidden = true
+                        self?.listViewItemAddress?.isHidden = false
+                    } else {
+                        self?.addressEmptyLabel.isHidden = false
+                        self?.listViewItemAddress?.isHidden = true
+                    }
                 }
-            }
-            DispatchQueue.main.async { [weak self] in
-                self?.selectedAddress = primaryAddress
-                // Primary address does exists
-                if let primaryAddress = primaryAddress {
-                    self?.setupAddressView(address: primaryAddress)
-                    self?.addressEmptyLabel.isHidden = true
-                    self?.listViewItemAddress?.isHidden = false
-                } else {
-                    self?.addressEmptyLabel.isHidden = false
-                    self?.listViewItemAddress?.isHidden = true
+            }, onError: { errorMessage in
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
                 }
-            }
-        }, onError: { errorMessage in
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
-            }
-        })
+            })
+        }
     }
     
     private func setupCardView(card: CreditCardModel) {

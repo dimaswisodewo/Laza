@@ -27,6 +27,7 @@ class DetailThumbnailCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(imageView)
         
         setupConstraints()
+        setupSkeleton()
     }
     
     required init?(coder: NSCoder) {
@@ -35,5 +36,17 @@ class DetailThumbnailCollectionViewCell: UICollectionViewCell {
     
     private func setupConstraints() {
         imageView.frame = contentView.bounds
+    }
+    
+    private func setupSkeleton() {
+        imageView.isSkeletonable = true
+    }
+    
+    func showSkeleton() {
+        imageView.showAnimatedGradientSkeleton()
+    }
+    
+    func hideSkeleton() {
+        imageView.hideSkeleton()
     }
 }

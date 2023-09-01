@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import SkeletonView
 
 protocol DetailTableViewCellDelegate: AnyObject {
     
-    func applyModel(productImage: UIImageView, productName: UILabel, productCategory: UILabel, productPrice: UILabel, productDesc: UILabel)
+    func applyModel(productImage: UIImageView, productName: UILabel, productCategory: UILabel, productPrice: UILabel, productDesc: UILabel, completion: () -> Void)
     
     func productThumbnailCellForItemAt(productCell cell: DetailThumbnailCollectionViewCell, cellForItemAt indexPath: IndexPath)
     
@@ -178,6 +179,9 @@ class DetailTableViewCell: UITableViewCell {
         setupConstraint()
         
         registerCells()
+        
+        setupSkeleton()
+        showSkeleton()
     }
     
     required init?(coder: NSCoder) {
@@ -191,7 +195,8 @@ class DetailTableViewCell: UITableViewCell {
             productName: nameLabel,
             productCategory: categoryLabel,
             productPrice: priceValueLabel,
-            productDesc: descriptionValueLabel
+            productDesc: descriptionValueLabel,
+            completion: hideSkeleton
         )
     }
     
@@ -206,6 +211,48 @@ class DetailTableViewCell: UITableViewCell {
         productCollectionView.delegate = self
         sizeCollectionView.register(DetailSizeCollectionViewCell.self, forCellWithReuseIdentifier: DetailSizeCollectionViewCell.identifier)
         productCollectionView.register(DetailThumbnailCollectionViewCell.self, forCellWithReuseIdentifier: DetailThumbnailCollectionViewCell.identifier)
+    }
+    
+    private func setupSkeleton() {
+        productImageView.isSkeletonable = true
+        categoryLabel.isSkeletonable = true
+        nameLabel.isSkeletonable = true
+        priceLabel.isSkeletonable = true
+        priceValueLabel.isSkeletonable = true
+        sizeLabel.isSkeletonable = true
+        descriptionLabel.isSkeletonable = true
+        descriptionValueLabel.isSkeletonable = true
+        reviewsLabel.isSkeletonable = true
+        viewAllReviewsButton.isSkeletonable = true
+        sizeCollectionView.isSkeletonable = true
+    }
+    
+    private func showSkeleton() {
+        productImageView.showAnimatedGradientSkeleton()
+        categoryLabel.showAnimatedGradientSkeleton()
+        nameLabel.showAnimatedGradientSkeleton()
+        priceLabel.showAnimatedGradientSkeleton()
+        priceValueLabel.showAnimatedGradientSkeleton()
+        sizeLabel.showAnimatedGradientSkeleton()
+        descriptionLabel.showAnimatedGradientSkeleton()
+        descriptionValueLabel.showAnimatedGradientSkeleton()
+        reviewsLabel.showAnimatedGradientSkeleton()
+        viewAllReviewsButton.showAnimatedGradientSkeleton()
+        sizeCollectionView.showAnimatedGradientSkeleton()
+    }
+    
+    private func hideSkeleton() {
+        productImageView.hideSkeleton()
+        categoryLabel.hideSkeleton()
+        nameLabel.hideSkeleton()
+        priceLabel.hideSkeleton()
+        priceValueLabel.hideSkeleton()
+        sizeLabel.hideSkeleton()
+        descriptionLabel.hideSkeleton()
+        descriptionValueLabel.hideSkeleton()
+        reviewsLabel.hideSkeleton()
+        viewAllReviewsButton.hideSkeleton()
+        sizeCollectionView.hideSkeleton()
     }
     
     private func setupConstraint() {
@@ -337,5 +384,26 @@ extension DetailTableViewCell: UICollectionViewDataSource, UICollectionViewDeleg
         default:
             break
         }
+    }
+}
+
+// MARK: - SkeletonCollectionViewDataSource
+
+extension DetailTableViewCell: SkeletonCollectionViewDataSource {
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> SkeletonView.ReusableCellIdentifier {
+        return DetailSizeCollectionViewCell.identifier
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, skeletonCellForItemAt indexPath: IndexPath) -> UICollectionViewCell? {
+        guard let cell = skeletonView.dequeueReusableCell(withReuseIdentifier: DetailSizeCollectionViewCell.identifier, for: indexPath) as? DetailSizeCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        cell.showSkeleton()
+        return cell
     }
 }

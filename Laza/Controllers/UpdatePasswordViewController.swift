@@ -100,18 +100,20 @@ class UpdatePasswordViewController: UIViewController {
             return
         }
         
-        viewModel.updatePassword(newPassword: password, completion: {
-            DispatchQueue.main.async { [weak self] in
-                self?.delegate?.onPasswordUpdated()
-                self?.navigationController?.popToRootViewController(animated: true)
-                self?.notifyObserver()
-            }
-        }, onError: { errorMessage in
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
-            }
-        })
+        SessionManager.shared.refreshTokenIfNeeded { [weak self] in
+            self?.viewModel.updatePassword(newPassword: password, completion: {
+                DispatchQueue.main.async { [weak self] in
+                    self?.delegate?.onPasswordUpdated()
+                    self?.navigationController?.popToRootViewController(animated: true)
+                    self?.notifyObserver()
+                }
+            }, onError: { errorMessage in
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+                }
+            })
+        }
     }
     
     @objc private func backButtonPressed() {

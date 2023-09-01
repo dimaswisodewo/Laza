@@ -97,23 +97,26 @@ class EditAddressViewController: UIViewController {
         guard let phone = phoneField.text else { return }
 //        guard let address = addressField.text else { return }
         
-        viewModel.updateAddress(
-            country: country,
-            city: city,
-            receiverName: name,
-            phone: phone,
-            isPrimary: isPrimarySwitch.isOn,
-            completion: { [weak self] in
-                self?.notifyObserver()
-                DispatchQueue.main.async {
-                    self?.navigationController?.popViewController(animated: true)
-                }
-            },
-            onError: { errorMessage in
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
-                }
-            })
+        SessionManager.shared.refreshTokenIfNeeded { [weak self] in
+            guard let isPrimary = self?.isPrimarySwitch.isOn else { return }
+            self?.viewModel.updateAddress(
+                country: country,
+                city: city,
+                receiverName: name,
+                phone: phone,
+                isPrimary: isPrimary,
+                completion: { [weak self] in
+                    self?.notifyObserver()
+                    DispatchQueue.main.async {
+                        self?.navigationController?.popViewController(animated: true)
+                    }
+                },
+                onError: { errorMessage in
+                    DispatchQueue.main.async { [weak self] in
+                        guard let self = self else { return }
+                        SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+                    }
+                })
+        }
     }
 }

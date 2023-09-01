@@ -175,24 +175,26 @@ class VerificationCodeViewController: UIViewController {
             return
         }
         
-        viewModel.sendVerificationCode(code: code, completion: {
-            DispatchQueue.main.async { [weak self] in
-                print("Completion")
-                guard let self = self else { return }
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                guard let vc = storyboard.instantiateViewController(withIdentifier: UpdatePasswordViewController.identifier) as? UpdatePasswordViewController else {
-                    print("Error")
-                    return
+        SessionManager.shared.refreshTokenIfNeeded { [weak self] in
+            self?.viewModel.sendVerificationCode(code: code, completion: {
+                DispatchQueue.main.async { [weak self] in
+                    print("Completion")
+                    guard let self = self else { return }
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    guard let vc = storyboard.instantiateViewController(withIdentifier: UpdatePasswordViewController.identifier) as? UpdatePasswordViewController else {
+                        print("Error")
+                        return
+                    }
+                    vc.configure(emailAddress: self.viewModel.emailAddress, code: code)
+                    self.navigationController?.pushViewController(vc, animated: true)
                 }
-                vc.configure(emailAddress: self.viewModel.emailAddress, code: code)
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
-        }, onError: { errorMessage in
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
-            }
-        })
+            }, onError: { errorMessage in
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+                }
+            })
+        }
     }
     
     @objc private func resendButtonPressed() {

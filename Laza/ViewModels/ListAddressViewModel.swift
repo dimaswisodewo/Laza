@@ -52,7 +52,12 @@ class ListAddressViewModel {
                     onError("Get all address success - Failed to decode")
                     return
                 }
-                self?.address = result.data.reversed()
+                // Place primary address as first element, the rest are sorted by id
+                var sorted = result.data.sorted { $0.id < $1.id }
+                sorted = sorted.sorted { first, _ in
+                    first.isPrimary != nil
+                }
+                self?.address = sorted
                 completion()
             case .failure(let error):
                 onError(error.localizedDescription)
