@@ -44,7 +44,7 @@ class AllReviewsViewController: UIViewController {
     
     // Register observer to reload reviews when there are new review added
     private func registerObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(loadRatings), name: Notification.Name.newReviewAdded, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onNotifyLoadRatings), name: Notification.Name.newReviewAdded, object: nil)
     }
     
     private func setupRefreshControl() {
@@ -60,7 +60,7 @@ class AllReviewsViewController: UIViewController {
         })
     }
     
-    @objc private func loadRatings(onFinished: (() -> Void)? = nil) {
+    private func loadRatings(onFinished: (() -> Void)? = nil) {
         print("Reload reviews in AllReviewsViewController")
         viewModel.loadAllReviews(completion: {
             DispatchQueue.main.async { [weak self] in
@@ -74,6 +74,10 @@ class AllReviewsViewController: UIViewController {
             }
             onFinished?()
         })
+    }
+    
+    @objc private func onNotifyLoadRatings() {
+        loadRatings()
     }
     
     private func registerCells() {

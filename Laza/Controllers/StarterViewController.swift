@@ -19,6 +19,7 @@ class StarterViewController: UIViewController {
         super.viewDidAppear(animated)
         
         detectSignedAccountUsingUsername()
+//        goToHomePage()
         
 //        detectSignedGoogleAccount(onSignedIn: { [weak self] in
 //            // Get google profile

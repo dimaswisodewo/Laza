@@ -60,7 +60,7 @@ class CartTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        setupSkeleton()
     }
     
     override func layoutSubviews() {
@@ -84,6 +84,36 @@ class CartTableViewCell: UITableViewCell {
     
     func configure(model: AddToCart) {
         productAmount.text = String(model.quantity)
+    }
+    
+    private func setupSkeleton() {
+        productImageView.isSkeletonable = true
+        productName.isSkeletonable = true
+        productPrice.isSkeletonable = true
+        productAmount.isSkeletonable = true
+        incrementButton.imageView?.isSkeletonable = true
+        decrementButton.imageView?.isSkeletonable = true
+        deleteButton.imageView?.isSkeletonable = true
+    }
+    
+    func showSkeleton() {
+        productImageView.showAnimatedGradientSkeleton()
+        productName.showAnimatedGradientSkeleton()
+        productPrice.showAnimatedGradientSkeleton()
+        productAmount.showAnimatedGradientSkeleton()
+        incrementButton.imageView?.showAnimatedGradientSkeleton()
+        decrementButton.imageView?.showAnimatedGradientSkeleton()
+        deleteButton.imageView?.showAnimatedGradientSkeleton()
+    }
+    
+    func hideSkeleton() {
+        productImageView.hideSkeleton()
+        productName.hideSkeleton()
+        productPrice.hideSkeleton()
+        productAmount.hideSkeleton()
+        incrementButton.imageView?.hideSkeleton()
+        decrementButton.imageView?.hideSkeleton()
+        deleteButton.imageView?.hideSkeleton()
     }
     
     @objc private func incrementButtonPressed() {

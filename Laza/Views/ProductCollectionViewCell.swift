@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class ProductCollectionViewCell: UICollectionViewCell {
     
@@ -54,10 +55,29 @@ class ProductCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(productPrice)
         
         setupConstraints()
+        setupSkeleton()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupSkeleton() {
+        image.isSkeletonable = true
+        productName.isSkeletonable = true
+        productPrice.isSkeletonable = true
+    }
+    
+    func showSkeleton() {
+        image.showAnimatedGradientSkeleton()
+        productName.showAnimatedGradientSkeleton()
+        productPrice.showAnimatedGradientSkeleton()
+    }
+    
+    func hideSkeleton() {
+        image.hideSkeleton()
+        productName.hideSkeleton()
+        productPrice.hideSkeleton()
     }
     
     func configure(product: Product) {

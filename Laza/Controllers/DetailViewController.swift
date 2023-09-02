@@ -59,14 +59,17 @@ class DetailViewController: UIViewController {
         
         cartButton.isEnabled = false
         
+        // Assign reload table view on finished load API
+        viewModel?.reloadProductDetailCollectionView = { [weak self] in
+            self?.detailTableViewCell?.sizeCollectionView.reloadData()
+            self?.detailTableViewCell?.productCollectionView.reloadData()
+            self?.tableView.reloadData()
+        }
+        
         loadProductDetail()
         loadIsWishlisted()
         
         registerObserver()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
-            self?.tableView.reloadData()
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -88,12 +91,6 @@ class DetailViewController: UIViewController {
     }
     
     private func loadProductDetail() {
-        // Assign reload table view on finished load API
-        viewModel?.reloadProductDetailCollectionView = { [weak self] in
-            self?.tableView.reloadData()
-            self?.detailTableViewCell?.sizeCollectionView.reloadData()
-            self?.detailTableViewCell?.productCollectionView.reloadData()
-        }
         // Load necessary data
         viewModel?.loadProductDetail()
         viewModel?.loadRatings()
@@ -170,9 +167,7 @@ class DetailViewController: UIViewController {
                 guard let self = self else { return }
                 SnackBarSuccess.make(in: self.view, message: "Item added to cart", duration: .lengthShort).show()
                 // Notify to update cart items
-                if CartViewController.isObserverRegistered {
-                    NotificationCenter.default.post(name: Notification.Name.cartUpdated, object: nil)
-                }
+                NotificationCenter.default.post(name: Notification.Name.cartUpdated, object: nil)
             }
         }, onError: { errorMessage in
             DispatchQueue.main.async { [weak self] in

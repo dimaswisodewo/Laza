@@ -374,6 +374,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
                 return UITableViewCell()
             }
             cell.delegate = self
+            cell.hideSkeleton()
             // Cache table view cell to get the collection view for reload data
             if brandTableViewCell == nil {
                 brandTableViewCell = cell
@@ -385,6 +386,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
                 return UITableViewCell()
             }
             cell.delegate = self
+            cell.hideSkeleton()
             // Cache table view cell to get the collection view for reload data
             if productTableViewCell == nil {
                 productTableViewCell = cell

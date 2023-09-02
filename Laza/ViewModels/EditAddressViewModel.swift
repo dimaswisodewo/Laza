@@ -26,8 +26,8 @@ class EditAddressViewModel {
         guard let token = DataPersistentManager.shared.getTokenFromKeychain() else { return }
         
         var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy)
-        request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
-        request.httpMethod = endpoint.getMethod.rawValue
+        ApiService.setAccessTokenToHeader(request: &request, token: token)
+        request.httpMethod = endpoint.getMethod
         request.httpBody = ApiService.getHttpBodyRaw(param: [
             "country": country,
             "city": city,

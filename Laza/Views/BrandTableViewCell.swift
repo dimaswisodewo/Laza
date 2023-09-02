@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 protocol BrandTableViewCellDelegate: AnyObject {
     
@@ -45,10 +46,23 @@ class BrandTableViewCell: UITableViewCell {
         registerCollectionViewCell()
 
         setupConstraints()
+        setupSkeleton()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupSkeleton() {
+        collectionView.isSkeletonable = true
+    }
+    
+    private func showSkeleton() {
+        collectionView.showAnimatedGradientSkeleton()
+    }
+    
+    private func hideSkeleton() {
+        collectionView.hideSkeleton()
     }
     
     private func setupConstraints() {
@@ -82,5 +96,26 @@ extension BrandTableViewCell: UICollectionViewDataSource, UICollectionViewDelega
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return delegate?.brandSizeForItemAt(sizeForItemAt: indexPath) ?? CGSize(width: 50, height: 50)
+    }
+}
+
+// MARK: - SkeletonCollectionView DataSource
+
+extension BrandTableViewCell: SkeletonCollectionViewDataSource {
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> SkeletonView.ReusableCellIdentifier {
+        BrandCollectionViewCell.identifier
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, skeletonCellForItemAt indexPath: IndexPath) -> UICollectionViewCell? {
+        guard let cell = skeletonView.dequeueReusableCell(withReuseIdentifier: BrandCollectionViewCell.identifier, for: indexPath) as? BrandCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        cell.showAnimatedGradientSkeleton()
+        return cell
     }
 }

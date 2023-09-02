@@ -35,9 +35,11 @@ class ListAddressViewModel {
         endpoint.initialize(path: .Address)
         
         guard let url = URL(string: endpoint.getURL()) else { return }
-        var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy)
+        
         guard let token = DataPersistentManager.shared.getTokenFromKeychain() else { return }
-        request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
+        
+        var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy)
+        ApiService.setAccessTokenToHeader(request: &request, token: token)
         
         NetworkManager.shared.sendRequest(request: request) { [weak self] result in
             switch result {
@@ -75,8 +77,8 @@ class ListAddressViewModel {
         guard let token = DataPersistentManager.shared.getTokenFromKeychain() else { return }
         
         var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy)
-        request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
-        request.httpMethod = endpoint.getMethod.rawValue
+        ApiService.setAccessTokenToHeader(request: &request, token: token)
+        request.httpMethod = endpoint.getMethod
         
         NetworkManager.shared.sendRequest(request: request) { result in
             switch result {

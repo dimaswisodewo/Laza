@@ -20,7 +20,7 @@ class NetworkManager {
         }
         
         var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10)
-        request.httpMethod = endpoint.getMethod.rawValue
+        request.httpMethod = endpoint.getMethod
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data, error == nil {
@@ -46,7 +46,7 @@ class NetworkManager {
         }
         
         var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10)
-        request.httpMethod = endpoint.getMethod.rawValue
+        request.httpMethod = endpoint.getMethod
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             completion(data, response, error)
@@ -100,7 +100,7 @@ class NetworkManager {
             if isSuccess {
                 guard let token = DataPersistentManager.shared.getTokenFromKeychain() else { return }
                 var requestWithNewToken = request
-                requestWithNewToken.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
+                ApiService.setAccessTokenToHeader(request: &requestWithNewToken, token: token)
                 sendRequest(request: requestWithNewToken, completion: completion)
             } else {
                 refreshTokenFailed()
@@ -138,9 +138,9 @@ struct Endpoint {
     private var additionalPath: String?
     private var query: String?
     private var method: HttpMethod = .GET
-    var getMethod: HttpMethod {
+    var getMethod: String {
         get {
-            return method
+            return method.rawValue
         }
     }
     

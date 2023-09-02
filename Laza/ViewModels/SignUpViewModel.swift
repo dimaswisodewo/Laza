@@ -19,7 +19,7 @@ class SignUpViewModel {
             return
         }
         var request = URLRequest(url: url)
-        request.httpMethod = endpoint.getMethod.rawValue
+        request.httpMethod = endpoint.getMethod
         request.httpBody = ApiService.getHttpBodyRaw(param: [
             "full_name": username,
             "username": username,

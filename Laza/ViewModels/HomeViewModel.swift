@@ -39,7 +39,7 @@ class HomeViewModel {
         NetworkManager.shared.sendRequest(type: BrandResponse.self, endpoint: endpoint) { [weak self] result in
             switch result {
             case .success(let brandResponse):
-                self?.brands.append(contentsOf: brandResponse.description)
+                self?.brands = brandResponse.description
                 DispatchQueue.main.async {
                     self?.reloadBrandCollectionView?()
                 }
@@ -56,7 +56,7 @@ class HomeViewModel {
         NetworkManager.shared.sendRequest(type: ProductResponse.self, endpoint: endpoint) { [weak self] result in
             switch result {
             case .success(let productResponse):
-                self?.products.append(contentsOf: productResponse.data)
+                self?.products = productResponse.data
                 DispatchQueue.main.async {
                     self?.reloadProductCollectionView?()
                 }
@@ -87,7 +87,7 @@ class HomeViewModel {
         
         guard let url = URL(string: endpoint.getURL()) else { return }
         var request = URLRequest(url: url)
-        request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
+        ApiService.setAccessTokenToHeader(request: &request, token: token)
         
         NetworkManager.shared.sendRequestRefreshTokenIfNeeded(request: request) { result in
             switch result {

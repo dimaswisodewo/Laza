@@ -47,4 +47,16 @@ class ApiService {
     static func getBoundary() -> String {
         return "Boundary-\(NSUUID().uuidString)"
     }
+    
+    static func setAccessTokenToHeader(request: inout URLRequest, token: String) {
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
+    }
+    
+    static func setRefreshTokenToHeader(request: inout URLRequest, token: String) {
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Refresh")
+    }
+    
+    static func setMultipartToHeader(request: inout URLRequest, boundary: String) {
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+    }
 }

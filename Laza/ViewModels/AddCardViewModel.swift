@@ -20,7 +20,7 @@ class AddCardViewModel {
             
             guard let url = URL(string: endpoint.getURL()) else { return }
             var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy)
-            request.httpMethod = endpoint.getMethod.rawValue
+            request.httpMethod = endpoint.getMethod
             request.httpBody = ApiService.getHttpBodyRaw(param: [
                 "card_number": cardNumber,
                 "expired_month": expiredMonth,

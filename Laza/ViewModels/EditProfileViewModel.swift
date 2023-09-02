@@ -20,9 +20,9 @@ class EditProfileViewModel {
         guard let token = DataPersistentManager.shared.getTokenFromKeychain() else { return }
         
         var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy)
-        request.httpMethod = endpoint.getMethod.rawValue
-        request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
-        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = endpoint.getMethod
+        ApiService.setAccessTokenToHeader(request: &request, token: token)
+        ApiService.setMultipartToHeader(request: &request, boundary: boundary)
         request.httpBody = ApiService.getMultipartFormData(
             withParameters: [
                 "full_name": fullName,

@@ -40,7 +40,7 @@ class SessionManager {
         guard let url = URL(string: endpoint.getURL()) else { return false }
         
         var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy)
-        request.setValue("Bearer \(refreshToken)", forHTTPHeaderField: "X-Auth-Refresh")
+        ApiService.setRefreshTokenToHeader(request: &request, token: refreshToken)
         
         do {
             let (data, response) = try await URLSession.shared.data(for: request)

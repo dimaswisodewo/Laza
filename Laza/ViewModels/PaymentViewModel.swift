@@ -54,7 +54,7 @@ class PaymentViewModel {
             guard let url = URL(string: endpoint.getURL()) else { return }
             var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy)
             guard let token = DataPersistentManager.shared.getTokenFromKeychain() else { return }
-            request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
+            ApiService.setAccessTokenToHeader(request: &request, token: token)
             
             NetworkManager.shared.sendRequest(request: request) { [weak self] result in
                 switch result {

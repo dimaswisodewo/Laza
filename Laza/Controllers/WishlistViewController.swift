@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class WishlistViewController: UIViewController {
 
@@ -20,7 +21,11 @@ class WishlistViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var wishlistCountLabel: UILabel!
+    @IBOutlet weak var wishlistCountLabel: UILabel! {
+        didSet {
+            wishlistCountLabel.text = "0 Items"
+        }
+    }
     
     @IBOutlet weak var sortButton: RoundedButton! {
         didSet {
@@ -37,6 +42,9 @@ class WishlistViewController: UIViewController {
         setupRefreshControl()
         registerObserver()
         
+        setupSkeleton()
+        showSkeleton()
+        
         loadWishlists()
     }
     
@@ -52,6 +60,18 @@ class WishlistViewController: UIViewController {
     
     private func registerObserver() {
         NotificationCenter.default.addObserver(self, selector: #selector(onNotifyLoadWishlist), name: Notification.Name.wishlistUpdated, object: nil)
+    }
+    
+    private func setupSkeleton() {
+        collectionView.isSkeletonable = true
+    }
+    
+    private func showSkeleton() {
+        collectionView.showAnimatedGradientSkeleton()
+    }
+    
+    private func hideSkeleton() {
+        collectionView.hideSkeleton()
     }
     
     private func setupTabBarItemImage() {
@@ -83,6 +103,7 @@ class WishlistViewController: UIViewController {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 self.collectionView.reloadData()
+                self.hideSkeleton()
                 self.wishlistCountLabel.text = "\(self.viewModel.productsCount) Items"
             }
             onFinished?()
@@ -115,6 +136,7 @@ extension WishlistViewController: UICollectionViewDataSource, UICollectionViewDe
             return UICollectionViewCell()
         }
         if let product = viewModel.getProductOnIndex(index: indexPath.item) {
+            cell.hideSkeleton()
             cell.configure(product: product)
         }
         return cell
@@ -139,5 +161,25 @@ extension WishlistViewController: UICollectionViewDataSource, UICollectionViewDe
         let width = (collectionView.frame.size.width / numOfColum ) - spacing
         let cellHeightToWidthAspectRatio = CGFloat(250) / CGFloat(160)
         return CGSize(width: width, height: width * cellHeightToWidthAspectRatio)
+    }
+}
+
+// MARK: - SkeletonCollectionViewDataSource
+
+extension WishlistViewController: SkeletonCollectionViewDataSource {
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> SkeletonView.ReusableCellIdentifier {
+        return ProductCollectionViewCell.identifier
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, skeletonCellForItemAt indexPath: IndexPath) -> UICollectionViewCell? {
+        guard let cell = skeletonView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as? ProductCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        cell.showSkeleton()
+        return cell
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 6
     }
 }

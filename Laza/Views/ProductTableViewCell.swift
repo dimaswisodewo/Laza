@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 protocol ProductTableViewCellDelegate: AnyObject {
     
@@ -46,10 +47,24 @@ class ProductTableViewCell: UITableViewCell {
         registerCollectionViewCell()
 
         setupConstraints()
+        setupSkeleton()
+        showSkeleton()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupSkeleton() {
+        productCollectionView.isSkeletonable = true
+    }
+    
+    private func showSkeleton() {
+        productCollectionView.showAnimatedGradientSkeleton()
+    }
+    
+    private func hideSkeleton() {
+        productCollectionView.hideSkeleton()
     }
     
     private func setupConstraints() {
@@ -79,6 +94,7 @@ extension ProductTableViewCell: UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        collectionView.hideSkeleton()
         return delegate?.productCellForItemAt(cellForItemAt: indexPath) ?? UICollectionViewCell()
     }
     
@@ -95,5 +111,26 @@ extension ProductTableViewCell: UICollectionViewDataSource, UICollectionViewDele
         let width = (collectionView.frame.size.width / numOfColum ) - spacing
         let cellHeightToWidthAspectRatio = CGFloat(250) / CGFloat(160)
         return CGSize(width: width, height: width * cellHeightToWidthAspectRatio)
+    }
+}
+
+// MARK: - SkeletonCollectionViewDataSource
+
+extension ProductTableViewCell: SkeletonCollectionViewDataSource {
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> SkeletonView.ReusableCellIdentifier {
+        return ProductCollectionViewCell.identifier
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, skeletonCellForItemAt indexPath: IndexPath) -> UICollectionViewCell? {
+        guard let cell = skeletonView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as? ProductCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        cell.showSkeleton()
+        return cell
     }
 }

@@ -6,12 +6,11 @@
 //
 
 import UIKit
+import SkeletonView
 
 class CartViewController: UIViewController {
     
     static let identifier = "CartViewController"
-    
-    static var isObserverRegistered = false
     
     @IBOutlet weak var tableView: UITableView! {
         didSet {
@@ -62,22 +61,34 @@ class CartViewController: UIViewController {
         
         setupTabBarItemImage()
         setupRefreshControl()
+        setupSkeleton()
+        showSkeleton()
         
         loadAllSizesAndCartItems()
         
         registerObserver()
     }
     
+    private func setupSkeleton() {
+        tableView.isSkeletonable = true
+    }
+    
+    private func showSkeleton() {
+        tableView.showAnimatedGradientSkeleton()
+    }
+    
+    private func hideSkeleton() {
+        tableView.hideSkeleton()
+    }
+    
     private func registerObserver() {
         print("Register cart updated")
         NotificationCenter.default.addObserver(self, selector: #selector(onNotifyLoadCartItems), name: Notification.Name.cartUpdated, object: nil)
-        CartViewController.isObserverRegistered = true
     }
     
     private func removeObserver() {
         print("Remove cart updated")
         NotificationCenter.default.removeObserver(self, name: Notification.Name.cartUpdated, object: nil)
-        CartViewController.isObserverRegistered = false
     }
     
     private func setupRefreshControl() {
@@ -126,6 +137,7 @@ class CartViewController: UIViewController {
     private func loadCartItems(onFinished: (() -> Void)? = nil) {
         viewModel.getCartItems(completion: {
             DispatchQueue.main.async { [weak self] in
+                self?.hideSkeleton()
                 self?.tableView.reloadData()
                 guard let totalPrice = self?.viewModel.cart?.orderInfo.total else {
                     return
@@ -213,6 +225,7 @@ extension CartViewController: UITableViewDataSource, UITableViewDelegate {
         cell.setIndexPath(indexPath: indexPath)
         if let model = viewModel.getCartItemAtIndex(index: indexPath.item),
            let sizeId = viewModel.getSizeId(size: model.size) {
+            cell.hideSkeleton()
             cell.configure(model: model, sizeId: sizeId)
         }
         return cell
@@ -329,5 +342,26 @@ extension CartViewController: ListAddressViewControllerDelegate {
     
     func didUpdateAddress(model: Address) {
         selectedAddress = model
+    }
+}
+
+// MARK: - SkeletonTableViewDataSource
+
+extension CartViewController: SkeletonTableViewDataSource {
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return CartTableViewCell.identifier
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView, skeletonCellForRowAt indexPath: IndexPath) -> UITableViewCell? {
+        guard let cell = skeletonView.dequeueReusableCell(withIdentifier: CartTableViewCell.identifier) as? CartTableViewCell else {
+            return UITableViewCell()
+        }
+        cell.showSkeleton()
+        return cell
     }
 }

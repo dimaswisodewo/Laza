@@ -23,7 +23,7 @@ class VerificationCodeViewModel {
         print("Send to \(url)")
         
         var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy)
-        request.httpMethod = endpoint.getMethod.rawValue
+        request.httpMethod = endpoint.getMethod
         request.httpBody = ApiService.getHttpBodyRaw(param: [
             "email": emailAddress,
             "code": code

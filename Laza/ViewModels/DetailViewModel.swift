@@ -32,7 +32,7 @@ class DetailViewModel {
             switch result {
             case .success(let productDetailResponse):
                 self?.productDetail = productDetailResponse.data
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                DispatchQueue.main.async {
                     self?.reloadProductDetailCollectionView?()
                 }
             case .failure(let error):
@@ -101,7 +101,7 @@ class DetailViewModel {
         print(productId)
         guard let url = URL(string: endpoint.getURL()) else { return }
         var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy)
-        request.httpMethod = endpoint.getMethod.rawValue
+        request.httpMethod = endpoint.getMethod
         guard let token = DataPersistentManager.shared.getTokenFromKeychain() else { return }
         request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
         
@@ -138,8 +138,8 @@ class DetailViewModel {
         guard let token = DataPersistentManager.shared.getTokenFromKeychain() else { return }
         
         var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy)
-        request.httpMethod = endpoint.getMethod.rawValue
-        request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
+        request.httpMethod = endpoint.getMethod
+        ApiService.setAccessTokenToHeader(request: &request, token: token)
         
         // Insert to cart
         NetworkManager.shared.sendRequestRefreshTokenIfNeeded(request: request) { result in

@@ -21,7 +21,7 @@ class AddReviewViewModel {
         
         guard let url = URL(string: endpoint.getURL()) else { return }
         var request = URLRequest(url: url)
-        request.httpMethod = endpoint.getMethod.rawValue
+        request.httpMethod = endpoint.getMethod
         // Header
         guard let token = DataPersistentManager.shared.getTokenFromKeychain() else {
             onError("Failed to get token from keychain")

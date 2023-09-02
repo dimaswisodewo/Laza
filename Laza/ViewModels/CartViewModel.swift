@@ -68,7 +68,7 @@ class CartViewModel {
         guard let token = DataPersistentManager.shared.getTokenFromKeychain() else { return }
         
         var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy)
-        request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
+        ApiService.setAccessTokenToHeader(request: &request, token: token)
         
         NetworkManager.shared.sendRequestRefreshTokenIfNeeded(request: request) { [weak self] result in
             switch result {
@@ -99,7 +99,7 @@ class CartViewModel {
         guard let token = DataPersistentManager.shared.getTokenFromKeychain() else { return }
         
         var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy)
-        request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
+        ApiService.setAccessTokenToHeader(request: &request, token: token)
         
         NetworkManager.shared.sendRequestRefreshTokenIfNeeded(request: request) { [weak self] result in
             switch result {
@@ -130,8 +130,8 @@ class CartViewModel {
         guard let token = DataPersistentManager.shared.getTokenFromKeychain() else { return }
         
         var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy)
-        request.httpMethod = endpoint.getMethod.rawValue
-        request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
+        request.httpMethod = endpoint.getMethod
+        ApiService.setAccessTokenToHeader(request: &request, token: token)
         
         NetworkManager.shared.sendRequestRefreshTokenIfNeeded(request: request) { result in
             switch result {
@@ -168,8 +168,8 @@ class CartViewModel {
         guard let token = DataPersistentManager.shared.getTokenFromKeychain() else { return }
         
         var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy)
-        request.httpMethod = endpoint.getMethod.rawValue
-        request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
+        request.httpMethod = endpoint.getMethod
+        ApiService.setAccessTokenToHeader(request: &request, token: token)
         
         // Insert to cart
         NetworkManager.shared.sendRequestRefreshTokenIfNeeded(request: request) { result in
@@ -200,8 +200,8 @@ class CartViewModel {
         guard let token = DataPersistentManager.shared.getTokenFromKeychain() else { return }
         
         var request = URLRequest(url: url, cachePolicy: .useProtocolCachePolicy)
-        request.httpMethod = endpoint.getMethod.rawValue
-        request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
+        request.httpMethod = endpoint.getMethod
+        ApiService.setAccessTokenToHeader(request: &request, token: token)
         
         NetworkManager.shared.sendRequestRefreshTokenIfNeeded(request: request) { result in
             switch result {

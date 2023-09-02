@@ -16,7 +16,7 @@ class LoginViewModel {
         
         guard let url = URL(string: endpoint.getURL()) else { return }
         var request = URLRequest(url: url)
-        request.httpMethod = endpoint.getMethod.rawValue
+        request.httpMethod = endpoint.getMethod
         request.httpBody = ApiService.getHttpBodyRaw(param: [
             "username": username,
             "password": password
@@ -55,7 +55,7 @@ class LoginViewModel {
         
         guard let url = URL(string: endpoint.getURL()) else { return }
         var request = URLRequest(url: url)
-        request.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
+        ApiService.setAccessTokenToHeader(request: &request, token: token)
         
         NetworkManager.shared.sendRequest(request: request) { result in
             switch result {
