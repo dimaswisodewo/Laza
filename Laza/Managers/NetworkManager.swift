@@ -74,10 +74,8 @@ class NetworkManager {
         Task {
             let isSuccess = await SessionManager.shared.refreshTokenIfNeeded()
             if isSuccess {
-                print("Refresh token success")
                 sendRequest(type: type, endpoint: endpoint, completion: completion)
             } else {
-                print("Refresh token failed")
                 refreshTokenFailed()
             }
         }
@@ -88,10 +86,8 @@ class NetworkManager {
         Task {
             let isSuccess = await SessionManager.shared.refreshTokenIfNeeded()
             if isSuccess {
-                print("Refresh token success")
                 sendRequest(endpoint: endpoint, completion: completion)
             } else {
-                print("Refresh token failed")
                 refreshTokenFailed()
             }
         }
@@ -102,10 +98,11 @@ class NetworkManager {
         Task {
             let isSuccess = await SessionManager.shared.refreshTokenIfNeeded()
             if isSuccess {
-                print("Refresh token success")
-                sendRequest(request: request, completion: completion)
+                guard let token = DataPersistentManager.shared.getTokenFromKeychain() else { return }
+                var requestWithNewToken = request
+                requestWithNewToken.setValue("Bearer \(token)", forHTTPHeaderField: "X-Auth-Token")
+                sendRequest(request: requestWithNewToken, completion: completion)
             } else {
-                print("Refresh token failed")
                 refreshTokenFailed()
             }
         }
