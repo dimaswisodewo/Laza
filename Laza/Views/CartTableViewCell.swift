@@ -71,7 +71,7 @@ class CartTableViewCell: UITableViewCell {
     func configure(model: CartItem, sizeId: Int) {
         modelId = model.id
         self.sizeId = sizeId
-        productName.text = model.productName
+        productName.text = "\(model.productName) (\(model.size))"
         productPrice.text = "$\(model.price)".formatDecimal()
         productAmount.text = String(model.quantity)
         productImageView.image = nil

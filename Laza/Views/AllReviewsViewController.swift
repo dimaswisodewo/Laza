@@ -32,6 +32,7 @@ class AllReviewsViewController: UIViewController {
         super.viewDidLoad()
 
         registerCells()
+        setupRefreshControl()
         
         registerObserver()
     }
@@ -46,17 +47,32 @@ class AllReviewsViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(loadRatings), name: Notification.Name.newReviewAdded, object: nil)
     }
     
-    @objc private func loadRatings() {
+    private func setupRefreshControl() {
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self, action: #selector(handleRefreshControl), for: .valueChanged)
+    }
+    
+    @objc private func handleRefreshControl() {
+        loadRatings(onFinished: {
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.refreshControl?.endRefreshing()
+            }
+        })
+    }
+    
+    @objc private func loadRatings(onFinished: (() -> Void)? = nil) {
         print("Reload reviews in AllReviewsViewController")
         viewModel.loadAllReviews(completion: {
             DispatchQueue.main.async { [weak self] in
                 self?.tableView.reloadData()
             }
+            onFinished?()
         }, onError: { errorMessage in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
             }
+            onFinished?()
         })
     }
     

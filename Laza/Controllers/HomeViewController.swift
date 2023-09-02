@@ -88,6 +88,7 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
         setupTabBarItemImage()
         setupSideMenu()
         setupBlur()
+        setupRefreshControl()
         
         // Assign reload collection view functionality
         viewModel.reloadBrandCollectionView = { [weak self] in
@@ -132,6 +133,35 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
     
     @objc private func onProfileUpdated() {
         setupSideMenu()
+    }
+    
+    private func setupRefreshControl() {
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self, action: #selector(handleRefreshControl), for: .valueChanged)
+    }
+    
+    @objc func handleRefreshControl() {
+        
+        var brandsDone = false
+        var productsDone = false
+        
+        // Load data
+        viewModel.loadBrands(onFinished: {
+            brandsDone = true
+            endRefreshingWhenDone()
+        })
+        viewModel.loadProducts(onFinished: {
+            productsDone = true
+            endRefreshingWhenDone()
+        })
+        
+        func endRefreshingWhenDone() {
+            if !brandsDone || !productsDone { return }
+            // Dismiss the refresh control
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.refreshControl?.endRefreshing()
+            }
+        }
     }
     
     // End editing on touch began

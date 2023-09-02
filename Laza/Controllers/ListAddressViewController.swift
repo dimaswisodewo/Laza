@@ -53,6 +53,7 @@ class ListAddressViewController: UIViewController {
         tabBarController?.tabBar.isHidden = true
         
         registerObserver()
+        setupRefreshControl()
         
         if viewModel.addressCount == 0 {
             loadAllAddress()
@@ -64,7 +65,7 @@ class ListAddressViewController: UIViewController {
     }
     
     private func registerObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(loadAllAddress), name: .addressUpdated, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onNotifyLoadAllAddress), name: .addressUpdated, object: nil)
     }
     
     private func removeObserver() {
@@ -75,12 +76,26 @@ class ListAddressViewController: UIViewController {
         NotificationCenter.default.post(name: .addressUpdated, object: nil)
     }
     
+    private func setupRefreshControl() {
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self, action: #selector(handleRefreshControl), for: .valueChanged)
+    }
+    
+    @objc private func handleRefreshControl() {
+        loadAllAddress(onFinished: {
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.refreshControl?.endRefreshing()
+            }
+        })
+        
+    }
+    
     func configure(address: [Address]) {
         viewModel.configure(address: address)
         print("Address count: \(address.count)")
     }
     
-    @objc private func loadAllAddress() {
+    private func loadAllAddress(onFinished: (() -> Void)? = nil) {
         viewModel.getAllAddress(completion: { [weak self] in
             guard let self = self else { return }
             // Get primary address
@@ -93,12 +108,18 @@ class ListAddressViewController: UIViewController {
             DispatchQueue.main.async { [weak self] in
                 self?.tableView.reloadData()
             }
+            onFinished?()
         }, onError: { errorMessage in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
             }
+            onFinished?()
         })
+    }
+    
+    @objc private func onNotifyLoadAllAddress() {
+        loadAllAddress()
     }
     
     @objc private func backButtonPressed() {

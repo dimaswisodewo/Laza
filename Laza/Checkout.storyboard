@@ -465,7 +465,7 @@
                                 <buttonConfiguration key="configuration" style="plain"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Continue Shopping" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BbM-Pz-g3M">
-                                <rect key="frame" x="137.33333333333337" y="872" width="155.66666666666663" height="21"/>
+                                <rect key="frame" x="128.66666666666666" y="872" width="172.99999999999997" height="25.333333333333371"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -494,13 +494,13 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order Confirmed!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8vf-k7-wZk">
-                                <rect key="frame" x="20" y="560.66666666666663" width="390" height="32.666666666666629"/>
+                                <rect key="frame" x="20" y="560.66666666666663" width="390" height="39.333333333333371"/>
                                 <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your order has been confirmed, we will send you confirmation email shortly." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gEf-x0-WsX">
-                                <rect key="frame" x="20" y="601.33333333333337" width="390" height="32.666666666666629"/>
+                                <rect key="frame" x="20" y="608" width="390" height="39.333333333333371"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                 <color key="textColor" name="TextSecondary"/>
                                 <nil key="highlightedColor"/>
@@ -943,7 +943,7 @@
             <size key="intrinsicContentSize" width="49.333333333333336" height="34.333333333333336"/>
         </designable>
         <designable name="czA-0G-eGq">
-            <size key="intrinsicContentSize" width="129" height="35"/>
+            <size key="intrinsicContentSize" width="137.66666666666666" height="39.333333333333336"/>
         </designable>
         <designable name="xWK-6V-bwm">
             <size key="intrinsicContentSize" width="49.333333333333336" height="34.333333333333336"/>

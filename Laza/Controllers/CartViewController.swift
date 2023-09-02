@@ -11,6 +11,8 @@ class CartViewController: UIViewController {
     
     static let identifier = "CartViewController"
     
+    static var isObserverRegistered = false
+    
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.delegate = self
@@ -59,6 +61,7 @@ class CartViewController: UIViewController {
         super.viewDidLoad()
         
         setupTabBarItemImage()
+        setupRefreshControl()
         
         loadAllSizesAndCartItems()
         
@@ -66,11 +69,28 @@ class CartViewController: UIViewController {
     }
     
     private func registerObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(loadCartItems), name: Notification.Name.cartUpdated, object: nil)
+        print("Register cart updated")
+        NotificationCenter.default.addObserver(self, selector: #selector(onNotifyLoadCartItems), name: Notification.Name.cartUpdated, object: nil)
+        CartViewController.isObserverRegistered = true
     }
     
     private func removeObserver() {
+        print("Remove cart updated")
         NotificationCenter.default.removeObserver(self, name: Notification.Name.cartUpdated, object: nil)
+        CartViewController.isObserverRegistered = false
+    }
+    
+    private func setupRefreshControl() {
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self, action: #selector(handleRefreshControl), for: .valueChanged)
+    }
+    
+    @objc private func handleRefreshControl() {
+        loadCartItems(onFinished: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+                self?.tableView.refreshControl?.endRefreshing()
+            }
+        })
     }
     
     // Add delay to API call to avoid spamming on (+) and (-) buttons in cart page
@@ -99,7 +119,11 @@ class CartViewController: UIViewController {
         })
     }
     
-    @objc private func loadCartItems() {
+    @objc private func onNotifyLoadCartItems() {
+        loadCartItems()
+    }
+    
+    private func loadCartItems(onFinished: (() -> Void)? = nil) {
         viewModel.getCartItems(completion: {
             DispatchQueue.main.async { [weak self] in
                 self?.tableView.reloadData()
@@ -108,11 +132,13 @@ class CartViewController: UIViewController {
                 }
                 self?.setTotalPriceLabel(totalPrice: totalPrice)
             }
+            onFinished?()
         }, onError: { errorMessage in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
             }
+            onFinished?()
         })
     }
     

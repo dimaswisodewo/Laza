@@ -51,17 +51,23 @@ class StarterViewController: UIViewController {
     }
     
     private func detectSignedAccountUsingUsername() {
-        getProfile { profile in
-            SessionManager.shared.setCurrentProfile(profile: profile)
-            DispatchQueue.main.async { [weak self] in
-                self?.goToHomePage()
+        // Is token exists
+        if let _ = DataPersistentManager.shared.getTokenFromKeychain() {
+            getProfile { profile in
+                SessionManager.shared.setCurrentProfile(profile: profile)
+                DispatchQueue.main.async { [weak self] in
+                    self?.goToHomePage()
+                }
+            } onError: { [weak self] errorMessage in
+                print("Get profile error \(errorMessage)")
+                DispatchQueue.main.async {
+                    self?.goToLoginPage()
+                }
             }
-        } onError: { [weak self] errorMessage in
-            print("Get profile error")
-            DispatchQueue.main.async {
-                self?.goToLoginPage()
-            }
+            return
         }
+        // Token does not exists
+        goToLoginPage()
     }
     
     private func getGoogleProfile(completion: @escaping () -> Void, onError: @escaping (String) -> Void) {

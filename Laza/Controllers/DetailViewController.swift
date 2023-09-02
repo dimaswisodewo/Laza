@@ -167,12 +167,12 @@ class DetailViewController: UIViewController {
         
         viewModel?.insertToCart(productId: productId, sizeId: selectedSizeId, completion: {
             DispatchQueue.main.async { [weak self] in
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    SnackBarSuccess.make(in: self.view, message: "Item added to cart", duration: .lengthShort).show()
-                }
+                guard let self = self else { return }
+                SnackBarSuccess.make(in: self.view, message: "Item added to cart", duration: .lengthShort).show()
                 // Notify to update cart items
-                NotificationCenter.default.post(name: Notification.Name.cartUpdated, object: nil)
+                if CartViewController.isObserverRegistered {
+                    NotificationCenter.default.post(name: Notification.Name.cartUpdated, object: nil)
+                }
             }
         }, onError: { errorMessage in
             DispatchQueue.main.async { [weak self] in

@@ -34,6 +34,7 @@ class WishlistViewController: UIViewController {
         super.viewDidLoad()
 
         setupTabBarItemImage()
+        setupRefreshControl()
         registerObserver()
         
         loadWishlists()
@@ -50,7 +51,7 @@ class WishlistViewController: UIViewController {
     }
     
     private func registerObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(loadWishlists), name: Notification.Name.wishlistUpdated, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onNotifyLoadWishlist), name: Notification.Name.wishlistUpdated, object: nil)
     }
     
     private func setupTabBarItemImage() {
@@ -64,19 +65,38 @@ class WishlistViewController: UIViewController {
         navigationController?.tabBarItem.selectedImage = UIImage(view: label)
     }
     
-    @objc private func loadWishlists() {
+    private func setupRefreshControl() {
+        collectionView.refreshControl = UIRefreshControl()
+        collectionView.refreshControl?.addTarget(self, action: #selector(handleRefreshControl), for: .valueChanged)
+    }
+    
+    @objc func handleRefreshControl() {
+        loadWishlists(onFinished: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+                self?.collectionView.refreshControl?.endRefreshing()
+            }
+        })
+    }
+    
+    private func loadWishlists(onFinished: (() -> Void)? = nil) {
         viewModel.loadWishlists(completion: {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 self.collectionView.reloadData()
                 self.wishlistCountLabel.text = "\(self.viewModel.productsCount) Items"
             }
+            onFinished?()
         }, onError: { errorMessage in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
             }
+            onFinished?()
         })
+    }
+    
+    @objc private func onNotifyLoadWishlist() {
+        loadWishlists()
     }
     
     @objc private func sortButtonPressed() {

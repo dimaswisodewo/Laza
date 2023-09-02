@@ -42,6 +42,7 @@ class ProductBrandViewController: UIViewController {
         super.viewDidLoad()
 
         registerCell()
+        setupRefreshControl()
             
         brandLabel.text = viewModel.brandName
         
@@ -50,17 +51,33 @@ class ProductBrandViewController: UIViewController {
         tabBarController?.tabBar.isHidden = true
     }
     
-    private func loadProductsByBrand() {
+    private func setupRefreshControl() {
+        collectionView.refreshControl = UIRefreshControl()
+        collectionView.refreshControl?.addTarget(self, action: #selector(handleRefreshControl), for: .valueChanged)
+    }
+    
+    @objc private func handleRefreshControl() {
+        loadProductsByBrand(onFinished: {
+            // Dismiss the refresh control
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+                self?.collectionView.refreshControl?.endRefreshing()
+            }
+        })
+    }
+    
+    private func loadProductsByBrand(onFinished: (() -> Void)? = nil) {
         viewModel.loadProductsByBrand(completion: { productsCount in
             DispatchQueue.main.async { [weak self] in
                 self?.productsCountLabel.text = "\(productsCount) Items"
                 self?.collectionView.reloadData()
             }
+            onFinished?()
         }, onError: { errorMessage in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
             }
+            onFinished?()
         })
     }
     

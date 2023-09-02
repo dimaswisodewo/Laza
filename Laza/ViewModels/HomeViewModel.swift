@@ -33,7 +33,7 @@ class HomeViewModel {
         DataPersistentManager.shared.deleteRefreshTokenFromKeychain()
     }
     
-    func loadBrands() {
+    func loadBrands(onFinished: (() -> Void)? = nil) {
         var endpoint = Endpoint()
         endpoint.initialize(path: .Brands)
         NetworkManager.shared.sendRequest(type: BrandResponse.self, endpoint: endpoint) { [weak self] result in
@@ -46,10 +46,11 @@ class HomeViewModel {
             case .failure(let error):
                 print(error)
             }
+            onFinished?()
         }
     }
     
-    func loadProducts() {
+    func loadProducts(onFinished: (() -> Void)? = nil) {
         var endpoint = Endpoint()
         endpoint.initialize(path: .Products)
         NetworkManager.shared.sendRequest(type: ProductResponse.self, endpoint: endpoint) { [weak self] result in
@@ -62,6 +63,7 @@ class HomeViewModel {
             case .failure(let error):
                 print(error)
             }
+            onFinished?()
         }
     }
     
