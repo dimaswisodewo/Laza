@@ -781,10 +781,12 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="availableInStockLabel" destination="c1v-Ew-NMM" id="y7I-hl-jy4"/>
                         <outlet property="backButton" destination="MaE-mc-JQ9" id="6oM-9c-QxK"/>
                         <outlet property="brandLabel" destination="0xw-OH-2Lc" id="7Sw-dM-wCb"/>
                         <outlet property="collectionView" destination="f3I-tw-uAg" id="TVq-E0-R5h"/>
                         <outlet property="productsCountLabel" destination="yHU-ym-4Ky" id="Esf-AL-HOe"/>
+                        <outlet property="sortButton" destination="QW4-Wv-h9h" id="XfF-4p-wLE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OVT-Ye-62S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

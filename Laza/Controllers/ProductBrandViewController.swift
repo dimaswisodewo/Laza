@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class ProductBrandViewController: UIViewController {
 
@@ -14,6 +15,10 @@ class ProductBrandViewController: UIViewController {
     @IBOutlet weak var brandLabel: UILabel!
     
     @IBOutlet weak var productsCountLabel: UILabel!
+    
+    @IBOutlet weak var availableInStockLabel: UILabel!
+    
+    @IBOutlet weak var sortButton: RoundedButton!
     
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
@@ -43,12 +48,35 @@ class ProductBrandViewController: UIViewController {
 
         registerCell()
         setupRefreshControl()
+        setupSkeleton()
+        showSkeleton()
             
         brandLabel.text = viewModel.brandName
         
         loadProductsByBrand()
         
         tabBarController?.tabBar.isHidden = true
+    }
+    
+    private func setupSkeleton() {
+        collectionView.isSkeletonable = true
+        productsCountLabel.isSkeletonable = true
+        availableInStockLabel.isSkeletonable = true
+        sortButton.isSkeletonable = true
+    }
+    
+    private func showSkeleton() {
+        collectionView.showAnimatedGradientSkeleton()
+        productsCountLabel.showAnimatedGradientSkeleton()
+        availableInStockLabel.showAnimatedGradientSkeleton()
+        sortButton.showAnimatedGradientSkeleton()
+    }
+    
+    private func hideSkeleton() {
+        collectionView.hideSkeleton()
+        productsCountLabel.hideSkeleton()
+        availableInStockLabel.hideSkeleton()
+        sortButton.hideSkeleton()
     }
     
     private func setupRefreshControl() {
@@ -69,6 +97,7 @@ class ProductBrandViewController: UIViewController {
         viewModel.loadProductsByBrand(completion: { productsCount in
             DispatchQueue.main.async { [weak self] in
                 self?.productsCountLabel.text = "\(productsCount) Items"
+                self?.hideSkeleton()
                 self?.collectionView.reloadData()
             }
             onFinished?()
@@ -96,6 +125,8 @@ class ProductBrandViewController: UIViewController {
     }
 }
 
+// MARK: - UIColectionView DataSource
+
 extension ProductBrandViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         viewModel.productsCount
@@ -106,6 +137,7 @@ extension ProductBrandViewController: UICollectionViewDataSource, UICollectionVi
             return UICollectionViewCell()
         }
         if let product = viewModel.getProductOnIndex(index: indexPath.item) {
+            cell.hideSkeleton()
             cell.configure(product: product)
         }
         return cell
@@ -130,5 +162,25 @@ extension ProductBrandViewController: UICollectionViewDataSource, UICollectionVi
         let width = (collectionView.frame.size.width / numOfColum ) - spacing
         let cellHeightToWidthAspectRatio = CGFloat(250) / CGFloat(160)
         return CGSize(width: width, height: width * cellHeightToWidthAspectRatio)
+    }
+}
+
+// MARK: - SkeletonCollectionView DataSource
+
+extension ProductBrandViewController: SkeletonCollectionViewDataSource {
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> SkeletonView.ReusableCellIdentifier {
+        return ProductCollectionViewCell.identifier
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, skeletonCellForItemAt indexPath: IndexPath) -> UICollectionViewCell? {
+        guard let cell = skeletonView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as? ProductCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        cell.showSkeleton()
+        return cell
     }
 }

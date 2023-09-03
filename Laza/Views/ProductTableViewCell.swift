@@ -48,7 +48,6 @@ class ProductTableViewCell: UITableViewCell {
 
         setupConstraints()
         setupSkeleton()
-        showSkeleton()
     }
     
     required init?(coder: NSCoder) {
@@ -59,11 +58,11 @@ class ProductTableViewCell: UITableViewCell {
         productCollectionView.isSkeletonable = true
     }
     
-    private func showSkeleton() {
+    func showSkeleton() {
         productCollectionView.showAnimatedGradientSkeleton()
     }
     
-    private func hideSkeleton() {
+    func hideSkeleton() {
         productCollectionView.hideSkeleton()
     }
     
