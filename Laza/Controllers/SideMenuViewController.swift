@@ -27,13 +27,11 @@ protocol SideMenuViewControllerDelegate: AnyObject {
 enum SideMenuType: Int, CaseIterable {
     case profile = 0
     case darkMode = 1
-    case accountInformation = 2
-    case updatePassword = 3
-    case order = 4
-    case cards = 5
-    case wishlist = 6
-    case settings = 7
-    case logOut = 8
+    case updatePassword = 2
+    case order = 3
+    case cards = 4
+    case wishlist = 5
+    case logOut = 6
 }
 
 struct SideMenuModel {
@@ -78,11 +76,6 @@ class SideMenuViewController: UIViewController {
             type: .darkMode
         ),
         SideMenuModel(
-            icon: UIImage(systemName: "exclamationmark.circle")!,
-            title: "Account Information",
-            type: .accountInformation
-        ),
-        SideMenuModel(
             icon: UIImage(systemName: "exclamationmark.lock")!,
             title: "Password",
             type: .updatePassword
@@ -101,12 +94,7 @@ class SideMenuViewController: UIViewController {
             icon: UIImage(named: "Wishlist")!.withRenderingMode(.alwaysTemplate),
             title: "Wishlist",
             type: .wishlist
-        ),
-        SideMenuModel(
-            icon: UIImage(systemName: "gearshape")!,
-            title: "Settings",
-            type: .settings
-        ),
+        )
     ]
     
     override func viewDidLoad() {
@@ -201,8 +189,6 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
         case .darkMode:
             delegate?.didSelectDarkMode()
             break
-        case .accountInformation:
-            break
         case .updatePassword:
             delegate?.didSelectUpdatePassword()
         case .order:
@@ -211,8 +197,6 @@ extension SideMenuViewController: UITableViewDelegate, UITableViewDataSource {
             delegate?.didSelectCards()
         case .wishlist:
             delegate?.didSelectWishlist()
-        case .settings:
-            break
         case .logOut:
             break
         }
