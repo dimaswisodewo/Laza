@@ -59,6 +59,8 @@
 		3847AE242A84799400C8D4E5 /* ChoosePaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847AE232A84799400C8D4E5 /* ChoosePaymentViewModel.swift */; };
 		3847AE262A8479BC00C8D4E5 /* PaymentMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3847AE252A8479BC00C8D4E5 /* PaymentMethod.swift */; };
 		384C4D012A7CAD9800B85BFF /* SideMenuSwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384C4D002A7CAD9800B85BFF /* SideMenuSwitchTableViewCell.swift */; };
+		385D01942AA43A6D0037184C /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385D01932AA43A6D0037184C /* ChangePasswordViewController.swift */; };
+		385D01962AA43A7E0037184C /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385D01952AA43A7E0037184C /* ChangePasswordViewModel.swift */; };
 		386272B02A7A854800962892 /* FontUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386272AF2A7A854800962892 /* FontUtils.swift */; };
 		386272B32A7A882200962892 /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386272B12A7A882200962892 /* ReviewTableViewCell.swift */; };
 		386272B42A7A882200962892 /* ReviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386272B22A7A882200962892 /* ReviewTableViewCell.xib */; };
@@ -213,6 +215,8 @@
 		3847AE232A84799400C8D4E5 /* ChoosePaymentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosePaymentViewModel.swift; sourceTree = "<group>"; };
 		3847AE252A8479BC00C8D4E5 /* PaymentMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethod.swift; sourceTree = "<group>"; };
 		384C4D002A7CAD9800B85BFF /* SideMenuSwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuSwitchTableViewCell.swift; sourceTree = "<group>"; };
+		385D01932AA43A6D0037184C /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		385D01952AA43A7E0037184C /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
 		386272AF2A7A854800962892 /* FontUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontUtils.swift; sourceTree = "<group>"; };
 		386272B12A7A882200962892 /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
 		386272B22A7A882200962892 /* ReviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewTableViewCell.xib; sourceTree = "<group>"; };
@@ -407,6 +411,7 @@
 				38B7C54E2A90778B006FE010 /* ProfileViewController.swift */,
 				38311EEF2A9444C700979523 /* EditProfileViewController.swift */,
 				38FBA1D42A9D8D250055A97F /* EditAddressViewController.swift */,
+				385D01932AA43A6D0037184C /* ChangePasswordViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -436,6 +441,7 @@
 				38FBA1D22A9D8CE70055A97F /* EditAddressViewModel.swift */,
 				380A5A632A9F31BE00887845 /* VerificationCodeViewModel.swift */,
 				380A5A652A9F3CD800887845 /* ForgotPasswordViewModel.swift */,
+				385D01952AA43A7E0037184C /* ChangePasswordViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -737,6 +743,7 @@
 				3809B3EB2A89C86E00B34E5D /* DetailViewModel.swift in Sources */,
 				38C51DC12A7156E7000324A5 /* WishlistViewController.swift in Sources */,
 				38D1DE382A74ADD9002AB0ED /* HashingManager.swift in Sources */,
+				385D01942AA43A6D0037184C /* ChangePasswordViewController.swift in Sources */,
 				3815A6A12A8DB92C0067BABA /* AddressViewModel.swift in Sources */,
 				38C51DCC2A7169C4000324A5 /* NetworkManager.swift in Sources */,
 				3847AE262A8479BC00C8D4E5 /* PaymentMethod.swift in Sources */,
@@ -797,6 +804,7 @@
 				38D1DE3A2A74AED2002AB0ED /* Password.swift in Sources */,
 				38DCC6682A70A8B7006A3633 /* SceneDelegate.swift in Sources */,
 				38323EFF2A8088AD000732A0 /* CartTableViewCell.swift in Sources */,
+				385D01962AA43A7E0037184C /* ChangePasswordViewModel.swift in Sources */,
 				387A466F2A80A9F5007C3653 /* CartDetailViewController.swift in Sources */,
 				38DCC6892A70D2C7006A3633 /* GetStartedViewController.swift in Sources */,
 				38C51DC72A715A29000324A5 /* Extensions.swift in Sources */,

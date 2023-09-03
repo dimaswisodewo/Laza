@@ -1124,6 +1124,120 @@
             </objects>
             <point key="canvasLocation" x="3914" y="-695"/>
         </scene>
+        <!--Change Password View Controller-->
+        <scene sceneID="0e6-eI-QXh">
+            <objects>
+                <viewController storyboardIdentifier="ChangePasswordViewController" id="CoR-NB-ACQ" customClass="ChangePasswordViewController" customModule="Laza" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Cfh-qc-L3z">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7bu-Ig-m0s" customClass="CircleButton" customModule="Laza" customModuleProvider="target">
+                                <rect key="frame" x="20" y="104" width="45" height="45"/>
+                                <color key="backgroundColor" name="WhiteButtonSecondary"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="Xfb-UF-QkB"/>
+                                    <constraint firstAttribute="height" constant="45" id="lEy-ao-7dz"/>
+                                </constraints>
+                                <color key="tintColor" name="TextPrimary"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="arrow.backward" catalog="system"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Password" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pHi-ch-ZAZ">
+                                <rect key="frame" x="20" y="174" width="390" height="39.333333333333343"/>
+                                <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="28"/>
+                                <color key="textColor" name="TextPrimary"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Old Password..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TPP-Yt-1Gy" customClass="CustomSecureTextField" customModule="Laza" customModuleProvider="target">
+                                <rect key="frame" x="20" y="386" width="390" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="KkB-9e-QAI"/>
+                                </constraints>
+                                <color key="textColor" name="TextPrimary"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Password..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r75-ia-g54" customClass="CustomSecureTextField" customModule="Laza" customModuleProvider="target">
+                                <rect key="frame" x="20" y="494" width="390" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="EJG-15-KT3"/>
+                                </constraints>
+                                <color key="textColor" name="TextPrimary"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please write your new password." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7wN-D5-Dkh">
+                                <rect key="frame" x="24" y="812.33333333333337" width="382" height="19.666666666666629"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                <color key="textColor" name="TextSecondary"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vZh-1S-oyO">
+                                <rect key="frame" x="0.0" y="857" width="430" height="75"/>
+                                <color key="backgroundColor" name="PurpleButton"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="WF1-Tl-wyJ"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reset Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mvp-z5-ERd">
+                                <rect key="frame" x="144.66666666666669" y="872" width="140.66666666666669" height="25.333333333333371"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm Password..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="egg-Aa-Vt2" customClass="CustomSecureTextField" customModule="Laza" customModuleProvider="target">
+                                <rect key="frame" x="20" y="602" width="390" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="enq-Y6-1Tw"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="yXX-1c-T4T"/>
+                                </constraints>
+                                <color key="textColor" name="TextPrimary"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="IM7-I7-4FT"/>
+                        <color key="backgroundColor" name="WhiteBG"/>
+                        <constraints>
+                            <constraint firstItem="IM7-I7-4FT" firstAttribute="trailing" secondItem="r75-ia-g54" secondAttribute="trailing" constant="20" id="0bO-ag-mcf"/>
+                            <constraint firstItem="TPP-Yt-1Gy" firstAttribute="leading" secondItem="IM7-I7-4FT" secondAttribute="leading" constant="20" id="13a-zy-beu"/>
+                            <constraint firstItem="IM7-I7-4FT" firstAttribute="trailing" secondItem="egg-Aa-Vt2" secondAttribute="trailing" constant="20" id="AHl-FL-YY8"/>
+                            <constraint firstItem="vZh-1S-oyO" firstAttribute="leading" secondItem="IM7-I7-4FT" secondAttribute="leading" id="E2I-xK-Xm1"/>
+                            <constraint firstItem="7bu-Ig-m0s" firstAttribute="top" secondItem="IM7-I7-4FT" secondAttribute="top" constant="45" id="HAi-FH-OwQ"/>
+                            <constraint firstAttribute="bottom" secondItem="vZh-1S-oyO" secondAttribute="bottom" id="HrG-xy-K76"/>
+                            <constraint firstItem="7wN-D5-Dkh" firstAttribute="leading" secondItem="IM7-I7-4FT" secondAttribute="leading" constant="24" id="JCC-eo-EVa"/>
+                            <constraint firstItem="egg-Aa-Vt2" firstAttribute="leading" secondItem="IM7-I7-4FT" secondAttribute="leading" constant="20" id="Ocd-Wr-zAg"/>
+                            <constraint firstItem="r75-ia-g54" firstAttribute="top" secondItem="TPP-Yt-1Gy" secondAttribute="bottom" constant="48" id="Ooz-ff-oGr"/>
+                            <constraint firstItem="mvp-z5-ERd" firstAttribute="top" secondItem="vZh-1S-oyO" secondAttribute="top" constant="15" id="P2y-zr-hwb"/>
+                            <constraint firstItem="TPP-Yt-1Gy" firstAttribute="centerY" secondItem="Cfh-qc-L3z" secondAttribute="centerY" constant="-50" id="Psv-j1-7xy"/>
+                            <constraint firstItem="mvp-z5-ERd" firstAttribute="centerX" secondItem="vZh-1S-oyO" secondAttribute="centerX" id="VxY-2B-Tuu"/>
+                            <constraint firstItem="IM7-I7-4FT" firstAttribute="trailing" secondItem="TPP-Yt-1Gy" secondAttribute="trailing" constant="20" id="Wmv-TP-igm"/>
+                            <constraint firstItem="7bu-Ig-m0s" firstAttribute="leading" secondItem="IM7-I7-4FT" secondAttribute="leading" constant="20" id="aN3-wA-42P"/>
+                            <constraint firstItem="egg-Aa-Vt2" firstAttribute="top" secondItem="r75-ia-g54" secondAttribute="bottom" constant="48" id="eBq-tx-OU2"/>
+                            <constraint firstItem="r75-ia-g54" firstAttribute="leading" secondItem="IM7-I7-4FT" secondAttribute="leading" constant="20" id="fgc-5k-OVT"/>
+                            <constraint firstItem="IM7-I7-4FT" firstAttribute="trailing" secondItem="7wN-D5-Dkh" secondAttribute="trailing" constant="24" id="h75-ZY-IRD"/>
+                            <constraint firstItem="pHi-ch-ZAZ" firstAttribute="top" secondItem="7bu-Ig-m0s" secondAttribute="bottom" constant="25" id="k8z-hk-8dQ"/>
+                            <constraint firstItem="IM7-I7-4FT" firstAttribute="trailing" secondItem="vZh-1S-oyO" secondAttribute="trailing" id="oAc-z7-3J4"/>
+                            <constraint firstItem="pHi-ch-ZAZ" firstAttribute="leading" secondItem="IM7-I7-4FT" secondAttribute="leading" constant="20" id="rR5-p5-wbB"/>
+                            <constraint firstItem="IM7-I7-4FT" firstAttribute="trailing" secondItem="pHi-ch-ZAZ" secondAttribute="trailing" constant="20" id="rtc-wb-TZS"/>
+                            <constraint firstItem="vZh-1S-oyO" firstAttribute="top" secondItem="7wN-D5-Dkh" secondAttribute="bottom" constant="25" id="wDc-E9-K5H"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backButton" destination="7bu-Ig-m0s" id="Ok4-CO-hhD"/>
+                        <outlet property="confirmPasswordField" destination="egg-Aa-Vt2" id="JMX-yy-PAI"/>
+                        <outlet property="ctaButton" destination="vZh-1S-oyO" id="gZ2-pd-xZO"/>
+                        <outlet property="newPasswordField" destination="r75-ia-g54" id="Ckp-3y-bjj"/>
+                        <outlet property="oldPasswordField" destination="TPP-Yt-1Gy" id="GhP-zi-ETp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="35H-dU-umW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="889" y="-696"/>
+        </scene>
     </scenes>
     <designables>
         <designable name="0Im-ZD-icL">
@@ -1136,6 +1250,9 @@
             <size key="intrinsicContentSize" width="45" height="34"/>
         </designable>
         <designable name="3z2-9V-OZ5">
+            <size key="intrinsicContentSize" width="49.333333333333336" height="34.333333333333336"/>
+        </designable>
+        <designable name="7bu-Ig-m0s">
             <size key="intrinsicContentSize" width="49.333333333333336" height="34.333333333333336"/>
         </designable>
         <designable name="8cu-6T-E7b">

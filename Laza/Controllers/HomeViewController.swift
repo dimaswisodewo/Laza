@@ -255,10 +255,9 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     private func updatePasswordButtonPressed() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "Home", bundle: nil)
         DispatchQueue.main.async { [weak self] in
-            let vc = storyboard.instantiateViewController(withIdentifier: UpdatePasswordViewController.identifier)
-            
+            let vc = storyboard.instantiateViewController(withIdentifier: ChangePasswordViewController.identifier)
             self?.navigationController?.pushViewController(vc, animated: true)
         }
     }
