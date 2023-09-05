@@ -52,7 +52,7 @@ class ProductBrandViewModel {
                     onError("Load products success - Failed to decode")
                     return
                 }
-                self?.products.append(contentsOf: model.data)
+                self?.products = model.data
                 completion(model.data.count)
             case .failure(let error):
                 onError(error.localizedDescription)

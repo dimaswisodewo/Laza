@@ -7,11 +7,18 @@
 
 import UIKit
 
+protocol ChangePasswordViewControllerDelegate: AnyObject {
+    
+    func onPasswordUpdated()
+}
+
 class ChangePasswordViewController: UIViewController {
 
     static let identifier = "ChangePasswordViewController"
     
     private let viewModel = ChangePasswordViewModel()
+    
+    weak var delegate: ChangePasswordViewControllerDelegate?
     
     @IBOutlet weak var backButton: CircleButton! {
         didSet {
@@ -78,6 +85,7 @@ class ChangePasswordViewController: UIViewController {
         viewModel.changePassword(currentPassword: oldPassword, newPassword: newPassword, completion: {
             DispatchQueue.main.async { [weak self] in
                 self?.navigationController?.popViewController(animated: true)
+                self?.delegate?.onPasswordUpdated()
             }
         }, onError: { errorMessage in
             DispatchQueue.main.async { [weak self] in

@@ -11,7 +11,7 @@ import Stripe
 
 protocol AddCardViewControllerDelegate: AnyObject {
     
-    func newCreditCardAdded(newCreditCard: CreditCard)
+    func newCreditCardAdded(newCreditCard: CreditCardModel)
 }
 
 class AddCardViewController: UIViewController {
@@ -129,6 +129,11 @@ class AddCardViewController: UIViewController {
     
     @objc private func ctaButtonPressed() {
         
+        if !nameTextField.hasText {
+            SnackBarDanger.make(in: self.view, message: "Card owner cannot be empty",  duration: .lengthShort).show()
+            return
+        }
+        
         guard let cardNumber = creditCardTextField.cardNumber else {
             SnackBarDanger.make(in: self.view, message: "Card number cannot be empty",  duration: .lengthShort).show()
             return
@@ -139,12 +144,16 @@ class AddCardViewController: UIViewController {
             return
         }
         
-        if !creditCardTextField.isValid {
-            SnackBarDanger.make(in: self.view, message: "Card is not valid", duration: .lengthShort).show()
-            return
-        }
+        // Uncomment if want to enable card validation
+//        if !creditCardTextField.isValid {
+//            SnackBarDanger.make(in: self.view, message: "Card is not valid", duration: .lengthShort).show()
+//            return
+//        }
+        
+        guard let cardOwner = nameTextField.text else { return }
         
         viewModel.addCreditCard(
+            cardOwner: cardOwner,
             cardNumber: cardNumber,
             expiredMonth: creditCardTextField.expirationMonth,
             expiredYear: creditCardTextField.expirationYear,

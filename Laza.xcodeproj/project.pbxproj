@@ -61,6 +61,7 @@
 		384C4D012A7CAD9800B85BFF /* SideMenuSwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 384C4D002A7CAD9800B85BFF /* SideMenuSwitchTableViewCell.swift */; };
 		385D01942AA43A6D0037184C /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385D01932AA43A6D0037184C /* ChangePasswordViewController.swift */; };
 		385D01962AA43A7E0037184C /* ChangePasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385D01952AA43A7E0037184C /* ChangePasswordViewModel.swift */; };
+		385D01992AA476B10037184C /* LazaModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 385D01972AA476B10037184C /* LazaModel.xcdatamodeld */; };
 		386272B02A7A854800962892 /* FontUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386272AF2A7A854800962892 /* FontUtils.swift */; };
 		386272B32A7A882200962892 /* ReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386272B12A7A882200962892 /* ReviewTableViewCell.swift */; };
 		386272B42A7A882200962892 /* ReviewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 386272B22A7A882200962892 /* ReviewTableViewCell.xib */; };
@@ -217,6 +218,7 @@
 		384C4D002A7CAD9800B85BFF /* SideMenuSwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuSwitchTableViewCell.swift; sourceTree = "<group>"; };
 		385D01932AA43A6D0037184C /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		385D01952AA43A7E0037184C /* ChangePasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewModel.swift; sourceTree = "<group>"; };
+		385D01982AA476B10037184C /* LazaModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LazaModel.xcdatamodel; sourceTree = "<group>"; };
 		386272AF2A7A854800962892 /* FontUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontUtils.swift; sourceTree = "<group>"; };
 		386272B12A7A882200962892 /* ReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewTableViewCell.swift; sourceTree = "<group>"; };
 		386272B22A7A882200962892 /* ReviewTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewTableViewCell.xib; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 				38DCC6702A70A8B8006A3633 /* LaunchScreen.storyboard */,
 				38DCC6732A70A8B8006A3633 /* Info.plist */,
 				38C51DC62A715A29000324A5 /* Extensions.swift */,
+				385D01972AA476B10037184C /* LazaModel.xcdatamodeld */,
 			);
 			path = Laza;
 			sourceTree = "<group>";
@@ -779,6 +782,7 @@
 				3825DC702A7F705000239E55 /* CustomSnackBar.swift in Sources */,
 				38C51DC32A715840000324A5 /* CartViewController.swift in Sources */,
 				3891B5752A829B4600B1CB88 /* ProductBrandViewController.swift in Sources */,
+				385D01992AA476B10037184C /* LazaModel.xcdatamodeld in Sources */,
 				38FF0E4A2A70F040009B406F /* CustomTextField.swift in Sources */,
 				38D11ACD2A7B9055008ED926 /* AllReviewsViewController.swift in Sources */,
 				380A5A642A9F31BE00887845 /* VerificationCodeViewModel.swift in Sources */,
@@ -1094,6 +1098,19 @@
 			productName = SideMenu;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		385D01972AA476B10037184C /* LazaModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				385D01982AA476B10037184C /* LazaModel.xcdatamodel */,
+			);
+			currentVersion = 385D01982AA476B10037184C /* LazaModel.xcdatamodel */;
+			path = LazaModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 38DCC65A2A70A8B7006A3633 /* Project object */;
 }

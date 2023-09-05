@@ -11,7 +11,7 @@ class ChangePasswordViewModel {
     
     func changePassword(currentPassword: String, newPassword: String, completion: @escaping () -> Void, onError: @escaping (String) -> Void) {
         var endpoint = Endpoint()
-        endpoint.initialize(path: .UserChangePassword, method: .POST)
+        endpoint.initialize(path: .UserChangePassword, method: .PUT)
         
         guard let url = URL(string: endpoint.getURL()) else { return }
         

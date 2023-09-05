@@ -96,8 +96,8 @@ class ProductBrandViewController: UIViewController {
     private func loadProductsByBrand(onFinished: (() -> Void)? = nil) {
         viewModel.loadProductsByBrand(completion: { productsCount in
             DispatchQueue.main.async { [weak self] in
-                self?.productsCountLabel.text = "\(productsCount) Items"
                 self?.hideSkeleton()
+                self?.productsCountLabel.text = "\(productsCount) Items"
                 self?.collectionView.reloadData()
             }
             onFinished?()

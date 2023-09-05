@@ -257,7 +257,8 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
     private func updatePasswordButtonPressed() {
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
         DispatchQueue.main.async { [weak self] in
-            let vc = storyboard.instantiateViewController(withIdentifier: ChangePasswordViewController.identifier)
+            guard let vc = storyboard.instantiateViewController(withIdentifier: ChangePasswordViewController.identifier) as? ChangePasswordViewController else { return }
+            vc.delegate = self
             self?.navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -491,5 +492,17 @@ extension HomeViewController: BrandCollectionViewCellDelegate {
         guard let vc = storyboard.instantiateViewController(withIdentifier: ProductBrandViewController.identifier) as? ProductBrandViewController else { return }
         vc.configure(brandName: brandName)
         navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+// MARK: - ChangePasswordViewController Delegate
+
+extension HomeViewController: ChangePasswordViewControllerDelegate {
+    
+    func onPasswordUpdated() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            SnackBarSuccess.make(in: self.view, message: "Password updated", duration: .lengthShort).show()
+        }
     }
 }

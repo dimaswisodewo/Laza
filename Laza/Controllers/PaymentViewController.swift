@@ -48,7 +48,7 @@ class PaymentViewController: UIViewController {
         
         tabBarController?.tabBar.isHidden = true
         
-//        getCreditCards()
+        getCreditCards()
         
         // Reload table view, wait 0.1 sec to make sure that collection views inside the table view is finished layouting subviews
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
@@ -153,10 +153,10 @@ extension PaymentViewController: UITableViewDataSource, UITableViewDelegate {
             if viewModel.dataCount > 0 {
                 let model = viewModel.getDataAtIndex(0)
                 paymentFormTableViewCell?.setPredefinedValue(
-                    cardOwner: "-",
+                    cardOwner: model.owner,
                     cardNumber: model.cardNumber,
-                    exp: "\(model.expiredMonth)/\(model.expiredYear)",
-                    cvv: "")
+                    exp: "\(model.expMonth)/\(model.expYear)",
+                    cvv: model.cvc ?? " - ")
             }
             return tableViewCell
         default:
@@ -172,10 +172,10 @@ extension PaymentViewController: PaymentCardTableViewCellDelegate {
     func onSetSelectedCardOnSwipe(selectedIndex: Int) {
         let model = viewModel.getDataAtIndex(selectedIndex)
         paymentFormTableViewCell?.setPredefinedValue(
-            cardOwner: "-",
+            cardOwner: model.owner,
             cardNumber: model.cardNumber,
-            exp: "\(model.expiredMonth)/\(model.expiredYear)",
-            cvv: "")
+            exp: "\(model.expMonth)/\(model.expYear)",
+            cvv: model.cvc ?? " - ")
     }
     
     func collectionView(collectionView: UICollectionView, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -220,7 +220,7 @@ extension PaymentViewController: PaymentAddCardTableViewCellDelegate {
 
 extension PaymentViewController: AddCardViewControllerDelegate {
     
-    func newCreditCardAdded(newCreditCard: CreditCard) {
+    func newCreditCardAdded(newCreditCard: CreditCardModel) {
         viewModel.appendCreditCard(newCard: newCreditCard)
         DispatchQueue.main.async { [weak self] in
             self?.paymentCardTableViewCell?.collectionView.reloadData()
