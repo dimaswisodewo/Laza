@@ -84,12 +84,12 @@ class CartViewController: UIViewController {
     
     private func registerObserver() {
         print("Register cart updated")
-        NotificationCenter.default.addObserver(self, selector: #selector(onNotifyLoadCartItems), name: Notification.Name.cartUpdated, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onNotifyLoadCartItems), name: .cartUpdated, object: nil)
     }
     
     private func removeObserver() {
         print("Remove cart updated")
-        NotificationCenter.default.removeObserver(self, name: Notification.Name.cartUpdated, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .cartUpdated, object: nil)
     }
     
     private func setupRefreshControl() {
@@ -191,9 +191,31 @@ class CartViewController: UIViewController {
     }
     
     @objc private func checkoutButtonPressed() {
-        let storyboard = UIStoryboard(name: "Checkout", bundle: nil)
-        guard let vc = storyboard.instantiateViewController(withIdentifier: OrderConfirmedViewController.identifier) as? OrderConfirmedViewController else { return }
-        navigationController?.pushViewController(vc, animated: true)
+        guard let selectedAddress = self.selectedAddress else {
+            SnackBarDanger.make(in: self.view, message: "No address selected", duration: .lengthShort).show()
+            return
+        }
+        guard let _ = self.selectedPayment else {
+            SnackBarDanger.make(in: self.view, message: "No payment method selected", duration: .lengthShort).show()
+            return
+        }
+        viewModel.checkoutOrderBank(
+            addressId: selectedAddress.id,
+            bank: "bni",
+            completion: {
+                DispatchQueue.main.async { [weak self] in
+                    let storyboard = UIStoryboard(name: "Checkout", bundle: nil)
+                    guard let vc = storyboard.instantiateViewController(withIdentifier: OrderConfirmedViewController.identifier) as? OrderConfirmedViewController else { return }
+                    // Notify observer to update cart
+                    NotificationCenter.default.post(name: .cartUpdated, object: nil)
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                }
+            }, onError: { errorMessage in
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+                }
+            })
     }
     
     private func presentCartDetail() {

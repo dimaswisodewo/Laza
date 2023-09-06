@@ -227,7 +227,7 @@ class CartViewModel {
         return nil
     }
     
-    func checkoutOrderBank(addressId: Int, bank: String, completion: @escaping () -> Void, onError: @escaping (String) -> Void) {
+    @objc func checkoutOrderBank(addressId: Int, bank: String, completion: @escaping () -> Void, onError: @escaping (String) -> Void) {
         var endpoint = Endpoint()
         endpoint.initialize(path: .OrderBank, method: .POST)
         
