@@ -72,7 +72,7 @@ class CartTableViewCell: UITableViewCell {
         modelId = model.id
         self.sizeId = sizeId
         productName.text = "\(model.productName) (\(model.size))"
-        productPrice.text = "$\(model.price)".formatDecimal()
+        productPrice.text = FormatterManager.shared.formattedToPrice(price: model.price as NSNumber)
         productAmount.text = String(model.quantity)
         productImageView.image = nil
         productImageView.loadAndCache(url: model.imageUrl)

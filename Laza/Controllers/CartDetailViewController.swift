@@ -129,9 +129,9 @@ class CartDetailViewController: UIViewController {
     
     func applyModel() {
         guard let orderInfo = viewModel?.orderInfo else { return }
-        subtotalLabel.text = "$\(orderInfo.subTotal)"
-        shippingCostLabel.text = "$\(orderInfo.shippingCost)"
-        totalLabel.text = "$\(orderInfo.total)"
+        subtotalLabel.text = FormatterManager.shared.formattedToPrice(price: orderInfo.subTotal as NSNumber)
+        shippingCostLabel.text = FormatterManager.shared.formattedToPrice(price: orderInfo.shippingCost as NSNumber)
+        totalLabel.text = FormatterManager.shared.formattedToPrice(price: orderInfo.total as NSNumber)
     }
     
     private func getAllAddress() {

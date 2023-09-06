@@ -172,7 +172,7 @@ class CartViewController: UIViewController {
     }
     
     private func setTotalPriceLabel(totalPrice: Int) {
-        totalPriceLabel.text = "$\(totalPrice)".formatDecimal()
+        totalPriceLabel.text = FormatterManager.shared.formattedToPrice(price: totalPrice as NSNumber)
     }
     
     private func setupTabBarItemImage() {

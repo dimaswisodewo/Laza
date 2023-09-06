@@ -83,7 +83,7 @@ class ProductCollectionViewCell: UICollectionViewCell {
     func configure(product: Product) {
         self.product = product
         productName.text = product.name
-        productPrice.text = "$\(product.price)".formatDecimal()
+        productPrice.text = FormatterManager.shared.formattedToPrice(price: product.price as NSNumber)
         image.loadAndCache(url: product.imageUrl)
     }
     

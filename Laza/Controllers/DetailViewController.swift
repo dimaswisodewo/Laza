@@ -102,6 +102,7 @@ class DetailViewController: UIViewController {
                 guard let self = self else { return }
                 let systemName = isWishlisted ? "heart.fill" : "heart"
                 self.cartButton.setImage(UIImage(systemName: systemName), for: .normal)
+                self.cartButton.tintColor = isWishlisted ? .systemRed : ColorUtils.shared.getColor(color: .TextPrimary)
                 self.cartButton.isEnabled = true
             }
         }, onError: { errorMessage in
@@ -142,6 +143,7 @@ class DetailViewController: UIViewController {
                 guard let self = self else { return }
                 let systemName = isWishlisted ? "heart.fill" : "heart"
                 self.cartButton.setImage(UIImage(systemName: systemName), for: .normal)
+                self.cartButton.tintColor = isWishlisted ? .systemRed : ColorUtils.shared.getColor(color: .TextPrimary)
                 self.cartButton.isEnabled = true
                 let message = isWishlisted ? "Added to wishlist" : "Remove from wishlist"
                 SnackBarSuccess.make(in: self.view, message: message, duration: .lengthShort).show()
@@ -302,7 +304,7 @@ extension DetailViewController: DetailTableViewCellDelegate {
         if let productDetail = viewModel?.productDetail {
             productDesc.text = productDetail.description
         }
-        productPrice.text = "$\(product.price)".formatDecimal()
+        productPrice.text = FormatterManager.shared.formattedToPrice(price: product.price as NSNumber)
         completion()
     }
 }
