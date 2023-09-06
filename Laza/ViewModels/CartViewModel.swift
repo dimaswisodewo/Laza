@@ -226,4 +226,91 @@ class CartViewModel {
         }
         return nil
     }
+    
+    func checkoutOrderBank(addressId: Int, bank: String, completion: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        var endpoint = Endpoint()
+        endpoint.initialize(path: .OrderBank, method: .POST)
+        
+        guard let url = URL(string: endpoint.getURL()) else { return }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = endpoint.getMethod
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        guard let token = DataPersistentManager.shared.getTokenFromKeychain() else { return }
+        ApiService.setAccessTokenToHeader(request: &request, token: token)
+        
+        let orderBank = getOrderBank(addressId: addressId, bank: "bni")
+        guard let jsonBody = try? JSONEncoder().encode(orderBank) else { return }
+        
+        request.httpBody = jsonBody
+        
+        NetworkManager.shared.sendRequest(request: request) { result in
+            switch result {
+            case .success(let (_, response)):
+                guard let httpResponse = response as? HTTPURLResponse else { return }
+                if httpResponse.statusCode != 201 {
+                    onError("Error: \(httpResponse.statusCode)")
+                    return
+                }
+                completion()
+            case .failure(let error):
+                onError(error.localizedDescription)
+            }
+        }
+    }
+    
+    func checkoutOrderGopay(addressId: Int, completion: @escaping () -> Void, onError: @escaping (String) -> Void) {
+        var endpoint = Endpoint()
+        endpoint.initialize(path: .OrderGopay, method: .POST)
+        
+        guard let url = URL(string: endpoint.getURL()) else { return }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = endpoint.getMethod
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        guard let token = DataPersistentManager.shared.getTokenFromKeychain() else { return }
+        ApiService.setAccessTokenToHeader(request: &request, token: token)
+        
+        let orderGopay = getOrderGopay(addressId: addressId)
+        guard let jsonBody = try? JSONEncoder().encode(orderGopay) else { return }
+        
+        request.httpBody = jsonBody
+        
+        NetworkManager.shared.sendRequest(request: request) { result in
+            switch result {
+            case .success(let (_, response)):
+                guard let httpResponse = response as? HTTPURLResponse else { return }
+                if httpResponse.statusCode != 201 {
+                    onError("Error: \(httpResponse.statusCode)")
+                    return
+                }
+                completion()
+            case .failure(let error):
+                onError(error.localizedDescription)
+            }
+        }
+    }
+    
+    private func getOrderBank(addressId: Int, bank: String) -> OrderBank {
+        let orderProducts = getOrderProducts()
+        let orderBank = OrderBank(addressId: addressId, products: orderProducts, bank: bank)
+        return orderBank
+    }
+    
+    private func getOrderGopay(addressId: Int) -> OrderGopay {
+        let orderProducts = getOrderProducts()
+        let orderGopay = OrderGopay(addressId: addressId, product: orderProducts, callbackUrl: "https://www.google.com")
+        return orderGopay
+    }
+    
+    private func getOrderProducts() -> [OrderProduct] {
+        var orderProducts = [OrderProduct]()
+        cart?.products?.forEach({ cartItem in
+            let orderProduct = OrderProduct(id: cartItem.id, quantity: cartItem.quantity)
+            orderProducts.append(orderProduct)
+        })
+        return orderProducts
+    }
 }

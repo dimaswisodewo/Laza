@@ -9,7 +9,9 @@ import UIKit
 
 protocol PaymentAddCardTableViewCellDelegate: AnyObject {
     
-    func addNewCardButtonPressed()
+    func updateCardButtonPressed()
+    
+    func deleteCardButtonPressed()
 }
 
 class PaymentAddCardTableViewCell: UITableViewCell {
@@ -19,15 +21,27 @@ class PaymentAddCardTableViewCell: UITableViewCell {
     
     weak var delegate: PaymentAddCardTableViewCellDelegate?
     
-    @IBOutlet weak var addNewCardButton: RoundedButton! {
+    @IBOutlet weak var updateCardButton: RoundedButton! {
         didSet {
-            addNewCardButton.layer.borderWidth = 1
-            addNewCardButton.layer.borderColor = ColorUtils.shared.getColor(color: .TextPurple)?.cgColor
-            addNewCardButton.addTarget(self, action: #selector(addNewCardButtonPressed), for: .touchUpInside)
+            updateCardButton.layer.borderWidth = 1
+            updateCardButton.layer.borderColor = ColorUtils.shared.getColor(color: .TextPurple)?.cgColor
+            updateCardButton.addTarget(self, action: #selector(updateCardButtonPressed), for: .touchUpInside)
         }
     }
     
-    @objc private func addNewCardButtonPressed() {
-        delegate?.addNewCardButtonPressed()
+    @IBOutlet weak var deleteCardButton: RoundedButton!  {
+        didSet {
+            deleteCardButton.layer.borderWidth = 1
+            deleteCardButton.layer.borderColor = ColorUtils.shared.getColor(color: .TextRed)?.cgColor
+            deleteCardButton.addTarget(self, action: #selector(deleteCardButtonPressed), for: .touchUpInside)
+        }
+    }
+    
+    @objc private func updateCardButtonPressed() {
+        delegate?.updateCardButtonPressed()
+    }
+    
+    @objc private func deleteCardButtonPressed() {
+        delegate?.deleteCardButtonPressed()
     }
 }

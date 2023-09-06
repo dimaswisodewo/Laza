@@ -48,6 +48,7 @@ class CartViewController: UIViewController {
     private var isApiCallAllowed = true
     
     private var selectedAddress: Address?
+    private var selectedPayment: CreditCardModel?
     
     deinit {
         timer?.invalidate()
@@ -199,11 +200,14 @@ class CartViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Checkout", bundle: nil)
         guard let vc = storyboard.instantiateViewController(withIdentifier: CartDetailViewController.identifier) as? CartDetailViewController else { return }
         if let orderInfo = viewModel.cart?.orderInfo {
-            vc.configure(address: selectedAddress, orderInfo: orderInfo)
+            vc.configure(address: selectedAddress, payment: selectedPayment, orderInfo: orderInfo)
         }
         vc.delegate = self
         vc.setSelectedAddress = { [weak self] newAddress in
             self?.selectedAddress = newAddress
+        }
+        vc.setSelectedPayment = { [weak self] creditCard in
+            self?.selectedPayment = creditCard
         }
         present(vc, animated: true)
     }
@@ -261,6 +265,10 @@ extension CartViewController: CartDetailViewControllerDelegate {
         }
         // Present CartDetailViewController again
         vc.onDismiss = presentCartDetail
+        // Select credit card
+        vc.onSelectCreditCard = { [weak self] selectedCard in
+            self?.selectedPayment = selectedCard
+        }
         navigationController?.pushViewController(vc, animated: true)
     }
 }

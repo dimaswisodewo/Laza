@@ -244,7 +244,7 @@ class DataPersistentManager {
         }
     }
     
-    func fetchCardData(completion: @escaping (Result<[CreditCardModel], Error>) -> Void) {
+    func fetchAllCardData(completion: @escaping (Result<[CreditCardModel], Error>) -> Void) {
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
@@ -255,6 +255,30 @@ class DataPersistentManager {
             let cardData = try context.fetch(request)
             let models = convertCardEntityToCardModel(entities: cardData)
             completion(.success(models))
+        } catch {
+            completion(.failure(error))
+        }
+    }
+    
+    func fetchCardData(cardNumber: String, completion: @escaping (Result<CreditCardModel, Error>) -> Void) {
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let context = appDelegate.persistentContainer.viewContext
+        
+        let request: NSFetchRequest<CardEntity> = CardEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "cardNumber = %@", cardNumber)
+        
+        do {
+            guard let entity = try context.fetch(request).first else {
+                throw "Card with number \(cardNumber) does not exists in database" as! LocalizedError
+            }
+            let cardModel = CreditCardModel(
+                owner: entity.owner ?? "",
+                cardNumber: entity.cardNumber ?? "",
+                expMonth: Int(entity.expMonth),
+                expYear: Int(entity.expYear)
+            )
+            completion(.success(cardModel))
         } catch {
             completion(.failure(error))
         }
@@ -313,7 +337,7 @@ class DataPersistentManager {
     }
     
     private func convertToCardEntity(model: CreditCardModel, context: NSManagedObjectContext) -> CardEntity {
-        var entity = CardEntity(context: context)
+        let entity = CardEntity(context: context)
         entity.cardNumber = model.cardNumber
         entity.owner = model.owner
         entity.expMonth = Int16(model.expMonth)

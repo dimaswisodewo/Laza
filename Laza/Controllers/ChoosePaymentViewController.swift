@@ -39,6 +39,7 @@ class ChoosePaymentViewController: UIViewController {
     
     private let viewModel = ChoosePaymentViewModel()
     
+    var onSelectCreditCard: ((CreditCardModel) -> Void)?
     var onDismiss: (() -> Void)?
     
     private var deactivateAllCheckmarks = [() -> Void]()
@@ -59,6 +60,7 @@ class ChoosePaymentViewController: UIViewController {
         if selectedRow?.paymentTitle == "credit-card" {
             let storyboard = UIStoryboard(name: "Checkout", bundle: nil)
             guard let vc = storyboard.instantiateViewController(withIdentifier: PaymentViewController.identifier) as? PaymentViewController else { return }
+            vc.onSelectCreditCard = onSelectCreditCard // Select credit card
             navigationController?.pushViewController(vc, animated: true)
         }
     }

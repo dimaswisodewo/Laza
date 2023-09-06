@@ -67,30 +67,17 @@
                             </textField>
                         </subviews>
                     </stackView>
-                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ya0-Yq-sPk">
-                        <rect key="frame" x="524" y="347" width="51" height="26"/>
-                    </switch>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Save card info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U8A-Dq-geV">
-                        <rect key="frame" x="19.999999999999993" y="350.33333333333331" width="100.33333333333331" height="19.666666666666686"/>
-                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
-                        <color key="textColor" name="TextPrimary"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                 </subviews>
                 <color key="backgroundColor" name="WhiteBG"/>
                 <constraints>
                     <constraint firstItem="9ZJ-EN-WAf" firstAttribute="leading" secondItem="Re8-Og-vbQ" secondAttribute="leading" id="0Yj-Z3-ert"/>
                     <constraint firstItem="9ZJ-EN-WAf" firstAttribute="top" secondItem="Re8-Og-vbQ" secondAttribute="bottom" constant="48" id="1FU-RA-jWw"/>
                     <constraint firstItem="Re8-Og-vbQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="GtY-RA-GCo"/>
-                    <constraint firstItem="Ya0-Yq-sPk" firstAttribute="centerY" secondItem="U8A-Dq-geV" secondAttribute="centerY" id="Nov-mB-2eR"/>
-                    <constraint firstItem="Ya0-Yq-sPk" firstAttribute="top" secondItem="IBG-1q-ttZ" secondAttribute="bottom" constant="36" id="U39-kB-Qsd"/>
-                    <constraint firstAttribute="trailing" secondItem="Ya0-Yq-sPk" secondAttribute="trailing" constant="20" id="ZXf-a9-Oq6"/>
-                    <constraint firstItem="U8A-Dq-geV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="aOR-bs-bCt"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="IBG-1q-ttZ" secondAttribute="bottom" constant="35" id="YHX-Ac-jEl"/>
                     <constraint firstItem="IBG-1q-ttZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="ede-0i-Tn5"/>
                     <constraint firstAttribute="trailingMargin" secondItem="IBG-1q-ttZ" secondAttribute="trailing" id="fGV-3T-Lu7"/>
                     <constraint firstItem="9ZJ-EN-WAf" firstAttribute="trailing" secondItem="Re8-Og-vbQ" secondAttribute="trailing" id="gN0-eA-gzl"/>
                     <constraint firstAttribute="trailing" secondItem="Re8-Og-vbQ" secondAttribute="trailing" constant="20" id="mZJ-eP-myQ"/>
-                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ya0-Yq-sPk" secondAttribute="bottom" constant="24" id="rEe-qg-33i"/>
                     <constraint firstItem="IBG-1q-ttZ" firstAttribute="top" secondItem="9ZJ-EN-WAf" secondAttribute="bottom" constant="48" id="scf-ek-azD"/>
                     <constraint firstItem="Re8-Og-vbQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="24" id="zSe-hx-QOI"/>
                 </constraints>

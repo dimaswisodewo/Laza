@@ -535,7 +535,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n3o-9m-YG2" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2122" y="-28"/>
+            <point key="canvasLocation" x="2133" y="652"/>
         </scene>
         <!--Payment View Controller-->
         <scene sceneID="VFY-dx-AKw">
@@ -555,6 +555,17 @@
                                 <color key="tintColor" name="TextPrimary"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="arrow.backward" catalog="system"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="St1-bf-K5N" customClass="CircleButton" customModule="Laza" customModuleProvider="target">
+                                <rect key="frame" x="360" y="104" width="45" height="45"/>
+                                <color key="backgroundColor" name="WhiteButtonSecondary"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="cTZ-il-YT6"/>
+                                    <constraint firstAttribute="height" constant="45" id="tpn-lK-3od"/>
+                                </constraints>
+                                <color key="tintColor" name="TextPrimary"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="plus" catalog="system"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKi-40-8XJ">
                                 <rect key="frame" x="0.0" y="59" width="430" height="120"/>
@@ -594,6 +605,7 @@
                             <constraint firstItem="fKi-40-8XJ" firstAttribute="leading" secondItem="QHo-fs-mvC" secondAttribute="leading" id="MEv-cq-QNO"/>
                             <constraint firstItem="fKi-40-8XJ" firstAttribute="top" secondItem="QHo-fs-mvC" secondAttribute="top" id="OSq-78-vBc"/>
                             <constraint firstItem="GDj-V3-adS" firstAttribute="top" secondItem="QHo-fs-mvC" secondAttribute="top" constant="45" id="Vx1-5B-v7o"/>
+                            <constraint firstItem="QHo-fs-mvC" firstAttribute="trailing" secondItem="St1-bf-K5N" secondAttribute="trailing" constant="25" id="kq5-cF-XLD"/>
                             <constraint firstItem="QHo-fs-mvC" firstAttribute="trailing" secondItem="hcE-6d-IkF" secondAttribute="trailing" id="kra-QC-cHL"/>
                             <constraint firstAttribute="trailing" secondItem="MFn-AE-kli" secondAttribute="trailing" id="lgG-rZ-lz7"/>
                             <constraint firstItem="GDj-V3-adS" firstAttribute="leading" secondItem="QHo-fs-mvC" secondAttribute="leading" constant="25" id="n04-LF-dTs"/>
@@ -601,6 +613,7 @@
                             <constraint firstAttribute="trailing" secondItem="fKi-40-8XJ" secondAttribute="trailing" id="qLd-1W-aCf"/>
                             <constraint firstItem="hcE-6d-IkF" firstAttribute="leading" secondItem="QHo-fs-mvC" secondAttribute="leading" id="syJ-Av-LDo"/>
                             <constraint firstItem="MFn-AE-kli" firstAttribute="top" secondItem="hcE-6d-IkF" secondAttribute="bottom" id="tSh-ox-LCe"/>
+                            <constraint firstItem="St1-bf-K5N" firstAttribute="top" secondItem="QHo-fs-mvC" secondAttribute="top" constant="45" id="taV-o2-bS5"/>
                             <constraint firstAttribute="bottom" secondItem="MFn-AE-kli" secondAttribute="bottom" id="y8G-gx-BaH"/>
                             <constraint firstItem="MFn-AE-kli" firstAttribute="leading" secondItem="QHo-fs-mvC" secondAttribute="leading" id="ySk-3K-d0H"/>
                         </constraints>
@@ -608,6 +621,7 @@
                     <connections>
                         <outlet property="backButton" destination="GDj-V3-adS" id="gOV-Lf-Idr"/>
                         <outlet property="ctaButton" destination="MFn-AE-kli" id="hNk-kA-GSj"/>
+                        <outlet property="plusButton" destination="St1-bf-K5N" id="vi0-qJ-0eY"/>
                         <outlet property="tableView" destination="hcE-6d-IkF" id="YSn-ew-I8L"/>
                     </connections>
                 </viewController>
@@ -925,6 +939,76 @@
             </objects>
             <point key="canvasLocation" x="752" y="-712"/>
         </scene>
+        <!--Update Card View Controller-->
+        <scene sceneID="fUu-Pg-Dv1">
+            <objects>
+                <viewController storyboardIdentifier="UpdateCardViewController" id="CKq-AG-4Oy" customClass="UpdateCardViewController" customModule="Laza" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ueu-OI-Smn">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gl5-aC-O8b" customClass="CircleButton" customModule="Laza" customModuleProvider="target">
+                                <rect key="frame" x="25" y="104" width="45" height="45"/>
+                                <color key="backgroundColor" name="WhiteButtonSecondary"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="ECt-fv-4lI"/>
+                                    <constraint firstAttribute="height" constant="45" id="qFA-6d-wsJ"/>
+                                </constraints>
+                                <color key="tintColor" name="TextPrimary"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="arrow.backward" catalog="system"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Card" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zu4-bC-R4O">
+                                <rect key="frame" x="0.0" y="59" width="430" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="120" id="YoX-rB-wD5"/>
+                                    <constraint firstAttribute="height" constant="120" id="zg6-4A-9oa"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="18"/>
+                                <color key="textColor" name="TextPrimary"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kaa-d2-BXV">
+                                <rect key="frame" x="0.0" y="857" width="430" height="75"/>
+                                <color key="backgroundColor" name="PurpleButton"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="5JK-Fn-pIh"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Card" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hlb-DG-wZJ">
+                                <rect key="frame" x="156.66666666666666" y="872" width="116.99999999999997" height="26"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="yYf-pP-xYr"/>
+                        <color key="backgroundColor" name="WhiteBG"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Kaa-d2-BXV" secondAttribute="bottom" id="Czy-LP-Fgb"/>
+                            <constraint firstItem="Hlb-DG-wZJ" firstAttribute="top" secondItem="Kaa-d2-BXV" secondAttribute="top" constant="15" id="EwQ-b3-P6N"/>
+                            <constraint firstAttribute="trailing" secondItem="Kaa-d2-BXV" secondAttribute="trailing" id="Gqm-Aa-WbB"/>
+                            <constraint firstItem="Zu4-bC-R4O" firstAttribute="leading" secondItem="yYf-pP-xYr" secondAttribute="leading" id="NFm-QM-1aW"/>
+                            <constraint firstItem="Gl5-aC-O8b" firstAttribute="leading" secondItem="yYf-pP-xYr" secondAttribute="leading" constant="25" id="a6E-F3-4EF"/>
+                            <constraint firstAttribute="trailing" secondItem="Zu4-bC-R4O" secondAttribute="trailing" id="cIz-u8-DZk"/>
+                            <constraint firstItem="Hlb-DG-wZJ" firstAttribute="centerX" secondItem="Kaa-d2-BXV" secondAttribute="centerX" id="ec8-sy-TTn"/>
+                            <constraint firstItem="Kaa-d2-BXV" firstAttribute="leading" secondItem="yYf-pP-xYr" secondAttribute="leading" id="fsJ-oX-kRg"/>
+                            <constraint firstItem="Gl5-aC-O8b" firstAttribute="top" secondItem="yYf-pP-xYr" secondAttribute="top" constant="45" id="lIg-1w-JNr"/>
+                            <constraint firstItem="Zu4-bC-R4O" firstAttribute="top" secondItem="yYf-pP-xYr" secondAttribute="top" id="ltP-kM-BZ9"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backButton" destination="Gl5-aC-O8b" id="9y7-Ml-9VR"/>
+                        <outlet property="ctaButton" destination="Kaa-d2-BXV" id="8rj-E6-QWP"/>
+                        <outlet property="titleLabel" destination="Zu4-bC-R4O" id="WWc-XA-rHc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Drb-1c-OoG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2132" y="-28"/>
+        </scene>
     </scenes>
     <designables>
         <designable name="41g-GW-T2k">
@@ -933,8 +1017,14 @@
         <designable name="GDj-V3-adS">
             <size key="intrinsicContentSize" width="49.333333333333336" height="34.333333333333336"/>
         </designable>
+        <designable name="Gl5-aC-O8b">
+            <size key="intrinsicContentSize" width="49.333333333333336" height="34.333333333333336"/>
+        </designable>
         <designable name="H3S-KR-3wa">
             <size key="intrinsicContentSize" width="49.333333333333336" height="34.333333333333336"/>
+        </designable>
+        <designable name="St1-bf-K5N">
+            <size key="intrinsicContentSize" width="47" height="34.333333333333336"/>
         </designable>
         <designable name="Wn0-hb-eiT">
             <size key="intrinsicContentSize" width="49.333333333333336" height="34.333333333333336"/>
@@ -953,6 +1043,7 @@
         <image name="OrderConfirmed" width="616" height="512"/>
         <image name="arrow.backward" catalog="system" width="128" height="95"/>
         <image name="chevron.right" catalog="system" width="97" height="128"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <namedColor name="PurpleButton">
             <color red="0.59200000762939453" green="0.45899999141693115" blue="0.98000001907348633" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

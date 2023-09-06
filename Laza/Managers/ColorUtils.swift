@@ -20,6 +20,7 @@ enum CustomColor: String {
     case TextPrimary = "TextPrimary"
     case TextSecondary = "TextSecondary"
     case TextPurple = "TextPurple"
+    case TextRed = "TextRed"
     case TwitterBlue = "TwitterBlue"
     case ViewBG = "ViewBG"
     case WhiteBG = "WhiteBG"

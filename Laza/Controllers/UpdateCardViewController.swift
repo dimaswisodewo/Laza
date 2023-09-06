@@ -1,22 +1,23 @@
 //
-//  AddCardViewController.swift
+//  UpdateCardViewController.swift
 //  Laza
 //
-//  Created by Dimas Wisodewo on 07/08/23.
+//  Created by Dimas Wisodewo on 06/09/23.
 //
 
 import UIKit
 import CreditCardForm
 import Stripe
 
-protocol AddCardViewControllerDelegate: AnyObject {
+protocol UpdateCardViewControllerDelegate: AnyObject {
     
-    func newCreditCardAdded(newCreditCard: CreditCardModel)
+    func creditCardUpdated()
 }
 
-class AddCardViewController: UIViewController {
+class UpdateCardViewController: UIViewController {
+    static let identifier = "UpdateCardViewController"
     
-    static let identifier = "AddCardViewController"
+    @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var backButton: CircleButton! {
         didSet {
@@ -24,7 +25,11 @@ class AddCardViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var ctaButton: UIButton! {
+        didSet {
+            ctaButton.addTarget(self, action: #selector(ctaButtonPressed), for: .touchUpInside)
+        }
+    }
     
     private let creditCardFormView: CreditCardFormView = {
         let card = CreditCardFormView()
@@ -52,26 +57,34 @@ class AddCardViewController: UIViewController {
     
     private let maxNameCount = 22
     
-    @IBOutlet weak var ctaButton: UIButton! {
-        didSet {
-            ctaButton.addTarget(self, action: #selector(ctaButtonPressed), for: .touchUpInside)
-        }
-    }
+    private var isModelApplied = false
     
-    var onDismiss: (() -> Void)? // Present CartDetailViewController again after dismiss
+    private var viewModel: UpdateCardViewModel!
     
-    private let viewModel = AddCardViewModel()
-    
-    weak var delegate: AddCardViewControllerDelegate?
+    weak var delegate: UpdateCardViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tabBarController?.tabBar.isHidden = true
-        
+
         setupConstraints()
+        applyModel()
         registerEvents()
         setupCreditCard()
+    }
+    
+    func configure(oldCard: CreditCardModel) {
+        viewModel = UpdateCardViewModel(oldCard: oldCard)
+    }
+    
+    private func applyModel() {
+        guard let model = viewModel.oldCard else { return }
+        nameTextField.text = model.owner
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+            guard let self = self else { return }
+            self.creditCardFormView.cardHolderString = model.owner
+            self.paymentCardTextFieldDidChange(self.creditCardTextField)
+        }
     }
     
     // End editing on touch began
@@ -124,7 +137,6 @@ class AddCardViewController: UIViewController {
     
     @objc private func backButtonPressed() {
         navigationController?.popViewController(animated: true)
-        onDismiss?()
     }
     
     @objc private func ctaButtonPressed() {
@@ -134,7 +146,7 @@ class AddCardViewController: UIViewController {
             return
         }
         
-        guard let cardNumber = creditCardTextField.cardNumber else {
+        guard let newCardNumber = creditCardTextField.cardNumber else {
             SnackBarDanger.make(in: self.view, message: "Card number cannot be empty",  duration: .lengthShort).show()
             return
         }
@@ -162,24 +174,23 @@ class AddCardViewController: UIViewController {
         
         guard let cardOwner = nameTextField.text else { return }
         
-        viewModel.addCreditCard(
+        viewModel.updateCard(
             cardOwner: cardOwner,
-            cardNumber: cardNumber,
+            newCardNumber: newCardNumber,
             expiredMonth: creditCardTextField.expirationMonth,
             expiredYear: creditCardTextField.expirationYear,
             cvv: cvc,
-            completion: { newCreditCard in
+            completion: {
                 DispatchQueue.main.async { [weak self] in
-                    self?.delegate?.newCreditCardAdded(newCreditCard: newCreditCard)
                     self?.navigationController?.popViewController(animated: true)
+                    self?.delegate?.creditCardUpdated()
                 }
-            },
-            onError: { errorMessage in
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
-            }
-        })
+            }, onError: { errorMessage in
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+                }
+            })
     }
     
     @objc private func cardHolderTextFieldBeginEditing() {
@@ -198,9 +209,21 @@ class AddCardViewController: UIViewController {
 
 // MARK: - STPPaymentCardTextField Delegate
 
-extension AddCardViewController: STPPaymentCardTextFieldDelegate {
+extension UpdateCardViewController: STPPaymentCardTextFieldDelegate {
     
     func paymentCardTextFieldDidChange(_ creditCardTextField: STPPaymentCardTextField) {
+        // Apply model at start
+        if !isModelApplied {
+            guard let model = viewModel.oldCard else { return }
+            creditCardFormView.paymentCardTextFieldDidChange(
+                cardNumber: model.cardNumber,
+                expirationYear: UInt(model.expYear),
+                expirationMonth: UInt(model.expMonth),
+                cvc: model.cvc)
+            isModelApplied = true
+            return
+        }
+        
         creditCardFormView.paymentCardTextFieldDidChange(
             cardNumber: creditCardTextField.cardNumber,
             expirationYear: UInt(creditCardTextField.expirationYear),
@@ -221,3 +244,4 @@ extension AddCardViewController: STPPaymentCardTextFieldDelegate {
         creditCardFormView.paymentCardTextFieldDidEndEditingCVC()
     }
 }
+

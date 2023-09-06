@@ -88,7 +88,14 @@ class CartDetailViewController: UIViewController {
             setSelectedAddress?(selectedAddress)
         }
     }
+    private var selectedPayment: CreditCardModel? {
+        didSet {
+            guard let selectedPayment = self.selectedPayment else { return }
+            setSelectedPayment?(selectedPayment)
+        }
+    }
     var setSelectedAddress: ((Address) -> Void)?
+    var setSelectedPayment: ((CreditCardModel) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,19 +105,26 @@ class CartDetailViewController: UIViewController {
         setupView()
         
         if let address = selectedAddress {
-            print("address is not nil")
             setupAddressView(address: address)
             addressEmptyLabel.isHidden = true
             listViewItemAddress?.isHidden = false
         } else {
-            print("address is nil")
             getAllAddress()
+        }
+        
+        if let creditCard = selectedPayment {
+            setupCardView(card: creditCard)
+            paymentMethodEmptyLabel.isHidden = true
+            listViewItemPayment?.isHidden = false
+        } else {
+            
         }
     }
     
-    func configure(address: Address?, orderInfo: OrderInfo) {
+    func configure(address: Address?, payment: CreditCardModel?, orderInfo: OrderInfo) {
         viewModel = CartDetailViewModel(orderInfo: orderInfo)
         selectedAddress = address
+        selectedPayment = payment
     }
     
     func applyModel() {
@@ -143,6 +157,26 @@ class CartDetailViewController: UIViewController {
                 SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
             }
         })
+    }
+    
+    private func getAllCreditCards() {
+        guard let primaryCardNumber = DataPersistentManager.shared.getPrimaryCard() else {
+            print("Primary card does not exist")
+            return
+        }
+        DataPersistentManager.shared.fetchCardData(cardNumber: primaryCardNumber) { [weak self] result in
+            switch result {
+            case .success(let model):
+                self?.selectedPayment = model
+                self?.setupCardView(card: model)
+                self?.paymentMethodEmptyLabel.isHidden = true
+                self?.listViewItemPayment?.isHidden = false
+            case .failure(let error):
+                print(error.localizedDescription)
+                self?.paymentMethodEmptyLabel.isHidden = false
+                self?.listViewItemPayment?.isHidden = true
+            }
+        }
     }
     
     private func setupCardView(card: CreditCardModel) {

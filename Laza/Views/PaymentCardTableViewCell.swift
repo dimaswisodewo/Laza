@@ -37,9 +37,13 @@ class PaymentCardTableViewCell: UITableViewCell {
     
     var delegate: PaymentCardTableViewCellDelegate?
     
-    private var selectedViewIndex: Int = 0
+    private(set) var selectedViewIndex: Int = 0
     private var numberOfSavedCards: Int = 3
     private var cellWidth: CGFloat = 0
+    
+    func setNumberOfSavedCards(_ numberOfSavedCards: Int) {
+        self.numberOfSavedCards = numberOfSavedCards
+    }
     
     // Snap cell on finished swiping
     private func setSelectedCellOnEndSwipe(scrollViewOffset: CGFloat, cellWidth: CGFloat) {
