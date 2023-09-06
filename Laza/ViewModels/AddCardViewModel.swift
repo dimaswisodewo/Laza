@@ -56,23 +56,38 @@ class AddCardViewModel {
 //                }
 //            }
             
-            // Add to core data
-            let model = CreditCardModel(
-                owner: cardOwner,
-                cardNumber: cardNumber,
-                expMonth: expiredMonth,
-                expYear: expiredYear
-            )
-            DataPersistentManager.shared.addCardData(creditCard: model) { result in
+            DataPersistentManager.shared.isCardExistsInDatabase(cardNumber: cardNumber) { result in
                 switch result {
-                case .success(let model):
-                    let creditCard = CreditCardModel(
-                        owner: model.owner,
-                        cardNumber: model.cardNumber,
-                        expMonth: model.expMonth,
-                        expYear: model.expYear
+                case .success(let isExists):
+                    if isExists {
+                        let message = "Card is already saved" as! LocalizedError
+                        onError(message.localizedDescription)
+                        return
+                    }
+                    guard let userId = SessionManager.shared.currentProfile?.id else { return }
+                    // Add to core data
+                    let model = CreditCardModel(
+                        userId: userId,
+                        owner: cardOwner,
+                        cardNumber: cardNumber,
+                        expMonth: expiredMonth,
+                        expYear: expiredYear
                     )
-                    completion(creditCard)
+                    DataPersistentManager.shared.addCardData(creditCard: model) { result in
+                        switch result {
+                        case .success(let model):
+                            let creditCard = CreditCardModel(
+                                userId: userId,
+                                owner: model.owner,
+                                cardNumber: model.cardNumber,
+                                expMonth: model.expMonth,
+                                expYear: model.expYear
+                            )
+                            completion(creditCard)
+                        case .failure(let error):
+                            onError(error.localizedDescription)
+                        }
+                    }
                 case .failure(let error):
                     onError(error.localizedDescription)
                 }

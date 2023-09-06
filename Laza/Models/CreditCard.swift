@@ -8,6 +8,7 @@
 import Foundation
 
 struct CreditCardModel {
+    var userId: Int
     var owner: String
     var cardNumber: String
     var expMonth: Int

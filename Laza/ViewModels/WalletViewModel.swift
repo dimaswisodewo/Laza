@@ -11,6 +11,7 @@ class WalletViewModel {
     
     private let dummy = [
         CreditCardModel(
+            userId: 30,
             owner: "Dokowi Jojo",
             cardNumber: "4242 4242 9012 3456",
             expMonth: 5,
@@ -18,6 +19,7 @@ class WalletViewModel {
             cvc: nil
         ),
         CreditCardModel(
+            userId: 30,
             owner: "Srabowo Pubianto",
             cardNumber: "5151 5151 9012 3456",
             expMonth: 9,
@@ -25,6 +27,7 @@ class WalletViewModel {
             cvc: nil
         ),
         CreditCardModel(
+            userId: 30,
             owner: "Segawati Moekarnoputri",
             cardNumber: "5151 5151 9452 3006",
             expMonth: 3,

@@ -225,8 +225,16 @@ class DataPersistentManager {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
         
+        guard let userId = SessionManager.shared.currentProfile?.id else {
+            print("Failed to get current user id")
+            return
+        }
+        
         let request: NSFetchRequest<CardEntity> = CardEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "cardNumber = %@", oldCardNumber)
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(format: "cardNumber = %@", oldCardNumber),
+            NSPredicate(format: "userId = %@", String(userId))
+        ])
         
         do {
             guard let entity = try context.fetch(request).first else {
@@ -249,11 +257,19 @@ class DataPersistentManager {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
         
+        guard let userId = SessionManager.shared.currentProfile?.id else {
+            print("Failed to get current user id")
+            return
+        }
+        
         let request: NSFetchRequest<CardEntity> = CardEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "userId = %@", String(userId))
         
         do {
             let cardData = try context.fetch(request)
-            let models = convertCardEntityToCardModel(entities: cardData)
+            guard let models = convertCardEntityToCardModel(entities: cardData) else {
+                throw "Error converting Card Entity to Card Model" as! LocalizedError
+            }
             completion(.success(models))
         } catch {
             completion(.failure(error))
@@ -265,14 +281,24 @@ class DataPersistentManager {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
         
+        guard let userId = SessionManager.shared.currentProfile?.id else {
+            print("Failed to get current user id")
+            return
+        }
+        
         let request: NSFetchRequest<CardEntity> = CardEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "cardNumber = %@", cardNumber)
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(format: "cardNumber = %@", cardNumber),
+            NSPredicate(format: "userId = %@", String(userId))
+        ])
         
         do {
             guard let entity = try context.fetch(request).first else {
                 throw "Card with number \(cardNumber) does not exists in database" as! LocalizedError
             }
+            guard let userId = SessionManager.shared.currentProfile?.id else { return }
             let cardModel = CreditCardModel(
+                userId: userId,
                 owner: entity.owner ?? "",
                 cardNumber: entity.cardNumber ?? "",
                 expMonth: Int(entity.expMonth),
@@ -284,10 +310,12 @@ class DataPersistentManager {
         }
     }
     
-    private func convertCardEntityToCardModel(entities: [CardEntity]) -> [CreditCardModel] {
+    private func convertCardEntityToCardModel(entities: [CardEntity]) -> [CreditCardModel]? {
         var models = [CreditCardModel]()
+        guard let userId = SessionManager.shared.currentProfile?.id else { return nil }
         entities.forEach { entity in
             let cardModel = CreditCardModel(
+                userId: userId,
                 owner: entity.owner ?? "",
                 cardNumber: entity.cardNumber ?? "",
                 expMonth: Int(entity.expMonth),
@@ -303,8 +331,16 @@ class DataPersistentManager {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
         
+        guard let userId = SessionManager.shared.currentProfile?.id else {
+            print("Failed to get current user id")
+            return
+        }
+        
         let request: NSFetchRequest<CardEntity> = CardEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "cardNumber = %@", cardNumber)
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(format: "cardNumber = %@", cardNumber),
+            NSPredicate(format: "userId = %@", String(userId))
+        ])
         
         do {
             guard let entity = try context.fetch(request).first else {
@@ -324,8 +360,16 @@ class DataPersistentManager {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let context = appDelegate.persistentContainer.viewContext
         
+        guard let userId = SessionManager.shared.currentProfile?.id else {
+            print("Failed to get current user id")
+            return
+        }
+        
         let request: NSFetchRequest<CardEntity> = CardEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "cardNumber = %@", cardNumber)
+        request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            NSPredicate(format: "cardNumber = %@", cardNumber),
+            NSPredicate(format: "userId = %@", String(userId))
+        ])
         
         do {
             let cardData = try context.fetch(request)
@@ -338,6 +382,7 @@ class DataPersistentManager {
     
     private func convertToCardEntity(model: CreditCardModel, context: NSManagedObjectContext) -> CardEntity {
         let entity = CardEntity(context: context)
+        entity.userId = Int32(model.userId)
         entity.cardNumber = model.cardNumber
         entity.owner = model.owner
         entity.expMonth = Int16(model.expMonth)

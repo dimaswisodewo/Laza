@@ -29,7 +29,11 @@ class PaymentViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var ctaButton: UIButton!
+    @IBOutlet weak var ctaButton: UIButton! {
+        didSet {
+            ctaButton.addTarget(self, action: #selector(ctaButtonPressed), for: .touchUpInside)
+        }
+    }
     
     @IBOutlet weak var tableView: IntrinsicTableView! {
         didSet {
@@ -95,6 +99,13 @@ class PaymentViewController: UIViewController {
         guard let vc = storyboard.instantiateViewController(withIdentifier: AddCardViewController.identifier) as? AddCardViewController else { return }
         vc.delegate = self
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc private func ctaButtonPressed() {
+        guard let selectedIndex = paymentCardTableViewCell?.selectedViewIndex else { return }
+        let selectedCard = viewModel.getDataAtIndex(selectedIndex)
+        onSelectCreditCard?(selectedCard)
+        navigationController?.popViewController(animated: true)
     }
 }
 
@@ -177,8 +188,6 @@ extension PaymentViewController: PaymentCardTableViewCellDelegate {
             cardNumber: model.cardNumber,
             exp: "\(model.expMonth)/\(model.expYear)",
             cvv: model.cvc ?? " - ")
-        // Select credit card
-        onSelectCreditCard?(model)
     }
     
     func collectionView(collectionView: UICollectionView, sizeForItemAt indexPath: IndexPath) -> CGSize {

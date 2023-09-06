@@ -19,8 +19,10 @@ class UpdateCardViewModel {
                     completion: @escaping () -> Void,
                     onError: @escaping (String) -> Void) {
         
+        guard let userId = SessionManager.shared.currentProfile?.id else { return }
         // Add to core data
         let model = CreditCardModel(
+            userId: userId,
             owner: cardOwner,
             cardNumber: newCardNumber,
             expMonth: expiredMonth,
