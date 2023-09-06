@@ -82,13 +82,16 @@ class ChangePasswordViewController: UIViewController {
         guard let oldPassword = oldPasswordField.text else { return }
         
         // Change password
+        LoadingViewController.shared.startLoading(sourceVC: self)
         viewModel.changePassword(currentPassword: oldPassword, newPassword: newPassword, completion: {
             DispatchQueue.main.async { [weak self] in
+                LoadingViewController.shared.stopLoading()
                 self?.navigationController?.popViewController(animated: true)
                 self?.delegate?.onPasswordUpdated()
             }
         }, onError: { errorMessage in
             DispatchQueue.main.async { [weak self] in
+                LoadingViewController.shared.stopLoading()
                 self?.showSnackBarDanger(message: errorMessage)
             }
         })

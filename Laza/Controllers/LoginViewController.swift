@@ -93,6 +93,8 @@ class LoginViewController: UIViewController {
         guard let username = usernameTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         
+        LoadingViewController.shared.startLoading(sourceVC: self)
+        
         viewModel.login(username: username, password: password, completion: { [weak self] loginUser in
             // Login success
             // Get profile
@@ -103,6 +105,7 @@ class LoginViewController: UIViewController {
                 DataPersistentManager.shared.addRefreshTokenToKeychain(token: loginUser.refreshToken)
                 // Move to Home Page
                 DispatchQueue.main.async {
+                    LoadingViewController.shared.stopLoading()
                     let storyboard = UIStoryboard(name: "Home", bundle: nil)
                     guard let vc = storyboard.instantiateViewController(withIdentifier: MainTabBarViewController.identifier) as? MainTabBarViewController else { return }
                     let nav = UINavigationController(rootViewController: vc)
@@ -116,6 +119,7 @@ class LoginViewController: UIViewController {
             }, onError: { errorMessage in
                 // Get profile failed
                 DispatchQueue.main.async { [weak self] in
+                    LoadingViewController.shared.stopLoading()
                     guard let self = self else { return }
                     SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
                 }
@@ -123,6 +127,7 @@ class LoginViewController: UIViewController {
         }, onError: { errorMessage in
             // Login failed
             DispatchQueue.main.async { [weak self] in
+                LoadingViewController.shared.stopLoading()
                 guard let self = self else { return }
                 SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
             }

@@ -77,6 +77,7 @@
 		3891B5792A82AD0600B1CB88 /* WishlistViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3891B5782A82AD0600B1CB88 /* WishlistViewModel.swift */; };
 		389CFE272AA81AE800916252 /* UpdateCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389CFE262AA81AE800916252 /* UpdateCardViewController.swift */; };
 		389CFE292AA81B1B00916252 /* UpdateCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389CFE282AA81B1B00916252 /* UpdateCardViewModel.swift */; };
+		389CFE2B2AA8507B00916252 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389CFE2A2AA8507B00916252 /* LoadingViewController.swift */; };
 		389F25002A8283FE006E6C4B /* PaymentFormTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389F24FE2A8283FE006E6C4B /* PaymentFormTableViewCell.swift */; };
 		389F25012A8283FE006E6C4B /* PaymentFormTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 389F24FF2A8283FE006E6C4B /* PaymentFormTableViewCell.xib */; };
 		38A7DD652A750E9E002564AB /* UpdatePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38A7DD642A750E9E002564AB /* UpdatePasswordViewController.swift */; };
@@ -236,6 +237,7 @@
 		3891B5782A82AD0600B1CB88 /* WishlistViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistViewModel.swift; sourceTree = "<group>"; };
 		389CFE262AA81AE800916252 /* UpdateCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCardViewController.swift; sourceTree = "<group>"; };
 		389CFE282AA81B1B00916252 /* UpdateCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateCardViewModel.swift; sourceTree = "<group>"; };
+		389CFE2A2AA8507B00916252 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		389F24FE2A8283FE006E6C4B /* PaymentFormTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentFormTableViewCell.swift; sourceTree = "<group>"; };
 		389F24FF2A8283FE006E6C4B /* PaymentFormTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentFormTableViewCell.xib; sourceTree = "<group>"; };
 		38A7DD642A750E9E002564AB /* UpdatePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatePasswordViewController.swift; sourceTree = "<group>"; };
@@ -422,6 +424,7 @@
 				38FBA1D42A9D8D250055A97F /* EditAddressViewController.swift */,
 				385D01932AA43A6D0037184C /* ChangePasswordViewController.swift */,
 				389CFE262AA81AE800916252 /* UpdateCardViewController.swift */,
+				389CFE2A2AA8507B00916252 /* LoadingViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -741,6 +744,7 @@
 				3815A69F2A8DB4A00067BABA /* ListAddressViewModel.swift in Sources */,
 				38B7C54F2A90778B006FE010 /* ProfileViewController.swift in Sources */,
 				38FBA1D32A9D8CE70055A97F /* EditAddressViewModel.swift in Sources */,
+				389CFE2B2AA8507B00916252 /* LoadingViewController.swift in Sources */,
 				382F77392A7BFC350076248F /* CustomSecureTextField.swift in Sources */,
 				38E89D622A72F0D900BBDE14 /* ProductCollectionViewCell.swift in Sources */,
 				38B8F0FF2A7215F3003DA0CE /* RoundedView.swift in Sources */,

@@ -123,6 +123,7 @@ class AddressViewController: UIViewController {
         guard let phone = phoneField.text else { return }
 //        guard let address = addressField.text else { return }
         
+        LoadingViewController.shared.startLoading(sourceVC: self)
         viewModel.addNewAddress(
             country: country,
             city: city,
@@ -132,12 +133,14 @@ class AddressViewController: UIViewController {
             completion: { [weak self] newAddress in
                 self?.notifyObserver()
                 DispatchQueue.main.async { [weak self] in
+                    LoadingViewController.shared.stopLoading()
                     self?.delegate?.onNewAddressAdded(newAddress: newAddress)
                     self?.navigationController?.popViewController(animated: true)
                 }
             },
             onError: { errorMessage in
                 DispatchQueue.main.async { [weak self] in
+                    LoadingViewController.shared.stopLoading()
                     guard let self = self else { return }
                     SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
                 }

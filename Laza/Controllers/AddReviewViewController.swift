@@ -85,18 +85,21 @@ class AddReviewViewController: UIViewController {
         
         guard let reviewText = textView.text else { return }
         
+        LoadingViewController.shared.startLoading(sourceVC: self)
         viewModel.addReview(
             reviewText: reviewText,
             rating: slider.value.rounded(),
             completion: {
                 NotificationCenter.default.post(name: Notification.Name.newReviewAdded, object: nil)
                 DispatchQueue.main.async { [weak self] in
+                    LoadingViewController.shared.stopLoading()
                     self?.delegate?.onSubmitReviewDone()
                     self?.navigationController?.popViewController(animated: true)
                 }
             }, onError: { errorMessage in
                 print(errorMessage)
                 DispatchQueue.main.async { [weak self] in
+                    LoadingViewController.shared.stopLoading()
                     guard let self = self else { return }
                     SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
                 }

@@ -54,13 +54,16 @@ class StarterViewController: UIViewController {
     private func detectSignedAccountUsingUsername() {
         // Is token exists
         if let _ = DataPersistentManager.shared.getTokenFromKeychain() {
+            LoadingViewController.shared.startLoading(sourceVC: self)
             getProfile { profile in
                 SessionManager.shared.setCurrentProfile(profile: profile)
                 DispatchQueue.main.async { [weak self] in
+                    LoadingViewController.shared.stopLoading()
                     self?.goToHomePage()
                 }
             } onError: { [weak self] errorMessage in
                 print("Get profile error \(errorMessage)")
+                LoadingViewController.shared.stopLoading()
                 DispatchQueue.main.async {
                     self?.goToLoginPage()
                 }

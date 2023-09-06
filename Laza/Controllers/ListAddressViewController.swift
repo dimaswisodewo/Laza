@@ -217,10 +217,12 @@ extension ListAddressViewController: UITableViewDataSource, UITableViewDelegate 
        
        private func handleDeleteSwipeAction(indexPath: IndexPath) {
            guard let addressId = viewModel.getAddressAtIndex(index: indexPath.row)?.id else { return }
+           LoadingViewController.shared.startLoading(sourceVC: self)
            viewModel.deleteAddress(
             addressId: addressId,
             completion: {
                 DispatchQueue.main.async { [weak self] in
+                    LoadingViewController.shared.stopLoading()
                     self?.delegate?.didDeleteAddress()
                     self?.viewModel.deleteAddressAtIndex(index: indexPath.row)
                     self?.tableView.deleteRows(at: [indexPath], with: .left)
@@ -231,6 +233,7 @@ extension ListAddressViewController: UITableViewDataSource, UITableViewDelegate 
             },
             onError: { errorMessage in
                 DispatchQueue.main.async { [weak self] in
+                    LoadingViewController.shared.stopLoading()
                     guard let self = self else { return }
                     SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
                 }

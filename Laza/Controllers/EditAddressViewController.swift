@@ -17,15 +17,40 @@ class EditAddressViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var nameField: CustomTextField!
+    @IBOutlet weak var nameField: CustomTextField! {
+        didSet {
+            nameField.autocorrectionType = .no
+            nameField.autocapitalizationType = .words
+        }
+    }
     
-    @IBOutlet weak var countryField: CustomTextField!
+    @IBOutlet weak var countryField: CustomTextField! {
+        didSet {
+            countryField.autocorrectionType = .no
+            countryField.autocapitalizationType = .words
+        }
+    }
     
-    @IBOutlet weak var cityField: CustomTextField!
+    @IBOutlet weak var cityField: CustomTextField! {
+        didSet {
+            cityField.autocorrectionType = .no
+            cityField.autocapitalizationType = .words
+        }
+    }
     
-    @IBOutlet weak var phoneField: CustomTextField!
+    @IBOutlet weak var phoneField: CustomTextField! {
+        didSet {
+            phoneField.keyboardType = .numberPad
+            phoneField.autocorrectionType = .no
+        }
+    }
     
-    @IBOutlet weak var addressField: CustomTextField!
+    @IBOutlet weak var addressField: CustomTextField! {
+        didSet {
+            addressField.autocorrectionType = .no
+            addressField.autocapitalizationType = .none
+        }
+    }
     
     @IBOutlet weak var isPrimarySwitch: UISwitch!
     
@@ -97,6 +122,7 @@ class EditAddressViewController: UIViewController {
         guard let phone = phoneField.text else { return }
 //        guard let address = addressField.text else { return }
         
+        LoadingViewController.shared.startLoading(sourceVC: self)
         viewModel.updateAddress(
             country: country,
             city: city,
@@ -106,11 +132,13 @@ class EditAddressViewController: UIViewController {
             completion: { [weak self] in
                 self?.notifyObserver()
                 DispatchQueue.main.async {
+                    LoadingViewController.shared.stopLoading()
                     self?.navigationController?.popViewController(animated: true)
                 }
             },
             onError: { errorMessage in
                 DispatchQueue.main.async { [weak self] in
+                    LoadingViewController.shared.stopLoading()
                     guard let self = self else { return }
                     SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
                 }

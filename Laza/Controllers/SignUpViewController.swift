@@ -91,15 +91,18 @@ class SignUpViewController: UIViewController {
         }
         
         // Register
+        LoadingViewController.shared.startLoading(sourceVC: self)
         viewModel.register(username: username, email: email, password: password, completion: { user in
             // Register success
             DispatchQueue.main.async { [weak self] in
+                LoadingViewController.shared.stopLoading()
                 self?.delegate?.onSignUpSuccess()
                 self?.navigationController?.popViewController(animated: true)
             }
         }, onError: { errorMessage in
             // Register failed
             DispatchQueue.main.async {
+                LoadingViewController.shared.stopLoading()
                 SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
             }
         })

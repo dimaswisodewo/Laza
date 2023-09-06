@@ -133,6 +133,7 @@ class EditProfileViewController: UIViewController {
         if let image = profileImageView.image {
             media = Media(withImage: image, forKey: "image")
         }
+        LoadingViewController.shared.startLoading(sourceVC: self)
         viewModel.updateProfile(
             fullName: fullName,
             username: username,
@@ -140,11 +141,13 @@ class EditProfileViewController: UIViewController {
             media: media,
             completion: {
                 DispatchQueue.main.async { [weak self] in
+                    LoadingViewController.shared.stopLoading()
                     NotificationCenter.default.post(name: Notification.Name.profileUpdated, object: nil)
                     self?.navigationController?.popViewController(animated: true)
                 }
             }, onError: { errorMessage in
                 DispatchQueue.main.async { [weak self] in
+                    LoadingViewController.shared.stopLoading()
                     guard let self = self else { return }
                     SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
                 }
