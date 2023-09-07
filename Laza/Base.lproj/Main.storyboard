@@ -357,13 +357,13 @@
                                     <color key="baseForegroundColor" name="GoogleRed"/>
                                 </buttonConfiguration>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By connecting your account confirm that you agree" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LP1-Eq-ffd">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By connecting your account confirm that you agree" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LP1-Eq-ffd">
                                 <rect key="frame" x="20" y="792.33333333333337" width="390" height="19.666666666666629"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                 <color key="textColor" name="TextSecondary"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="-10" translatesAutoresizingMaskIntoConstraints="NO" id="Zkt-jd-CjP">
+                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="-10" translatesAutoresizingMaskIntoConstraints="NO" id="Zkt-jd-CjP">
                                 <rect key="frame" x="106" y="806" width="218" height="36"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="with our" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Xh-nH-ta0">
@@ -405,6 +405,28 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="-8" translatesAutoresizingMaskIntoConstraints="NO" id="E3R-B2-vbj">
+                                <rect key="frame" x="108.66666666666667" y="798.33333333333337" width="212.66666666666663" height="33.666666666666629"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't have account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tnR-sS-C6y">
+                                        <rect key="frame" x="0.0" y="0.0" width="143.66666666666666" height="33.666666666666664"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                        <color key="textColor" name="TextSecondary"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LLQ-ry-8Ym">
+                                        <rect key="frame" x="135.66666666666669" y="0.0" width="77" height="33.666666666666664"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="b4e-cm-pLA"/>
+                                        </constraints>
+                                        <color key="tintColor" name="TextPrimary"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Sign Up" titleAlignment="automatic">
+                                            <fontDescription key="titleFontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="aOc-BY-szT"/>
                         <color key="backgroundColor" name="WhiteBG"/>
@@ -422,7 +444,9 @@
                             <constraint firstItem="pUf-gN-WUd" firstAttribute="top" secondItem="gGS-kN-rzx" secondAttribute="bottom" constant="48" id="PP4-P6-bj2"/>
                             <constraint firstItem="yUT-Gp-n1b" firstAttribute="top" secondItem="pUf-gN-WUd" secondAttribute="bottom" constant="30" id="PTb-t1-otQ"/>
                             <constraint firstItem="aOc-BY-szT" firstAttribute="trailing" secondItem="yUT-Gp-n1b" secondAttribute="trailing" constant="2" id="RRe-oP-oQA"/>
+                            <constraint firstItem="WF9-5i-iHW" firstAttribute="top" secondItem="E3R-B2-vbj" secondAttribute="bottom" constant="25" id="RlO-ah-pYP"/>
                             <constraint firstItem="Zdi-Yk-cmb" firstAttribute="top" secondItem="Mta-sO-Rt1" secondAttribute="bottom" constant="25" id="Umv-K1-eif"/>
+                            <constraint firstItem="E3R-B2-vbj" firstAttribute="centerX" secondItem="aOc-BY-szT" secondAttribute="centerX" id="WFG-tu-1rM"/>
                             <constraint firstItem="Mta-sO-Rt1" firstAttribute="top" secondItem="aOc-BY-szT" secondAttribute="top" constant="45" id="YT5-eb-xUU"/>
                             <constraint firstItem="Ife-yx-UyL" firstAttribute="top" secondItem="Zdi-Yk-cmb" secondAttribute="bottom" constant="14" id="Znc-1G-G4l"/>
                             <constraint firstItem="Zkt-jd-CjP" firstAttribute="centerX" secondItem="WF9-5i-iHW" secondAttribute="centerX" id="aAz-0a-wR8"/>
@@ -449,6 +473,7 @@
                         <outlet property="loginButton" destination="WF9-5i-iHW" id="fU1-ON-xVp"/>
                         <outlet property="passwordTextField" destination="pUf-gN-WUd" id="hbg-VX-Goy"/>
                         <outlet property="rememberMeSwitch" destination="AfJ-Ha-lPd" id="7Ja-oq-hxP"/>
+                        <outlet property="signUpButton" destination="LLQ-ry-8Ym" id="Z94-CR-5kd"/>
                         <outlet property="usernameTextField" destination="gGS-kN-rzx" id="3pX-aU-qSe"/>
                     </connections>
                 </viewController>

@@ -20,7 +20,14 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var backButton: CircleButton! {
         didSet {
+            backButton.isHidden = true
             backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
+        }
+    }
+    
+    @IBOutlet weak var signUpButton: UIButton! {
+        didSet {
+            signUpButton.addTarget(self, action: #selector(signUpButtonPressed), for: .touchUpInside)
         }
     }
     
@@ -69,6 +76,11 @@ class LoginViewController: UIViewController {
     
     @objc private func backButtonPressed() {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @objc private func signUpButtonPressed() {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: SignUpViewController.identifier) else { return }
+        navigationController?.pushViewController(vc, animated: true)
     }
 
     @objc private func forgotPasswordButtonPressed() {

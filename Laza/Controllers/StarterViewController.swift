@@ -99,7 +99,7 @@ class StarterViewController: UIViewController {
     
     private func goToLoginPage() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: GetStartedViewController.identifier)
+        let vc = storyboard.instantiateViewController(withIdentifier: LoginViewController.identifier)
         let nav = UINavigationController(rootViewController: vc)
         nav.setNavigationBarHidden(true, animated: false)
         view.window?.windowScene?.keyWindow?.rootViewController = nav
