@@ -250,6 +250,28 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="-8" translatesAutoresizingMaskIntoConstraints="NO" id="WGK-UB-ZaX">
+                                <rect key="frame" x="91" y="798.33333333333337" width="248" height="33.666666666666629"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an account?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TXf-gZ-Svg">
+                                        <rect key="frame" x="0.0" y="0.0" width="184" height="33.666666666666664"/>
+                                        <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                        <color key="textColor" name="TextSecondary"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jYi-BR-8cY">
+                                        <rect key="frame" x="176" y="0.0" width="72" height="33.666666666666664"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="72" id="ivv-L7-e6T"/>
+                                        </constraints>
+                                        <color key="tintColor" name="TextPrimary"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Sign In" titleAlignment="automatic">
+                                            <fontDescription key="titleFontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="f0I-i1-4WG"/>
                         <color key="backgroundColor" name="WhiteBG"/>
@@ -263,6 +285,7 @@
                             <constraint firstItem="WwN-bE-3Dd" firstAttribute="top" secondItem="Qzf-6g-AuA" secondAttribute="bottom" constant="48" id="MT0-RZ-JOq"/>
                             <constraint firstItem="f0I-i1-4WG" firstAttribute="trailing" secondItem="2hT-BR-p6J" secondAttribute="trailing" constant="20" id="ODQ-Fv-C1E"/>
                             <constraint firstItem="Oli-VY-PKp" firstAttribute="top" secondItem="Mx0-9q-b3O" secondAttribute="top" constant="15" id="PJf-xx-fjT"/>
+                            <constraint firstItem="WGK-UB-ZaX" firstAttribute="centerX" secondItem="f0I-i1-4WG" secondAttribute="centerX" id="Tcp-TB-53z"/>
                             <constraint firstItem="f0I-i1-4WG" firstAttribute="trailing" secondItem="qHi-f4-YuK" secondAttribute="trailing" constant="20" id="Tdy-KQ-xij"/>
                             <constraint firstItem="f0I-i1-4WG" firstAttribute="trailing" secondItem="dSJ-XC-Vdi" secondAttribute="trailing" constant="20" id="ZuE-79-EAt"/>
                             <constraint firstItem="qHi-f4-YuK" firstAttribute="leading" secondItem="f0I-i1-4WG" secondAttribute="leading" constant="20" id="ceJ-VN-0jy"/>
@@ -271,6 +294,7 @@
                             <constraint firstItem="WwN-bE-3Dd" firstAttribute="leading" secondItem="f0I-i1-4WG" secondAttribute="leading" constant="20" id="kIn-Ib-exW"/>
                             <constraint firstAttribute="bottom" secondItem="Mx0-9q-b3O" secondAttribute="bottom" id="kJj-Jp-pbZ"/>
                             <constraint firstItem="Qzf-6g-AuA" firstAttribute="leading" secondItem="f0I-i1-4WG" secondAttribute="leading" constant="20" id="kZS-ge-1Ix"/>
+                            <constraint firstItem="Mx0-9q-b3O" firstAttribute="top" secondItem="WGK-UB-ZaX" secondAttribute="bottom" constant="25" id="pgU-2N-XMs"/>
                             <constraint firstItem="2hT-BR-p6J" firstAttribute="leading" secondItem="f0I-i1-4WG" secondAttribute="leading" constant="20" id="qjb-Ds-aWc"/>
                             <constraint firstItem="Qzf-6g-AuA" firstAttribute="top" secondItem="qHi-f4-YuK" secondAttribute="bottom" constant="48" id="sg9-wr-ADd"/>
                             <constraint firstItem="Fzf-d5-xoO" firstAttribute="top" secondItem="2hT-BR-p6J" secondAttribute="bottom" constant="64" id="sqm-0U-A6M"/>
@@ -283,6 +307,7 @@
                         <outlet property="backButton" destination="Nda-HM-uBD" id="kPj-EL-DUs"/>
                         <outlet property="emailTextField" destination="Qzf-6g-AuA" id="BkD-vF-wKa"/>
                         <outlet property="passwordTextField" destination="qHi-f4-YuK" id="CbW-L5-igw"/>
+                        <outlet property="signInButton" destination="jYi-BR-8cY" id="OWD-Zx-nni"/>
                         <outlet property="signUpButton" destination="Mx0-9q-b3O" id="DHP-Ba-2CS"/>
                         <outlet property="usernameTextField" destination="Fzf-d5-xoO" id="h17-zR-cBE"/>
                     </connections>

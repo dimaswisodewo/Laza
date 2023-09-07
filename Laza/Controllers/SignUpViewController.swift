@@ -55,6 +55,12 @@ class SignUpViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var signInButton: UIButton! {
+        didSet {
+            signInButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
+        }
+    }
+    
     private let viewModel = SignUpViewModel()
     
     override func viewDidLoad() {
