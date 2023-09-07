@@ -18,6 +18,8 @@ class StarterViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+        
         detectSignedAccountUsingUsername()
 //        goToHomePage()
         
@@ -63,8 +65,8 @@ class StarterViewController: UIViewController {
                 }
             } onError: { [weak self] errorMessage in
                 print("Get profile error \(errorMessage)")
-                LoadingViewController.shared.stopLoading()
                 DispatchQueue.main.async {
+                    LoadingViewController.shared.stopLoading()
                     self?.goToLoginPage()
                 }
             }

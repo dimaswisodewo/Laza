@@ -27,6 +27,8 @@ class WishlistViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var availableInStockLabel: UILabel!
+    
     @IBOutlet weak var sortButton: RoundedButton! {
         didSet {
             sortButton.addTarget(self, action: #selector(sortButtonPressed), for: .touchUpInside)
@@ -63,14 +65,23 @@ class WishlistViewController: UIViewController {
     }
     
     private func setupSkeleton() {
+        wishlistCountLabel.isSkeletonable = true
+        availableInStockLabel.isSkeletonable = true
+        sortButton.isSkeletonable = true
         collectionView.isSkeletonable = true
     }
     
     private func showSkeleton() {
+        wishlistCountLabel.showAnimatedGradientSkeleton()
+        availableInStockLabel.showAnimatedGradientSkeleton()
+        sortButton.showAnimatedGradientSkeleton()
         collectionView.showAnimatedGradientSkeleton()
     }
     
     private func hideSkeleton() {
+        wishlistCountLabel.hideSkeleton()
+        availableInStockLabel.hideSkeleton()
+        sortButton.hideSkeleton()
         collectionView.hideSkeleton()
     }
     

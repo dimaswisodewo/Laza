@@ -133,9 +133,10 @@ class AddressViewController: UIViewController {
             completion: { [weak self] newAddress in
                 self?.notifyObserver()
                 DispatchQueue.main.async { [weak self] in
-                    LoadingViewController.shared.stopLoading()
                     self?.delegate?.onNewAddressAdded(newAddress: newAddress)
-                    self?.navigationController?.popViewController(animated: true)
+                    LoadingViewController.shared.stopLoading(completion: {
+                        self?.navigationController?.popViewController(animated: true)
+                    })
                 }
             },
             onError: { errorMessage in

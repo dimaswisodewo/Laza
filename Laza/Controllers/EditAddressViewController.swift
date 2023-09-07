@@ -132,8 +132,9 @@ class EditAddressViewController: UIViewController {
             completion: { [weak self] in
                 self?.notifyObserver()
                 DispatchQueue.main.async {
-                    LoadingViewController.shared.stopLoading()
-                    self?.navigationController?.popViewController(animated: true)
+                    LoadingViewController.shared.stopLoading(completion: {
+                        self?.navigationController?.popViewController(animated: true)
+                    })
                 }
             },
             onError: { errorMessage in

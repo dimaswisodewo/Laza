@@ -867,6 +867,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="7nX-Zl-YVy"/>
                     <connections>
+                        <outlet property="availableInStockLabel" destination="xFc-QT-Hs3" id="rcn-h2-wwW"/>
                         <outlet property="collectionView" destination="gBV-Cf-Nx1" id="KIG-34-LV1"/>
                         <outlet property="sortButton" destination="0Im-ZD-icL" id="VaX-h2-dJu"/>
                         <outlet property="wishlistCountLabel" destination="PgO-5D-coH" id="6FE-nL-hOa"/>

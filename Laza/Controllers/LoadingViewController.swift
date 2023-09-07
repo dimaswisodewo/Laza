@@ -25,7 +25,7 @@ class LoadingViewController: UIViewController {
     private var blurEffectView: UIVisualEffectView = {
         let blurEffect = UIBlurEffect(style: .dark)
         let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.alpha = 0.8
+        blurEffectView.alpha = 0.5
         blurEffectView.autoresizingMask = [
             .flexibleWidth, .flexibleHeight
         ]
@@ -35,7 +35,7 @@ class LoadingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.2)
         
         // Add the blurEffectView with the same size as view
         blurEffectView.frame = self.view.bounds
@@ -60,8 +60,7 @@ class LoadingViewController: UIViewController {
         sourceVC.present(LoadingViewController.shared, animated: true, completion: nil)
     }
     
-    func stopLoading() {
-        LoadingViewController.shared.loadingActivityIndicator.stopAnimating()
-        LoadingViewController.shared.dismiss(animated: true)
+    func stopLoading(completion: (() -> Void)? = nil) {
+        LoadingViewController.shared.dismiss(animated: true, completion: completion)
     }
 }
