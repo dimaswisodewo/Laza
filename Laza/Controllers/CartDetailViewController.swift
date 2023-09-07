@@ -105,19 +105,23 @@ class CartDetailViewController: UIViewController {
         setupView()
         
         if let address = selectedAddress {
-            setupAddressView(address: address)
             addressEmptyLabel.isHidden = true
+            listViewItemAddress?.hideSkeleton()
             listViewItemAddress?.isHidden = false
+            setupAddressView(address: address)
         } else {
+            listViewItemAddress?.showSkeleton()
             getAllAddress()
         }
         
         if let creditCard = selectedPayment {
             setupCardView(card: creditCard)
             paymentMethodEmptyLabel.isHidden = true
+            listViewItemPayment?.hideSkeleton()
             listViewItemPayment?.isHidden = false
         } else {
-            
+            paymentMethodEmptyLabel.isHidden = false
+            listViewItemPayment?.isHidden = true
         }
     }
     
@@ -143,11 +147,13 @@ class CartDetailViewController: UIViewController {
                 self?.selectedAddress = primaryAddress
                 // Primary address does exists
                 if let primaryAddress = primaryAddress {
-                    self?.setupAddressView(address: primaryAddress)
                     self?.addressEmptyLabel.isHidden = true
+                    self?.listViewItemAddress?.hideSkeleton()
                     self?.listViewItemAddress?.isHidden = false
+                    self?.setupAddressView(address: primaryAddress)
                 } else {
                     self?.addressEmptyLabel.isHidden = false
+                    self?.listViewItemAddress?.hideSkeleton()
                     self?.listViewItemAddress?.isHidden = true
                 }
             }
@@ -167,13 +173,15 @@ class CartDetailViewController: UIViewController {
         DataPersistentManager.shared.fetchCardData(cardNumber: primaryCardNumber) { [weak self] result in
             switch result {
             case .success(let model):
+                self?.paymentMethodEmptyLabel.isHidden = true
+                self?.listViewItemPayment?.hideSkeleton()
+                self?.listViewItemPayment?.isHidden = false
                 self?.selectedPayment = model
                 self?.setupCardView(card: model)
-                self?.paymentMethodEmptyLabel.isHidden = true
-                self?.listViewItemPayment?.isHidden = false
             case .failure(let error):
                 print(error.localizedDescription)
                 self?.paymentMethodEmptyLabel.isHidden = false
+                self?.listViewItemPayment?.hideSkeleton()
                 self?.listViewItemPayment?.isHidden = true
             }
         }
@@ -196,19 +204,23 @@ class CartDetailViewController: UIViewController {
         paymentMethodViewItem.addSubview(cardView)
         cardView.frame = paymentMethodViewItem.bounds
         listViewItemPayment = cardView as? ListViewItem
-        listViewItemPayment?.isHidden = true
+        listViewItemPayment?.setImage(image: UIImage(named: "PaymentCreditCard"))
+        listViewItemPayment?.setupSkeleton()
         // Address
         let addressView = nib.instantiate(withOwner: nil).first as! UIView
         deliveryAddressViewItem.addSubview(addressView)
         addressView.frame = deliveryAddressViewItem.bounds
         listViewItemAddress = addressView as? ListViewItem
-        listViewItemAddress?.isHidden = true
+        listViewItemAddress?.setImage(image: UIImage(named: "Address"))
+        listViewItemAddress?.setupSkeleton()
         // Empty label payment method
         paymentMethodViewItem.addSubview(paymentMethodEmptyLabel)
         paymentMethodEmptyLabel.frame = paymentMethodViewItem.bounds
+        paymentMethodEmptyLabel.isHidden = true
         // Empty label address
         deliveryAddressViewItem.addSubview(addressEmptyLabel)
         addressEmptyLabel.frame = deliveryAddressViewItem.bounds
+        addressEmptyLabel.isHidden = true
     }
     
     @objc private func addressButtonPressed() {

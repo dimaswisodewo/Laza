@@ -50,4 +50,25 @@ class ListViewItem: UIView {
     private func setupView() {
         self.layer.cornerRadius = 14
     }
+    
+    func setupSkeleton() {
+        itemImageView.isSkeletonable = true
+        itemTitleLabel.isSkeletonable = true
+        itemSubtitleLabel.isSkeletonable = true
+        itemRightImage.isSkeletonable = true
+    }
+    
+    func showSkeleton() {
+        itemImageView.showAnimatedGradientSkeleton()
+        itemTitleLabel.showAnimatedGradientSkeleton()
+        itemSubtitleLabel.showAnimatedGradientSkeleton()
+        itemRightImage.showAnimatedGradientSkeleton()
+    }
+    
+    func hideSkeleton() {
+        itemImageView.hideSkeleton()
+        itemTitleLabel.hideSkeleton()
+        itemSubtitleLabel.hideSkeleton()
+        itemRightImage.hideSkeleton()
+    }
 }
