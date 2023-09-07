@@ -138,11 +138,33 @@ class LoginViewController: UIViewController {
             })
         }, onError: { errorMessage in
             // Login failed
-            DispatchQueue.main.async { [weak self] in
-                LoadingViewController.shared.stopLoading()
-                guard let self = self else { return }
-                SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+            DispatchQueue.main.async {
+                LoadingViewController.shared.stopLoading(completion: { [weak self] in
+                    if errorMessage.contains("verify") { // Email has not been verified
+                        self?.showAlertResendVerify()
+                        return
+                    }
+                    guard let self = self else { return }
+                    SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+                })
             }
         })
     }
+    
+    private func showAlertResendVerify() {
+            let alert = UIAlertController(title: "Email not verified", message: "Please verify your email", preferredStyle: .alert)
+
+            // Alert action
+            let alertAction = UIAlertAction(
+                title: NSLocalizedString("OK", comment: "OK pressed"),
+                style: .default) { [weak self] action in
+                    // Go to verify email page
+                    guard let vc = self?.storyboard?.instantiateViewController(withIdentifier: ResendActivationViewController.identifier) else { return }
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                }
+            
+            alert.addAction(alertAction)
+            
+            present(alert, animated: true, completion: nil)
+        }
 }

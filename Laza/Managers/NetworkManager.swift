@@ -112,8 +112,9 @@ class NetworkManager {
         // Go to login
         DispatchQueue.main.async {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let viewController = storyboard.instantiateViewController(withIdentifier: GetStartedViewController.identifier)
-            UIApplication.shared.windows.first?.rootViewController = viewController
+            let viewController = storyboard.instantiateViewController(withIdentifier: LoginViewController.identifier)
+            let nav = UINavigationController(rootViewController: viewController)
+            UIApplication.shared.windows.first?.rootViewController = nav
             UIApplication.shared.keyWindow?.makeKeyAndVisible()
         }
     }

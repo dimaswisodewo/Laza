@@ -36,6 +36,8 @@
 		38256BB12A8F5D0C003BBFED /* Wishlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38256BB02A8F5D0C003BBFED /* Wishlist.swift */; };
 		3825DC6E2A7F700800239E55 /* SnackBar in Frameworks */ = {isa = PBXBuildFile; productRef = 3825DC6D2A7F700800239E55 /* SnackBar */; };
 		3825DC702A7F705000239E55 /* CustomSnackBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3825DC6F2A7F705000239E55 /* CustomSnackBar.swift */; };
+		3825FD152AA98948007F456D /* ResendActivationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3825FD142AA98948007F456D /* ResendActivationViewController.swift */; };
+		3825FD172AA98967007F456D /* ResendActivationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3825FD162AA98967007F456D /* ResendActivationViewModel.swift */; };
 		382640222A76911D00744726 /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382640212A76911D00744726 /* SideMenuViewController.swift */; };
 		382640242A7695CE00744726 /* SideMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382640232A7695CE00744726 /* SideMenuTableViewCell.swift */; };
 		382F77392A7BFC350076248F /* CustomSecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382F77382A7BFC350076248F /* CustomSecureTextField.swift */; };
@@ -199,6 +201,8 @@
 		3817D6792A7202A10074D911 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		38256BB02A8F5D0C003BBFED /* Wishlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wishlist.swift; sourceTree = "<group>"; };
 		3825DC6F2A7F705000239E55 /* CustomSnackBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSnackBar.swift; sourceTree = "<group>"; };
+		3825FD142AA98948007F456D /* ResendActivationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResendActivationViewController.swift; sourceTree = "<group>"; };
+		3825FD162AA98967007F456D /* ResendActivationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResendActivationViewModel.swift; sourceTree = "<group>"; };
 		382640212A76911D00744726 /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		382640232A7695CE00744726 /* SideMenuTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuTableViewCell.swift; sourceTree = "<group>"; };
 		382F77382A7BFC350076248F /* CustomSecureTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSecureTextField.swift; sourceTree = "<group>"; };
@@ -428,6 +432,7 @@
 				385D01932AA43A6D0037184C /* ChangePasswordViewController.swift */,
 				389CFE262AA81AE800916252 /* UpdateCardViewController.swift */,
 				389CFE2A2AA8507B00916252 /* LoadingViewController.swift */,
+				3825FD142AA98948007F456D /* ResendActivationViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -459,6 +464,7 @@
 				380A5A652A9F3CD800887845 /* ForgotPasswordViewModel.swift */,
 				385D01952AA43A7E0037184C /* ChangePasswordViewModel.swift */,
 				389CFE282AA81B1B00916252 /* UpdateCardViewModel.swift */,
+				3825FD162AA98967007F456D /* ResendActivationViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -801,6 +807,7 @@
 				3891B5752A829B4600B1CB88 /* ProductBrandViewController.swift in Sources */,
 				385D01992AA476B10037184C /* LazaModel.xcdatamodeld in Sources */,
 				38FF0E4A2A70F040009B406F /* CustomTextField.swift in Sources */,
+				3825FD152AA98948007F456D /* ResendActivationViewController.swift in Sources */,
 				38D11ACD2A7B9055008ED926 /* AllReviewsViewController.swift in Sources */,
 				380A5A642A9F31BE00887845 /* VerificationCodeViewModel.swift in Sources */,
 				38EAD6CE2A8363A700103947 /* CreditCard.swift in Sources */,
@@ -811,6 +818,7 @@
 				38EF084B2A7A37260058021F /* DetailTableViewCell.swift in Sources */,
 				38C51DBF2A7155CE000324A5 /* HomeViewController.swift in Sources */,
 				3817D67A2A7202A10074D911 /* RoundedButton.swift in Sources */,
+				3825FD172AA98967007F456D /* ResendActivationViewModel.swift in Sources */,
 				38EAD6D62A83888300103947 /* ListAddressViewController.swift in Sources */,
 				38C51DBB2A7152BC000324A5 /* ForgotPasswordViewController.swift in Sources */,
 				38311EF82A948CA300979523 /* ImageUtils.swift in Sources */,

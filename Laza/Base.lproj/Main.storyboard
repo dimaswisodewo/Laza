@@ -507,7 +507,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FwI-5B-xu8" customClass="CustomTextField" customModule="Laza" customModuleProvider="target">
-                                <rect key="frame" x="20" y="539.33333333333337" width="390" height="60"/>
+                                <rect key="frame" x="20" y="573.33333333333337" width="390" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="Gzn-Ba-5iy"/>
                                 </constraints>
@@ -515,10 +515,10 @@
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lock" translatesAutoresizingMaskIntoConstraints="NO" id="ihY-4X-kZk">
-                                <rect key="frame" x="32" y="281.33333333333331" width="366" height="166"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lock" translatesAutoresizingMaskIntoConstraints="NO" id="ihY-4X-kZk">
+                                <rect key="frame" x="32" y="281.33333333333331" width="366" height="200"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="166" id="pxs-7X-z3x"/>
+                                    <constraint firstAttribute="height" constant="200" id="pxs-7X-z3x"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please write your email to receive a confirmation code to set a new password." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lrU-GI-eiQ">
@@ -702,14 +702,14 @@
                                 <color key="textColor" name="TextPrimary"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lock" translatesAutoresizingMaskIntoConstraints="NO" id="OSQ-aY-8bg">
-                                <rect key="frame" x="32" y="281.33333333333331" width="366" height="166"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lock" translatesAutoresizingMaskIntoConstraints="NO" id="OSQ-aY-8bg">
+                                <rect key="frame" x="32" y="281.33333333333331" width="366" height="200"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="166" id="vkd-Gm-UbE"/>
+                                    <constraint firstAttribute="height" constant="200" id="vkd-Gm-UbE"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="6L4-0N-ieg">
-                                <rect key="frame" x="23.666666666666657" y="527.33333333333337" width="383" height="100"/>
+                                <rect key="frame" x="23.666666666666657" y="561.33333333333337" width="383" height="100"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3FV-u7-t2c">
                                         <rect key="frame" x="0.0" y="0.0" width="80" height="100"/>
@@ -837,6 +837,102 @@
             </objects>
             <point key="canvasLocation" x="3193.953488372093" y="654.72103004291853"/>
         </scene>
+        <!--Resend Activation View Controller-->
+        <scene sceneID="aLt-SW-zL3">
+            <objects>
+                <viewController storyboardIdentifier="ResendActivationViewController" id="pnr-Lz-eAT" customClass="ResendActivationViewController" customModule="Laza" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="zvJ-hZ-9Nq">
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W9F-l8-jSB" customClass="CircleButton" customModule="Laza" customModuleProvider="target">
+                                <rect key="frame" x="20" y="104" width="45" height="45"/>
+                                <color key="backgroundColor" name="WhiteButtonSecondary"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="RKw-sN-6c8"/>
+                                    <constraint firstAttribute="width" constant="45" id="jyy-pj-VRX"/>
+                                </constraints>
+                                <color key="tintColor" name="TextPrimary"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="arrow.backward" catalog="system"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Resend Activation" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k0V-hp-oGp">
+                                <rect key="frame" x="20" y="174" width="390" height="39.333333333333343"/>
+                                <fontDescription key="fontDescription" name="Poppins-SemiBold" family="Poppins" pointSize="28"/>
+                                <color key="textColor" name="TextPrimary"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email Address..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IpN-XA-okZ" customClass="CustomTextField" customModule="Laza" customModuleProvider="target">
+                                <rect key="frame" x="20" y="533.33333333333337" width="390" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="zvp-Se-KTk"/>
+                                </constraints>
+                                <color key="textColor" name="TextPrimary"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VerifyEmail" translatesAutoresizingMaskIntoConstraints="NO" id="Qsl-1n-drl">
+                                <rect key="frame" x="32" y="281.33333333333331" width="366" height="160"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="160" id="B9u-IC-cSL"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please write your email to receive a link to verify your email." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aaG-mc-2V5">
+                                <rect key="frame" x="25" y="793.66666666666663" width="380" height="39.333333333333371"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="14"/>
+                                <color key="textColor" name="TextSecondary"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="amh-vA-nAy">
+                                <rect key="frame" x="0.0" y="857" width="430" height="75"/>
+                                <color key="backgroundColor" name="PurpleButton"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="7EH-FU-7cS"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send Activation" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5pY-TW-0L5">
+                                <rect key="frame" x="144.66666666666666" y="872" width="140.99999999999997" height="26"/>
+                                <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="kaf-1A-Zey"/>
+                        <color key="backgroundColor" name="WhiteBG"/>
+                        <constraints>
+                            <constraint firstItem="W9F-l8-jSB" firstAttribute="leading" secondItem="kaf-1A-Zey" secondAttribute="leading" constant="20" id="12K-q8-RGF"/>
+                            <constraint firstItem="amh-vA-nAy" firstAttribute="leading" secondItem="kaf-1A-Zey" secondAttribute="leading" id="4V1-4t-uxm"/>
+                            <constraint firstItem="kaf-1A-Zey" firstAttribute="trailing" secondItem="Qsl-1n-drl" secondAttribute="trailing" constant="32" id="AqG-FD-vwk"/>
+                            <constraint firstItem="IpN-XA-okZ" firstAttribute="top" secondItem="Qsl-1n-drl" secondAttribute="bottom" constant="92" id="Df3-LS-JZ1"/>
+                            <constraint firstItem="W9F-l8-jSB" firstAttribute="top" secondItem="kaf-1A-Zey" secondAttribute="top" constant="45" id="Dmk-xM-P3o"/>
+                            <constraint firstItem="5pY-TW-0L5" firstAttribute="top" secondItem="amh-vA-nAy" secondAttribute="top" constant="15" id="GwO-RL-bKN"/>
+                            <constraint firstItem="k0V-hp-oGp" firstAttribute="top" secondItem="W9F-l8-jSB" secondAttribute="bottom" constant="25" id="IGH-8J-UYn"/>
+                            <constraint firstItem="kaf-1A-Zey" firstAttribute="trailing" secondItem="amh-vA-nAy" secondAttribute="trailing" id="JJX-mX-AhY"/>
+                            <constraint firstAttribute="bottom" secondItem="amh-vA-nAy" secondAttribute="bottom" id="Re5-ZB-d8j"/>
+                            <constraint firstItem="5pY-TW-0L5" firstAttribute="centerX" secondItem="amh-vA-nAy" secondAttribute="centerX" id="SnF-mI-Dvn"/>
+                            <constraint firstItem="Qsl-1n-drl" firstAttribute="leading" secondItem="kaf-1A-Zey" secondAttribute="leading" constant="32" id="TKl-04-I4F"/>
+                            <constraint firstItem="kaf-1A-Zey" firstAttribute="trailing" secondItem="k0V-hp-oGp" secondAttribute="trailing" constant="20" id="Zgo-YV-vgA"/>
+                            <constraint firstItem="aaG-mc-2V5" firstAttribute="leading" secondItem="kaf-1A-Zey" secondAttribute="leading" constant="25" id="bR8-gW-BdV"/>
+                            <constraint firstItem="kaf-1A-Zey" firstAttribute="trailing" secondItem="aaG-mc-2V5" secondAttribute="trailing" constant="25" id="gQ7-Ww-Grz"/>
+                            <constraint firstItem="Qsl-1n-drl" firstAttribute="top" secondItem="k0V-hp-oGp" secondAttribute="bottom" constant="68" id="k74-fh-UMW"/>
+                            <constraint firstItem="k0V-hp-oGp" firstAttribute="leading" secondItem="kaf-1A-Zey" secondAttribute="leading" constant="20" id="oaZ-tu-2rH"/>
+                            <constraint firstItem="IpN-XA-okZ" firstAttribute="leading" secondItem="kaf-1A-Zey" secondAttribute="leading" constant="20" id="rQ0-dc-yZp"/>
+                            <constraint firstItem="amh-vA-nAy" firstAttribute="top" secondItem="aaG-mc-2V5" secondAttribute="bottom" constant="24" id="rtJ-Fb-x1Q"/>
+                            <constraint firstItem="kaf-1A-Zey" firstAttribute="trailing" secondItem="IpN-XA-okZ" secondAttribute="trailing" constant="20" id="uOO-PU-AiU"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="backButton" destination="W9F-l8-jSB" id="NZM-uu-kNM"/>
+                        <outlet property="ctaButton" destination="amh-vA-nAy" id="sor-jn-WcD"/>
+                        <outlet property="emailField" destination="IpN-XA-okZ" id="Wq5-qO-cnZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="U4X-pN-tya" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1730" y="655"/>
+        </scene>
     </scenes>
     <designables>
         <designable name="ACm-WN-n3f">
@@ -857,6 +953,9 @@
         <designable name="Pg7-Ju-RG4">
             <size key="intrinsicContentSize" width="49.333333333333336" height="34.333333333333336"/>
         </designable>
+        <designable name="W9F-l8-jSB">
+            <size key="intrinsicContentSize" width="49.333333333333336" height="34.333333333333336"/>
+        </designable>
         <designable name="hSH-Pa-W68">
             <size key="intrinsicContentSize" width="49.333333333333336" height="34.333333333333336"/>
         </designable>
@@ -869,6 +968,7 @@
         <image name="Google" width="22" height="22"/>
         <image name="Lock" width="325" height="228"/>
         <image name="Twitter" width="23" height="22"/>
+        <image name="VerifyEmail" width="512" height="502"/>
         <image name="arrow.backward" catalog="system" width="128" height="95"/>
         <namedColor name="FBBlue">
             <color red="0.25900000333786011" green="0.40400001406669617" blue="0.69800001382827759" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
