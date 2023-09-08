@@ -136,6 +136,75 @@ class DataPersistentManager {
         }
     }
     
+    // MARK: - Profile Keychain
+    
+    func addProfileToKeychain(profile: Profile) {
+        guard let data = try? JSONEncoder().encode(profile) else {
+            print("Error encoding profile")
+            return
+        }
+        let addquery = [
+            kSecAttrService: "profile",
+            kSecAttrAccount: "laza-account",
+            kSecClass: kSecClassGenericPassword,
+            kSecValueData: data
+        ] as CFDictionary
+        // Add to keychain
+        let status = SecItemAdd(addquery, nil)
+        if status == errSecDuplicateItem {
+            // Item already exists, thus update it
+            let updatequery = [
+                kSecAttrService: "profile",
+                kSecAttrAccount: "laza-account",
+                kSecClass: kSecClassGenericPassword
+            ] as CFDictionary
+            let attributeToUpdate = [kSecValueData: data] as CFDictionary
+            // Update to keychain
+            let updateStatus = SecItemUpdate(updatequery, attributeToUpdate)
+            if updateStatus != errSecSuccess {
+                print("Error updating profile to keychain, status: \(status)")
+            }
+        } else if status != errSecSuccess {
+            print("Error adding profile to keychain, status: \(status)")
+        }
+    }
+    
+    func getProfileFromKeychain() -> Profile? {
+        let getquery = [
+            kSecAttrService: "profile",
+            kSecAttrAccount: "laza-account",
+            kSecClass: kSecClassGenericPassword,
+            kSecReturnData: true
+        ] as CFDictionary
+        
+        var ref: CFTypeRef?
+        let status = SecItemCopyMatching(getquery, &ref)
+        guard status == errSecSuccess else {
+            // Error
+            print("Error retrieving profile from keychain, status: \(status)")
+            return nil
+        }
+        let data = ref as! Data
+        guard let profile = try? JSONDecoder().decode(Profile.self, from: data) else {
+            print("Error decoding profile")
+            return nil
+        }
+        return profile
+    }
+    
+    func deleteProfileFromKeychain() {
+        let query = [
+            kSecAttrService: "profile",
+            kSecAttrAccount: "laza-account",
+            kSecClass: kSecClassGenericPassword
+        ] as CFDictionary
+        let status = SecItemDelete(query)
+        guard status == errSecSuccess || status == errSecItemNotFound else {
+            print("Delete profile from keychain failed")
+            return
+        }
+    }
+    
     // MARK: - Credit Card Primary Keychain
     
     func setCardAsPrimary(cardNumber: String) {

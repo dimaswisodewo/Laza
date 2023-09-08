@@ -48,6 +48,7 @@ class EditProfileViewModel {
                     print("Update profile success - Failed to decode")
                     return
                 }
+                DataPersistentManager.shared.addProfileToKeychain(profile: profile.data)
                 SessionManager.shared.setCurrentProfile(profile: profile.data)
                 completion()
             case .failure(let error):

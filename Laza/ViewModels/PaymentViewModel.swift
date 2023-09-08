@@ -17,6 +17,14 @@ class PaymentViewModel {
         creditCards.append(newCard)
     }
     
+    func deleteCreditCardAtIndex(_ index: Int) {
+        if index >= dataCount {
+            print("Failed delete at index: \(index), data count: \(dataCount)")
+            return
+        }
+        creditCards.remove(at: index)
+    }
+    
     func getDataAtIndex(_ index: Int) -> CreditCardModel {
         if index >= dataCount { fatalError("Index out of bounds") }
         return creditCards[index]

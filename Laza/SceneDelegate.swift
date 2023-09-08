@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import GoogleSignIn
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -16,8 +17,49 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+        window?.windowScene = windowScene
         
+        detectSignedAccount(onSignedIn: {
+            let storyboard = UIStoryboard(name: "Home", bundle: nil)
+            let homeVC = storyboard.instantiateViewController(withIdentifier: MainTabBarViewController.identifier)
+            let nav = UINavigationController(rootViewController: homeVC)
+            window?.rootViewController = nav
+            window?.makeKeyAndVisible()
+        }, onSignedOut: {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let loginVC = storyboard.instantiateViewController(withIdentifier: LoginViewController.identifier)
+            let nav = UINavigationController(rootViewController: loginVC)
+            window?.rootViewController = nav
+            window?.makeKeyAndVisible()
+        })
+    }
+    
+    private func detectSignedAccount(onSignedIn: () -> Void, onSignedOut: () -> Void) {
+        guard let profile = DataPersistentManager.shared.getProfileFromKeychain() else {
+            // Profile does not exists
+            onSignedOut()
+            return
+        }
+        // Profile does exists
+        SessionManager.shared.setCurrentProfile(profile: profile)
+        onSignedIn()
+    }
+    
+    private func detectSignedGoogleAccount(onSignedIn: @escaping () -> Void, onSignedOut: @escaping () -> Void) {
+        // Attempt to restore the user's sign-in state
+        GIDSignIn.sharedInstance.restorePreviousSignIn { user, error in
+            if error != nil || user == nil {
+                // Show the app's signed-out state.
+                print("Google account status: Signed out")
+                onSignedOut()
+            } else {
+                // Show the app's signed-in state.
+                print("Google account status: Signed in")
+                onSignedIn()
+            }
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

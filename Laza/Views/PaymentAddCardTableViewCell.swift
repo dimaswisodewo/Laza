@@ -37,6 +37,11 @@ class PaymentAddCardTableViewCell: UITableViewCell {
         }
     }
     
+    func setEnableButtons(isEnable: Bool) {
+        updateCardButton.isEnabled = isEnable
+        deleteCardButton.isEnabled = isEnable
+    }
+    
     @objc private func updateCardButtonPressed() {
         delegate?.updateCardButtonPressed()
     }

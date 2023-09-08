@@ -200,26 +200,9 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
         let storyboard = UIStoryboard(name: "Home", bundle: nil)
         guard let vc = storyboard.instantiateViewController(withIdentifier: SideMenuViewController.identifier) as? SideMenuViewController else { return }
         vc.delegate = self
-        
-        if let profile = SessionManager.shared.currentProfile {
+        if let profile = DataPersistentManager.shared.getProfileFromKeychain() {
             vc.configure(profile: profile)
-        } else {
-            // Get profile if current profile is nil
-            guard let token = DataPersistentManager.shared.getTokenFromKeychain() else {
-                SnackBarDanger.make(in: self.view, message: "Failed to get token from keychain", duration: .lengthShort).show()
-                return
-            }
-            viewModel.getProfile(token: token, completion: { profile in
-                SessionManager.shared.setCurrentProfile(profile: profile)
-                vc.configure(profile: profile)
-            }, onError: { errorMessage in
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
-                }
-            })
         }
-        
         sideMenuNavigationController = SideMenuNavigationController(rootViewController: vc)
         sideMenuNavigationController.delegate = self
         sideMenuNavigationController.menuWidth = view.bounds.width * 0.8

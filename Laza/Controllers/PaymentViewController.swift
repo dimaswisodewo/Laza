@@ -49,6 +49,7 @@ class PaymentViewController: UIViewController {
     }
     
     private weak var paymentCardTableViewCell: PaymentCardTableViewCell?
+    private weak var paymentAddCardTableViewCell: PaymentAddCardTableViewCell?
     private weak var paymentFormTableViewCell: PaymentFormTableViewCell?
         
     private let viewModel: PaymentViewModel = PaymentViewModel()
@@ -153,6 +154,7 @@ extension PaymentViewController: UITableViewDataSource, UITableViewDelegate {
                 return UITableViewCell()
             }
             tableViewCell.delegate = self
+            paymentAddCardTableViewCell = tableViewCell
             return tableViewCell
         case Rows.Form.rawValue:
             guard let tableViewCell = tableView.dequeueReusableCell(withIdentifier: PaymentFormTableViewCell.identifier) as? PaymentFormTableViewCell else {
@@ -221,21 +223,28 @@ extension PaymentViewController: PaymentCardTableViewCellDelegate {
 extension PaymentViewController: PaymentAddCardTableViewCellDelegate {
     
     func deleteCardButtonPressed() {
+        paymentAddCardTableViewCell?.setEnableButtons(isEnable: false)
         guard let selectedCardIndex = paymentCardTableViewCell?.selectedViewIndex else { return }
         let selectedCardModel = viewModel.getDataAtIndex(selectedCardIndex)
         viewModel.deleteCreditCard(cardNumber: selectedCardModel.cardNumber, completion: { [weak self] in
             self?.getCreditCards()
             // Reload table view, wait 0.1 sec to make sure that collection views inside the table view is finished layouting subviews
+            guard let self = self else { return }
+            self.viewModel.deleteCreditCardAtIndex(selectedCardIndex)
+            self.paymentCardTableViewCell?.setNumberOfSavedCards(self.viewModel.dataCount)
+            self.paymentCardTableViewCell?.updateSelectedIndex()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
                 guard let self = self else { return }
                 self.paymentCardTableViewCell?.collectionView.reloadData()
                 self.tableView.reloadData()
                 SnackBarSuccess.make(in: self.view, message: "Delete success", duration: .lengthShort).show()
+                self.paymentAddCardTableViewCell?.setEnableButtons(isEnable: true)
             }
         }, onError: { errorMessage in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 SnackBarDanger.make(in: self.view, message: "Delete failed", duration: .lengthShort).show()
+                self.paymentAddCardTableViewCell?.setEnableButtons(isEnable: true)
             }
         })
     }

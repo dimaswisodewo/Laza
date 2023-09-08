@@ -25,10 +25,12 @@ class ChangePasswordViewModel {
         
         NetworkManager.shared.sendRequestRefreshTokenIfNeeded(request: request) { result in
             switch result {
-            case .success(let (_, response)):
+            case .success(let (data, response)):
                 guard let httpResponse = response as? HTTPURLResponse else { return }
                 if httpResponse.statusCode != 200 {
-                    onError("Error: \(httpResponse.statusCode)")
+                    guard let data = data else { return }
+                    guard let errorResponse = try? JSONDecoder().decode(ResponseError.self, from: data) else { return }
+                    onError(errorResponse.description)
                     return
                 }
                 completion()

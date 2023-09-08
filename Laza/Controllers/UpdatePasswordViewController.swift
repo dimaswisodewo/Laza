@@ -103,16 +103,18 @@ class UpdatePasswordViewController: UIViewController {
         LoadingViewController.shared.startLoading(sourceVC: self)
         viewModel.updatePassword(newPassword: password, completion: {
             DispatchQueue.main.async { [weak self] in
-                LoadingViewController.shared.stopLoading()
-                self?.delegate?.onPasswordUpdated()
-                self?.navigationController?.popToRootViewController(animated: true)
-                self?.notifyObserver()
+                LoadingViewController.shared.stopLoading(completion: {
+                    self?.delegate?.onPasswordUpdated()
+                    self?.navigationController?.popToRootViewController(animated: true)
+                    self?.notifyObserver()
+                })
             }
         }, onError: { errorMessage in
-            DispatchQueue.main.async { [weak self] in
-                LoadingViewController.shared.stopLoading()
-                guard let self = self else { return }
-                SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+            DispatchQueue.main.async {
+                LoadingViewController.shared.stopLoading(completion: { [weak self] in
+                    guard let self = self else { return }
+                    SnackBarDanger.make(in: self.view, message: errorMessage, duration: .lengthShort).show()
+                })
             }
         })
     }

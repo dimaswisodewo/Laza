@@ -74,6 +74,11 @@ class ChangePasswordViewController: UIViewController {
         
         guard let newPassword = newPasswordField.text else { return }
         
+        if !RegExManager.shared.isPasswordValid(passwordText: newPassword) {
+            showSnackBarDanger(message: "Password min 8 characters, 1 letter, 1 number, & 1 special character")
+            return
+        }
+        
         if newPassword != confirmPasswordField.text {
             showSnackBarDanger(message: "Password confirmation does not match")
             return
@@ -85,14 +90,16 @@ class ChangePasswordViewController: UIViewController {
         LoadingViewController.shared.startLoading(sourceVC: self)
         viewModel.changePassword(currentPassword: oldPassword, newPassword: newPassword, completion: {
             DispatchQueue.main.async { [weak self] in
-                LoadingViewController.shared.stopLoading()
-                self?.navigationController?.popViewController(animated: true)
-                self?.delegate?.onPasswordUpdated()
+                LoadingViewController.shared.stopLoading(completion: {
+                    self?.navigationController?.popViewController(animated: true)
+                    self?.delegate?.onPasswordUpdated()
+                })
             }
         }, onError: { errorMessage in
             DispatchQueue.main.async { [weak self] in
-                LoadingViewController.shared.stopLoading()
-                self?.showSnackBarDanger(message: errorMessage)
+                LoadingViewController.shared.stopLoading(completion: {
+                    self?.showSnackBarDanger(message: errorMessage)
+                })
             }
         })
     }

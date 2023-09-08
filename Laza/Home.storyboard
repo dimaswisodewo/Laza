@@ -252,8 +252,10 @@
                     <connections>
                         <outlet property="cartDetailButton" destination="c1f-4g-dOs" id="MCM-zv-M1O"/>
                         <outlet property="checkoutButton" destination="wWM-9L-deC" id="0M5-Uo-BSs"/>
+                        <outlet property="checkoutButtonLabel" destination="HNR-ma-mDP" id="OTT-3F-RC7"/>
                         <outlet property="tableView" destination="oua-Eb-pfa" id="PVV-tD-Jwy"/>
                         <outlet property="totalPriceLabel" destination="vn7-Z8-wps" id="0k7-tW-2HC"/>
+                        <outlet property="totalPriceView" destination="h5U-co-vgN" id="Ifq-3a-M8o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="USo-HD-Cbb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

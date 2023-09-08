@@ -28,17 +28,31 @@ class CartViewController: UIViewController {
         }
     }
     
+    @IBOutlet weak var totalPriceView: UIView!
+    
     @IBOutlet weak var checkoutButton: UIButton! {
         didSet {
             checkoutButton.addTarget(self, action: #selector(checkoutButtonPressed), for: .touchUpInside)
         }
     }
     
+    @IBOutlet weak var checkoutButtonLabel: UILabel!
+    
     @IBOutlet weak var totalPriceLabel: UILabel! {
         didSet {
-            totalPriceLabel.text = "$0"
+            totalPriceLabel.text = FormatterManager.shared.formattedToPrice(price: 0 as NSNumber)
         }
     }
+    
+    private let emptyLabel: UILabel = {
+        let label = UILabel()
+        label.text = "You have no order"
+        label.textAlignment = .center
+        label.font = FontUtils.shared.getFont(font: .Poppins, weight: .regular, size: 14)
+        label.textColor = ColorUtils.shared.getColor(color: .TextPrimary)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
     
     private let viewModel = CartViewModel()
     
@@ -62,9 +76,11 @@ class CartViewController: UIViewController {
         
         setupTabBarItemImage()
         setupRefreshControl()
+        setupEmptyLabel()
         setupSkeleton()
         showSkeleton()
         
+        detectIsOrderEmpty()
         loadAllSizesAndCartItems()
         
         registerObserver()
@@ -72,6 +88,33 @@ class CartViewController: UIViewController {
     
     private func setupSkeleton() {
         tableView.isSkeletonable = true
+    }
+    
+    private func setupEmptyLabel() {
+        view.addSubview(emptyLabel)
+        let insets = view.safeAreaInsets
+        NSLayoutConstraint.activate([
+            emptyLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: insets.top),
+            emptyLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            emptyLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            emptyLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -insets.bottom)
+        ])
+    }
+    
+    private func setIsOrderEmpty(isEmpty: Bool) {
+        print("Is order empty: \(isEmpty)")
+        emptyLabel.isHidden = !isEmpty
+        totalPriceView.isHidden = isEmpty
+        checkoutButton.isHidden = isEmpty
+        checkoutButtonLabel.isHidden = isEmpty
+    }
+    
+    private func detectIsOrderEmpty() {
+        guard let productCount = viewModel.cart?.products?.count else {
+            setIsOrderEmpty(isEmpty: true)
+            return
+        }
+        setIsOrderEmpty(isEmpty: productCount == 0)
     }
     
     private func showSkeleton() {
@@ -117,11 +160,6 @@ class CartViewController: UIViewController {
         })
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-
-        tabBarController?.tabBar.isHidden = false
-    }
-    
     private func loadAllSizesAndCartItems() {
         viewModel.getAllSize(completion: { [weak self] in
             self?.loadCartItems()
@@ -141,9 +179,11 @@ class CartViewController: UIViewController {
                 self?.hideSkeleton()
                 self?.tableView.reloadData()
                 guard let totalPrice = self?.viewModel.cart?.orderInfo.total else {
+                    self?.detectIsOrderEmpty()
                     return
                 }
                 self?.setTotalPriceLabel(totalPrice: totalPrice)
+                self?.detectIsOrderEmpty()
             }
             onFinished?()
         }, onError: { errorMessage in
@@ -314,6 +354,9 @@ extension CartViewController: CartTableViewCellDelegate {
                 self?.loadCartItems() // Update cart items
             }
             self?.loadOrderInfo()
+            DispatchQueue.main.async { [weak self] in
+                self?.detectIsOrderEmpty()
+            }
         }, onError: { errorMessage in
             print(errorMessage)
         })
@@ -339,6 +382,9 @@ extension CartViewController: CartTableViewCellDelegate {
             }
             completion(unwrappedData)
             self?.loadOrderInfo()
+            DispatchQueue.main.async { [weak self] in
+                self?.detectIsOrderEmpty()
+            }
         }, onError: { errorMessage in
             print(errorMessage)
         })
@@ -351,6 +397,9 @@ extension CartViewController: CartTableViewCellDelegate {
         viewModel.insertToCart(productId: productId, sizeId: sizeId, completion: { [weak self] addToCart in
             completion(addToCart)
             self?.loadOrderInfo()
+            DispatchQueue.main.async { [weak self] in
+                self?.detectIsOrderEmpty()
+            }
         }, onError: { errorMessage in
             print(errorMessage)
         })

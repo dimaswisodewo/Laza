@@ -45,6 +45,19 @@ class PaymentCardTableViewCell: UITableViewCell {
         self.numberOfSavedCards = numberOfSavedCards
     }
     
+    func updateSelectedIndex() {
+        let offset = collectionView.contentOffset.x
+        // Loop backward
+        for cardIndex in stride(from: numberOfSavedCards-1, through: 0, by: -1) {
+            let offsetMargin = CGFloat(cardIndex - 1) + 0.5
+            if offset > cellWidth * offsetMargin {
+                selectedViewIndex = cardIndex
+                print("selected index: ", selectedViewIndex)
+                break
+            }
+        }
+    }
+    
     // Snap cell on finished swiping
     private func setSelectedCellOnEndSwipe(scrollViewOffset: CGFloat, cellWidth: CGFloat) {
         

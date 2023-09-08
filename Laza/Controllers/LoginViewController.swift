@@ -112,6 +112,7 @@ class LoginViewController: UIViewController {
             // Get profile
             self?.viewModel.getProfile(token: loginUser.accessToken, completion: { profile in
                 // Get profile success
+                DataPersistentManager.shared.addProfileToKeychain(profile: profile)
                 SessionManager.shared.setCurrentProfile(profile: profile)
                 DataPersistentManager.shared.addTokenToKeychain(token: loginUser.accessToken)
                 DataPersistentManager.shared.addRefreshTokenToKeychain(token: loginUser.refreshToken)
