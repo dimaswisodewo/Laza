@@ -76,6 +76,8 @@ class EditProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tabBarController?.tabBar.isHidden = true
+        
         applyModel()
         
         setupPHPicker()

@@ -269,13 +269,13 @@ extension HomeViewController: SideMenuNavigationControllerDelegate {
 extension HomeViewController: SideMenuViewControllerDelegate {
     
     func didSelectProfile() {
-        let storyboard = UIStoryboard(name: "Home", bundle: nil)
-        guard let vc = storyboard.instantiateViewController(withIdentifier: ProfileViewController.identifier) as? ProfileViewController else { return }
-        guard let profile = SessionManager.shared.currentProfile else { return }
-        vc.configure(model: profile)
-        sideMenuNavigationController.dismiss(animated: true) { [weak self] in
-            self?.navigationController?.pushViewController(vc, animated: true)
-        }
+//        let storyboard = UIStoryboard(name: "Home", bundle: nil)
+//        guard let vc = storyboard.instantiateViewController(withIdentifier: ProfileViewController.identifier) as? ProfileViewController else { return }
+//        guard let profile = SessionManager.shared.currentProfile else { return }
+//        vc.configure(model: profile)
+//        sideMenuNavigationController.dismiss(animated: true) { [weak self] in
+//            self?.navigationController?.pushViewController(vc, animated: true)
+//        }
     }
     
     func didSelectDarkMode() {

@@ -148,7 +148,7 @@
                         <segue destination="gsi-dd-nZZ" kind="relationship" relationship="viewControllers" id="DM9-Ab-Q2x"/>
                         <segue destination="gvl-Nf-emQ" kind="relationship" relationship="viewControllers" id="VXQ-7r-4nL"/>
                         <segue destination="V3t-2q-d1z" kind="relationship" relationship="viewControllers" id="taV-Vs-rkX"/>
-                        <segue destination="jMS-0e-w2l" kind="relationship" relationship="viewControllers" id="TwV-2p-CfG"/>
+                        <segue destination="uOL-HX-PWw" kind="relationship" relationship="viewControllers" id="oiD-vt-Maa"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0r5-WX-Dla" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -438,7 +438,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="bHU-fN-JFZ">
-                                <rect key="frame" x="0.0" y="179" width="430" height="670"/>
+                                <rect key="frame" x="0.0" y="179" width="430" height="719"/>
                                 <color key="backgroundColor" name="WhiteBG"/>
                             </tableView>
                         </subviews>
@@ -898,7 +898,7 @@
                                 <color key="textColor" name="TextPrimary"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nsl-lB-M95" customClass="CircleButton" customModule="Laza" customModuleProvider="target">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nsl-lB-M95" customClass="CircleButton" customModule="Laza" customModuleProvider="target">
                                 <rect key="frame" x="20" y="104" width="45" height="45"/>
                                 <color key="backgroundColor" name="WhiteButtonSecondary"/>
                                 <constraints>
@@ -935,7 +935,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p0f-Ko-WmQ">
-                                <rect key="frame" x="0.0" y="857" width="430" height="75"/>
+                                <rect key="frame" x="0.0" y="774" width="430" height="75"/>
                                 <color key="backgroundColor" name="PurpleButton"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="75" id="GQr-XB-QWd"/>
@@ -945,7 +945,7 @@
                                 <buttonConfiguration key="configuration" style="plain"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Profile" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9o6-5l-hWB">
-                                <rect key="frame" x="169" y="872" width="92" height="25.333333333333371"/>
+                                <rect key="frame" x="169" y="789" width="92" height="25.333333333333371"/>
                                 <fontDescription key="fontDescription" name="Poppins-Regular" family="Poppins" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -972,11 +972,12 @@
                             <constraint firstItem="Esh-Qc-eMH" firstAttribute="leading" secondItem="uaJ-fB-eDY" secondAttribute="leading" constant="20" id="dSh-UK-sMq"/>
                             <constraint firstItem="Esh-Qc-eMH" firstAttribute="top" secondItem="wOU-ZU-RGz" secondAttribute="bottom" constant="14" id="eTq-ZH-ANa"/>
                             <constraint firstItem="t1R-jJ-b3K" firstAttribute="leading" secondItem="v7D-7t-xl2" secondAttribute="leading" constant="20" id="fWq-a0-MK2"/>
-                            <constraint firstAttribute="bottom" secondItem="p0f-Ko-WmQ" secondAttribute="bottom" id="pRl-9w-UQf"/>
+                            <constraint firstItem="uaJ-fB-eDY" firstAttribute="bottom" secondItem="p0f-Ko-WmQ" secondAttribute="bottom" id="pRl-9w-UQf"/>
                             <constraint firstItem="VYU-Jh-rVf" firstAttribute="top" secondItem="zAw-pw-kdf" secondAttribute="bottom" constant="20" id="qzh-NQ-OyE"/>
                             <constraint firstItem="uaJ-fB-eDY" firstAttribute="trailing" secondItem="t1R-jJ-b3K" secondAttribute="trailing" constant="20" id="xZi-hN-cQe"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="c0D-Ty-7cp"/>
                     <connections>
                         <outlet property="backButton" destination="Nsl-lB-M95" id="yaP-wA-FYK"/>
                         <outlet property="ctaButton" destination="p0f-Ko-WmQ" id="tZt-X7-yOM"/>
@@ -988,7 +989,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WCW-Vs-5yD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3144" y="-695"/>
+            <point key="canvasLocation" x="2413" y="1508"/>
         </scene>
         <!--Edit Profile View Controller-->
         <scene sceneID="LGR-ZF-lgG">
@@ -1125,7 +1126,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pa5-dL-3lB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3914" y="-695"/>
+            <point key="canvasLocation" x="3165" y="1508"/>
         </scene>
         <!--Change Password View Controller-->
         <scene sceneID="0e6-eI-QXh">
@@ -1241,6 +1242,33 @@
             </objects>
             <point key="canvasLocation" x="889" y="-696"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Fyf-9d-3Op">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="uOL-HX-PWw" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" id="TAd-V8-ms5">
+                        <imageReference key="image" image="person" catalog="system" renderingMode="hierarchical">
+                            <hierarchicalColors>
+                                <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color systemColor="secondaryLabelColor"/>
+                                <color systemColor="tertiaryLabelColor"/>
+                            </hierarchicalColors>
+                        </imageReference>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Dea-Bo-D66">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="0nP-zS-uc0" kind="relationship" relationship="rootViewController" id="HCk-r0-ujf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dio-2Y-5ow" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2413" y="800"/>
+        </scene>
     </scenes>
     <designables>
         <designable name="0Im-ZD-icL">
@@ -1300,6 +1328,7 @@
         <image name="chevron.up" catalog="system" width="128" height="70"/>
         <image name="line.3.horizontal.decrease" catalog="system" width="128" height="73"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
+        <image name="person" catalog="system" width="128" height="121"/>
         <namedColor name="HomeBG">
             <color red="0.99599999189376831" green="0.99599999189376831" blue="0.99599999189376831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -1324,8 +1353,14 @@
         <namedColor name="WhiteButtonSecondary">
             <color red="0.96078431372549022" green="0.96470588235294119" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="tertiaryLabelColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29803921568627451" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

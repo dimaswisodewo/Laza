@@ -43,10 +43,30 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        applyModel()
-        registerObserver()
+        setupTabBarItemImage()
         
-        tabBarController?.tabBar.isHidden = true
+        if let model = SessionManager.shared.currentProfile {
+            configure(model: model)
+            applyModel()
+        }
+        
+        registerObserver()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        tabBarController?.tabBar.isHidden = false
+    }
+    
+    private func setupTabBarItemImage() {
+        let label = UILabel()
+        label.numberOfLines = 1
+        label.textAlignment = .center
+        label.text = "Profile"
+        label.font = FontUtils.shared.getFont(font: .Poppins, weight: .semibold, size: 12)
+        label.sizeToFit()
+        
+        navigationController?.tabBarItem.selectedImage = UIImage(view: label)
     }
     
     // Remove observer to reload reviews
