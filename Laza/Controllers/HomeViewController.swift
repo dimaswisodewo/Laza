@@ -49,8 +49,6 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
         }
     }
     
-    @IBOutlet weak var voiceButton: RoundedButton!
-    
     @IBOutlet weak var tableView: IntrinsicTableView! {
         didSet {
             tableView.backgroundColor = ColorUtils.shared.getColor(color: .WhiteBG)
@@ -486,5 +484,21 @@ extension HomeViewController: ChangePasswordViewControllerDelegate {
             guard let self = self else { return }
             SnackBarSuccess.make(in: self.view, message: "Password updated", duration: .lengthShort).show()
         }
+    }
+}
+
+extension HomeViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchBar.text else { return }
+        print(text)
+    }
+}
+
+extension HomeViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        viewModel.filterProducts(keyword: searchText)
+        productTableViewCell?.collectionView.reloadData()
+        tableView.reloadData()
     }
 }

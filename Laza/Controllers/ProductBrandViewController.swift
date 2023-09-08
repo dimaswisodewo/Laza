@@ -40,7 +40,6 @@ class ProductBrandViewController: UIViewController {
         }
     }
     
-    
     private var viewModel: ProductBrandViewModel!
     
     override func viewDidLoad() {

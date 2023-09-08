@@ -18,20 +18,35 @@ class HomeViewModel {
     typealias Products = [Product]
     private var products = Products()
     var productsCount: Int {
-        return products.count
+        return getProducts.count
     }
     
-    var getProducts: [Product] {
-        return products
+    private var filteredProducts = Products()
+    
+    private var getProducts: [Product] {
+        return searchKeyword == "" ? products : filteredProducts
     }
     
     var reloadBrandCollectionView: (() -> Void)?
     var reloadProductCollectionView: (() -> Void)?
     
+    private var searchKeyword = ""
+    
     func logout() {
         DataPersistentManager.shared.deleteProfileFromKeychain()
         DataPersistentManager.shared.deleteTokenFromKeychain()
         DataPersistentManager.shared.deleteRefreshTokenFromKeychain()
+    }
+    
+    func filterProducts(keyword: String) {
+        searchKeyword = keyword
+        if searchKeyword == "" {
+            filteredProducts = products
+            return
+        }
+        filteredProducts = products.filter({ product in
+            product.name.lowercased().contains(keyword.lowercased())
+        })
     }
     
     func loadBrands(onFinished: (() -> Void)? = nil) {
@@ -79,6 +94,6 @@ class HomeViewModel {
         if index > productsCount - 1 {
             return nil
         }
-        return products[index]
+        return getProducts[index]
     }
 }
