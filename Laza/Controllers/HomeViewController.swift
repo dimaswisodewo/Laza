@@ -117,7 +117,6 @@ class HomeViewController: UIViewController, UINavigationControllerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        setupSideMenu()
         tabBarController?.tabBar.isHidden = false
     }
     

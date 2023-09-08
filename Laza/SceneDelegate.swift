@@ -21,6 +21,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         
+        // Set theme
+        if let isDarkMode = DataPersistentManager.shared.getDarkModeConfigFromUserDefault() {
+            print("is dark mode: ", isDarkMode)
+            setEnableDarkMode(isEnabled: isDarkMode)
+        }
+        
+        // Detect signed account
         detectSignedAccount(onSignedIn: {
             let storyboard = UIStoryboard(name: "Home", bundle: nil)
             let homeVC = storyboard.instantiateViewController(withIdentifier: MainTabBarViewController.identifier)
@@ -62,6 +69,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
     }
 
+    private func setEnableDarkMode(isEnabled: Bool) {
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+        guard let appDelegate = windowScene.windows.first else { return }
+        appDelegate.overrideUserInterfaceStyle = isEnabled ? .dark : .light
+    }
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.

@@ -14,7 +14,7 @@ class MainTabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tabBar.tintColor = UIColor(named: "PurpleButton")
+        tabBar.tintColor = ColorUtils.shared.getColor(color: .PurpleButton)
     }
 }
 

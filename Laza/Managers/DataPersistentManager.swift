@@ -458,4 +458,57 @@ class DataPersistentManager {
         entity.expYear = Int16(model.expYear)
         return entity
     }
+    
+    // MARK: - Dark Mode UserDefault
+    
+    func saveDarkModeConfigToUserDefault(isOn: Bool) {
+        let count = isOn ? 1 : 0
+        let data = withUnsafeBytes(of: count) { Data($0) } // Int to Data
+        let addquery = [
+            kSecAttrService: "is-dark-mode",
+            kSecAttrAccount: "laza-account",
+            kSecClass: kSecClassGenericPassword,
+            kSecValueData: data
+        ] as CFDictionary
+        // Add to keychain
+        let status = SecItemAdd(addquery, nil)
+        if status == errSecDuplicateItem {
+            // Item already exists, thus update it
+            let updatequery = [
+                kSecAttrService: "is-dark-mode",
+                kSecAttrAccount: "laza-account",
+                kSecClass: kSecClassGenericPassword
+            ] as CFDictionary
+            let attributeToUpdate = [kSecValueData: data] as CFDictionary
+            // Update to keychain
+            let updateStatus = SecItemUpdate(updatequery, attributeToUpdate)
+            if updateStatus != errSecSuccess {
+                print("Error updating dark mode config to keychain, status: \(status)")
+            }
+        } else if status != errSecSuccess {
+            print("Error adding dark mode config to keychain, status: \(status)")
+        }
+    }
+    
+    func getDarkModeConfigFromUserDefault() -> Bool? {
+        let getquery = [
+            kSecAttrService: "is-dark-mode",
+            kSecAttrAccount: "laza-account",
+            kSecClass: kSecClassGenericPassword,
+            kSecReturnData: true
+        ] as CFDictionary
+        
+        var ref: CFTypeRef?
+        let status = SecItemCopyMatching(getquery, &ref)
+        guard status == errSecSuccess else {
+            // Error
+            print("Error retrieving dark mode config from keychain, status: \(status)")
+            return nil
+        }
+        let data = ref as! Data
+        let value = data.withUnsafeBytes { $0.load(as: Int.self) } // Data to Int
+        print(value)
+        let isDarkMode = value == 1
+        return isDarkMode
+    }
 }
