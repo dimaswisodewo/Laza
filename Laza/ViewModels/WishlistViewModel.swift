@@ -19,6 +19,18 @@ class WishlistViewModel {
         return products
     }
     
+    private var isAscending = false
+    func toggleSortItem() {
+        var sorted: Products!
+        isAscending.toggle()
+        if isAscending {
+            sorted = products.sorted { $0.name < $1.name }
+        } else {
+            sorted = products.sorted { $0.name > $1.name }
+        }
+        products = sorted
+    }
+    
     func loadWishlists(completion: @escaping () -> Void, onError: @escaping (String) -> Void) {
         var endpoint = Endpoint()
         endpoint.initialize(path: .Wishlist)

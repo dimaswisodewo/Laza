@@ -86,6 +86,12 @@ class CartViewController: UIViewController {
         registerObserver()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tabBarController?.tabBar.isHidden = false
+    }
+    
     private func setupSkeleton() {
         tableView.isSkeletonable = true
     }
@@ -102,7 +108,6 @@ class CartViewController: UIViewController {
     }
     
     private func setIsOrderEmpty(isEmpty: Bool) {
-        print("Is order empty: \(isEmpty)")
         emptyLabel.isHidden = !isEmpty
         totalPriceView.isHidden = isEmpty
         checkoutButton.isHidden = isEmpty

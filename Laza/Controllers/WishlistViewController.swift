@@ -35,12 +35,23 @@ class WishlistViewController: UIViewController {
         }
     }
     
+    private let emptyLabel: UILabel = {
+        let label = UILabel()
+        label.text = "You have no wishlist"
+        label.textAlignment = .center
+        label.font = FontUtils.shared.getFont(font: .Poppins, weight: .regular, size: 14)
+        label.textColor = ColorUtils.shared.getColor(color: .TextPrimary)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     private let viewModel = WishlistViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupTabBarItemImage()
+        setupEmptyLabel()
         setupRefreshControl()
         registerObserver()
         
@@ -58,6 +69,24 @@ class WishlistViewController: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: Notification.Name.wishlistUpdated, object: nil)
+    }
+    
+    private func setIsWishlistEmpty(isEmpty: Bool) {
+        emptyLabel.isHidden = !isEmpty
+        wishlistCountLabel.isHidden = isEmpty
+        availableInStockLabel.isHidden = isEmpty
+        sortButton.isHidden = isEmpty
+    }
+    
+    private func setupEmptyLabel() {
+        view.addSubview(emptyLabel)
+        let insets = view.safeAreaInsets
+        NSLayoutConstraint.activate([
+            emptyLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: insets.top),
+            emptyLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            emptyLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            emptyLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -insets.bottom)
+        ])
     }
     
     private func registerObserver() {
@@ -116,6 +145,7 @@ class WishlistViewController: UIViewController {
                 self.collectionView.reloadData()
                 self.hideSkeleton()
                 self.wishlistCountLabel.text = "\(self.viewModel.productsCount) Items"
+                self.setIsWishlistEmpty(isEmpty: self.viewModel.productsCount == 0)
             }
             onFinished?()
         }, onError: { errorMessage in
@@ -132,7 +162,8 @@ class WishlistViewController: UIViewController {
     }
     
     @objc private func sortButtonPressed() {
-        
+        viewModel.toggleSortItem()
+        collectionView.reloadData()
     }
 }
 

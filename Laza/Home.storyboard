@@ -38,7 +38,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="Menu"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w9k-to-9c2" customClass="CircleButton" customModule="Laza" customModuleProvider="target">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w9k-to-9c2" customClass="CircleButton" customModule="Laza" customModuleProvider="target">
                                 <rect key="frame" x="365" y="104" width="45" height="45"/>
                                 <color key="backgroundColor" name="WhiteButtonSecondary"/>
                                 <constraints>
@@ -61,26 +61,12 @@
                                 <color key="textColor" name="TextSecondary"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8cu-6T-E7b" customClass="RoundedButton" customModule="Laza" customModuleProvider="target">
-                                <rect key="frame" x="360" y="269" width="50" height="50"/>
-                                <color key="backgroundColor" name="PurpleButton"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="Luo-DE-ZRd"/>
-                                    <constraint firstAttribute="height" constant="50" id="NGB-ca-4Qk"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="Voice">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" scale="default"/>
-                                </buttonConfiguration>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </button>
                             <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search..." translatesAutoresizingMaskIntoConstraints="NO" id="eEW-Sg-gqZ">
-                                <rect key="frame" x="20" y="266" width="330" height="56"/>
+                                <rect key="frame" x="20" y="265" width="390" height="50"/>
                                 <color key="backgroundColor" name="WhiteBG"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="DKt-Vi-H2w"/>
+                                </constraints>
                                 <textInputTraits key="textInputTraits"/>
                                 <scopeButtonTitles>
                                     <string>Title</string>
@@ -91,7 +77,7 @@
                                 </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="CLj-0t-Rkf" customClass="IntrinsicTableView" customModule="Laza" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="342" width="430" height="507"/>
+                                <rect key="frame" x="0.0" y="335" width="430" height="514"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -100,18 +86,16 @@
                         <constraints>
                             <constraint firstItem="XCi-ED-k5x" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="01Z-cq-oXe"/>
                             <constraint firstItem="uFB-Rh-7KH" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="8es-JN-dgz"/>
-                            <constraint firstItem="eEW-Sg-gqZ" firstAttribute="centerY" secondItem="8cu-6T-E7b" secondAttribute="centerY" id="Cie-qo-0oy"/>
                             <constraint firstItem="CLj-0t-Rkf" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="DwQ-kG-1cb"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="8cu-6T-E7b" secondAttribute="trailing" constant="20" id="F9V-Ig-Xiq"/>
-                            <constraint firstItem="8cu-6T-E7b" firstAttribute="top" secondItem="XCi-ED-k5x" secondAttribute="bottom" constant="24" id="HNK-I4-afc"/>
                             <constraint firstItem="CLj-0t-Rkf" firstAttribute="top" secondItem="eEW-Sg-gqZ" secondAttribute="bottom" constant="20" id="HbL-Y3-Ekm"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="CLj-0t-Rkf" secondAttribute="bottom" id="IQj-HF-cqZ"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="XCi-ED-k5x" secondAttribute="trailing" constant="20" id="K1Z-hP-lhf"/>
                             <constraint firstItem="B7b-uk-JPc" firstAttribute="top" secondItem="uFB-Rh-7KH" secondAttribute="bottom" constant="30" id="Ohs-Bq-Bhc"/>
+                            <constraint firstItem="eEW-Sg-gqZ" firstAttribute="top" secondItem="XCi-ED-k5x" secondAttribute="bottom" constant="20" id="W1f-aK-x0A"/>
                             <constraint firstItem="eEW-Sg-gqZ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="WJV-1K-L2P"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="eEW-Sg-gqZ" secondAttribute="trailing" constant="20" id="YXx-D7-t2u"/>
                             <constraint firstItem="uFB-Rh-7KH" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="45" id="ZMh-iF-C7s"/>
                             <constraint firstItem="w9k-to-9c2" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="45" id="bRS-6Z-PCc"/>
-                            <constraint firstItem="8cu-6T-E7b" firstAttribute="leading" secondItem="eEW-Sg-gqZ" secondAttribute="trailing" constant="10" id="rFC-kp-YzJ"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="w9k-to-9c2" secondAttribute="trailing" constant="20" id="rQR-9P-iyI"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="CLj-0t-Rkf" secondAttribute="trailing" id="soa-tp-vRp"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="B7b-uk-JPc" secondAttribute="trailing" constant="20" id="ugB-FE-UVd"/>
@@ -126,7 +110,6 @@
                         <outlet property="menuButton" destination="uFB-Rh-7KH" id="mE7-vo-3I8"/>
                         <outlet property="searchBar" destination="eEW-Sg-gqZ" id="BWo-Pd-o0a"/>
                         <outlet property="tableView" destination="CLj-0t-Rkf" id="Rer-W5-iHq"/>
-                        <outlet property="voiceButton" destination="8cu-6T-E7b" id="OlE-6z-vJG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1286,9 +1269,6 @@
         <designable name="7bu-Ig-m0s">
             <size key="intrinsicContentSize" width="49.333333333333336" height="34.333333333333336"/>
         </designable>
-        <designable name="8cu-6T-E7b">
-            <size key="intrinsicContentSize" width="48" height="38"/>
-        </designable>
         <designable name="MaE-mc-JQ9">
             <size key="intrinsicContentSize" width="49.333333333333336" height="34.333333333333336"/>
         </designable>
@@ -1321,7 +1301,6 @@
         <image name="Bag" width="25" height="25"/>
         <image name="Home" width="21" height="22"/>
         <image name="Menu" width="25" height="25"/>
-        <image name="Voice" width="24" height="24"/>
         <image name="Wallet" width="21" height="20"/>
         <image name="Wishlist" width="21" height="20"/>
         <image name="arrow.backward" catalog="system" width="128" height="95"/>
